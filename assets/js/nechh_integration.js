@@ -1,28 +1,37 @@
-/**
- * Nechh Radar Integration Script
- * Fetches JSON analysis data and updates the frontend UI.
- */
+// MODE: Auto-detect based on environment
+// - 'LOCAL': When running on localhost or via file://
+// - 'API': When running on Vercel (Uses /api/nechh-data)
+const isLocal = window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    window.location.protocol === 'file:';
 
-// MODE: 'API' (for Vercel) or 'LOCAL' (for file:// preview)
-const MODE = 'API';
+console.log(`Environment detected: ${isLocal ? 'LOCAL (Offline Mode)' : 'PRODUCTION (API Mode)'}`);
 
 async function fetchRadarData() {
     try {
         let data;
 
-        if (MODE === 'LOCAL') {
+        if (isLocal) {
             // Local Preview Mode: Read from window variable injected by radar_data.js
             if (window.NECHH_RADAR_DATA) {
                 console.log("Reading local data:", window.NECHH_RADAR_DATA);
                 data = window.NECHH_RADAR_DATA;
+
+                // Visual Indicator
+                const stText = document.getElementById('system-status-text');
+                if (stText) stText.innerHTML = 'SYSTEM ONLINE <span class="text-gray-500 text-[10px]">(LOCAL)</span>';
             } else {
-                console.warn("Local data file (radar_data.js) not loaded yet.");
+                console.warn("Local data file (radar_data.js) not loaded.");
                 return;
             }
         } else {
-            // Production Mode
+            // Production Mode (Vercel)
             const response = await fetch('/api/nechh-data');
-            if (!response.ok) throw new Error('Network response was not ok');
+
+            if (!response.ok) {
+                throw new Error(`API Error: ${response.status}`);
+            }
+
             data = await response.json();
         }
 
