@@ -3,7 +3,7 @@
  * Fetches JSON analysis data and updates the frontend UI.
  */
 
-const DATA_URL = 'nechh_radar_output.json'; // Local file for testing, will be API endpoint
+const DATA_URL = '/api/nechh-data'; // Points to Vercel API endpoint
 
 async function fetchRadarData() {
     try {
