@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Nechh Robotics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        :root { --blue: #2563eb; --cyan: #06b6d4; }
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .trademark { font-size: 0.6em; vertical-align: super; margin-left: 2px; }
+        .card-hover { transition: all 0.3s ease; border: 1px solid #e5e7eb; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1); border-color: var(--blue); }
+        .phase-badge { font-size: 0.75rem; padding: 2px 10px; border-radius: 12px; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Navigation (Ana sayfayla aynı) -->
+    <nav class="sticky top-0 bg-white/95 backdrop-blur-sm border-b z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="text-xl font-bold gradient-text">Nechh Robotics<span class="trademark"></span></a>
+                </div>
+                            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="font-medium hover:text-blue-600">Home</a>
+                <a href="about.html" class="font-medium text-blue-600 border-b-2 border-blue-600">About</a>
+                <a href="pricing.html" class="font-medium hover:text-blue-600">Pricing</a>
+                <a href="register.html" class="font-medium hover:text-blue-600">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="pt-20 pb-10 px-4 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Beyond Code: A Philosophy of Observation</h1>
+            <p class="text-xl text-gray-700">Nechh Robotics is an independent technology initiative that bridges scientific thought with experimental engineering across multiple disciplines.</p>
+        </div>
+    </section>
+
+    <!-- FOUNDER SECTION -->
+    <section class="py-12 px-4 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-2/3">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-900">Founder & Approach</h2>
+                    <p class="text-lg text-gray-700 mb-4">
+                        I am the founder—a former physics teacher with nearly 30 years of experience, and a lifelong inventor, developer, and writer. My work has always been driven by a core principle: moving beyond theoretical knowledge to <strong class="text-gray-900">build systems, test them rigorously, and observe real-world behaviors.</strong>
+                    </p>
+                    <p class="text-gray-600">
+                        This empirical, scenario-based mindset is the foundation of every project at Nechh Robotics. We don't claim to have absolute answers; instead, we generate scenarios, discuss probabilities, and aim to create awareness.
+                    </p>
+                </div>
+                <div class="md:w-1/3 bg-gray-50 p-8 rounded-2xl border text-center">
+                    <div class="text-5xl mb-4">👨‍🔬</div>
+                    <h3 class="text-xl font-bold mb-2">M. Bayrak</h3>
+                    <p class="text-gray-600 text-sm">Founder, Developer & Researcher</p>
+                    <p class="text-gray-500 text-xs mt-3">Physics Teacher (30 yrs) | Inventor | Systems Thinker</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SHOWCASE -->
+    <section class="py-12 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-10 text-center text-gray-900">A Portfolio of Experimental Projects</h2>
+            <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">Projects at Nechh Robotics exist at various maturity levels—from research and prototype to MVP and live beta. This ecosystem reflects our continuous exploration across different fields.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project Card 1 -->
+                <div class="card-hover bg-white p-6 rounded-xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-bold text-lg text-gray-900">Telegram AI Trading System</h3>
+                        <span class="phase-badge bg-green-100 text-green-800">Beta (Live)</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Algorithmic market analysis delivered via Telegram. A live experiment in observing systematic model behavior on real market data.</p>
+                    <div class="text-xs text-blue-600">Algorithmic Models • Data Analysis • Automation</div>
+                </div>
+                <!-- Project Card 2 -->
+                <div class="card-hover bg-white p-6 rounded-xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-bold text-lg text-gray-900">AEHS</h3>
+                        <span class="phase-badge bg-blue-100 text-blue-800">Prototype / R&D</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Advanced Environmental & Habitat Systems. Research-focused prototyping.</p>
+                    <div class="text-xs text-blue-600">Research • Prototyping • Systems Design</div>
+                </div>
+                <!-- Project Card 3 -->
+                <div class="card-hover bg-white p-6 rounded-xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-bold text-lg text-gray-900">HealthAI Dietitian</h3>
+                        <span class="phase-badge bg-purple-100 text-purple-800">Research / Prototype</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">AI-driven personal health and nutrition analysis system.</p>
+                    <div class="text-xs text-blue-600">AI • Health Tech • Personalization</div>
+                </div>
+                <!-- Project Card 4 -->
+                <div class="card-hover bg-white p-6 rounded-xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-bold text-lg text-gray-900">Broker Agent System</h3>
+                        <span class="phase-badge bg-blue-100 text-blue-800">Prototype</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Multi-agent automation system for brokerage and data interaction.</p>
+                    <div class="text-xs text-blue-600">Automation • Multi-Agent • Finance</div>
+                </div>
+                <!-- Project Card 5 -->
+                <div class="card-hover bg-white p-6 rounded-xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-bold text-lg text-gray-900">Agricultural Robot (Green Warrior)</h3>
+                        <span class="phase-badge bg-yellow-100 text-yellow-800">Robotics</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">Experimental robotics project focused on agricultural automation.</p>
+                    <div class="text-xs text-blue-600">Robotics • Automation • Agritech</div>
+                </div>
+                <!-- Project Card 6 -->
+                <div class="card-hover bg-white p-6 rounded-xl">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-bold text-lg text-gray-900">Emotice Codeburn</h3>
+                        <span class="phase-badge bg-green-100 text-green-800">MVP / Iterating</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4">A unique project at the intersection of emotion, code, and system behavior.</p>
+                    <div class="text-xs text-blue-600">Experimental • Software • Behavior</div>
+                </div>
+            </div>
+
+            <p class="text-center text-gray-500 text-sm mt-12">
+                ... alongside many others like <strong>Sterilization Car (M.O.R.U.K.)</strong>, <strong>Infinite Drone</strong>, <strong>Ionocraft</strong>, and <strong>Olly</strong> in the fields of robotics, automation, AI, and experimental engineering.
+            </p>
+        </div>
+    </section>
+
+    <!-- KEY MESSAGE & DISCLAIMER -->
+    <section class="py-12 px-4 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="border-l-4 border-amber-500 bg-amber-50 p-6 rounded-r-xl mb-8">
+                <h3 class="text-xl font-bold text-amber-800 mb-2">A Critical Clarification</h3>
+                <p class="text-amber-700">
+                    The <strong>Telegram AI Trading System</strong> is just <em>one</em> project among many. The market analysis it provides is <strong>NOT investment advice, does NOT constitute a recommendation, and carries NO profit guarantee.</strong> Its purpose is purely observational: to analyze market data, explore different scenarios, and note conditions worth attention.
+                </p>
+            </div>
+
+            <div class="p-6 border rounded-xl bg-gray-50">
+                <h3 class="text-2xl font-bold mb-4 text-gray-900">Our Structure & Access</h3>
+                <p class="text-gray-700 mb-3">
+                    Nechh Robotics is <strong>not an investment firm</strong> and does not provide financial intermediation. Some projects may be open-access, while others, based on their nature and development stage, may be offered under a subscription or limited-access model.
+                </p>
+                <p class="text-gray-600">
+                    This structure allows us to sustain focused research and development while providing value to those interested in our experimental approach to technology and system analysis.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (Ana sayfayla aynı) -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 mt-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-800 pb-8 mb-8">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-xl font-bold text-white">Nechh Robotics</span>
+                    <p class="text-sm mt-2 max-w-md">Independent algorithmic market research.<br>For educational and informational purposes only.</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <div class="text-xs px-4 py-2 bg-gray-800 rounded-full inline-block">⚠️ NOT INVESTMENT ADVICE</div>
+                    <p class="text-xs mt-3">High risk involved. 18+ only.</p>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-white font-semibold mb-3">Legal</h3>
+                    <div class="flex flex-wrap gap-4 text-sm">
+                        <a href="legal/terms.html" class="hover:text-white hover:underline">Terms of Service</a>
+                        <a href="legal/privacy.html" class="hover:text-white hover:underline">Privacy Policy</a>
+                        <a href="legal/risk-disclosure.html" class="hover:text-white hover:underline">Risk Disclosure</a>
+                        <a href="legal/refund-policy.html" class="hover:text-white hover:underline">Refund Policy</a>
+                    </div>
+                </div>
+                <div class="text-center md:text-right">
+                    <h3 class="text-white font-semibold mb-3">Contact</h3>
+                    <p class="text-sm">nechhlab.global@gmail.com</p>
+                    <p class="text-xs mt-2">Türkiye</p>
+                </div>
+            </div>
+            <div class="text-center pt-8 mt-8 border-t border-gray-800 text-xs">
+                <p>© <span id="currentYear"></span> Nechh Robotics. All rights reserved. "Nechh Robotics" is a trademark.</p>
+                <p class="mt-2">This is an experimental research platform. Past performance is no guarantee of future results.</p>
+            </div>
+        </div>
+    </footer>
+    <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+</body>
+</html>

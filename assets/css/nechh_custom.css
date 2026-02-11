@@ -1,0 +1,35 @@
+/* Custom Styles for Nechh Radar Integration */
+
+.nechh-status-bar {
+    font-size: 0.85rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.radar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.chart-container {
+    position: relative;
+    height: 150px;
+    width: 100%;
+    background: #fff;
+    border-radius: 0.75rem; /* rounded-xl */
+    overflow: hidden;
+}
+
+.glow-point {
+    box-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}

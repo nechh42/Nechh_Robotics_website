@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access & Pricing - Nechh Robotics</title>
+    <meta name="description" content="Subscription-based access to independent algorithmic market analysis. No signals. Educational and informational only.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        :root {
+            --blue: #2563eb;
+            --cyan: #06b6d4;
+            --emerald: #10b981;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #f0fdf4 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-hover {
+            transition: all 0.4s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(37, 99, 235, 0.15);
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800 min-h-screen">
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 bg-white/95 backdrop-blur-sm border-b z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="text-xl font-bold gradient-text">Nechh Robotics</a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="font-medium hover:text-blue-600">Home</a>
+                    <a href="about.html" class="font-medium hover:text-blue-600">About</a>
+                    <a href="register.html" class="font-medium hover:text-blue-600">Register</a>
+                    <a href="pricing.html" class="font-medium text-blue-600 border-b-2 border-blue-600">Pricing</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="pt-16 pb-10 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Access & Pricing</h1>
+            <p class="text-xl text-gray-700 mb-4">Subscription-based access to independent algorithmic market analysis.</p>
+            <div
+                class="inline-flex items-center bg-amber-50 text-amber-800 px-4 py-2 rounded-full text-sm font-semibold">
+                <i class="fas fa-bolt mr-2"></i> All subscriptions include private Telegram delivery.
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING CARDS -->
+    <section class="py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <!-- FREE ACCESS CARD -->
+            <div class="max-w-2xl mx-auto mb-16">
+                <div class="bg-white rounded-2xl p-8 border-2 border-emerald-300 shadow-lg">
+                    <div class="mb-6 text-center">
+                        <div class="inline-flex items-center bg-emerald-100 text-emerald-800 px-4 py-1 rounded-full text-sm font-bold mb-4">
+                            <i class="fas fa-gift mr-2"></i> FREE TRIAL
+                        </div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">Free Access — 14 Days</h2>
+                        <p class="text-gray-600">Experience the platform with full access to crypto market analysis.</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Crypto market analysis (Spot & Futures)</span>
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Private Telegram delivery channel</span>
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Educational & informational content</span>
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Full platform features</span>
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Automatic expiration after 14 days</span>
+                        </li>
+                    </ul>
+                    <div class="text-center p-4 bg-emerald-50 rounded-lg">
+                        <p class="text-emerald-800 font-semibold">No payment required during the free access period.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MONTHLY ACCESS CARDS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- CRYPTO CARD -->
+                <div class="card-hover bg-white rounded-2xl p-8 flex flex-col border-2 border-blue-200 shadow-lg">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-2">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fab fa-bitcoin text-2xl text-blue-600"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Crypto</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Market structure analysis for BTC, ETH, and major alts.</p>
+                    </div>
+                    <div class="mb-6">
+                        <div class="flex items-baseline">
+                            <span class="text-5xl font-bold text-gray-900">$100</span>
+                            <span class="text-gray-500 ml-2">/ month</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-1">+7% VAT for TR residents</p>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow">
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Full crypto market analysis</span>
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Intraday market context</span>
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Structured analytical updates</span>
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Private Telegram access</span>
+                        </li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Educational content only</span>
+                        </li>
+                    </ul>
+                    <a href="register.html"
+                        class="block w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 text-white font-bold py-3 px-6 rounded-lg text-center transition duration-300 shadow">
+                        <i class="fas fa-user-plus mr-2"></i> Register for Access
+                    </a>
+                </div>
+
+                <!-- US STOCKS CARD -->
+                <div class="card-hover bg-white rounded-2xl p-8 flex flex-col border border-gray-200">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-2">
+                            <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-chart-line text-2xl text-gray-700"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">US Stocks</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Algorithmic analysis for NYSE & NASDAQ equities.</p>
+                    </div>
+                    <div class="mb-6">
+                        <div class="flex items-baseline">
+                            <span class="text-5xl font-bold text-gray-900">$120</span>
+                            <span class="text-gray-500 ml-2">/ month</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-1">+7% VAT for TR residents</p>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow">
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i>
+                            <span>Market structure analysis</span></li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Volatility regime monitoring</span></li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Sector rotation analysis</span></li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Daily analytical report</span></li>
+                    </ul>
+                    <div class="text-center text-gray-500 text-sm py-4 border-t">
+                        <i class="fas fa-tools mr-2"></i> Launching Q2 2026
+                    </div>
+                </div>
+
+                <!-- FOREX CARD -->
+                <div class="card-hover bg-white rounded-2xl p-8 flex flex-col border border-gray-200">
+                    <div class="mb-6">
+                        <div class="flex items-center mb-2">
+                            <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-globe-europe text-2xl text-purple-600"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Forex</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm">Major & minor currency pairs analysis.</p>
+                    </div>
+                    <div class="mb-6">
+                        <div class="flex items-baseline">
+                            <span class="text-5xl font-bold text-gray-900">$100</span>
+                            <span class="text-gray-500 ml-2">/ month</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-1">+7% VAT for TR residents</p>
+                    </div>
+                    <ul class="space-y-3 mb-8 flex-grow">
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Major pairs analysis</span></li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Carry trade analysis</span></li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>Central bank policy monitoring</span></li>
+                        <li class="flex items-center"><i class="fas fa-check text-emerald-500 mr-3"></i> 
+                            <span>4H & Daily analysis</span></li>
+                    </ul>
+                    <div class="text-center text-gray-500 text-sm py-4 border-t">
+                        <i class="fas fa-tools mr-2"></i> Planned for Q3 2026
+                    </div>
+                </div>
+            </div>
+
+            <!-- IMPORTANT NOTICE -->
+            <div class="max-w-3xl mx-auto mt-16 p-6 bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-2xl">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Important Notice</h3>
+                <p class="text-gray-700 mb-4">
+                    This service does not provide trading signals or investment advice.
+                    No guarantees are offered.
+                    Users are responsible for their own decisions.
+                </p>
+                <div class="p-4 bg-white rounded-lg border border-red-200">
+                    <p class="text-red-700 font-semibold">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        Telegram does not require payment. Payments are accepted only via the official website.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 mt-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-800 pb-8 mb-8">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-xl font-bold text-white">Nechh Robotics</span>
+                    <p class="text-sm mt-2 max-w-md">Independent algorithmic market research.<br>For educational and
+                        informational purposes only.</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <div class="text-xs px-4 py-2 bg-gray-800 rounded-full inline-block">⚠️ NOT INVESTMENT ADVICE</div>
+                    <p class="text-xs mt-3">High risk involved. 18+ only.</p>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-white font-semibold mb-3">Legal</h3>
+                    <div class="flex flex-wrap gap-4 text-sm">
+                        <a href="legal/terms.html" class="hover:text-white hover:underline">Terms of Service</a>
+                        <a href="legal/privacy.html" class="hover:text-white hover:underline">Privacy Policy</a>
+                        <a href="legal/risk-disclosure.html" class="hover:text-white hover:underline">Risk
+                            Disclosure</a>
+                        <a href="legal/refund-policy.html" class="hover:text-white hover:underline">Refund Policy</a>
+                    </div>
+                </div>
+                <div class="text-center md:text-right">
+                    <h3 class="text-white font-semibold mb-3">Contact</h3>
+                    <p class="text-sm">nechhlab.global@gmail.com</p>
+                    <p class="text-xs mt-2">Türkiye</p>
+                </div>
+            </div>
+            <div class="text-center pt-8 mt-8 border-t border-gray-800 text-xs">
+                <p>© <span id="currentYear"></span> Nechh Robotics. All rights reserved. "Nechh Robotics" is a
+                    trademark.</p>
+                <p class="mt-2">This is an experimental research platform. Past performance is no guarantee of future
+                    results.</p>
+            </div>
+        </div>
+    </footer>
+    <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+</body>
+</html>
+
