@@ -29,8 +29,25 @@ async function fetchRadarData() {
         updateUI(data);
     } catch (error) {
         console.error('Error fetching radar data:', error);
-        document.getElementById('system-status-dot').style.color = 'gray';
-        document.getElementById('system-status-text').textContent = 'Connecting...';
+
+        // VISUAL ERROR REPORTING
+        const statusDot = document.getElementById('system-status-dot');
+        const statusText = document.getElementById('system-status-text');
+        const cardsContainer = document.getElementById('quick-cards-container');
+
+        if (statusDot && statusText) {
+            statusDot.classList.remove('text-green-500', 'pulse-animation');
+            statusDot.classList.add('text-red-500');
+            statusText.textContent = `CONN ERR: ${error.message}`;
+        }
+
+        if (cardsContainer) {
+            cardsContainer.innerHTML = `<div class="text-center text-red-400 py-8">
+                <p class="font-bold">Connection Failed</p>
+                <p class="text-xs text-gray-400 mt-2">${error.message}</p>
+                <p class="text-xs text-gray-500 mt-1">Check /api/nechh-data</p>
+            </div>`;
+        }
     }
 }
 
