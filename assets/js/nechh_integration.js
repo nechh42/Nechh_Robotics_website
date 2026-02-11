@@ -3,17 +3,32 @@
  * Fetches JSON analysis data and updates the frontend UI.
  */
 
-const DATA_URL = 'radar_data.json'; // Local file for immediate preview
+// MODE: 'API' (for Vercel) or 'LOCAL' (for file:// preview)
+const MODE = 'API';
 
 async function fetchRadarData() {
     try {
-        const response = await fetch(DATA_URL);
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
+        let data;
+
+        if (MODE === 'LOCAL') {
+            // Local Preview Mode: Read from window variable injected by radar_data.js
+            if (window.NECHH_RADAR_DATA) {
+                console.log("Reading local data:", window.NECHH_RADAR_DATA);
+                data = window.NECHH_RADAR_DATA;
+            } else {
+                console.warn("Local data file (radar_data.js) not loaded yet.");
+                return;
+            }
+        } else {
+            // Production Mode
+            const response = await fetch('/api/nechh-data');
+            if (!response.ok) throw new Error('Network response was not ok');
+            data = await response.json();
+        }
+
         updateUI(data);
     } catch (error) {
         console.error('Error fetching radar data:', error);
-        // Fallback or loading state
         document.getElementById('system-status-dot').style.color = 'gray';
         document.getElementById('system-status-text').textContent = 'Connecting...';
     }
