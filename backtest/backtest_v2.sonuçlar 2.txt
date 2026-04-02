@@ -1,0 +1,269 @@
+PS C:\war_machine> python backtest_v2.py
+
+======================================================================
+WAR MACHINE BACKTEST — 30 gün, 1h
+======================================================================
+
+BTCUSDT verisi çekiliyor... 720 mum
+
+ETHUSDT verisi çekiliyor... 720 mum
+
+SOLUSDT verisi çekiliyor... 720 mum
+
+BNBUSDT verisi çekiliyor... 720 mum
+
+XRPUSDT verisi çekiliyor... 720 mum
+
+DOGEUSDT verisi çekiliyor... 720 mum
+
+ADAUSDT verisi çekiliyor... 720 mum
+
+AVAXUSDT verisi çekiliyor... 720 mum
+
+DOTUSDT verisi çekiliyor... 720 mum
+
+LINKUSDT verisi çekiliyor... 720 mum
+
+SUIUSDT verisi çekiliyor... 720 mum
+
+MATICUSDT verisi çekiliyor... VERİ YOK, atlandı
+
+LTCUSDT verisi çekiliyor... 720 mum
+
+NEARUSDT verisi çekiliyor... 720 mum
+
+APTUSDT verisi çekiliyor... 720 mum
+
+ARBUSDT verisi çekiliyor... 720 mum
+
+OPUSDT verisi çekiliyor... 720 mum
+
+UNIUSDT verisi çekiliyor... 720 mum
+
+ATOMUSDT verisi çekiliyor... 720 mum
+
+ETCUSDT verisi çekiliyor... 720 mum
+
+WIFUSDT verisi çekiliyor... 720 mum
+
+PEPEUSDT verisi çekiliyor... 720 mum
+
+INJUSDT verisi çekiliyor... 720 mum
+
+FILUSDT verisi çekiliyor... 720 mum
+
+HBARUSDT verisi çekiliyor... 720 mum
+
+VETUSDT verisi çekiliyor... 720 mum
+
+STXUSDT verisi çekiliyor... 720 mum
+
+IMXUSDT verisi çekiliyor... 720 mum
+
+RNDRUSDT verisi çekiliyor... VERİ YOK, atlandı
+
+SEIUSDT verisi çekiliyor... 720 mum
+
+AAVEUSDT verisi çekiliyor... 720 mum
+
+MKRUSDT verisi çekiliyor... VERİ YOK, atlandı
+
+GRTUSDT verisi çekiliyor... 720 mum
+
+ALGOUSDT verisi çekiliyor... 720 mum
+
+ICPUSDT verisi çekiliyor... 720 mum
+
+QNTUSDT verisi çekiliyor... 720 mum
+
+FLOWUSDT verisi çekiliyor... 720 mum
+
+SANDUSDT verisi çekiliyor... 720 mum
+
+GALAUSDT verisi çekiliyor... 720 mum
+
+MANAUSDT verisi çekiliyor... 720 mum
+
+AXSUSDT verisi çekiliyor... 720 mum
+
+APEUSDT verisi çekiliyor... 720 mum
+
+LDOUSDT verisi çekiliyor... 720 mum
+
+FTMUSDT verisi çekiliyor... VERİ YOK, atlandı
+
+CRVUSDT verisi çekiliyor... 720 mum
+
+KAVAUSDT verisi çekiliyor... 720 mum
+
+ZECUSDT verisi çekiliyor... 720 mum
+
+XLMUSDT verisi çekiliyor... 720 mum
+
+EOSUSDT verisi çekiliyor... VERİ YOK, atlandı
+
+THETAUSDT verisi çekiliyor... 720 mum
+
+===========================================================================
+  PRE_TRADE FİLTRESİZ (ham strateji)
+===========================================================================
+Sembol       Trade Kazanç   WR%       PnL MaxDD% Sharpe Ort/Trade
+---------------------------------------------------------------------------
+BTCUSDT         29     13 44.8% $ -230.69  14.2%  -0.03 $   -7.95 ❌
+ETHUSDT         31     15 48.4% $  271.31  12.0%   0.03 $    8.75 ✅
+SOLUSDT         34     14 41.2% $-1285.08  19.3%  -0.14 $  -37.80 ❌
+BNBUSDT         23     12 52.2% $  752.76   7.7%   0.11 $   32.73 ✅
+XRPUSDT         30     15 50.0% $ 1046.47  14.5%   0.11 $   34.88 ✅
+DOGEUSDT        31     16 51.6% $  867.70  17.0%   0.09 $   27.99 ✅
+ADAUSDT         32     18 56.2% $ 1933.96   8.2%   0.20 $   60.44 ✅
+AVAXUSDT        29     12 41.4% $ -549.53  22.1%  -0.07 $  -18.95 ❌
+DOTUSDT         28     13 46.4% $   11.50  22.6%   0.00 $    0.41 ✅
+LINKUSDT        29     13 44.8% $ -203.80  13.8%  -0.03 $   -7.03 ❌
+SUIUSDT         31     16 51.6% $  333.01  16.8%   0.04 $   10.74 ✅
+LTCUSDT         23     12 52.2% $  564.15   7.2%   0.09 $   24.53 ✅
+NEARUSDT        32     14 43.8% $ -265.24  12.0%  -0.03 $   -8.29 ❌
+APTUSDT         33     16 48.5% $ -185.03  12.5%  -0.02 $   -5.61 ❌
+ARBUSDT         31     14 45.2% $  191.82  23.8%   0.02 $    6.19 ✅
+OPUSDT          30     14 46.7% $  768.70   8.0%   0.09 $   25.62 ✅
+UNIUSDT         28     17 60.7% $ 2368.55   5.3%   0.28 $   84.59 ✅
+ATOMUSDT        31     16 51.6% $  248.75  15.1%   0.03 $    8.02 ✅
+ETCUSDT         30     12 40.0% $ -474.74  15.0%  -0.06 $  -15.82 ❌
+WIFUSDT         26     11 42.3% $ -523.26  10.2%  -0.07 $  -20.13 ❌
+PEPEUSDT        25     16 64.0% $ 2908.82  10.3%   0.41 $  116.35 ✅
+INJUSDT         32     16 50.0% $  325.60  18.0%   0.03 $   10.17 ✅
+FILUSDT         23     10 43.5% $ -387.51  14.8%  -0.06 $  -16.85 ❌
+HBARUSDT        30     12 40.0% $-1057.54  15.4%  -0.14 $  -35.25 ❌
+VETUSDT         33     17 51.5% $ 1044.59  11.9%   0.11 $   31.65 ✅
+STXUSDT         33     12 36.4% $-1481.83  22.5%  -0.17 $  -44.90 ❌
+IMXUSDT         36     15 41.7% $-1178.32  22.1%  -0.10 $  -32.73 ❌
+SEIUSDT         33     12 36.4% $-1792.45  26.4%  -0.22 $  -54.32 ❌
+AAVEUSDT        38     19 50.0% $  442.48  17.6%   0.04 $   11.64 ✅
+GRTUSDT         32     12 37.5% $-1559.03  25.5%  -0.18 $  -48.72 ❌
+ALGOUSDT        28     11 39.3% $ -334.59  14.4%  -0.04 $  -11.95 ❌
+ICPUSDT         35     11 31.4% $-3447.19  42.2%  -0.39 $  -98.49 ❌
+QNTUSDT         31     12 38.7% $-1186.76  23.2%  -0.15 $  -38.28 ❌
+FLOWUSDT        39     24 61.5% $ 5090.36   9.6%   0.34 $  130.52 ✅
+SANDUSDT        37     15 40.5% $ -817.57  21.0%  -0.09 $  -22.10 ❌
+GALAUSDT        29     12 41.4% $-1056.17  22.3%  -0.15 $  -36.42 ❌
+MANAUSDT        32     13 40.6% $-1170.23  19.7%  -0.14 $  -36.57 ❌
+AXSUSDT         30     11 36.7% $-1273.82  24.3%  -0.17 $  -42.46 ❌
+APEUSDT         35     13 37.1% $-1317.44  22.5%  -0.14 $  -37.64 ❌
+LDOUSDT         32     16 50.0% $ 1055.52  12.9%   0.10 $   32.98 ✅
+CRVUSDT         38     20 52.6% $ 1834.83   9.9%   0.16 $   48.29 ✅
+KAVAUSDT        22     11 50.0% $  509.56  15.7%   0.05 $   23.16 ✅
+ZECUSDT         40     26 65.0% $ 6091.10   7.7%   0.42 $  152.28 ✅
+XLMUSDT         31     16 51.6% $  606.83  19.9%   0.07 $   19.58 ✅
+THETAUSDT       19      9 47.4% $  210.71  18.6%   0.04 $   11.09 ✅
+---------------------------------------------------------------------------
+TOPLAM        1384              $ 7701.26
+Kârlı coin: 23/45
+
+===========================================================================
+  PRE_TRADE FİLTRELİ (canlı sistem gibi)
+===========================================================================
+Sembol       Trade Kazanç   WR%       PnL MaxDD% Sharpe Ort/Trade
+---------------------------------------------------------------------------
+BTCUSDT         29     14 48.3% $  263.99  12.1%   0.03 $    9.10 ✅
+ETHUSDT         31     16 51.6% $ 1004.85   8.8%   0.10 $   32.41 ✅
+SOLUSDT         33     13 39.4% $-1584.87  22.1%  -0.18 $  -48.03 ❌
+BNBUSDT         23     12 52.2% $  752.76   7.7%   0.11 $   32.73 ✅
+XRPUSDT         31     14 45.2% $  196.53  14.5%   0.02 $    6.34 ✅
+DOGEUSDT        30     15 50.0% $  550.33  17.1%   0.06 $   18.34 ✅
+ADAUSDT         31     17 54.8% $ 1752.05   7.8%   0.19 $   56.52 ✅
+AVAXUSDT        29     12 41.4% $ -549.53  22.1%  -0.07 $  -18.95 ❌
+DOTUSDT         28     12 42.9% $ -599.69  22.6%  -0.09 $  -21.42 ❌
+LINKUSDT        29     13 44.8% $ -203.80  13.8%  -0.03 $   -7.03 ❌
+SUIUSDT         30     15 50.0% $   29.31  17.2%   0.00 $    0.98 ✅
+LTCUSDT         22     11 50.0% $  266.57   7.2%   0.05 $   12.12 ✅
+NEARUSDT        31     14 45.2% $  -67.37  14.3%  -0.01 $   -2.17 ❌
+APTUSDT         32     13 40.6% $-1408.08  18.9%  -0.17 $  -44.00 ❌
+ARBUSDT         29     13 44.8% $ -238.85  23.8%  -0.03 $   -8.24 ❌
+OPUSDT          28     13 46.4% $  895.36   8.2%   0.11 $   31.98 ✅
+UNIUSDT         28     17 60.7% $ 2368.55   5.3%   0.28 $   84.59 ✅
+ATOMUSDT        31     16 51.6% $  248.75  15.1%   0.03 $    8.02 ✅
+ETCUSDT         30     12 40.0% $ -474.74  15.0%  -0.06 $  -15.82 ❌
+WIFUSDT         24     10 41.7% $ -377.56  10.2%  -0.05 $  -15.73 ❌
+PEPEUSDT        25     16 64.0% $ 2908.82  10.3%   0.41 $  116.35 ✅
+INJUSDT         32     15 46.9% $  -23.02  17.1%  -0.00 $   -0.72 ❌
+FILUSDT         26     11 42.3% $ -478.08  14.7%  -0.06 $  -18.39 ❌
+HBARUSDT        30     12 40.0% $-1168.02  16.4%  -0.16 $  -38.93 ❌
+VETUSDT         33     16 48.5% $  569.74  11.9%   0.06 $   17.26 ✅
+STXUSDT         32     10 31.2% $-2031.53  27.6%  -0.26 $  -63.49 ❌
+IMXUSDT         35     15 42.9% $ -850.95  19.0%  -0.07 $  -24.31 ❌
+SEIUSDT         32     13 40.6% $-1152.61  22.8%  -0.14 $  -36.02 ❌
+AAVEUSDT        33     17 51.5% $  592.48  13.7%   0.06 $   17.95 ✅
+GRTUSDT         31     12 38.7% $-1375.01  23.8%  -0.16 $  -44.36 ❌
+ALGOUSDT        28     11 39.3% $ -383.80  14.9%  -0.05 $  -13.71 ❌
+ICPUSDT         34     11 32.4% $-3279.47  40.7%  -0.38 $  -96.46 ❌
+QNTUSDT         31     12 38.7% $-1186.76  23.2%  -0.15 $  -38.28 ❌
+FLOWUSDT        36     23 63.9% $ 5419.15   8.5%   0.39 $  150.53 ✅
+SANDUSDT        37     15 40.5% $ -817.57  21.0%  -0.09 $  -22.10 ❌
+GALAUSDT        27     10 37.0% $-1376.86  23.1%  -0.22 $  -50.99 ❌
+MANAUSDT        30     12 40.0% $-1158.48  21.3%  -0.15 $  -38.62 ❌
+AXSUSDT         34     13 38.2% $-1059.23  23.5%  -0.13 $  -31.15 ❌
+APEUSDT         34     12 35.3% $-1574.72  24.7%  -0.18 $  -46.32 ❌
+LDOUSDT         31     15 48.4% $  845.47  12.4%   0.09 $   27.27 ✅
+CRVUSDT         34     18 52.9% $ 1451.97  11.7%   0.15 $   42.71 ✅
+KAVAUSDT        22     11 50.0% $  324.30  17.6%   0.03 $   14.74 ✅
+ZECUSDT         35     23 65.7% $ 5248.51   7.7%   0.43 $  149.96 ✅
+XLMUSDT         31     16 51.6% $  551.34  20.3%   0.07 $   17.79 ✅
+THETAUSDT       20      9 45.0% $  -14.30  20.4%  -0.00 $   -0.72 ❌
+---------------------------------------------------------------------------
+TOPLAM        1352              $ 2805.92
+Kârlı coin: 20/45
+
+===========================================================================
+  KARŞILAŞTIRMA — Filtre ne kadar etki ediyor?
+===========================================================================
+Sembol       Filtresiz PnL  Filtreli PnL       Fark Trade Farkı
+---------------------------------------------------------------------------
+BTCUSDT      $     -230.69 $      263.99 $   494.67 ↑     +0 trade
+ETHUSDT      $      271.31 $     1004.85 $   733.53 ↑     +0 trade
+SOLUSDT      $    -1285.08 $    -1584.87 $  -299.79 ↓     -1 trade
+BNBUSDT      $      752.76 $      752.76 $     0.00 ↓     +0 trade
+XRPUSDT      $     1046.47 $      196.53 $  -849.94 ↓     +1 trade
+DOGEUSDT     $      867.70 $      550.33 $  -317.37 ↓     -1 trade
+ADAUSDT      $     1933.96 $     1752.05 $  -181.91 ↓     -1 trade
+AVAXUSDT     $     -549.53 $     -549.53 $     0.00 ↓     +0 trade
+DOTUSDT      $       11.50 $     -599.69 $  -611.19 ↓     +0 trade
+LINKUSDT     $     -203.80 $     -203.80 $     0.00 ↓     +0 trade
+SUIUSDT      $      333.01 $       29.31 $  -303.70 ↓     -1 trade
+LTCUSDT      $      564.15 $      266.57 $  -297.58 ↓     -1 trade
+NEARUSDT     $     -265.24 $      -67.37 $   197.87 ↑     -1 trade
+APTUSDT      $     -185.03 $    -1408.08 $ -1223.05 ↓     -1 trade
+ARBUSDT      $      191.82 $     -238.85 $  -430.67 ↓     -2 trade
+OPUSDT       $      768.70 $      895.36 $   126.67 ↑     -2 trade
+UNIUSDT      $     2368.55 $     2368.55 $     0.00 ↓     +0 trade
+ATOMUSDT     $      248.75 $      248.75 $     0.00 ↓     +0 trade
+ETCUSDT      $     -474.74 $     -474.74 $     0.00 ↓     +0 trade
+WIFUSDT      $     -523.26 $     -377.56 $   145.69 ↑     -2 trade
+PEPEUSDT     $     2908.82 $     2908.82 $     0.00 ↓     +0 trade
+INJUSDT      $      325.60 $      -23.02 $  -348.61 ↓     +0 trade
+FILUSDT      $     -387.51 $     -478.08 $   -90.57 ↓     +3 trade
+HBARUSDT     $    -1057.54 $    -1168.02 $  -110.48 ↓     +0 trade
+VETUSDT      $     1044.59 $      569.74 $  -474.85 ↓     +0 trade
+STXUSDT      $    -1481.83 $    -2031.53 $  -549.70 ↓     -1 trade
+IMXUSDT      $    -1178.32 $     -850.95 $   327.36 ↑     -1 trade
+SEIUSDT      $    -1792.45 $    -1152.61 $   639.85 ↑     -1 trade
+AAVEUSDT     $      442.48 $      592.48 $   150.00 ↑     -5 trade
+GRTUSDT      $    -1559.03 $    -1375.01 $   184.02 ↑     -1 trade
+ALGOUSDT     $     -334.59 $     -383.80 $   -49.21 ↓     +0 trade
+ICPUSDT      $    -3447.19 $    -3279.47 $   167.72 ↑     -1 trade
+QNTUSDT      $    -1186.76 $    -1186.76 $     0.00 ↓     +0 trade
+FLOWUSDT     $     5090.36 $     5419.15 $   328.78 ↑     -3 trade
+SANDUSDT     $     -817.57 $     -817.57 $     0.00 ↓     +0 trade
+GALAUSDT     $    -1056.17 $    -1376.86 $  -320.69 ↓     -2 trade
+MANAUSDT     $    -1170.23 $    -1158.48 $    11.75 ↑     -2 trade
+AXSUSDT      $    -1273.82 $    -1059.23 $   214.59 ↑     +4 trade
+APEUSDT      $    -1317.44 $    -1574.72 $  -257.28 ↓     -1 trade
+LDOUSDT      $     1055.52 $      845.47 $  -210.05 ↓     -1 trade
+CRVUSDT      $     1834.83 $     1451.97 $  -382.86 ↓     -4 trade
+KAVAUSDT     $      509.56 $      324.30 $  -185.25 ↓     +0 trade
+ZECUSDT      $     6091.10 $     5248.51 $  -842.59 ↓     -5 trade
+XLMUSDT      $      606.83 $      551.34 $   -55.49 ↓     +0 trade
+THETAUSDT    $      210.71 $      -14.30 $  -225.01 ↓     +1 trade
+---------------------------------------------------------------------------
+TOPLAM       $     7701.26 $     2805.92 $ -4895.35
+
+===========================================================================
+PS C:\war_machine> 
