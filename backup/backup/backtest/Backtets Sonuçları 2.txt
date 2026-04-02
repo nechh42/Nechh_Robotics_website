@@ -1,0 +1,77 @@
+PS C:\war_machine> & C:/Python314/python.exe c:/war_machine/backtest_with_pretrade.py
+==================================================
+BACKTEST + PRE_TRADE FİLTRESİ (30 gün, 1h)
+==================================================
+==================================================
+BTCUSDT | 1h | 30 gün | PRE_TRADE AÇIK
+==================================================
+Trade:     22
+Win Rate:  45.5%
+Toplam PnL: $46.74
+Final:     $10035.22
+LONG:  10 trade | WR: 40% | PnL: $5.85
+SHORT: 12 trade | WR: 50% | PnL: $40.89
+==================================================
+ETHUSDT | 1h | 30 gün | PRE_TRADE AÇIK
+==================================================
+Trade:     27
+Win Rate:  51.9%
+Toplam PnL: $124.59
+Final:     $10111.02
+LONG:  15 trade | WR: 47% | PnL: $50.04
+SHORT: 12 trade | WR: 58% | PnL: $74.55
+==================================================
+BNBUSDT | 1h | 30 gün | PRE_TRADE AÇIK
+==================================================
+Trade:     17
+Win Rate:  41.2%
+Toplam PnL: $24.74
+Final:     $10015.74
+LONG:  9 trade | WR: 44% | PnL: $16.57
+SHORT: 8 trade | WR: 38% | PnL: $8.17
+==================================================
+SOLUSDT | 1h | 30 gün | PRE_TRADE AÇIK
+==================================================
+Trade:     29
+Win Rate:  37.9%
+Toplam PnL: $39.58
+Final:     $10025.01
+LONG:  14 trade | WR: 36% | PnL: $5.17
+SHORT: 15 trade | WR: 40% | PnL: $34.40
+==================================================
+ADAUSDT | 1h | 30 gün | PRE_TRADE AÇIK
+==================================================
+Trade:     27
+Win Rate:  55.6%
+Toplam PnL: $132.09
+Final:     $10117.99
+LONG:  12 trade | WR: 58% | PnL: $69.97
+SHORT: 15 trade | WR: 53% | PnL: $62.11
+==================================================
+ATOMUSDT | 1h | 30 gün | PRE_TRADE AÇIK
+==================================================
+Trade:     20
+Win Rate:  55.0%
+Toplam PnL: $76.53
+Final:     $10065.99
+LONG:  6 trade | WR: 50% | PnL: $14.38
+SHORT: 14 trade | WR: 57% | PnL: $62.15
+==================================================
+NEARUSDT | 1h | 30 gün | PRE_TRADE AÇIK
+==================================================
+Trade:     34
+Win Rate:  50.0%
+Toplam PnL: $94.25
+Final:     $10077.14
+LONG:  18 trade | WR: 56% | PnL: $73.80
+SHORT: 16 trade | WR: 44% | PnL: $20.46
+==================================================
+LINKUSDT | 1h | 30 gün | PRE_TRADE AÇIK
+==================================================
+Trade:     23
+Win Rate:  39.1%
+Toplam PnL: $38.80
+Final:     $10027.26
+LONG:  12 trade | WR: 42% | PnL: $19.50
+SHORT: 11 trade | WR: 36% | PnL: $19.30
+PS C:\war_machine>
