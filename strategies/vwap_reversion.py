@@ -70,6 +70,11 @@ class VWAPReversionStrategy(BaseStrategy):
             action = "SHORT"
             reason = f"Above VWAP {dev*100:.2f}%, RSI={rsi:.1f}"
 
+        # SHORT block (config.ALLOW_SHORT)
+        if action == "SHORT" and not config.ALLOW_SHORT:
+            return Signal(symbol=symbol, action="NONE", confidence=0.0,
+                          reason="SHORT disabled", strategy=self.name, price=price)
+
         if action != "NONE":
             logger.info(f"[VWAP] {symbol}: {action} conf={confidence:.2f} - {reason}")
 

@@ -89,5 +89,68 @@ class TelegramNotifier:
         
         await self.send(msg)
 
+    async def liquidation_spike_alert(self, symbol: str, risk_level: str, liquidation_price: float, 
+                                      current_price: float, distance_pct: float, liquidation_count: int = 0,
+                                      volume_spike: float = 0.0, volatility_spike: float = 0.0):
+        """
+        Likidation İğnesi (Liquidation Spike) Uyarısı
+        Risk seviye: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL'
+        Binance order book'tan algılanan masif liquidation olayları
+        """
+        risk_emoji = {
+            'LOW': '🟡',      # Düşük risk
+            'MEDIUM': '🟠',   # Orta risk - pozisyon kontrol etmelisiniz
+            'HIGH': '🔴',     # Yüksek risk - stop loss önerilir
+            'CRITICAL': '🚨'  # Kritik - acil çıkış tavsiyesi
+        }
+        
+        emoji = risk_emoji.get(risk_level, '⚠️')
+        
+        msg = f"{emoji} <b>LİKİDASYON İĞNESİ UYARISI</b> - {symbol}\n\n"
+        msg += f"<b>Risk Seviyesi:</b> <code>{risk_level}</code>\n"
+        msg += f"<b>Likidation Fiyatı:</b> <code>${liquidation_price:,.4f}</code>\n"
+        msg += f"<b>Mevcut Fiyat:</b> <code>${current_price:,.4f}</code>\n"
+        msg += f"<b>Mesafe:</b> <code>{distance_pct:+.2f}%</code>\n"
+        
+        if liquidation_count > 0:
+            msg += f"<b>Likidation Olayları (24h):</b> <code>{liquidation_count}</code>\n"
+        
+        if volume_spike > 0:
+            msg += f"<b>Volume Spike:</b> <code>{volume_spike:+.1f}%</code>\n"
+        
+        if volatility_spike > 0:
+            msg += f"<b>Volatilite Spike:</b> <code>{volatility_spike:+.1f}%</code>\n"
+        
+        # Risk seviyesine göre tavsiye
+        recommendations = {
+            'LOW': '✅ Normal izleme - işlem devam edebilir',
+            'MEDIUM': '⚠️  Stop loss kontrol edin - risk yönetimi önemli',
+            'HIGH': '🛑 Pozisyon boyutunu düşürmeyi düşünün',
+            'CRITICAL': '⛔ ACİL ÇIKIŞ ÖNERİLİ - masif liquidation olayı'
+        }
+        
+        msg += f"\n<b>Tavsiye:</b> <i>{recommendations.get(risk_level, 'İzleme devam edin')}</i>"
+        msg += f"\n\n<i>🔒 Otomatik likidation spike detection aktif</i>"
+        
+        await self.send(msg)
+
+    async def top_3_coins_signal(self, coin: str, pattern: str, win_rate: float, 
+                                 signal_reason: str, confidence: float):
+        """
+        Top 3 Coin Edge Pattern Sinyali
+        EDGE DISCOVERY v3 tarafından tespit edilen yüksek kalite sinyaller
+        """
+        emoji = "✨" if confidence >= 0.8 else "🌟"
+        
+        msg = f"{emoji} <b>TOP COIN EDGE SİNYALİ</b>\n\n"
+        msg += f"<b>Coin:</b> <code>{coin}</code>\n"
+        msg += f"<b>Pattern:</b> <code>{pattern}</code>\n"
+        msg += f"<b>Historical Win Rate:</b> <code>{win_rate:.2%}</code>\n"
+        msg += f"<b>Sinyal Güvenilirliği:</b> <code>{confidence:.1%}</code>\n"
+        msg += f"\n<b>Sebep:</b> <i>{signal_reason}</i>\n"
+        msg += f"\n<i>📊 EDGE DISCOVERY v3 Sistemi Tarafından Onaylandı</i>"
+        
+        await self.send(msg)
+
 
 telegram = TelegramNotifier()

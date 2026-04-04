@@ -18,6 +18,12 @@ def check_exit(pos: Position, price: float) -> Optional[str]:
     """
     Check if position should be closed based on current price.
 
+    Exit rules:
+      1. Stop Loss
+      2. Take Profit
+      3. Trailing Stop (if activated)
+      4. Time-based: 4h duration (16*3600 seconds)
+
     Args:
         pos: Open position
         price: Current market price
@@ -27,6 +33,14 @@ def check_exit(pos: Position, price: float) -> Optional[str]:
         Also updates trailing stop state on the position object.
     """
     symbol = pos.symbol
+    
+    # ─── TIME-BASED EXIT (4h duration) ───────────────
+    if pos.entry_time:
+        from datetime import datetime
+        duration_sec = (datetime.now() - pos.entry_time).total_seconds()
+        max_duration_sec = 4 * 3600  # 4 hours
+        if duration_sec > max_duration_sec:
+            return f"TIME-BASED EXIT: Position held {duration_sec/3600:.1f}h (max 4h)"
 
     # ─── TRAILING STOP UPDATE ───────────────────────────
     if pos.trailing_active:

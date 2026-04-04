@@ -9,6 +9,7 @@ Based on: crypto_fund/src/analytics/market_regime.py (improved)
 import logging
 import pandas as pd
 import numpy as np
+import config
 from strategies.indicators import calc_ema, calc_atr
 
 logger = logging.getLogger(__name__)
@@ -48,6 +49,11 @@ def detect_regime(df: pd.DataFrame) -> str:
 
     Returns: 'TREND_UP', 'TREND_DOWN', 'RANGING', or 'VOLATILE'
     """
+    # TEST: Force regime if configured
+    if config.TEST_MODE_FORCE_REGIME:
+        logger.warning(f"[TEST] FORCING REGIME: {config.TEST_MODE_FORCE_REGIME}")
+        return config.TEST_MODE_FORCE_REGIME
+    
     if df is None or len(df) < 50:
         return "RANGING"
 
@@ -60,17 +66,24 @@ def detect_regime(df: pd.DataFrame) -> str:
     atr = calc_atr(df).iloc[-1] if len(df) > 14 else 0.0
     price_change_20 = ((price - closes.iloc[-20]) / closes.iloc[-20] * 100) if len(closes) >= 20 else 0.0
 
+    # DEBUG: Log all calculations
+    logger.info(f"[REGIME-DEBUG] ADX={adx:.1f}, vol_ratio={vol_ratio:.2f}, atr_pct={atr/price*100:.2f}%, price_chg_20={price_change_20:.2f}%")
+
     # 1. High volatility check first (chaos mode)
     if vol_ratio > 1.5 and atr > price * 0.02:
-        logger.debug(f"Regime: VOLATILE (vol_ratio={vol_ratio:.2f}, atr_pct={atr/price*100:.2f}%)")
+        logger.info(f"Regime: VOLATILE (vol_ratio={vol_ratio:.2f}, atr_pct={atr/price*100:.2f}%)")
         return "VOLATILE"
 
     # 2. Strong trend check (ADX > 25)
     if adx > 25:
         if price_change_20 > 2:
+            logger.info(f"Regime: TREND_UP (ADX={adx:.1f}, chg={price_change_20:.2f}%)")
             return "TREND_UP"
         elif price_change_20 < -2:
+            logger.info(f"Regime: TREND_DOWN (ADX={adx:.1f}, chg={price_change_20:.2f}%)")
             return "TREND_DOWN"
+        else:
+            logger.info(f"Regime: ADX>{25} but weak price chg ({price_change_20:.2f}%) → RANGING")
 
     # 3. Weak trend / EMA alignment
     ema20 = calc_ema(closes, 20).iloc[-1]
@@ -80,8 +93,11 @@ def detect_regime(df: pd.DataFrame) -> str:
         return "RANGING"
 
     if price > ema20 > ema50 and price_change_20 > 0:
+        logger.info(f"Regime: TREND_UP (EMA: {price:.0f}>{ema20:.0f}>{ema50:.0f})")
         return "TREND_UP"
     elif price < ema20 < ema50 and price_change_20 < 0:
+        logger.info(f"Regime: TREND_DOWN (EMA: {price:.0f}<{ema20:.0f}<{ema50:.0f})")
         return "TREND_DOWN"
 
+    logger.info(f"Regime: RANGING (default)")
     return "RANGING"

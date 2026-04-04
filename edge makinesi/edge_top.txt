@@ -1,0 +1,45 @@
+Edge Discovery v2.0 — 2026-04-03 18:38:11
+Semboller: 24 coin
+Interval: 1h | 3000 mum/sembol
+Filtreler: N≥30, AvgRet≥0.05%, Edge≥5%
+
+ 1. VETUSDT    | strong_mom_down                          | WR=87.1% | N=31   | AvgRet=+2.59% | +12h
+ 2. ARPAUSDT   | squeeze_breakout_down                    | WR=84.1% | N=44   | AvgRet=+1.78% | +24h
+ 3. ARPAUSDT   | low_volatility                           | WR=81.5% | N=54   | AvgRet=+1.45% | +24h
+ 4. XRPUSDT    | rsi_below_40                             | WR=59.1% | N=232  | AvgRet=+0.66% | +24h
+ 5. ARPAUSDT   | bb_squeeze                               | WR=64.1% | N=345  | AvgRet=+0.69% | +24h
+ 6. XRPUSDT    | trend_down                               | WR=54.4% | N=480  | AvgRet=+0.64% | +24h
+ 7. VETUSDT    | strong_mom_down                          | WR=80.7% | N=31   | AvgRet=+0.66% | +4h
+ 8. DOGEUSDT   | trend_down                               | WR=54.5% | N=455  | AvgRet=+0.99% | +24h
+ 9. AAVEUSDT   | strong_mom_down                          | WR=63.9% | N=119  | AvgRet=+1.23% | +12h
+10. FLOWUSDT   | trend_mixed                              | WR=52.5% | N=200  | AvgRet=+3.48% | +24h
+11. VETUSDT    | trend_down                               | WR=52.3% | N=463  | AvgRet=+0.62% | +24h
+12. INJUSDT    | bb_squeeze                               | WR=56.6% | N=251  | AvgRet=+0.14% | +12h
+13. LDOUSDT    | high_volatility                          | WR=74.4% | N=43   | AvgRet=+1.50% | +24h
+14. DOGEUSDT   | rsi_30_50                                | WR=52.4% | N=523  | AvgRet=+0.54% | +24h
+15. ADAUSDT    | trend_down_oversold                      | WR=55.8% | N=190  | AvgRet=+0.62% | +24h
+16. ARPAUSDT   | bb_squeeze                               | WR=60.6% | N=345  | AvgRet=+0.20% | +12h
+17. OPUSDT     | bb_near_lower                            | WR=58.1% | N=222  | AvgRet=+0.68% | +24h
+18. FLOWUSDT   | rsi_above_65                             | WR=63.8% | N=94   | AvgRet=+1.77% | +4h
+19. DOGEUSDT   | trend_down                               | WR=53.2% | N=455  | AvgRet=+0.42% | +12h
+20. BNBUSDT    | bb_lower_high_volume                     | WR=65.2% | N=69   | AvgRet=+0.29% | +12h
+21. SOLUSDT    | ranging_bb_upper                         | WR=69.0% | N=58   | AvgRet=+0.77% | +4h
+22. XRPUSDT    | rsi_below_40                             | WR=55.2% | N=232  | AvgRet=+0.30% | +12h
+23. PEPEUSDT   | momentum_continuation_up                 | WR=65.8% | N=41   | AvgRet=+0.45% | +1h
+24. DOGEUSDT   | price_below_ema50                        | WR=51.0% | N=582  | AvgRet=+0.63% | +24h
+25. SUIUSDT    | strong_mom_down                          | WR=63.9% | N=83   | AvgRet=+1.19% | +12h
+26. ADAUSDT    | rsi_below_40                             | WR=51.5% | N=332  | AvgRet=+0.33% | +24h
+27. LTCUSDT    | trend_down                               | WR=55.2% | N=411  | AvgRet=+0.40% | +24h
+28. ARPAUSDT   | low_volatility                           | WR=70.4% | N=54   | AvgRet=+0.86% | +12h
+29. INJUSDT    | rsi_below_30                             | WR=65.1% | N=63   | AvgRet=+0.45% | +4h
+30. XRPUSDT    | rsi_below_30                             | WR=66.7% | N=63   | AvgRet=+0.37% | +4h
+31. LTCUSDT    | price_below_ema50                        | WR=54.2% | N=522  | AvgRet=+0.35% | +24h
+32. XRPUSDT    | trend_down                               | WR=51.5% | N=480  | AvgRet=+0.33% | +12h
+33. BNBUSDT    | momentum_4h_pos                          | WR=60.8% | N=107  | AvgRet=+0.53% | +12h
+34. DOGEUSDT   | rsi_below_40                             | WR=54.0% | N=261  | AvgRet=+0.93% | +24h
+35. INJUSDT    | trend_down                               | WR=52.7% | N=463  | AvgRet=+0.07% | +24h
+36. ARPAUSDT   | price_below_ema50                        | WR=59.3% | N=484  | AvgRet=+0.44% | +24h
+37. LDOUSDT    | high_volatility                          | WR=69.8% | N=43   | AvgRet=+1.29% | +12h
+38. BNBUSDT    | oversold_high_volume                     | WR=66.0% | N=50   | AvgRet=+0.48% | +12h
+39. PEPEUSDT   | bb_upper_high_volume                     | WR=60.9% | N=64   | AvgRet=+0.33% | +1h
+40. SUIUSDT    | strong_mom_down                          | WR=63.9% | N=83   | AvgRet=+0.29% | +4h

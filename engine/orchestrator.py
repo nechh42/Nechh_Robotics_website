@@ -31,6 +31,7 @@ from strategies.regime import detect_regime
 from strategies.rsi_reversion import RSIReversionStrategy
 from strategies.momentum import MomentumStrategy
 from strategies.vwap_reversion import VWAPReversionStrategy
+from strategies.edge_discovery import EdgeDiscoveryStrategy
 from strategies.indicators import calc_atr
 from risk.pre_trade import PreTradeRisk
 from risk.stop_manager import check_exit
@@ -60,25 +61,32 @@ class Orchestrator:
         self.adaptive = AdaptiveWeights()
         self.sizer = DynamicPositionSizer()
 
-        # Candle manager
-        self.candles = CandleManager(
+        # Dual Candle managers: 4h (trend) + 1h (mean reversion)
+        self.candles_4h = CandleManager(
             symbols=config.SYMBOLS,
             on_candle_close=self._on_candle_close,
             interval=config.CANDLE_INTERVAL,
             max_candles=config.CANDLE_MAX_STORED,
         )
+        self.candles_1h = CandleManager(
+            symbols=config.SYMBOLS,
+            on_candle_close=None,  # 1h candle close is not signaling
+            interval=config.CANDLE_INTERVAL_SHORT,
+            max_candles=config.CANDLE_MAX_STORED,
+        )
 
-        # Datafeed
+        # Datafeed feeds both managers
         self.feed = DataFeed(
             symbols=config.SYMBOLS,
             on_tick=self._on_tick_sync,
         )
 
-        # Strategies
+        # Strategies (RSI gets 1h manager injected)
         self.strategies = [
-            RSIReversionStrategy(),
+            RSIReversionStrategy(candles_1h_manager=self.candles_1h),
             MomentumStrategy(),
             VWAPReversionStrategy(),
+            EdgeDiscoveryStrategy(),
         ]
 
         # Restore positions from database (survive restarts)
@@ -103,13 +111,23 @@ class Orchestrator:
         logger.info(f"Balance: ${config.INITIAL_BALANCE:,.2f}")
         logger.info(f"Symbols: {len(config.SYMBOLS)}")
         logger.info(f"Strategies: {[s.name for s in self.strategies]}")
-        logger.info(f"Candle interval: {config.CANDLE_INTERVAL}")
+        logger.info(f"Timeframes: 4h (trend) + 1h (mean reversion)")
         logger.info("=" * 60)
 
         self._start_time = datetime.now()
 
-        # Initialize candle history from REST API
-        await self.candles.initialize()
+        # Initialize candle histories from REST API (both 4h and 1h)
+        await self.candles_4h.initialize()
+        await self.candles_1h.initialize()
+
+        # TEST MODE: Force first trade after initialization
+        if config.TEST_MODE:
+            logger.warning("[TEST] TEST_MODE ENABLED - Forcing first trade evaluation...")
+            await asyncio.sleep(1)
+            # Manually call evaluation for testing
+            await self._evaluate_strategies("BTCUSDT")
+            await asyncio.sleep(0.5)
+            await self._evaluate_strategies("ETHUSDT")
 
         # Send Telegram startup alert
         asyncio.create_task(telegram.startup_alert())
@@ -165,8 +183,8 @@ class Orchestrator:
     async def _on_tick(self, symbol: str, price: float):
         """
         Handle every incoming tick.
+        Update BOTH 4h and 1h candles.
         SADECE SL/TP kontrolu yapar. Regime exit YOK.
-        Regime exit daha once $334 kaybettirdi — kaldirildi.
         """
         try:
             self._tick_count += 1
@@ -174,8 +192,9 @@ class Orchestrator:
             # Update state price
             self.state.update_price(symbol, price)
 
-            # Update candle aggregation
-            self.candles.on_tick(symbol, price)
+            # Update BOTH candle aggregations
+            self.candles_4h.on_tick(symbol, price)
+            self.candles_1h.on_tick(symbol, price)
 
             # Update performance tracking
             self.performance.update_equity(self.state.equity)
@@ -208,11 +227,11 @@ class Orchestrator:
             logger.error(f"[CANDLE] Strategy task creation failed: {e}")
 
     async def _evaluate_strategies(self, symbol: str):
-        """Run all strategies on closed candle data"""
-        if not self.candles.has_enough_data(symbol):
+        """Run all strategies on closed 4h candle data"""
+        if not self.candles_4h.has_enough_data(symbol):
             return
 
-        df = self.candles.get_dataframe(symbol, 100)
+        df = self.candles_4h.get_dataframe(symbol, 100)
         if df is None:
             return
 
@@ -239,8 +258,13 @@ class Orchestrator:
             except Exception as e:
                 logger.error(f"[STRATEGY] {strategy.name} error on {symbol}: {e}")
 
-        # Esit agirlikli oylama
-        equal_weights = {"RSI": 0.33, "MOMENTUM": 0.34, "VWAP": 0.33}
+        # Esit agirlikli oylama (4 strateji)
+        equal_weights = {
+            "RSI": 0.25,
+            "MOMENTUM": 0.25,
+            "VWAP": 0.25,
+            "EDGE_DISCOVERY": 0.25,
+        }
         combined = combine_signals(signals, regime, equal_weights)
 
         if combined.action == "NONE":

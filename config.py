@@ -18,20 +18,54 @@ load_dotenv()
 EXCHANGE = "BINANCE"
 BASE_CURRENCY = "USDT"
 
-# Coin listesi: backtest'te karli olan 9 coin
-# XLMUSDT, OPUSDT, CRVUSDT, ATOMUSDT kaldirildi (zarar veriyor)
-# KAVAUSDT kaldirildi (tutarsiz)
+# Coin listesi: VERIFIED kazanan kombinasyonlar SADECE
+# Edge Discovery v2.0'dan gelen yeni coinler eklendi
+# SHORT KAPALI: 57 trade, %35 WR, -$3,658 zarar kanıtlanmış
+# LONG-ONLY: %54 WR, +$2,679 kâr kanıtlanmış
 SYMBOLS = [
-    "ZECUSDT",   # +$272 - en iyi SHORT performansi
-    "PEPEUSDT",  # +$ - mean reversion SHORT
-    "UNIUSDT",   # trending + aggressive
-    "ADAUSDT",   # trending
-    "AAVEUSDT",  # +$490 - en iyi 2 trade %100 WR
-    "LDOUSDT",   # izleniyor
-    "BNBUSDT",   # buyuk hacim
-    "BTCUSDT",   # +$223 - guvenilir
-    "LTCUSDT",   # dengeli
+    # === ÇEKİRDEK (19 coin, backtest'te kanıtlı + Edge keşfedilen) ===
+    # STRONG EDGE'LER (WR ≥ 60%)
+    "BTCUSDT", "ETHUSDT", "BNBUSDT",              # Top 3 market cap
+    "XRPUSDT", "SOLUSDT", "AVAXUSDT",             # Edge proven, strong patterns
+    
+    # GOOD EDGE'LER (WR 50-60%)
+    "ADAUSDT", "LTCUSDT", "DOGEUSDT",             # Trend down/oversold patterns
+    "AAVEUSDT", "UNIUSDT", "PEPEUSDT",            # Volatility/momentum patterns
+    
+    # VOLATIILITE + HACIM OYUNCULAR
+    "VETUSDT", "ZECUSDT", "FLOWUSDT",             # Strong momentum patterns
+    "LDOUSDT", "CRVUSDT", "OPUSDT",               # High volatility edges
+    
+    # === UYDU HAVUZU (Edge-based, dinamik) ===
+    "ATOMUSDT", "NEARUSDT",                       # Discovered patterns
+    "SUIUSDT", "INJUSDT",                         # Squeeze breakout, BB squeeze
+    "WIFUSDT", "ARPAUSDT",                        # Low volatility, BB squeeze
+    "XLMUSDT", "KAVAUSDT",                        # Legacy support
 ]
+
+# === EDGE DISCOVERY v3 AYARLARI ===
+ALLOW_EDGE_DISCOVERY = True                     # Edge patterns aktif
+TOP_3_COINS = [                                 # Super-strict N>50 & WR>65%
+    "ARPAUSDT",   # low_volatility: 81.48% WR, N=54
+    "SOLUSDT",    # ranging_bb_upper: 68.97% WR, N=58  
+    "XRPUSDT",    # rsi_below_30: 66.67% WR, N=63
+]
+EDGE_DISCOVERY_FOCUS_MODE = True               # Sadece top 3'e odaklan
+EDGE_MIN_SAMPLE_SIZE = 50                      # N > 50 (istatistiksel güven)
+EDGE_MIN_WIN_RATE = 0.65                       # WR > 65% (yüksek kalite)
+
+# === PAPER TRADING v1 (7 günlük deneme) ===
+PAPER_TRADING_MODE = True                      # Bağlantı: REAL_TRADING_ENABLED=False
+PAPER_TRADING_DURATION_DAYS = 7               # 7 gün
+PAPER_TRADING_START_DATE = "2026-04-03"        # Başlangıç tarihi
+PAPER_TRADING_LOG_SIGNALS = True               # Telegram'da sinyalleri kaydet
+
+# === LIKIDATION KORUMASI ===
+LIQUIDATION_ALERT_ENABLED = True               # Likidation İğnesi uyarısı
+LIQUIDATION_RISK_THRESHOLD = 0.05              # 5% mesafe = HIGH risk
+LIQUIDATION_CRITICAL_THRESHOLD = 0.02          # 2% mesafe = CRITICAL
+LIQUIDATION_VOLUME_SPIKE_PCT = 30.0            # 30% volume spike
+LIQUIDATION_CHECK_INTERVAL = 300               # Her 5 dakikada kontrol
 
 # WEBSOCKET
 WS_URI = "wss://stream.binance.com:9443/stream"
@@ -42,7 +76,8 @@ WS_RECONNECT_DELAY_MAX = 60
 WS_MAX_RECONNECT_ATTEMPTS = 10
 
 # CANDLE
-CANDLE_INTERVAL = "1m"  # TEMPORARY: changed from "1h" to test candle closing
+CANDLE_INTERVAL = "4h"  # Trend için daha temiz (gürültü azaltma)
+CANDLE_INTERVAL_SHORT = "1h"  # Mean reversion entry (RSI oversold)
 CANDLE_HISTORY_COUNT = 100
 CANDLE_MAX_STORED = 200
 MIN_CANDLES_FOR_STRATEGY = 30
@@ -70,16 +105,19 @@ REGIME_WEIGHTS = {
 
 # BEAR GUARD
 BEAR_GUARD_ENABLED = False
-ALLOW_SHORT = True
+ALLOW_LONG = True                # LONG AÇIK: Sistem long-only mode'de
+ALLOW_SHORT = False  # SHORT KAPALI: %35 WR fail kanıtlanmış
 VOLATILE_BLOCK_ENABLED = True
 
 # RISK (PRE-TRADE)
 MAX_POSITION_SIZE_PCT = 0.10   # Her pozisyon max equity %10 notional
 MAX_NOTIONAL_PCT = 0.10        # pre_trade.py ile tutarli
-RISK_PER_TRADE_PCT = 0.02      # %2 risk per trade
+RISK_PER_TRADE_PCT = 0.01      # %1 risk per trade (position size küçültme)
+RISK_BASE_PCT = 0.005          # %0.5 base risk (volatility adjusted)
+VOLATILITY_MULTIPLIER = True   # Enable volatility adjustment
 MIN_EQUITY_THRESHOLD = 1000.0
-MAX_POSITIONS = 2              # [FIX-1] 4'ten 2'ye indirildi — deadlock onleme
-LEVERAGE = 1                   # Paper trade'de leverage yok
+MAX_POSITIONS = 4              # [FIX-1] 6'ten 4'ye indirildi — deadlock onleme
+LEVERAGE = 5                   # Paper trade'de leverage yok
 MIN_PROFIT_PCT = 0.003
 MIN_TRADE_INTERVAL = 60
 MAX_DAILY_TRADES = 10
@@ -121,7 +159,6 @@ LOG_DIR = "logs"
 # DATABASE
 DB_PATH = "data/war_machine.db"
 
-# SUPERVISOR
-SUPERVISOR_MAX_RESTARTS = 50
-SUPERVISOR_RESTART_DELAY = 10
-SUPERVISOR_CRASH_COOLDOWN = 300
+# TESTING & DEBUG
+TEST_MODE = False  # ← DISABLED - NORMAL OPERATION
+TEST_MODE_FORCE_REGIME = "TREND_UP"  # Force TREND_UP to auto-open first trade
