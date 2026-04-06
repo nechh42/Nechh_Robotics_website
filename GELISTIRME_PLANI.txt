@@ -503,3 +503,6 @@ NEDEN TEHLİKELİ:
   Plan hazır. Onayınızla başlıyorum.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+###### ÖNEMLİ ######
+
+"C:\war_machine\edge makinesi" BU KLASÖRDE " C:\war_machine\edge_discovery.py" SONUÇLARI VAR !!DİKKATE ALMAYI UNUTMA!!!!

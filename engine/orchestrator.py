@@ -1,19 +1,16 @@
-"""
-orchestrator.py - Central Coordinator v10.0
+"""orchestrator.py - Central Coordinator v11.0
 ========================================
 The brain. Connects all modules in a single event loop.
 
 Flow:
   Tick -> CandleManager -> Candle closes -> Regime detect ->
-  Strategies evaluate -> Voting -> Pre-trade risk -> Execute ->
-  Database + Telegram
+  Strategies evaluate -> Voting -> Pre-trade risk ->
+  MTF Confirmation (15m) -> Execute -> Database + Telegram
 
-Degisiklikler (v10.0):
-  [FIX-1] REGIME-EXIT tamamen kaldirildi (_on_tick icinden)
-          Onceki: Her tick'te detect_regime() + pozisyon kapama
-          Yeni: Pozisyonlar SADECE SL/TP ile kapanir
-  [FIX-2] _check_regime_exit metodu kaldirildi (olü kod temizligi)
-  [FIX-3] _on_tick sadestirild, gereksiz df yukleme yok
+Degisiklikler (v11.0):
+  [MTF] 15m candle manager eklendi (multi-timeframe confirmation)
+  [MTF] 4h sinyal → 15m onay gate'i (3/4 kriter gerekli)
+  [MTF] Pending signal kuyruğu + max 4 retry (1 saat)
 """
 
 import asyncio
@@ -27,6 +24,7 @@ from engine.state import TradingState
 from engine.signal import Signal
 from engine.voting import combine_signals
 from engine.adaptive_weights import AdaptiveWeights
+from engine.mtf_confirmation import MTFConfirmation, MTF_ENABLED
 from strategies.regime import detect_regime
 from strategies.rsi_reversion import RSIReversionStrategy
 from strategies.momentum import MomentumStrategy
@@ -60,8 +58,9 @@ class Orchestrator:
         self.executor = PaperExecutor(self.state)
         self.adaptive = AdaptiveWeights()
         self.sizer = DynamicPositionSizer()
+        self.mtf = MTFConfirmation()  # 15m confirmation gate
 
-        # Dual Candle managers: 4h (trend) + 1h (mean reversion)
+        # Triple Candle managers: 4h (trend) + 1h (mean reversion) + 15m (trigger)
         self.candles_4h = CandleManager(
             symbols=config.SYMBOLS,
             on_candle_close=self._on_candle_close,
@@ -74,8 +73,14 @@ class Orchestrator:
             interval=config.CANDLE_INTERVAL_SHORT,
             max_candles=config.CANDLE_MAX_STORED,
         )
+        self.candles_15m = CandleManager(
+            symbols=config.SYMBOLS,
+            on_candle_close=self._on_candle_close_15m,  # 15m MTF confirmation
+            interval="15m",
+            max_candles=config.CANDLE_MAX_STORED,
+        )
 
-        # Datafeed feeds both managers
+        # Datafeed feeds all managers
         self.feed = DataFeed(
             symbols=config.SYMBOLS,
             on_tick=self._on_tick_sync,
@@ -111,14 +116,15 @@ class Orchestrator:
         logger.info(f"Balance: ${config.INITIAL_BALANCE:,.2f}")
         logger.info(f"Symbols: {len(config.SYMBOLS)}")
         logger.info(f"Strategies: {[s.name for s in self.strategies]}")
-        logger.info(f"Timeframes: 4h (trend) + 1h (mean reversion)")
+        logger.info(f"Timeframes: 4h (trend) + 1h (mean reversion) + 15m (MTF trigger)")
         logger.info("=" * 60)
 
         self._start_time = datetime.now()
 
-        # Initialize candle histories from REST API (both 4h and 1h)
+        # Initialize candle histories from REST API (4h, 1h, and 15m)
         await self.candles_4h.initialize()
         await self.candles_1h.initialize()
+        await self.candles_15m.initialize()
 
         # TEST MODE: Force first trade after initialization
         if config.TEST_MODE:
@@ -200,6 +206,7 @@ class Orchestrator:
             # Update BOTH candle aggregations
             self.candles_4h.on_tick(symbol, price)
             self.candles_1h.on_tick(symbol, price)
+            self.candles_15m.on_tick(symbol, price)
 
             # Update performance tracking
             self.performance.update_equity(self.state.equity)
@@ -539,7 +546,29 @@ class Orchestrator:
         if not approved:
             return
 
-        # Emri gerceklestir
+        # MTF Confirmation Gate: 15m onay bekleniyor
+        if MTF_ENABLED:
+            # Sinyal kuyruğa eklenir, 15m candle close'da kontrol edilir
+            self.mtf.add_pending(
+                symbol, combined.action, combined.confidence,
+                combined.strategy, regime, params,
+            )
+            # İlk kontrol: mevcut 15m verisiyle hemen dene
+            df_15m = self.candles_15m.get_dataframe(symbol, 50)
+            if df_15m is not None and len(df_15m) >= 20:
+                confirmed, mtf_reason = self.mtf.check_confirmation(symbol, df_15m)
+                if confirmed:
+                    logger.info(f"[MTF] {symbol}: Immediate confirmation! {mtf_reason}")
+                    await self._execute_trade(symbol, params, combined.strategy)
+                else:
+                    logger.info(f"[MTF] {symbol}: Waiting for 15m confirmation... {mtf_reason}")
+            return
+
+        # MTF disabled → direkt execute
+        await self._execute_trade(symbol, params, combined.strategy)
+
+    async def _execute_trade(self, symbol: str, params: dict, strategy_name: str):
+        """Execute a trade (called after MTF confirmation or directly)"""
         result = self.executor.open_order(params)
 
         if result["status"] == "FILLED":
@@ -550,7 +579,7 @@ class Orchestrator:
                 "take_profit": pos.take_profit,
                 "take_profit_1": pos.take_profit_1,
                 "entry_time": pos.entry_time.isoformat(),
-                "strategy": combined.strategy,
+                "strategy": strategy_name,
                 "trailing_active": pos.trailing_active,
                 "trailing_peak": pos.trailing_peak,
                 "entry_atr": pos._entry_atr,
@@ -564,6 +593,10 @@ class Orchestrator:
             # Trade Journal
             from strategies.indicators import calc_rsi, calc_ema
             from data.sentiment import fear_greed
+            df = self.candles_4h.get_dataframe(symbol, 100)
+            atr_s = calc_atr(df) if df is not None else pd.Series()
+            current_atr = atr_s.iloc[-1] if not atr_s.empty else 0.0
+            regime = params.get("entry_regime", "RANGING")
             indicators = {}
             if df is not None:
                 rsi_s = calc_rsi(df["close"])
@@ -576,10 +609,85 @@ class Orchestrator:
                 }
             pos._journal_id = journal_entry(
                 symbol, pos.side, pos.entry_price,
-                regime, combined.strategy, combined.confidence,
+                regime, strategy_name, 0.0,
                 indicators, pos.stop_loss, pos.take_profit,
-                0.02, combined.reason,
+                0.02, f"MTF confirmed" if MTF_ENABLED else "Direct entry",
             )
+
+            logger.info(
+                f"[TRADE] OPENED {pos.side} {symbol} @ ${pos.entry_price:.4f} "
+                f"SL=${pos.stop_loss:.4f} TP=${pos.take_profit:.4f} "
+                f"size={pos.size:.6f} strategy={strategy_name}"
+            )
+
+            # Telegram bildirimi
+            asyncio.create_task(
+                telegram.trade_alert(
+                    symbol, pos.side,
+                    pos.entry_price, 0.0,
+                    0.0,
+                    stop_loss=pos.stop_loss,
+                    take_profit=pos.take_profit,
+                    risk_pct=config.RISK_PER_TRADE_PCT * 100,
+                )
+            )
+
+    def _on_candle_close_15m(self, symbol: str, candle: Candle):
+        """Called when a 15m candle closes — check MTF pending signals"""
+        if not MTF_ENABLED:
+            return
+        if not self.mtf.has_pending(symbol):
+            return
+        try:
+            asyncio.create_task(self._check_mtf_confirmation(symbol))
+        except RuntimeError as e:
+            logger.error(f"[15M-CANDLE] MTF task creation failed: {e}")
+
+    async def _check_mtf_confirmation(self, symbol: str):
+        """Check 15m confirmation for pending signal"""
+        if symbol in self.state.positions:
+            # Pozisyon zaten açılmış (başka timeframe)
+            if self.mtf.has_pending(symbol):
+                del self.mtf.pending[symbol]
+            return
+
+        df_15m = self.candles_15m.get_dataframe(symbol, 50)
+        if df_15m is None or len(df_15m) < 20:
+            return
+
+        # Get params BEFORE check (check might delete pending)
+        params = self.mtf.get_pending_params(symbol)
+        strategy = self.mtf.pending[symbol].strategy if symbol in self.mtf.pending else "VOTE"
+
+        confirmed, mtf_reason = self.mtf.check_confirmation(symbol, df_15m)
+
+        if confirmed and params:
+            # Fiyat güncellemesi (15m mum kapanış fiyatı kullanılacak)
+            current_price = df_15m["close"].iloc[-1]
+            # SL/TP'yi yeni fiyata göre yeniden hesapla
+            atr = params.get("atr", current_price * 0.02)
+            regime = params.get("entry_regime", "RANGING")
+            rr = config.DYNAMIC_RR.get(regime, {"sl": 1.5, "tp": 3.0})
+            sl_dist = atr * rr["sl"]
+            tp_dist = atr * rr["tp"]
+            min_sl = current_price * 0.005
+            if sl_dist < min_sl:
+                scale = min_sl / sl_dist
+                sl_dist = min_sl
+                tp_dist *= scale
+
+            if params["action"] == "LONG":
+                params["price"] = current_price
+                params["stop_loss"] = current_price - sl_dist
+                params["take_profit"] = current_price + tp_dist
+                params["take_profit_1"] = current_price + tp_dist * config.PARTIAL_TP_RATIO
+            else:
+                params["price"] = current_price
+                params["stop_loss"] = current_price + sl_dist
+                params["take_profit"] = current_price - tp_dist
+                params["take_profit_1"] = current_price - tp_dist * config.PARTIAL_TP_RATIO
+
+            await self._execute_trade(symbol, params, f"MTF_{strategy}")
 
     def _apply_funding_fee(self, symbol: str, price: float):
         """Simulate 8-hourly funding fee deduction (Binance futures reality)"""

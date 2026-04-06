@@ -157,6 +157,11 @@ SMART_EXIT_ENABLED = True       # Regime değiştiğinde akıllı çıkış
 FUNDING_FEE_RATE = 0.0001     # 0.01% per 8 hours (Binance default)
 FUNDING_FEE_INTERVAL = 28800  # 8 saat = 28800 saniye
 
+# MTF CONFIRMATION (15m trigger)
+MTF_ENABLED = True             # 15m onay gate'i aktif
+MTF_MAX_RETRIES = 4            # Max 4×15m = 1 saat bekleme
+MTF_MIN_CANDLES = 20           # Minimum 15m candle for analysis
+
 TRAILING_STOP_ACTIVATE = 0.035
 TRAILING_STOP_DISTANCE = 0.01
 
