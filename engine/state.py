@@ -42,6 +42,8 @@ class Position:
     # Partial TP
     take_profit_1: float = 0.0     # TP1 = yarı mesafe
     _partial_closed: bool = False  # TP1 tetiklendi mi?
+    # Smart Exit (regime change)
+    _entry_regime: str = ""        # Pozisyon açıldığındaki regime
 
     def update_pnl(self, price: float):
         if self.side == "LONG":
@@ -244,6 +246,7 @@ class TradingState:
             pos._breakeven_applied = pos_data.get("breakeven_applied", False)
             pos._partial_closed = pos_data.get("partial_closed", False)
             pos.take_profit_1 = pos_data.get("take_profit_1", 0.0)
+            pos._entry_regime = pos_data.get("entry_regime", "")
             self.positions[symbol] = pos
             logger.info(f"[STATE] Restored position: {symbol} {pos_data['side']}")
 

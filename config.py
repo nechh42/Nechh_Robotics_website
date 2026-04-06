@@ -149,6 +149,10 @@ PARTIAL_TP_CLOSE_PCT = 0.50   # TP1'de pozisyonun %50'sini kapat
 # BREAKEVEN STOP
 BREAKEVEN_ATR_TRIGGER = 1.0    # +1×ATR kârda → SL entry'ye taşınır
 
+# SMART EXIT (Regime Change)
+SMART_EXIT_ENABLED = True       # Regime değiştiğinde akıllı çıkış
+# Kârdaysa → kapat, Zarardaysa → TP'yi yeni regime'e göre daralt
+
 # FUNDING FEE SİMÜLASYONU
 FUNDING_FEE_RATE = 0.0001     # 0.01% per 8 hours (Binance default)
 FUNDING_FEE_INTERVAL = 28800  # 8 saat = 28800 saniye

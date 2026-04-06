@@ -51,6 +51,8 @@ class PaperExecutor:
             pos._entry_atr = params.get("atr", 0.0)
             # Partial TP1
             pos.take_profit_1 = params.get("take_profit_1", 0.0)
+            # Smart Exit — regime kaydı
+            pos._entry_regime = params.get("entry_regime", "")
             return {"status": "FILLED", "position": pos}
 
         except Exception as e:

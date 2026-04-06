@@ -191,6 +191,7 @@ class PreTradeRisk:
             "take_profit_1": take_profit_1,
             "strategy": signal.strategy,
             "atr": atr,
+            "entry_regime": regime,
         }
 
     def record_trade_result(self, net_pnl: float, symbol: str):

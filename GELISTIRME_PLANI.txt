@@ -1,8 +1,8 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  WAR MACHINE — KAPSAMLI GELİŞTİRME PLANI                          ║
 ║  Hazırlanma: 6 Nisan 2026                                          ║
-║  Son Güncelleme: 6 Nisan 2026 23:05 UTC+3                         ║
-║  Mevcut Durum: v15 Paper — Hafta 1+2 TAMAMLANDI (6/6 madde)      ║
+║  Son Güncelleme: 6 Nisan 2026 — v15.2                              ║
+║  Mevcut Durum: v15.2 Paper — Hafta 1+2+3 (9/9 madde)             ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -427,8 +427,26 @@ NEDEN TEHLİKELİ:
         → 4h regime detection korunuyor (1h noise yok)
         → Günde 6 sinyal → 24 sinyal noktası
 
+  AUDIT FIX (v15.1):
+    [6] ✅ SL/TP Floor Fix               → TAMAMLANDI (6 Nisan 2026)
+        → ESKİ: price×0.015 SL + price×0.030 TP = sabit 2.0:1 R:R
+        → YENİ: price×0.005 floor + orantılı TP ölçekleme
+        → Dynamic R:R artık GERÇEKTEN çalışıyor
+        → TREND 2.67:1, RANGING 1.50:1 doğrulandı (6 test PASS)
+    [+] ✅ 1h Voting Weight Fix           → TAMAMLANDI (6 Nisan 2026)
+        → RSI, RANGING'de sinyal üretmiyor (NONE döner)
+        → 1h weights {"RSI":0.50,"VWAP":0.50} → {"RSI":0.0,"VWAP":1.0}
+
   HAFTA 3-4 (Stratejik):
-    [7] Smart Exit — regime change (3.2)
+    [7] ✅ Smart Exit — regime change (3.2) → TAMAMLANDI (6 Nisan 2026)
+        → state.py: _entry_regime field eklendi
+        → pre_trade.py: entry_regime params'ta döner
+        → paper.py: open_order'da _entry_regime kaydedilir
+        → orchestrator.py: _check_smart_exit() — 4h candle close'da kontrol
+        → KÂRDA + regime change → pozisyon kapatılır
+        → ZARARDA + regime change → TP yeni regime'e göre daraltılır, SL değişmez
+        → config.py: SMART_EXIT_ENABLED = True
+        → DB save/restore entry_regime destekli
     [8] Backtest v3 (3.4)            → Parametre optimizasyonu
     [9] MTF confirmation (3.1)
 

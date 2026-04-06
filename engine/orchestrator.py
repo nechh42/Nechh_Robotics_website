@@ -163,6 +163,7 @@ class Orchestrator:
                 "entry_atr": pos._entry_atr,
                 "breakeven_applied": pos._breakeven_applied,
                 "partial_closed": pos._partial_closed,
+                "entry_regime": pos._entry_regime,
             })
         logger.info(f"[ENGINE] {len(self.state.positions)} positions saved to DB")
 
@@ -236,6 +237,7 @@ class Orchestrator:
                                 "entry_atr": pos._entry_atr,
                                 "breakeven_applied": pos._breakeven_applied,
                                 "partial_closed": True,
+                                "entry_regime": pos._entry_regime,
                             })
                     else:
                         # Tam kapama (SL, TP2, Trailing)
@@ -254,11 +256,104 @@ class Orchestrator:
             self._send_error_alert(f"TICK HATASI: {symbol} @ ${price}\n{e}")
 
     def _on_candle_close(self, symbol: str, candle: Candle):
-        """Called when a 4h candle closes - run all strategies"""
+        """Called when a 4h candle closes - run all strategies + smart exit check"""
         try:
             asyncio.create_task(self._evaluate_strategies(symbol))
+            # Smart Exit: regime change kontrolü (mevcut pozisyonlar için)
+            if config.SMART_EXIT_ENABLED and symbol in self.state.positions:
+                asyncio.create_task(self._check_smart_exit(symbol))
         except RuntimeError as e:
             logger.error(f"[CANDLE] Strategy task creation failed: {e}")
+
+    async def _check_smart_exit(self, symbol: str):
+        """
+        Smart Exit: Regime değiştiğinde akıllı çıkış.
+        - Kârdaysa → pozisyonu kapat (regime change exit)
+        - Zarardaysa → TP'yi yeni regime'e göre daralt, SL'yi değiştirme
+        """
+        if symbol not in self.state.positions:
+            return
+
+        pos = self.state.positions[symbol]
+        entry_regime = getattr(pos, '_entry_regime', '')
+
+        if not entry_regime:
+            return  # Eski pozisyon, regime bilgisi yok
+
+        # Mevcut regime'i tespit et
+        df = self.candles_4h.get_dataframe(symbol, 100)
+        if df is None:
+            return
+        current_regime = detect_regime(df)
+
+        # Regime değişmemişse → hiçbir şey yapma
+        if current_regime == entry_regime:
+            return
+
+        price = df["close"].iloc[-1]
+        pos.update_pnl(price)
+
+        logger.info(
+            f"[SMART-EXIT] {symbol}: regime {entry_regime} → {current_regime} | "
+            f"PnL=${pos.unrealized_pnl:.2f}"
+        )
+
+        if pos.unrealized_pnl > 0:
+            # KÂRDA → pozisyonu kapat
+            logger.warning(
+                f"[SMART-EXIT] {symbol} KÂRDA KAPATILIYOR: "
+                f"regime {entry_regime}→{current_regime}, PnL=${pos.unrealized_pnl:.2f}"
+            )
+            reason = f"SMART-EXIT: regime {entry_regime}→{current_regime} (kârda)"
+            trade = self.executor.close_order(symbol, price, reason)
+            if trade:
+                self._on_trade_closed(trade, reason)
+                self.db.delete_position(symbol)
+        else:
+            # ZARARDA → TP'yi yeni regime'e göre daralt (SL değişmez)
+            new_rr = config.DYNAMIC_RR.get(current_regime, None)
+            if new_rr and pos._entry_atr > 0:
+                new_tp_dist = pos._entry_atr * new_rr["tp"]
+                if pos.side == "LONG":
+                    new_tp = pos.entry_price + new_tp_dist
+                    if new_tp < pos.take_profit:
+                        old_tp = pos.take_profit
+                        pos.take_profit = new_tp
+                        # TP1'i de güncelle
+                        pos.take_profit_1 = pos.entry_price + new_tp_dist * config.PARTIAL_TP_RATIO
+                        logger.info(
+                            f"[SMART-EXIT] {symbol} TP DARALTILDI: "
+                            f"${old_tp:.2f} → ${new_tp:.2f} (regime→{current_regime})"
+                        )
+                else:  # SHORT
+                    new_tp = pos.entry_price - new_tp_dist
+                    if new_tp > pos.take_profit:
+                        old_tp = pos.take_profit
+                        pos.take_profit = new_tp
+                        pos.take_profit_1 = pos.entry_price - new_tp_dist * config.PARTIAL_TP_RATIO
+                        logger.info(
+                            f"[SMART-EXIT] {symbol} TP DARALTILDI: "
+                            f"${old_tp:.2f} → ${new_tp:.2f} (regime→{current_regime})"
+                        )
+
+                # entry_regime'i güncelle (tekrar tekrar tetiklenmesin)
+                pos._entry_regime = current_regime
+
+                # DB güncelle
+                self.db.save_position(symbol, {
+                    "side": pos.side, "entry_price": pos.entry_price,
+                    "size": pos.size, "stop_loss": pos.stop_loss,
+                    "take_profit": pos.take_profit,
+                    "take_profit_1": pos.take_profit_1,
+                    "entry_time": pos.entry_time.isoformat(),
+                    "strategy": pos.strategy,
+                    "trailing_active": pos.trailing_active,
+                    "trailing_peak": pos.trailing_peak,
+                    "entry_atr": pos._entry_atr,
+                    "breakeven_applied": pos._breakeven_applied,
+                    "partial_closed": pos._partial_closed,
+                    "entry_regime": pos._entry_regime,
+                })
 
     def _on_candle_close_1h(self, symbol: str, candle: Candle):
         """Called when a 1h candle closes - run mean reversion strategies (RANGING only)"""
@@ -357,6 +452,7 @@ class Orchestrator:
                 "entry_atr": pos._entry_atr,
                 "breakeven_applied": pos._breakeven_applied,
                 "partial_closed": pos._partial_closed,
+                "entry_regime": pos._entry_regime,
             })
 
             self.db.log_event("OPEN_1H", f"{pos.side} {symbol} @ ${pos.entry_price:.4f} (1h signal)")
@@ -460,6 +556,7 @@ class Orchestrator:
                 "entry_atr": pos._entry_atr,
                 "breakeven_applied": pos._breakeven_applied,
                 "partial_closed": pos._partial_closed,
+                "entry_regime": pos._entry_regime,
             })
 
             self.db.log_event("OPEN", f"{pos.side} {symbol} @ ${pos.entry_price:.4f}")
