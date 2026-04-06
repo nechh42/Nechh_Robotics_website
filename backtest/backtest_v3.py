@@ -61,6 +61,7 @@ class BTPosition:
     strategy: str
     entry_regime: str
     entry_atr: float
+    original_entry_regime: str = ""  # Never modified by Smart Exit
     breakeven_applied: bool = False
     partial_closed: bool = False
     trailing_active: bool = False
@@ -269,13 +270,13 @@ class BacktestV3:
                 low = df_window["low"].iloc[-1]
                 ts_str = str(df_window["timestamp"].iloc[-1])
 
-                # 1. Check exits for existing positions
-                if sym in self.positions:
-                    self._check_exits(sym, price, high, low, ts_str, df_window)
-
-                # 2. Update MFE/MAE for existing positions
+                # 1. Update MFE/MAE BEFORE exit checks (capture final candle)
                 if sym in self.positions:
                     self._update_mfe_mae(sym, high, low)
+
+                # 2. Check exits for existing positions
+                if sym in self.positions:
+                    self._check_exits(sym, price, high, low, ts_str, df_window)
 
                 # 3. Funding fee (every 2 candles for 4h = 8h)
                 if sym in self.positions:
@@ -407,6 +408,7 @@ class BacktestV3:
             size=size, stop_loss=sl, take_profit=tp,
             take_profit_1=tp1, entry_time=timestamp,
             strategy=combined.strategy, entry_regime=regime,
+            original_entry_regime=regime,
             entry_atr=atr, max_favorable=price, max_adverse=price,
         )
         self._daily_trades += 1
@@ -540,7 +542,8 @@ class BacktestV3:
             size=close_size, gross_pnl=gross, commission=comm,
             funding_fee=0, net_pnl=net,
             reason="PARTIAL-TP1", strategy=pos.strategy,
-            entry_regime=pos.entry_regime, exit_regime=pos.entry_regime,
+            entry_regime=pos.original_entry_regime or pos.entry_regime,
+            exit_regime=pos.entry_regime,
             mfe_pct=pos.mfe_pct, mae_pct=pos.mae_pct,
             candles_held=pos.candles_held, entry_atr=pos.entry_atr,
             sl_distance=abs(pos.entry_price - pos.stop_loss),
@@ -584,7 +587,8 @@ class BacktestV3:
             size=pos.size, gross_pnl=gross, commission=comm,
             funding_fee=pos.funding_paid, net_pnl=net,
             reason=reason, strategy=pos.strategy,
-            entry_regime=pos.entry_regime, exit_regime=exit_regime,
+            entry_regime=pos.original_entry_regime or pos.entry_regime,
+            exit_regime=exit_regime,
             mfe_pct=pos.mfe_pct, mae_pct=pos.mae_pct,
             candles_held=pos.candles_held, entry_atr=pos.entry_atr,
             sl_distance=sl_dist, tp_distance=tp_dist,

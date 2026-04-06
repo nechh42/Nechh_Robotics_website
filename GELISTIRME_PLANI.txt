@@ -1,8 +1,8 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  WAR MACHINE — KAPSAMLI GELİŞTİRME PLANI                          ║
 ║  Hazırlanma: 6 Nisan 2026                                          ║
-║  Son Güncelleme: 6 Nisan 2026 — v15.2                              ║
-║  Mevcut Durum: v15.2 Paper — Hafta 1+2+3 (9/9 madde)             ║
+║  Son Güncelleme: 6 Nisan 2026 — v15.4                              ║
+║  Mevcut Durum: v15.4 Paper — Hafta 1+2+3+4 (11/13 madde)         ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -447,8 +447,35 @@ NEDEN TEHLİKELİ:
         → ZARARDA + regime change → TP yeni regime'e göre daraltılır, SL değişmez
         → config.py: SMART_EXIT_ENABLED = True
         → DB save/restore entry_regime destekli
-    [8] Backtest v3 (3.4)            → Parametre optimizasyonu
-    [9] MTF confirmation (3.1)
+
+  EDGE DISCOVERY KRİTİK FIX (v15.3):
+    [+] ✅ Edge Direction Bug Fix         → TAMAMLANDI (6 Nisan 2026)
+        → KRİTİK BUG: En iyi 3 edge (%87, %84, %81 WR) SHORT olarak
+          sınıflandırılmıştı → ALLOW_SHORT=False → HİÇ ATEŞLENMIYORDU!
+        → GERÇEK: Pozitif AvgRet = fiyat YUKARI gider = LONG sinyali
+        → FIX: Tüm edge pattern'leri LONG'a taşındı
+        → _calculate_short_score() tamamen kaldırıldı
+        → 3 katmanlı puanlama: Tier1 (WR≥75%), Tier2 (60-75%), Tier3 (50-60%)
+        → 15 coin-spesifik ağırlık (_get_coin_weights) eklendi
+        → FOCUS_MODE: TOP_3_COINS'de ×1.15 boost
+        → edge_top.txt + edge_top_validated.csv sonuçları TAM entegre
+
+    [8] ✅ Backtest v3 (3.4)             → TAMAMLANDI (6 Nisan 2026)
+        → backtest/backtest_v3.py: Live sistemi birebir simüle eder
+        → 4 strategy voting (RSI, Momentum, VWAP, EdgeDiscovery)
+        → Dynamic R:R, Partial TP, Breakeven Stop, Smart Exit
+        → Funding fee simulation (0.01% per 8h)
+        → MFE/MAE analizi per trade
+        → Regime/strategy bazlı performans breakdown
+        → CLI: python -m backtest.backtest_v3 --all --days 60 --save
+
+    [9] ✅ MTF confirmation (3.1)        → TAMAMLANDI (6 Nisan 2026)
+        → engine/mtf_confirmation.py: 15m confirmation gate
+        → 4h trend → 1h entry → 15m trigger (3 katmanlı)
+        → 4 kriter: RSI>40, Price>EMA9, 2/3 yeşil mum, hacim>ort
+        → 3/4 kriter gerekli, max 4 retry (1 saat), sonra expire
+        → Orchestrator v11.0: Triple candle manager (4h+1h+15m)
+        → config.py: MTF_ENABLED=True, MTF_MAX_RETRIES=4
 
   AY 2+ (Gelecek):
     [10] ML sinyal filtresi
@@ -506,3 +533,9 @@ NEDEN TEHLİKELİ:
 ###### ÖNEMLİ ######
 
 "C:\war_machine\edge makinesi" BU KLASÖRDE " C:\war_machine\edge_discovery.py" SONUÇLARI VAR !!DİKKATE ALMAYI UNUTMA!!!!
+→→→ v15.3'TE TAM ENTEGRE EDİLDİ ✅ (6 Nisan 2026)
+    - edge_top.txt: 40 top edge (WR%, AvgRet, forward windows)
+    - edge_top_validated.csv: 28+ validated edge with statistics
+    - 15 coin-spesifik ağırlık sisteme gömüldü
+    - Direction bug düzeltildi (SHORT→LONG)
+    - FOCUS_MODE aktif (TOP_3: ARPAUSDT, SOLUSDT, XRPUSDT)
