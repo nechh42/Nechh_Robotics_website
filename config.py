@@ -41,6 +41,11 @@ SYMBOLS = [
     "SUIUSDT", "INJUSDT",                         # Squeeze breakout, BB squeeze
     "WIFUSDT", "ARPAUSDT",                        # Low volatility, BB squeeze
     "XLMUSDT", "KAVAUSDT",                        # Legacy support
+    
+    # === v15.8 YENİ COİNLER (backtest kanıtlı) ===
+    "FILUSDT",                                      # %54.8 WR, +$114 (EN İYİ YENİ COİN)
+    "DOTUSDT",                                      # %43.5 WR, +$28 (büyük kazançlar)
+    "ARBUSDT",                                      # %51.9 WR, +$17 (kârlı)
 ]
 
 # === EDGE DISCOVERY v3 AYARLARI ===
