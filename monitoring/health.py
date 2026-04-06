@@ -86,7 +86,7 @@ async def health_loop(orchestrator):
                     win_rate,
                     status['total_pnl'],
                     avg_rr,
-                    perf.max_drawdown
+                    perf.max_drawdown_dollar
                 )
                 logger.info("[HEALTH] Weekly performance report sent")
 

@@ -77,19 +77,18 @@ class PreTradeRisk:
         if regime == "VOLATILE":
             return self._reject(symbol, action, "VOLATILE: işlem açılmaz")
 
-        # CHECK 5: Yön filtresi (TEMPORARY BYPASS FOR TESTING)
-        # Normally: LONG only TREND_UP
-        # TEST: Allow LONG in all regimes except VOLATILE
-        if regime == "VOLATILE":
-            return self._reject(symbol, action, "VOLATILE: işlem açılmaz")
-        
-        # LONG allowed in all non-volatile regimes (TEST)
-        if action == "LONG":
-            logger.info(f"[RISK-TEST] LONG allowed in regime={regime} (normally TREND_UP only)")
-        
-        # SHORT always disabled
+        # CHECK 5: Yön filtresi — LONG: TREND_UP + RANGING izinli, TREND_DOWN yasak
+        if action == "LONG" and regime == "TREND_DOWN":
+            return self._reject(symbol, action, f"LONG TREND_DOWN'da açılmaz (şu an: {regime})")
+
+        # CHECK 5b: SHORT filtresi — koşullu veya kapalı
         if action == "SHORT":
-            return self._reject(symbol, action, "SHORT kapali")
+            if config.ALLOW_SHORT:
+                pass  # Tam SHORT aktif
+            elif getattr(config, 'ALLOW_SHORT_CONDITIONAL', False) and regime == "TREND_DOWN":
+                logger.info(f"[RISK] Koşullu SHORT izinli: {symbol} (TREND_DOWN)")
+            else:
+                return self._reject(symbol, action, f"SHORT kapali (regime={regime})")
 
         # CHECK 6: Günlük trade limiti
         if self._daily_trades >= config.MAX_DAILY_TRADES:
@@ -115,25 +114,57 @@ class PreTradeRisk:
         risk_amount = equity * config.RISK_BASE_PCT * volatility_mult
 
         atr = signal.atr if signal.atr > 0 else signal.price * 0.02
-        sl_dist = atr * 1.5
-        tp_dist = atr * 2.0
 
-        # Minimum SL/TP mesafesi
-        sl_dist = max(sl_dist, signal.price * 0.015)
-        tp_dist = max(tp_dist, signal.price * 0.030)
+        # Dynamic R:R — regime'e göre SL/TP çarpanları
+        rr = config.DYNAMIC_RR.get(regime, {"sl": config.SL_ATR_MULTIPLIER, "tp": config.TP_ATR_MULTIPLIER})
+        sl_mult = rr["sl"]
+        tp_mult = rr["tp"]
+        sl_dist = atr * sl_mult
+        tp_dist = atr * tp_mult
+
+        # Minimum SL mesafesi (çok düşük ATR koruması — R:R oranını korur)
+        min_sl_dist = signal.price * 0.005  # 0.5% minimum
+        if sl_dist < min_sl_dist:
+            scale = min_sl_dist / sl_dist
+            sl_dist = min_sl_dist
+            tp_dist *= scale  # R:R oranı korunur
 
         # Stop ve hedef fiyatlar
         if action == "LONG":
             stop_loss = signal.price - sl_dist
             take_profit = signal.price + tp_dist
+            take_profit_1 = signal.price + tp_dist * config.PARTIAL_TP_RATIO
         else:
             stop_loss = signal.price + sl_dist
             take_profit = signal.price - tp_dist
+            take_profit_1 = signal.price - tp_dist * config.PARTIAL_TP_RATIO
 
         # [FIX-1] Pozisyon boyutu: iki yöntem, küçüğü al
         size_by_risk = risk_amount / sl_dist                            # Risk bazlı
         size_by_notional = (equity * MAX_NOTIONAL_PCT) / signal.price  # Notional sinir
         size = min(size_by_risk, size_by_notional)                      # Guvenli olan
+
+        # Regime-based pozisyon boyutu çarpanı
+        regime_mult = 1.0
+        if regime == "RANGING":
+            regime_mult = 0.50
+        size *= regime_mult
+
+        # Sentiment-based pozisyon boyutu çarpanı
+        sentiment_mult = 1.0
+        try:
+            from data.sentiment import fear_greed
+            fg = fear_greed.get_score()
+            if fg < 10:
+                sentiment_mult = 0.25
+            elif fg < 20:
+                sentiment_mult = 0.50
+            elif fg < 40:
+                sentiment_mult = 0.75
+            logger.info(f"[RISK] Sentiment={fg} → mult={sentiment_mult:.2f}, Regime={regime} → mult={regime_mult:.2f}")
+        except Exception:
+            pass
+        size *= sentiment_mult
 
         if size < 0.0001:
             return self._reject(symbol, action, "Size cok kucuk")
@@ -146,6 +177,7 @@ class PreTradeRisk:
             f"size={size:.4f} @ ${signal.price:.4f} | "
             f"notional=${notional:.2f} (%{notional_pct:.1f}) | "
             f"SL=${stop_loss:.4f} TP=${take_profit:.4f} | "
+            f"R:R={tp_mult/sl_mult:.1f}:1 (SL={sl_mult}×ATR, TP={tp_mult}×ATR) | "
             f"risk=${risk_amount:.2f} (base={config.RISK_BASE_PCT*100}% × {volatility_mult:.2f})"
         )
 
@@ -156,7 +188,9 @@ class PreTradeRisk:
             "price": signal.price,
             "stop_loss": stop_loss,
             "take_profit": take_profit,
+            "take_profit_1": take_profit_1,
             "strategy": signal.strategy,
+            "atr": atr,
         }
 
     def record_trade_result(self, net_pnl: float, symbol: str):

@@ -47,6 +47,10 @@ class PaperExecutor:
                 take_profit=params["take_profit"],
                 strategy=params.get("strategy", ""),
             )
+            # Breakeven stop için ATR kaydı
+            pos._entry_atr = params.get("atr", 0.0)
+            # Partial TP1
+            pos.take_profit_1 = params.get("take_profit_1", 0.0)
             return {"status": "FILLED", "position": pos}
 
         except Exception as e:

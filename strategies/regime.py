@@ -14,15 +14,61 @@ from strategies.indicators import calc_ema, calc_atr
 
 logger = logging.getLogger(__name__)
 
-def _calc_adx_approx(df: pd.DataFrame, period: int = 14) -> float:
-    """Simplified ADX - measures trend strength (0-100)"""
-    if len(df) < period * 2:
-        return 0.0
-    price_range = df["high"].max() - df["low"].min()
-    if price_range == 0:
-        return 0.0
-    trend_move = abs(df["close"].iloc[-1] - df["close"].iloc[-period])
-    return min(float(trend_move / price_range) * 100, 100.0)
+def _calc_wilder_adx(df: pd.DataFrame, period: int = 14) -> tuple:
+    """
+    Gerçek Wilder's ADX hesaplaması + DI+/DI- yön göstergeleri.
+
+    Returns: (adx, plus_di, minus_di)
+      - adx > 25: güçlü trend
+      - adx < 20: trend yok (ranging)
+      - plus_di > minus_di: yükseliş yönü
+      - minus_di > plus_di: düşüş yönü
+    """
+    if len(df) < period * 3:
+        return 0.0, 50.0, 50.0
+
+    high = df['high'].astype(float)
+    low = df['low'].astype(float)
+    close = df['close'].astype(float)
+
+    # Directional Movement
+    up_move = high - high.shift(1)
+    down_move = low.shift(1) - low
+
+    plus_dm = pd.Series(0.0, index=df.index)
+    minus_dm = pd.Series(0.0, index=df.index)
+
+    up_mask = (up_move > down_move) & (up_move > 0)
+    down_mask = (down_move > up_move) & (down_move > 0)
+    plus_dm[up_mask] = up_move[up_mask]
+    minus_dm[down_mask] = down_move[down_mask]
+
+    # True Range
+    tr1 = high - low
+    tr2 = (high - close.shift(1)).abs()
+    tr3 = (low - close.shift(1)).abs()
+    tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
+
+    # Wilder Smoothing (alpha = 1/period)
+    alpha = 1.0 / period
+    atr_smooth = tr.ewm(alpha=alpha, min_periods=period, adjust=False).mean()
+    smooth_plus = plus_dm.ewm(alpha=alpha, min_periods=period, adjust=False).mean()
+    smooth_minus = minus_dm.ewm(alpha=alpha, min_periods=period, adjust=False).mean()
+
+    # Directional Indicators
+    plus_di = 100.0 * smooth_plus / atr_smooth.replace(0, np.nan)
+    minus_di = 100.0 * smooth_minus / atr_smooth.replace(0, np.nan)
+
+    # DX ve ADX
+    di_sum = plus_di + minus_di
+    dx = 100.0 * (plus_di - minus_di).abs() / di_sum.replace(0, np.nan)
+    adx = dx.ewm(alpha=alpha, min_periods=period, adjust=False).mean()
+
+    adx_val = float(adx.iloc[-1]) if not pd.isna(adx.iloc[-1]) else 0.0
+    pdi_val = float(plus_di.iloc[-1]) if not pd.isna(plus_di.iloc[-1]) else 50.0
+    mdi_val = float(minus_di.iloc[-1]) if not pd.isna(minus_di.iloc[-1]) else 50.0
+
+    return adx_val, pdi_val, mdi_val
 
 def _calc_volatility_ratio(df: pd.DataFrame) -> float:
     """Current volatility vs average (>1.5 = high vol)"""
@@ -49,55 +95,53 @@ def detect_regime(df: pd.DataFrame) -> str:
 
     Returns: 'TREND_UP', 'TREND_DOWN', 'RANGING', or 'VOLATILE'
     """
-    # TEST: Force regime if configured
-    if config.TEST_MODE_FORCE_REGIME:
+    # TEST: Force regime if configured (only when TEST_MODE is True)
+    if config.TEST_MODE and config.TEST_MODE_FORCE_REGIME:
         logger.warning(f"[TEST] FORCING REGIME: {config.TEST_MODE_FORCE_REGIME}")
         return config.TEST_MODE_FORCE_REGIME
     
     if df is None or len(df) < 50:
         return "RANGING"
 
+    # NOT: Sentiment artık regime'ı DEĞİŞTİRMEZ.
+    # Sentiment = pozisyon boyutu çarpanı olarak pre_trade.py'de uygulanır.
+
     closes = df["close"]
     price = closes.iloc[-1]
 
-    # Calculate indicators
-    adx = _calc_adx_approx(df)
+    # Gerçek Wilder ADX + DI hesapla
+    adx, plus_di, minus_di = _calc_wilder_adx(df)
     vol_ratio = _calc_volatility_ratio(df)
     atr = calc_atr(df).iloc[-1] if len(df) > 14 else 0.0
-    price_change_20 = ((price - closes.iloc[-20]) / closes.iloc[-20] * 100) if len(closes) >= 20 else 0.0
 
-    # DEBUG: Log all calculations
-    logger.info(f"[REGIME-DEBUG] ADX={adx:.1f}, vol_ratio={vol_ratio:.2f}, atr_pct={atr/price*100:.2f}%, price_chg_20={price_change_20:.2f}%")
+    logger.info(f"[REGIME] ADX={adx:.1f}, +DI={plus_di:.1f}, -DI={minus_di:.1f}, vol_r={vol_ratio:.2f}, atr%={atr/price*100:.2f}%")
 
-    # 1. High volatility check first (chaos mode)
+    # 1. VOLATILE: aşırı teknik volatilite
     if vol_ratio > 1.5 and atr > price * 0.02:
-        logger.info(f"Regime: VOLATILE (vol_ratio={vol_ratio:.2f}, atr_pct={atr/price*100:.2f}%)")
+        logger.info(f"Regime: VOLATILE (vol_ratio={vol_ratio:.2f}, atr%={atr/price*100:.2f}%)")
         return "VOLATILE"
 
-    # 2. Strong trend check (ADX > 25)
+    # 2. Güçlü trend (ADX > 25) — DI yönü belirler
     if adx > 25:
-        if price_change_20 > 2:
-            logger.info(f"Regime: TREND_UP (ADX={adx:.1f}, chg={price_change_20:.2f}%)")
+        if plus_di > minus_di:
+            logger.info(f"Regime: TREND_UP (ADX={adx:.1f}, +DI={plus_di:.1f} > -DI={minus_di:.1f})")
             return "TREND_UP"
-        elif price_change_20 < -2:
-            logger.info(f"Regime: TREND_DOWN (ADX={adx:.1f}, chg={price_change_20:.2f}%)")
-            return "TREND_DOWN"
         else:
-            logger.info(f"Regime: ADX>{25} but weak price chg ({price_change_20:.2f}%) → RANGING")
+            logger.info(f"Regime: TREND_DOWN (ADX={adx:.1f}, -DI={minus_di:.1f} > +DI={plus_di:.1f})")
+            return "TREND_DOWN"
 
-    # 3. Weak trend / EMA alignment
-    ema20 = calc_ema(closes, 20).iloc[-1]
-    ema50 = calc_ema(closes, 50).iloc[-1]
+    # 3. Orta trend (ADX 20-25) — EMA doğrulaması gerekir
+    if adx > 20:
+        ema20 = calc_ema(closes, 20).iloc[-1]
+        ema50 = calc_ema(closes, 50).iloc[-1]
+        if not pd.isna(ema20) and not pd.isna(ema50):
+            if price > ema20 > ema50 and plus_di > minus_di:
+                logger.info(f"Regime: TREND_UP (ADX={adx:.1f}+EMA, +DI={plus_di:.1f})")
+                return "TREND_UP"
+            elif price < ema20 < ema50 and minus_di > plus_di:
+                logger.info(f"Regime: TREND_DOWN (ADX={adx:.1f}+EMA, -DI={minus_di:.1f})")
+                return "TREND_DOWN"
 
-    if pd.isna(ema20) or pd.isna(ema50):
-        return "RANGING"
-
-    if price > ema20 > ema50 and price_change_20 > 0:
-        logger.info(f"Regime: TREND_UP (EMA: {price:.0f}>{ema20:.0f}>{ema50:.0f})")
-        return "TREND_UP"
-    elif price < ema20 < ema50 and price_change_20 < 0:
-        logger.info(f"Regime: TREND_DOWN (EMA: {price:.0f}<{ema20:.0f}<{ema50:.0f})")
-        return "TREND_DOWN"
-
-    logger.info(f"Regime: RANGING (default)")
+    # 4. Trend yok
+    logger.info(f"Regime: RANGING (ADX={adx:.1f})")
     return "RANGING"

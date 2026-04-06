@@ -7,9 +7,36 @@ if not os.path.exists(db):
     print("NO DB"); sys.exit(1)
 
 conn = sqlite3.connect(db)
+conn.row_factory = sqlite3.Row
 c = conn.cursor()
 
-# Trades
+# Full trade dump
+print("=== FULL TRADE DUMP ===")
+all_trades = c.execute("SELECT * FROM trades ORDER BY id").fetchall()
+for t in all_trades:
+    d = dict(t)
+    for k, v in d.items():
+        print(f"  {k}: {v}")
+    print("---")
+
+# Tables
+print("\n=== TABLES ===")
+tbls = c.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
+for tbl in tbls:
+    name = tbl['name']
+    cnt = c.execute(f"SELECT COUNT(*) as c FROM {name}").fetchone()['c']
+    print(f"  {name}: {cnt} rows")
+
+# Full positions
+print("\n=== FULL POSITIONS ===")
+all_pos = c.execute("SELECT * FROM positions").fetchall()
+for p in all_pos:
+    d = dict(p)
+    for k, v in d.items():
+        print(f"  {k}: {v}")
+    print("---")
+
+# Now do the summary with old logic
 trades = c.execute("SELECT timestamp,symbol,side,entry_price,exit_price,net_pnl,reason FROM trades ORDER BY id").fetchall()
 pos = c.execute("SELECT symbol,side,entry_price,size,stop_loss,take_profit FROM positions").fetchall()
 

@@ -33,6 +33,15 @@ class Position:
     # MFE/MAE tracking (quant analysis)
     mfe: float = 0.0    # Max Favorable Excursion (best profit %)
     mae: float = 0.0    # Max Adverse Excursion (worst loss %)
+    # Breakeven stop
+    _entry_atr: float = 0.0
+    _breakeven_applied: bool = False
+    # Funding fee tracking
+    _total_funding_paid: float = 0.0
+    _last_funding_time: datetime = None
+    # Partial TP
+    take_profit_1: float = 0.0     # TP1 = yarı mesafe
+    _partial_closed: bool = False  # TP1 tetiklendi mi?
 
     def update_pnl(self, price: float):
         if self.side == "LONG":
@@ -169,10 +178,57 @@ class TradingState:
             )
             return trade
 
+    def partial_close_position(self, symbol: str, exit_price: float, close_pct: float,
+                               reason: str = "") -> Optional[ClosedTrade]:
+        """Partially close a position (e.g. 50% at TP1)"""
+        with self._lock:
+            if symbol not in self.positions:
+                return None
+
+            pos = self.positions[symbol]
+            close_size = pos.size * close_pct
+
+            # Gross PnL for closed portion
+            if pos.side == "LONG":
+                gross_pnl = (exit_price - pos.entry_price) * close_size
+            else:
+                gross_pnl = (pos.entry_price - exit_price) * close_size
+
+            # Commission on closed portion
+            exit_commission = exit_price * close_size * config.COMMISSION_RATE
+            net_pnl = gross_pnl - exit_commission
+
+            # Update balance
+            self.balance += net_pnl
+            self.total_commission += exit_commission
+
+            # Reduce position size (keep position open with remaining)
+            pos.size -= close_size
+            pos._partial_closed = True
+
+            # Create trade record for partial close
+            trade = ClosedTrade(
+                symbol=symbol, side=pos.side, size=close_size,
+                entry_price=pos.entry_price, exit_price=exit_price,
+                entry_time=pos.entry_time, exit_time=datetime.now(),
+                gross_pnl=gross_pnl, commission=exit_commission,
+                net_pnl=net_pnl, strategy=pos.strategy, reason=reason,
+                mfe=pos.mfe, mae=pos.mae,
+            )
+            self.trades.append(trade)
+            self._recalc_equity()
+
+            logger.info(
+                f"[STATE] PARTIAL CLOSE {pos.side} {symbol}: "
+                f"{close_pct*100:.0f}% closed @ ${exit_price:.2f} "
+                f"net=${net_pnl:.4f} | remaining size={pos.size:.6f}"
+            )
+            return trade
+
     def restore_position(self, symbol: str, pos_data: Dict):
         """Restore position from database (after restart)"""
         with self._lock:
-            self.positions[symbol] = Position(
+            pos = Position(
                 symbol=symbol,
                 side=pos_data["side"],
                 size=pos_data["size"],
@@ -184,6 +240,11 @@ class TradingState:
                 trailing_active=pos_data.get("trailing_active", False),
                 trailing_peak=pos_data.get("trailing_peak", 0.0),
             )
+            pos._entry_atr = pos_data.get("entry_atr", 0.0)
+            pos._breakeven_applied = pos_data.get("breakeven_applied", False)
+            pos._partial_closed = pos_data.get("partial_closed", False)
+            pos.take_profit_1 = pos_data.get("take_profit_1", 0.0)
+            self.positions[symbol] = pos
             logger.info(f"[STATE] Restored position: {symbol} {pos_data['side']}")
 
     def _recalc_equity(self):

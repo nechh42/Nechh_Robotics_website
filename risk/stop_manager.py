@@ -22,7 +22,6 @@ def check_exit(pos: Position, price: float) -> Optional[str]:
       1. Stop Loss
       2. Take Profit
       3. Trailing Stop (if activated)
-      4. Time-based: 4h duration (16*3600 seconds)
 
     Args:
         pos: Open position
@@ -33,14 +32,25 @@ def check_exit(pos: Position, price: float) -> Optional[str]:
         Also updates trailing stop state on the position object.
     """
     symbol = pos.symbol
-    
-    # ─── TIME-BASED EXIT (4h duration) ───────────────
-    if pos.entry_time:
-        from datetime import datetime
-        duration_sec = (datetime.now() - pos.entry_time).total_seconds()
-        max_duration_sec = 4 * 3600  # 4 hours
-        if duration_sec > max_duration_sec:
-            return f"TIME-BASED EXIT: Position held {duration_sec/3600:.1f}h (max 4h)"
+
+    # ─── BREAKEVEN STOP ────────────────────────────────
+    # Fiyat +1×ATR kâra geçtiyse, SL → entry price (asla zarara dönmesin)
+    if not getattr(pos, '_breakeven_applied', False):
+        be_trigger = getattr(config, 'BREAKEVEN_ATR_TRIGGER', 0)
+        if be_trigger > 0 and getattr(pos, '_entry_atr', 0) > 0:
+            atr_dist = pos._entry_atr * be_trigger
+            if pos.side == "LONG":
+                if price >= pos.entry_price + atr_dist:
+                    old_sl = pos.stop_loss
+                    pos.stop_loss = max(pos.stop_loss, pos.entry_price)
+                    pos._breakeven_applied = True
+                    logger.info(f"[BREAKEVEN] {symbol}: SL ${old_sl:.2f} → ${pos.stop_loss:.2f} (entry)")
+            else:  # SHORT
+                if price <= pos.entry_price - atr_dist:
+                    old_sl = pos.stop_loss
+                    pos.stop_loss = min(pos.stop_loss, pos.entry_price)
+                    pos._breakeven_applied = True
+                    logger.info(f"[BREAKEVEN] {symbol}: SL ${old_sl:.2f} → ${pos.stop_loss:.2f} (entry)")
 
     # ─── TRAILING STOP UPDATE ───────────────────────────
     if pos.trailing_active:
@@ -79,7 +89,16 @@ def check_exit(pos: Position, price: float) -> Optional[str]:
     if pos.side == "SHORT" and price >= pos.stop_loss:
         return f"STOP-LOSS: ${price:.2f} >= SL ${pos.stop_loss:.2f}"
 
-    # ─── CHECK TAKE PROFIT ──────────────────────────────
+    # ─── CHECK PARTIAL TP (TP1) ─────────────────────────
+    if (getattr(config, 'PARTIAL_TP_ENABLED', False)
+            and not getattr(pos, '_partial_closed', False)
+            and getattr(pos, 'take_profit_1', 0) > 0):
+        if pos.side == "LONG" and price >= pos.take_profit_1:
+            return f"PARTIAL-TP1: ${price:.2f} >= TP1 ${pos.take_profit_1:.2f}"
+        if pos.side == "SHORT" and price <= pos.take_profit_1:
+            return f"PARTIAL-TP1: ${price:.2f} <= TP1 ${pos.take_profit_1:.2f}"
+
+    # ─── CHECK TAKE PROFIT (TP2 — full close) ──────────
     if pos.side == "LONG" and price >= pos.take_profit:
         return f"TAKE-PROFIT: ${price:.2f} >= TP ${pos.take_profit:.2f}"
 

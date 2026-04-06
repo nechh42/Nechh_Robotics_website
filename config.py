@@ -95,18 +95,19 @@ BB_PERIOD = 20
 BB_STD = 2.0
 VWAP_DEVIATION = 0.010
 
-# REGIME WEIGHTS
+# REGIME WEIGHTS (voting ağırlıkları - regime'e göre)
 REGIME_WEIGHTS = {
-    "TREND_UP":   {"RSI": 0.2, "MOMENTUM": 0.6, "VWAP": 0.2},
-    "TREND_DOWN": {"RSI": 0.2, "MOMENTUM": 0.6, "VWAP": 0.2},
-    "RANGING":    {"RSI": 0.4, "MOMENTUM": 0.2, "VWAP": 0.4},
-    "VOLATILE":   {"RSI": 0.3, "MOMENTUM": 0.3, "VWAP": 0.4},
+    "TREND_UP":   {"RSI": 0.15, "MOMENTUM": 0.45, "VWAP": 0.15, "EDGE_DISCOVERY": 0.25},
+    "TREND_DOWN": {"RSI": 0.15, "MOMENTUM": 0.45, "VWAP": 0.15, "EDGE_DISCOVERY": 0.25},
+    "RANGING":    {"RSI": 0.30, "MOMENTUM": 0.10, "VWAP": 0.35, "EDGE_DISCOVERY": 0.25},
+    "VOLATILE":   {"RSI": 0.20, "MOMENTUM": 0.20, "VWAP": 0.30, "EDGE_DISCOVERY": 0.30},
 }
 
 # BEAR GUARD
 BEAR_GUARD_ENABLED = False
 ALLOW_LONG = True                # LONG AÇIK: Sistem long-only mode'de
-ALLOW_SHORT = False  # SHORT KAPALI: %35 WR fail kanıtlanmış
+ALLOW_SHORT = False  # SHORT KAPALI: genel olarak kapalı
+ALLOW_SHORT_CONDITIONAL = True  # Koşullu SHORT: sadece TREND_DOWN + kanıtlanmış edge patterns
 VOLATILE_BLOCK_ENABLED = True
 
 # RISK (PRE-TRADE)
@@ -126,9 +127,32 @@ EMERGENCY_STOP_LOSS = 0.05
 MAX_CONSECUTIVE_LOSSES = 15
 MAX_ATR_VOLATILITY = 0.05
 
-# STOP LOSS / TAKE PROFIT
-SL_ATR_MULTIPLIER = 1.5        # SL = ATR x 1.5
-TP_ATR_MULTIPLIER = 2.0        # TP = ATR x 2.0 (R:R = 1.33:1)
+# STOP LOSS / TAKE PROFIT - DYNAMIC R:R (regime-based)
+SL_ATR_MULTIPLIER = 1.5        # Fallback (kullanılmıyorsa)
+TP_ATR_MULTIPLIER = 3.0        # Fallback (kullanılmıyorsa)
+
+# Regime-based Dynamic R:R
+# RANGING: Dar SL/TP → hızlı kapanış (4-8h), R:R=1.5:1
+# TREND_UP/DOWN: Geniş TP → trend yakala, R:R=2.67:1
+DYNAMIC_RR = {
+    "TREND_UP":   {"sl": 1.5, "tp": 4.0},   # R:R = 2.67:1
+    "TREND_DOWN": {"sl": 1.5, "tp": 4.0},   # R:R = 2.67:1
+    "RANGING":    {"sl": 1.0, "tp": 1.5},   # R:R = 1.5:1
+    "VOLATILE":   {"sl": 1.5, "tp": 3.0},   # R:R = 2.0:1 (fallback)
+}
+
+# PARTIAL TAKE PROFIT
+PARTIAL_TP_ENABLED = True
+PARTIAL_TP_RATIO = 0.50       # TP1 = TP mesafesinin %50'si
+PARTIAL_TP_CLOSE_PCT = 0.50   # TP1'de pozisyonun %50'sini kapat
+
+# BREAKEVEN STOP
+BREAKEVEN_ATR_TRIGGER = 1.0    # +1×ATR kârda → SL entry'ye taşınır
+
+# FUNDING FEE SİMÜLASYONU
+FUNDING_FEE_RATE = 0.0001     # 0.01% per 8 hours (Binance default)
+FUNDING_FEE_INTERVAL = 28800  # 8 saat = 28800 saniye
+
 TRAILING_STOP_ACTIVATE = 0.035
 TRAILING_STOP_DISTANCE = 0.01
 

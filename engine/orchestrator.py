@@ -70,7 +70,7 @@ class Orchestrator:
         )
         self.candles_1h = CandleManager(
             symbols=config.SYMBOLS,
-            on_candle_close=None,  # 1h candle close is not signaling
+            on_candle_close=self._on_candle_close_1h,  # 1h sinyal üretimi aktif
             interval=config.CANDLE_INTERVAL_SHORT,
             max_candles=config.CANDLE_MAX_STORED,
         )
@@ -155,10 +155,14 @@ class Orchestrator:
                 "side": pos.side, "entry_price": pos.entry_price,
                 "size": pos.size, "stop_loss": pos.stop_loss,
                 "take_profit": pos.take_profit,
+                "take_profit_1": pos.take_profit_1,
                 "entry_time": pos.entry_time.isoformat(),
                 "strategy": pos.strategy,
                 "trailing_active": pos.trailing_active,
                 "trailing_peak": pos.trailing_peak,
+                "entry_atr": pos._entry_atr,
+                "breakeven_applied": pos._breakeven_applied,
+                "partial_closed": pos._partial_closed,
             })
         logger.info(f"[ENGINE] {len(self.state.positions)} positions saved to DB")
 
@@ -209,22 +213,171 @@ class Orchestrator:
                 exit_reason = check_exit(pos, price)
 
                 if exit_reason:
-                    logger.warning(f"[EXIT] {symbol} {pos.side}: {exit_reason}")
-                    trade = self.executor.close_order(symbol, price, exit_reason)
+                    if exit_reason.startswith("PARTIAL-TP1"):
+                        # Kısmi kapama: %50 kapat, SL → breakeven
+                        logger.warning(f"[PARTIAL] {symbol} {pos.side}: {exit_reason}")
+                        trade = self.state.partial_close_position(
+                            symbol, price, config.PARTIAL_TP_CLOSE_PCT, exit_reason
+                        )
+                        if trade:
+                            # SL → entry (breakeven) after partial TP
+                            pos.stop_loss = pos.entry_price
+                            pos._breakeven_applied = True
+                            self._on_trade_closed(trade, exit_reason)
+                            # DB güncelle (kalan pozisyon)
+                            self.db.save_position(symbol, {
+                                "side": pos.side, "entry_price": pos.entry_price,
+                                "size": pos.size, "stop_loss": pos.stop_loss,
+                                "take_profit": pos.take_profit,
+                                "entry_time": pos.entry_time.isoformat(),
+                                "strategy": pos.strategy,
+                                "trailing_active": pos.trailing_active,
+                                "trailing_peak": pos.trailing_peak,
+                                "entry_atr": pos._entry_atr,
+                                "breakeven_applied": pos._breakeven_applied,
+                                "partial_closed": True,
+                            })
+                    else:
+                        # Tam kapama (SL, TP2, Trailing)
+                        logger.warning(f"[EXIT] {symbol} {pos.side}: {exit_reason}")
+                        trade = self.executor.close_order(symbol, price, exit_reason)
+                        if trade:
+                            self._on_trade_closed(trade, exit_reason)
+                            self.db.delete_position(symbol)
 
-                    if trade:
-                        self._on_trade_closed(trade, exit_reason)
-                        self.db.delete_position(symbol)
+            # Funding fee simülasyonu (her 8 saatte bir)
+            if symbol in self.state.positions:
+                self._apply_funding_fee(symbol, price)
 
         except Exception as e:
             logger.error(f"[TICK] Error processing {symbol} @ {price}: {e}")
+            self._send_error_alert(f"TICK HATASI: {symbol} @ ${price}\n{e}")
 
     def _on_candle_close(self, symbol: str, candle: Candle):
-        """Called when a candle closes - run strategies"""
+        """Called when a 4h candle closes - run all strategies"""
         try:
             asyncio.create_task(self._evaluate_strategies(symbol))
         except RuntimeError as e:
             logger.error(f"[CANDLE] Strategy task creation failed: {e}")
+
+    def _on_candle_close_1h(self, symbol: str, candle: Candle):
+        """Called when a 1h candle closes - run mean reversion strategies (RANGING only)"""
+        try:
+            asyncio.create_task(self._evaluate_strategies_1h(symbol))
+        except RuntimeError as e:
+            logger.error(f"[1H-CANDLE] Strategy task creation failed: {e}")
+
+    async def _evaluate_strategies_1h(self, symbol: str):
+        """Run RSI + VWAP on 1h candle close — ONLY in RANGING regime"""
+        # 4h data for regime detection
+        if not self.candles_4h.has_enough_data(symbol):
+            return
+
+        df_4h = self.candles_4h.get_dataframe(symbol, 100)
+        if df_4h is None:
+            return
+
+        regime = detect_regime(df_4h)
+
+        # 1h sinyaller SADECE RANGING'de (mean reversion territory)
+        if regime != "RANGING":
+            return
+
+        # Zaten pozisyon varsa skip
+        if symbol in self.state.positions:
+            return
+
+        # 1h data
+        df_1h = self.candles_1h.get_dataframe(symbol, 100)
+        if df_1h is None or len(df_1h) < 30:
+            return
+
+        price = df_1h["close"].iloc[-1]
+        logger.info(f"[1H-CANDLE] {symbol} closed @ ${price:.4f} | regime={regime}")
+
+        # ATR from 1h
+        atr_series = calc_atr(df_1h)
+        current_atr = atr_series.iloc[-1] if not atr_series.empty else 0.0
+
+        # Sadece RSI + VWAP çalıştır (mean reversion stratejileri)
+        signals = []
+        for strategy in self.strategies:
+            if strategy.name not in ("RSI", "VWAP"):
+                continue
+            try:
+                sig = strategy.evaluate(df_1h, symbol, regime)
+                if sig.atr == 0.0:
+                    sig.atr = current_atr
+                signals.append(sig)
+            except Exception as e:
+                logger.error(f"[1H-STRATEGY] {strategy.name} error on {symbol}: {e}")
+
+        # 1h voting — sadece VWAP aktif (RSI, RANGING'de sinyal üretmez)
+        weights_1h = {"RSI": 0.0, "VWAP": 1.0}
+        combined = combine_signals(signals, regime, weights_1h)
+
+        if combined.action == "NONE":
+            return
+
+        # Korelasyon filtresi (aynı)
+        correlated_pairs = [
+            {"BTCUSDT", "ETHUSDT"},
+            {"ADAUSDT", "NEARUSDT"},
+            {"SOLUSDT", "AVAXUSDT"},
+        ]
+        for pair in correlated_pairs:
+            if symbol in pair:
+                other = (pair - {symbol}).pop()
+                if other in self.state.positions:
+                    logger.info(f"[1H-KORELASYON] {symbol}: {other} zaten acik — atlanir")
+                    return
+
+        # Risk kontrolu
+        approved, reason, params = self.risk.check(combined, self.state, regime)
+        if not approved:
+            return
+
+        # 1h trades: %50 daha küçük pozisyon (daha kısa holding süresi)
+        params["size"] *= 0.50
+
+        # Emri gerçekleştir
+        result = self.executor.open_order(params)
+
+        if result["status"] == "FILLED":
+            pos = result["position"]
+            self.db.save_position(symbol, {
+                "side": pos.side, "entry_price": pos.entry_price,
+                "size": pos.size, "stop_loss": pos.stop_loss,
+                "take_profit": pos.take_profit,
+                "take_profit_1": pos.take_profit_1,
+                "entry_time": pos.entry_time.isoformat(),
+                "strategy": f"1H_{combined.strategy}",
+                "trailing_active": pos.trailing_active,
+                "trailing_peak": pos.trailing_peak,
+                "entry_atr": pos._entry_atr,
+                "breakeven_applied": pos._breakeven_applied,
+                "partial_closed": pos._partial_closed,
+            })
+
+            self.db.log_event("OPEN_1H", f"{pos.side} {symbol} @ ${pos.entry_price:.4f} (1h signal)")
+
+            logger.info(
+                f"[1H-TRADE] OPENED {pos.side} {symbol} @ ${pos.entry_price:.4f} "
+                f"SL=${pos.stop_loss:.4f} TP=${pos.take_profit:.4f} "
+                f"size={pos.size:.6f} (1h mean reversion)"
+            )
+
+            # Telegram bildirimi
+            asyncio.create_task(
+                telegram.trade_alert(
+                    symbol, pos.side,
+                    pos.entry_price, 0.0,
+                    0.0,
+                    stop_loss=pos.stop_loss,
+                    take_profit=pos.take_profit,
+                    risk_pct=config.RISK_PER_TRADE_PCT * 100,
+                )
+            )
 
     async def _evaluate_strategies(self, symbol: str):
         """Run all strategies on closed 4h candle data"""
@@ -257,23 +410,18 @@ class Orchestrator:
                 signals.append(sig)
             except Exception as e:
                 logger.error(f"[STRATEGY] {strategy.name} error on {symbol}: {e}")
+                self._send_error_alert(f"STRATEJİ HATASI: {strategy.name} / {symbol}\n{e}")
 
-        # Esit agirlikli oylama (4 strateji)
-        equal_weights = {
+        # Regime-based agirlikli oylama (config'den)
+        weights = config.REGIME_WEIGHTS.get(regime, {
             "RSI": 0.25,
             "MOMENTUM": 0.25,
             "VWAP": 0.25,
             "EDGE_DISCOVERY": 0.25,
-        }
-        combined = combine_signals(signals, regime, equal_weights)
+        })
+        combined = combine_signals(signals, regime, weights)
 
         if combined.action == "NONE":
-            return
-
-        # Saat filtresi: 00:00-06:00 UTC trade acma
-        current_hour = datetime.utcnow().hour
-        if 0 <= current_hour < 6:
-            logger.info(f"[SAAT-FILTRE] {symbol}: Gece saati ({current_hour}:00 UTC) — trade acilmaz")
             return
 
         # Korelasyon filtresi
@@ -304,10 +452,14 @@ class Orchestrator:
                 "side": pos.side, "entry_price": pos.entry_price,
                 "size": pos.size, "stop_loss": pos.stop_loss,
                 "take_profit": pos.take_profit,
+                "take_profit_1": pos.take_profit_1,
                 "entry_time": pos.entry_time.isoformat(),
                 "strategy": combined.strategy,
                 "trailing_active": pos.trailing_active,
                 "trailing_peak": pos.trailing_peak,
+                "entry_atr": pos._entry_atr,
+                "breakeven_applied": pos._breakeven_applied,
+                "partial_closed": pos._partial_closed,
             })
 
             self.db.log_event("OPEN", f"{pos.side} {symbol} @ ${pos.entry_price:.4f}")
@@ -332,13 +484,58 @@ class Orchestrator:
                 0.02, combined.reason,
             )
 
+    def _apply_funding_fee(self, symbol: str, price: float):
+        """Simulate 8-hourly funding fee deduction (Binance futures reality)"""
+        if symbol not in self.state.positions:
+            return
+        pos = self.state.positions[symbol]
+        now = datetime.now()
+
+        # İlk funding zamanı: pozisyon açılışından itibaren
+        if pos._last_funding_time is None:
+            pos._last_funding_time = pos.entry_time
+
+        elapsed = (now - pos._last_funding_time).total_seconds()
+        if elapsed >= config.FUNDING_FEE_INTERVAL:
+            notional = pos.size * price
+            fee = notional * config.FUNDING_FEE_RATE
+            self.state.balance -= fee
+            pos._total_funding_paid += fee
+            pos._last_funding_time = now
+            logger.info(
+                f"[FUNDING] {symbol}: -${fee:.4f} (toplam: ${pos._total_funding_paid:.4f}) | "
+                f"notional=${notional:.2f}"
+            )
+
+    def _send_error_alert(self, error_msg: str):
+        """Kritik hata → Telegram uyarısı (flood korumalı)"""
+        import time
+        now = time.time()
+        if not hasattr(self, '_last_error_alert'):
+            self._last_error_alert = 0
+            self._error_count = 0
+        self._error_count += 1
+        # 5 dakikada 1'den fazla uyarı gönderme (flood koruması)
+        if now - self._last_error_alert < 300:
+            return
+        self._last_error_alert = now
+        try:
+            asyncio.create_task(
+                telegram.system_alert(
+                    "KRİTİK HATA",
+                    f"{error_msg}\n\nToplam hata: {self._error_count}\nZaman: {datetime.now().strftime('%H:%M:%S')}"
+                )
+            )
+        except Exception:
+            pass
+
     def _on_trade_closed(self, trade, reason: str):
         """Handle trade completion - record, notify, track"""
         self.performance.record_trade(trade.net_pnl)
         self.risk.record_trade_result(trade.net_pnl, trade.symbol)
 
         # Adaptive learning
-        df = self.candles.get_dataframe(trade.symbol, 100)
+        df = self.candles_4h.get_dataframe(trade.symbol, 100)
         trade_regime = detect_regime(df) if df is not None else "RANGING"
         self.adaptive.record_outcome(trade.strategy, trade_regime, trade.net_pnl > 0)
         self.sizer.record_trade(trade.net_pnl)

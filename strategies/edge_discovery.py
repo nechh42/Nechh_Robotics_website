@@ -105,7 +105,7 @@ class EdgeDiscoveryStrategy(BaseStrategy):
             confidence = min(0.85, short_score)
             reason = " | ".join(short_reasons[:3])
             
-            if not config.ALLOW_SHORT:
+            if not config.ALLOW_SHORT and not getattr(config, 'ALLOW_SHORT_CONDITIONAL', False):
                 return Signal(symbol=symbol, action="NONE", confidence=0.0,
                               reason="SHORT disabled", strategy=self.name, price=price)
         
