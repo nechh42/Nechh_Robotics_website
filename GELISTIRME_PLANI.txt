@@ -1,8 +1,8 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  WAR MACHINE — KAPSAMLI GELİŞTİRME PLANI                          ║
 ║  Hazırlanma: 6 Nisan 2026                                          ║
-║  Son Güncelleme: 8 Nisan 2026 — v15.5                              ║
-║  Mevcut Durum: v15.5 Paper — 13/14 madde tamamlandı               ║
+║  Son Güncelleme: 6 Nisan 2026 — v15.6 Futures Backtest             ║
+║  Mevcut Durum: v15.6 Paper — Futures Simülasyonu Tamamlandı       ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -546,6 +546,7 @@ NEDEN TEHLİKELİ:
 ###### ÖNEMLİ ######
 
 "C:\war_machine\edge makinesi" BU KLASÖRDE " C:\war_machine\edge_discovery.py" SONUÇLARI VAR !!DİKKATE ALMAYI UNUTMA!!!!
+
 →→→ v15.3'TE TAM ENTEGRE EDİLDİ ✅ (6 Nisan 2026)
     - edge_top.txt: 40 top edge (WR%, AvgRet, forward windows)
     - edge_top_validated.csv: 28+ validated edge with statistics
