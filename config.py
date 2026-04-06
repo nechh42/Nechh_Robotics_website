@@ -45,10 +45,10 @@ SYMBOLS = [
 
 # === EDGE DISCOVERY v3 AYARLARI ===
 ALLOW_EDGE_DISCOVERY = True                     # Edge patterns aktif
-TOP_3_COINS = [                                 # Super-strict N>50 & WR>65%
-    "ARPAUSDT",   # low_volatility: 81.48% WR, N=54
-    "SOLUSDT",    # ranging_bb_upper: 68.97% WR, N=58  
-    "XRPUSDT",    # rsi_below_30: 66.67% WR, N=63
+TOP_3_COINS = [                                 # Backtest v3 kârlı coinler
+    "AAVEUSDT",   # %60 WR, +$40
+    "AVAXUSDT",   # %51.9 WR, +$32
+    "DOGEUSDT",   # %52 WR, +$31
 ]
 EDGE_DISCOVERY_FOCUS_MODE = True               # Sadece top 3'e odaklan
 EDGE_MIN_SAMPLE_SIZE = 50                      # N > 50 (istatistiksel güven)
@@ -110,6 +110,22 @@ ALLOW_SHORT = False  # SHORT KAPALI: genel olarak kapalı
 ALLOW_SHORT_CONDITIONAL = True  # Koşullu SHORT: sadece TREND_DOWN + kanıtlanmış edge patterns
 VOLATILE_BLOCK_ENABLED = True
 
+# TREND_UP BLOCK — Backtest v3: 88 trade, %30.7 WR, -$842
+# Trend zirve girişleri sürekli kaybettiriyor → TREND_UP'ta işlem açma
+TREND_UP_BLOCK = True
+
+# DIP-BUY FILTER — DEVRE DIŞI: 48.8% < 49.3%, ters etki
+DIP_BUY_FILTER = False
+
+# COIN BLACKLIST — Backtest v3: WR<%30, sürekli zarar eden coinler
+# v15.5.0: UNIUSDT %16.7, ATOMUSDT %21.4, SOLUSDT %22.2, OPUSDT %25, NEARUSDT %25, XLMUSDT %25
+# v15.5.1: KAVAUSDT %33, INJUSDT %41, PEPEUSDT %44, ARPAUSDT %43 (hepsi net zararda)
+COIN_BLACKLIST = [
+    "UNIUSDT", "ATOMUSDT", "OPUSDT", "NEARUSDT", "XLMUSDT", "SOLUSDT",  # WR<%30
+    "KAVAUSDT", "INJUSDT", "PEPEUSDT", "ARPAUSDT",                       # WR<%45, net zararda
+    "SUIUSDT",                                                             # v15.5.2: %30 WR, -$50
+]
+
 # RISK (PRE-TRADE)
 MAX_POSITION_SIZE_PCT = 0.10   # Her pozisyon max equity %10 notional
 MAX_NOTIONAL_PCT = 0.10        # pre_trade.py ile tutarli
@@ -135,19 +151,22 @@ TP_ATR_MULTIPLIER = 3.0        # Fallback (kullanılmıyorsa)
 # RANGING: Dar SL/TP → hızlı kapanış (4-8h), R:R=1.5:1
 # TREND_UP/DOWN: Geniş TP → trend yakala, R:R=2.67:1
 DYNAMIC_RR = {
-    "TREND_UP":   {"sl": 1.5, "tp": 4.0},   # R:R = 2.67:1
+    "TREND_UP":   {"sl": 1.5, "tp": 4.0},   # R:R = 2.67:1 (BLOCKED by TREND_UP_BLOCK)
     "TREND_DOWN": {"sl": 1.5, "tp": 4.0},   # R:R = 2.67:1
-    "RANGING":    {"sl": 1.0, "tp": 1.5},   # R:R = 1.5:1
+    "RANGING":    {"sl": 1.0, "tp": 1.2},   # R:R = 1.2:1 [v15.5] 1.5→1.2
     "VOLATILE":   {"sl": 1.5, "tp": 3.0},   # R:R = 2.0:1 (fallback)
 }
 
 # PARTIAL TAKE PROFIT
 PARTIAL_TP_ENABLED = True
 PARTIAL_TP_RATIO = 0.50       # TP1 = TP mesafesinin %50'si
-PARTIAL_TP_CLOSE_PCT = 0.50   # TP1'de pozisyonun %50'sini kapat
+PARTIAL_TP_CLOSE_PCT = 0.70   # [v15.5] 0.50→0.70 TP1'de %70 kapat (daha fazla kâr kilitle)
 
 # BREAKEVEN STOP
-BREAKEVEN_ATR_TRIGGER = 1.0    # +1×ATR kârda → SL entry'ye taşınır
+BREAKEVEN_ATR_TRIGGER = 0.7    # [v15.5] 1.0→0.7 (0.5 çok agresif, 0.7 optimal)
+
+# MAX HOLD — backtest v3: ≤2 candle +$130 kârlı, ≥3 candle -$353 zararlı
+MAX_HOLD_CANDLES = 3           # [v15.5] 3 candle (12h) sonra pozisyonu kapat
 
 # SMART EXIT (Regime Change)
 SMART_EXIT_ENABLED = True       # Regime değiştiğinde akıllı çıkış

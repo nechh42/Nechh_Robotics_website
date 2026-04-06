@@ -263,12 +263,16 @@ class Orchestrator:
             self._send_error_alert(f"TICK HATASI: {symbol} @ ${price}\n{e}")
 
     def _on_candle_close(self, symbol: str, candle: Candle):
-        """Called when a 4h candle closes - run all strategies + smart exit check"""
+        """Called when a 4h candle closes - run all strategies + smart exit check + time exit"""
         try:
             asyncio.create_task(self._evaluate_strategies(symbol))
             # Smart Exit: regime change kontrolü (mevcut pozisyonlar için)
             if config.SMART_EXIT_ENABLED and symbol in self.state.positions:
                 asyncio.create_task(self._check_smart_exit(symbol))
+            # Time Exit: max hold candle kontrolü
+            max_hold = getattr(config, 'MAX_HOLD_CANDLES', 0)
+            if max_hold > 0 and symbol in self.state.positions:
+                asyncio.create_task(self._check_time_exit(symbol, max_hold))
         except RuntimeError as e:
             logger.error(f"[CANDLE] Strategy task creation failed: {e}")
 
@@ -361,6 +365,30 @@ class Orchestrator:
                     "partial_closed": pos._partial_closed,
                     "entry_regime": pos._entry_regime,
                 })
+
+    async def _check_time_exit(self, symbol: str, max_hold: int):
+        """Time Exit: MAX_HOLD_CANDLES'ı aşan pozisyonları kapat"""
+        if symbol not in self.state.positions:
+            return
+        pos = self.state.positions[symbol]
+        # Candle sayacını artır
+        candles_held = getattr(pos, '_candles_held', 0) + 1
+        pos._candles_held = candles_held
+
+        if candles_held >= max_hold:
+            price = pos.entry_price  # Fallback
+            df = self.candles_4h.get_dataframe(symbol, 5)
+            if df is not None and len(df) > 0:
+                price = df["close"].iloc[-1]
+
+            logger.warning(
+                f"[TIME-EXIT] {symbol} {pos.side}: {candles_held} candle holding → market close"
+            )
+            trade = self.executor.close_order(symbol, price,
+                                              f"TIME-EXIT: {candles_held} candle")
+            if trade:
+                self._on_trade_closed(trade, f"TIME-EXIT: {candles_held} candle")
+                self.db.delete_position(symbol)
 
     def _on_candle_close_1h(self, symbol: str, candle: Candle):
         """Called when a 1h candle closes - run mean reversion strategies (RANGING only)"""
@@ -494,6 +522,16 @@ class Orchestrator:
         regime = detect_regime(df)
         price = df["close"].iloc[-1]
         logger.info(f"[CANDLE] {symbol} closed @ ${price:.4f} | regime={regime} | candles={len(df)}")
+
+        # TREND_UP block — backtest v3: %30.7 WR, -$842
+        if getattr(config, 'TREND_UP_BLOCK', False) and regime == "TREND_UP":
+            logger.info(f"[BLOCK] {symbol}: TREND_UP girişi engellendi (TREND_UP_BLOCK=True)")
+            return
+
+        # Coin blacklist — backtest v3: WR<%30 coinler
+        if symbol in getattr(config, 'COIN_BLACKLIST', []):
+            logger.info(f"[BLOCK] {symbol}: Blacklist'te — atlandı")
+            return
 
         # Pozisyon varsa strateji calistirma
         if symbol in self.state.positions:

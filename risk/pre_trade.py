@@ -77,6 +77,14 @@ class PreTradeRisk:
         if regime == "VOLATILE":
             return self._reject(symbol, action, "VOLATILE: işlem açılmaz")
 
+        # CHECK 4b: TREND_UP block — backtest v3: %30.7 WR, -$842
+        if getattr(config, 'TREND_UP_BLOCK', False) and regime == "TREND_UP":
+            return self._reject(symbol, action, "TREND_UP: backtest verisiyle bloke edildi")
+
+        # CHECK 4c: Coin blacklist
+        if symbol in getattr(config, 'COIN_BLACKLIST', []):
+            return self._reject(symbol, action, f"{symbol}: blacklist'te")
+
         # CHECK 5: Yön filtresi — LONG: TREND_UP + RANGING izinli, TREND_DOWN yasak
         if action == "LONG" and regime == "TREND_DOWN":
             return self._reject(symbol, action, f"LONG TREND_DOWN'da açılmaz (şu an: {regime})")

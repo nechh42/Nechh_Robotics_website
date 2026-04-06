@@ -322,6 +322,23 @@ class BacktestV3:
 
         regime = detect_regime(df)
 
+        # TREND_UP block — backtest v3: 88 trade, %30.7 WR, -$842
+        if getattr(config, 'TREND_UP_BLOCK', False) and regime == "TREND_UP":
+            return
+
+        # Coin blacklist — backtest v3: WR<%30 coinler
+        if symbol in getattr(config, 'COIN_BLACKLIST', []):
+            return
+
+        # DIP-BUY filter: RANGING'de sadece önceki candle RED ise gir
+        # Mean reversion = düşüş sonrası alım, yükseliş sırasında değil
+        if getattr(config, 'DIP_BUY_FILTER', False) and regime == "RANGING":
+            if len(df) >= 2:
+                prev_open = df["open"].iloc[-2]
+                prev_close = df["close"].iloc[-2]
+                if prev_close >= prev_open:  # Önceki candle GREEN → atla
+                    return
+
         # Evaluate all 4 strategies
         signals = []
         for strat in self.strategies:
@@ -497,6 +514,14 @@ class BacktestV3:
                 self._partial_close(symbol, pos.take_profit_1, timestamp)
             elif pos.side == "SHORT" and low <= pos.take_profit_1:
                 self._partial_close(symbol, pos.take_profit_1, timestamp)
+
+        # ─── TIME EXIT (MAX HOLD) ─────────────────────
+        max_hold = getattr(config, 'MAX_HOLD_CANDLES', 0)
+        if max_hold > 0 and pos.candles_held >= max_hold:
+            self._close_position(symbol, price, timestamp,
+                                 f"TIME-EXIT: {pos.candles_held} candle",
+                                 current_regime)
+            return
 
         # ─── STOP LOSS CHECK ──────────────────────────
         if pos.side == "LONG" and low <= pos.stop_loss:

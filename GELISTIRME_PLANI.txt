@@ -1,8 +1,8 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  WAR MACHINE — KAPSAMLI GELİŞTİRME PLANI                          ║
 ║  Hazırlanma: 6 Nisan 2026                                          ║
-║  Son Güncelleme: 6 Nisan 2026 — v15.4                              ║
-║  Mevcut Durum: v15.4 Paper — Hafta 1+2+3+4 (11/13 madde)         ║
+║  Son Güncelleme: 8 Nisan 2026 — v15.5                              ║
+║  Mevcut Durum: v15.5 Paper — 13/14 madde tamamlandı               ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -478,10 +478,23 @@ NEDEN TEHLİKELİ:
         → config.py: MTF_ENABLED=True, MTF_MAX_RETRIES=4
 
   AY 2+ (Gelecek):
-    [10] ML sinyal filtresi
-    [11] Dinamik coin seçimi
-    [12] Portfolio-level risk
-    [13] Live trade geçişi
+    [10] ✅ Parametre Optimizasyonu (v15.5) → TAMAMLANDI (8 Nisan 2026)
+        → İLK KÂRLI BACKTEST: 688 trade, %49.3 WR, +$15, PF=1.01
+        → v15.4 vs v15.5: WR %43.7→%49.3, PnL -$969→+$15, MaxDD %12.5→%3.5
+        → 6 cerrahi optimizasyon:
+          1. TREND_UP_BLOCK=True (88 trade, %30.7 WR, -$842 kurtarıldı)
+          2. RANGING TP 1.5→1.2×ATR (daha fazla TP vuruşu)
+          3. BREAKEVEN 1.0→0.7×ATR (kâr daha erken korunur)
+          4. MAX_HOLD_CANDLES=3 (12h sonra pozisyon kapatılır)
+          5. COIN_BLACKLIST: 11 coin filtrelendi (UNI, ATOM, OP, NEAR, XLM,
+             SOL, KAVA, INJ, PEPE, ARPA, SUI)
+          6. PARTIAL_TP_CLOSE_PCT %50→%70 (AvgWin>AvgLoss sağlandı)
+        → TOP_3_COINS güncellendi: AAVE, AVAX, DOGE (backtest kârlılar)
+        → Orchestrator + pre_trade + stop_manager tutarlı güncellendi
+    [11] ML sinyal filtresi (gelecek)
+    [12] Dinamik coin seçimi (gelecek)
+    [13] Portfolio-level risk (gelecek)
+    [14] Live trade geçişi (gelecek)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
