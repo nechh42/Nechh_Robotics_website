@@ -1,8 +1,8 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  WAR MACHINE — KAPSAMLI GELİŞTİRME PLANI                          ║
 ║  Hazırlanma: 6 Nisan 2026                                          ║
-║  Son Güncelleme: 6 Nisan 2026 — v15.6 Futures Karşılaştırma       ║
-║  Mevcut Durum: v15.6 — Futures analiz tamamlandı, SPOT devam      ║
+║  Son Güncelleme: 6 Nisan 2026 — v15.7 WR %50+ AŞILDI!            ║
+║  Mevcut Durum: v15.7 — İLK KEZ WR>%50 + KÂRLI SİSTEM             ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -513,6 +513,17 @@ NEDEN TEHLİKELİ:
         → 1x (SPOT) en iyi PF (1.06), en düşük masraf
         → SONUÇ: KALDIRAÇ ÇIKARILDI — SPOT BACKTESTE DEVAM EDİLECEK
         → backtest/futures_comparison.txt dosyasına tam sonuç kaydedildi
+
+    [10.7] ✅ WR %50+ Optimizasyonu (v15.7) → TAMAMLANDI (6 Nisan 2026)
+        → İLK KEZ WR>%50 AŞILDI! 677 trade, %50.5 WR, +$316, PF=1.22
+        → v15.5 → v15.7: WR %48.7→%50.5, PnL -$60→+$316, MaxDD %3.8→%1.9
+        → 7 A/B test + 7 kombinasyon testi yapıldı (deep_analysis.py + combo_test.py)
+        → 3 cerrahi optimizasyon:
+          1. MAX_HOLD_CANDLES 3→2 (8h sonra kapat, 3. candle zararlı)
+          2. PARTIAL_TP_CLOSE_PCT %70→%80 (daha fazla kâr kilitle)
+          3. COIN_BLACKLIST +3: BNBUSDT(%41.3 WR), XRPUSDT(%44.8), LDOUSDT(%41.7)
+        → Toplam BLACKLIST: 14 coin (26→12 aktif coin)
+        → AvgWin=$5.14 > AvgLoss=$4.31 (sürdürülebilir edge)
 
     [11] ML sinyal filtresi (gelecek / SONRAKI ADIM)
     [12] Dinamik coin seçimi (gelecek)

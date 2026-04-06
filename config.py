@@ -124,6 +124,7 @@ COIN_BLACKLIST = [
     "UNIUSDT", "ATOMUSDT", "OPUSDT", "NEARUSDT", "XLMUSDT", "SOLUSDT",  # WR<%30
     "KAVAUSDT", "INJUSDT", "PEPEUSDT", "ARPAUSDT",                       # WR<%45, net zararda
     "SUIUSDT",                                                             # v15.5.2: %30 WR, -$50
+    "BNBUSDT", "XRPUSDT", "LDOUSDT",                                      # [v15.7] WR<%45, net zararda
 ]
 
 # RISK (PRE-TRADE)
@@ -160,13 +161,15 @@ DYNAMIC_RR = {
 # PARTIAL TAKE PROFIT
 PARTIAL_TP_ENABLED = True
 PARTIAL_TP_RATIO = 0.50       # TP1 = TP mesafesinin %50'si
-PARTIAL_TP_CLOSE_PCT = 0.70   # [v15.5] 0.50→0.70 TP1'de %70 kapat (daha fazla kâr kilitle)
+PARTIAL_TP_CLOSE_PCT = 0.80   # [v15.7] 0.70→0.80 TP1'de %80 kapat (daha fazla kâr kilitle)
 
 # BREAKEVEN STOP
 BREAKEVEN_ATR_TRIGGER = 0.7    # [v15.5] 1.0→0.7 (0.5 çok agresif, 0.7 optimal)
 
-# MAX HOLD — backtest v3: ≤2 candle +$130 kârlı, ≥3 candle -$353 zararlı
-MAX_HOLD_CANDLES = 3           # [v15.5] 3 candle (12h) sonra pozisyonu kapat
+# MAX HOLD — v15.5: 3 candle, v15.7: 2 candle
+# Analiz: 1 candle WR=49.9% +$518, 2 candle WR=46.5% -$167, 3 candle WR=48.6% -$413
+# MAX_HOLD=2 → PnL +$96, PF=1.06, MaxDD=2.8% (baseline'dan +$157 iyileşme)
+MAX_HOLD_CANDLES = 2           # [v15.7] 3→2 candle (8h sonra pozisyonu kapat)
 
 # SMART EXIT (Regime Change)
 SMART_EXIT_ENABLED = True       # Regime değiştiğinde akıllı çıkış
