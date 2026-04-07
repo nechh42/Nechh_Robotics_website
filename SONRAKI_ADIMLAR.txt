@@ -1,9 +1,9 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  WAR MACHINE — SONRAKİ ADIMLAR & GELİŞTİRME PLANI                 ║
 ║  Oluşturma: 7 Nisan 2026                                          ║
-║  Son Güncelleme: 7 Nisan 2026 (OOS Test Sonrası)                  ║
-║  Mevcut Versiyon: v16.1 → OOS FAIL → v17 KURTARMA PLANI AKTİF    ║
-║  v16.1 Backtest (IS): %54.4 WR, PF=1.75 — OVERFITTED!            ║
+║  Son Güncelleme: 7 Nisan 2026 (v17 OOS Test Sonrası)              ║
+║  Mevcut Versiyon: v17.0 (anti-overfitting) — OOS HAFİF İYİLEŞME  ║
+║  v17 IS: %54.1 WR, PF=1.44 | OOS-1 PF=0.82 | Deg=%43.1          ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -162,7 +162,39 @@
 │    IS PF ≥ 1.1 VE OOS PF ≥ 1.0 VE degradasyon < %30              │
 │    → Mütevazi ama GERÇEK bir edge                                  │
 │                                                                     │
-│  DURUM: [⏳] Ablation tamamlandı, v17 başlıyor                     │
+│  DURUM: [✅] TAMAMLANDI — v17 uygulandı & OOS testi yapıldı        │
+│                                                                     │
+│  v17 DEĞİŞİKLİKLER:                                               │
+│    1. Coin-specific weights KALDIRILDI (tüm 1.0 eşit ağırlık)     │
+│    2. STRATEGY_MIN_CONFIDENCE: 0.40→0.50 (daha kaliteli trade)     │
+│    3. REGIME_WEIGHTS basitleştirildi (uniform'a yakın)             │
+│    4. Edge Discovery regime multiplier'lar hafifletildi             │
+│    5. Tüm koruyucu bileşenler KORUNDU (ablation: hepsi yardımcı)  │
+│                                                                     │
+│  v17 OOS SONUÇLARI (7 Nisan 2026 14:55):                          │
+│    ┌──────────────────┬───────┬────────┬───────────┬──────┬────────┐│
+│    │ Periyot          │ Trade │   WR   │    PnL    │  PF  │ MaxDD  ││
+│    ├──────────────────┼───────┼────────┼───────────┼──────┼────────┤│
+│    │ IN-SAMPLE (60g)  │  464  │ 54.1%  │  +$414    │ 1.44 │  1.7%  ││
+│    │ OOS-1 (60-120g)  │  343  │ 45.8%  │  -$156    │ 0.82 │  3.4%  ││
+│    │ OOS-2 (120-180g) │  351  │ 44.7%  │  -$434    │ 0.67 │  6.4%  ││
+│    └──────────────────┴───────┴────────┴───────────┴──────┴────────┘│
+│                                                                     │
+│  v16.1 → v17 KARŞILAŞTIRMA:                                       │
+│    IS PF:  1.56 → 1.44 (-0.12) → daha az şişirilmiş ✅            │
+│    OOS-1:  0.80 → 0.82 (+0.02) → hafif iyileşme ✅                │
+│    OOS-2:  0.67 → 0.67 (+0.00) → değişim yok                      │
+│    Deg:    48.7% → 43.1% (-5.6pp) → daha az overfitting ✅        │
+│                                                                     │
+│  TEŞHİS: DOĞRU YÖNDE AMA YETERSİZ                                 │
+│    → OOS PF hâlâ < 1.0 — sistem mevcut haliyle kârlı değil        │
+│    → PARTIAL-TP1 hâlâ TÜM periyotlarda kârlı (+$780,+$522,+$652) │
+│    → STOP-LOSS & TIME-EXIT hâlâ ana kayıp kaynakları               │
+│                                                                     │
+│  SONRAKİ ADIM: Daha radikal basitleştirme gerekli                  │
+│    → Giriş kalitesini artır (daha sıkı filtreler)                  │
+│    → STOP-LOSS stratejisini optimize et                            │
+│    → TIME-EXIT zararını azalt                                      │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 

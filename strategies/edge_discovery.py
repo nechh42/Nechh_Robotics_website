@@ -135,79 +135,30 @@ class EdgeDiscoveryStrategy(BaseStrategy):
         coin_weights = self._get_coin_weights(symbol)
         patterns.update(coin_weights)
 
-        # Regime adjustments
+        # Regime adjustments — [v17] multiplier'lar hafifletildi (1.3→1.15, 1.2→1.10)
         if regime == "TREND_DOWN":
             # Contrarian bounce daha güçlü
-            patterns["strong_momentum_down_weight"] = patterns.get("strong_momentum_down_weight", 1.0) * 1.3
-            patterns["trend_down_oversold_weight"] = patterns.get("trend_down_oversold_weight", 1.0) * 1.2
-            patterns["rsi_oversold_weight"] = patterns.get("rsi_oversold_weight", 1.0) * 1.2
+            patterns["strong_momentum_down_weight"] = patterns.get("strong_momentum_down_weight", 1.0) * 1.15
+            patterns["trend_down_oversold_weight"] = patterns.get("trend_down_oversold_weight", 1.0) * 1.10
+            patterns["rsi_oversold_weight"] = patterns.get("rsi_oversold_weight", 1.0) * 1.10
         elif regime == "RANGING":
-            patterns["ranging_bb_upper_weight"] = patterns.get("ranging_bb_upper_weight", 1.0) * 1.2
-            patterns["bb_squeeze_weight"] = patterns.get("bb_squeeze_weight", 1.0) * 1.1
-            patterns["low_volatility_weight"] = patterns.get("low_volatility_weight", 1.0) * 1.1
+            patterns["ranging_bb_upper_weight"] = patterns.get("ranging_bb_upper_weight", 1.0) * 1.10
+            patterns["bb_squeeze_weight"] = patterns.get("bb_squeeze_weight", 1.0) * 1.05
+            patterns["low_volatility_weight"] = patterns.get("low_volatility_weight", 1.0) * 1.05
         elif regime == "TREND_UP":
-            patterns["momentum_continuation_up_weight"] = patterns.get("momentum_continuation_up_weight", 1.0) * 1.2
-            patterns["high_volatility_weight"] = patterns.get("high_volatility_weight", 1.0) * 1.1
+            patterns["momentum_continuation_up_weight"] = patterns.get("momentum_continuation_up_weight", 1.0) * 1.10
+            patterns["high_volatility_weight"] = patterns.get("high_volatility_weight", 1.0) * 1.05
 
         return patterns
 
     def _get_coin_weights(self, symbol: str) -> dict:
-        """Coin-specific pattern weights from edge_top_validated.csv"""
-        weights = {}
-
-        if symbol == "VETUSDT":
-            weights["strong_momentum_down_weight"] = 2.0  # #1: 87.1% WR @12h
-
-        elif symbol == "ARPAUSDT":
-            weights["squeeze_breakout_down_weight"] = 1.8  # #2: 84.1% WR
-            weights["low_volatility_weight"] = 1.7         # #3: 81.5% WR
-            weights["bb_squeeze_weight"] = 1.5             # #5: 64.1% WR
-
-        elif symbol == "XRPUSDT":
-            weights["rsi_oversold_weight"] = 1.4           # #4: 59.1% WR (N=232)
-            weights["trend_down_weight"] = 1.3             # #6: 54.4% WR (N=480)
-
-        elif symbol == "LDOUSDT":
-            weights["high_volatility_weight"] = 1.5        # #13: 74.4% WR @24h
-
-        elif symbol == "FLOWUSDT":
-            weights["trend_mixed_weight"] = 1.5            # #10: +3.48% avg return!
-
-        elif symbol == "AAVEUSDT":
-            weights["strong_momentum_down_weight"] = 1.4   # #9: 63.9% WR @12h
-
-        elif symbol == "SOLUSDT":
-            weights["ranging_bb_upper_weight"] = 1.5       # #21: 69% WR @4h
-
-        elif symbol == "PEPEUSDT":
-            weights["momentum_continuation_up_weight"] = 1.5  # #23: 65.8% WR
-            weights["bb_upper_high_volume_weight"] = 1.3
-
-        elif symbol == "DOGEUSDT":
-            weights["trend_down_weight"] = 1.2             # #8: 54.5% WR (N=455)
-            weights["rsi_30_50_weight"] = 1.2              # #14: 52.4% WR (N=523)
-
-        elif symbol == "ADAUSDT":
-            weights["trend_down_oversold_weight"] = 1.3    # #15: 55.8% WR (N=190)
-
-        elif symbol == "BNBUSDT":
-            weights["bb_lower_high_volume_weight"] = 1.4   # #20: 65.2% WR
-            weights["momentum_continuation_up_weight"] = 1.3
-
-        elif symbol == "OPUSDT":
-            weights["bb_near_lower_weight"] = 1.3          # #17: 58.1% WR (N=222)
-
-        elif symbol == "SUIUSDT":
-            weights["strong_momentum_down_weight"] = 1.3   # #25: 63.9% WR
-
-        elif symbol == "INJUSDT":
-            weights["bb_squeeze_weight"] = 1.3             # #12: 56.6% WR
-            weights["rsi_oversold_weight"] = 1.4           # #29: 65.1% WR
-
-        elif symbol == "LTCUSDT":
-            weights["trend_down_weight"] = 1.2             # #27: 55.2% WR (N=411)
-
-        return weights
+        """
+        [v17] Coin-specific weights KALDIRILDI — overfitting kaynağıydı.
+        Tüm coinler eşit ağırlık (1.0) kullanır.
+        Ablation testi: Hiçbir bileşen tek başına overfitted değil,
+        ama coin-specific tuning IS verisine uydurulmuş.
+        """
+        return {}
 
     def _calculate_long_score(self, patterns: dict, symbol: str) -> tuple:
         """

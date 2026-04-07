@@ -92,7 +92,7 @@ INITIAL_BALANCE = 10000.0
 COMMISSION_RATE = 0.001         # 0.1% per trade
 
 # STRATEGY
-STRATEGY_MIN_CONFIDENCE = 0.40
+STRATEGY_MIN_CONFIDENCE = 0.50  # [v17] 0.40→0.50 daha az ama daha kaliteli trade
 RSI_PERIOD = 14
 RSI_OVERSOLD = 30
 RSI_OVERBOUGHT = 70
@@ -101,11 +101,12 @@ BB_STD = 2.0
 VWAP_DEVIATION = 0.010
 
 # REGIME WEIGHTS (voting ağırlıkları - regime'e göre)
+# [v17] Basitleştirildi — uniform'a yakın → overfitting azaltma
 REGIME_WEIGHTS = {
-    "TREND_UP":   {"RSI": 0.15, "MOMENTUM": 0.45, "VWAP": 0.15, "EDGE_DISCOVERY": 0.25},
-    "TREND_DOWN": {"RSI": 0.15, "MOMENTUM": 0.45, "VWAP": 0.15, "EDGE_DISCOVERY": 0.25},
-    "RANGING":    {"RSI": 0.30, "MOMENTUM": 0.10, "VWAP": 0.35, "EDGE_DISCOVERY": 0.25},
-    "VOLATILE":   {"RSI": 0.20, "MOMENTUM": 0.20, "VWAP": 0.30, "EDGE_DISCOVERY": 0.30},
+    "TREND_UP":   {"RSI": 0.20, "MOMENTUM": 0.35, "VWAP": 0.20, "EDGE_DISCOVERY": 0.25},
+    "TREND_DOWN": {"RSI": 0.20, "MOMENTUM": 0.35, "VWAP": 0.20, "EDGE_DISCOVERY": 0.25},
+    "RANGING":    {"RSI": 0.25, "MOMENTUM": 0.15, "VWAP": 0.30, "EDGE_DISCOVERY": 0.30},
+    "VOLATILE":   {"RSI": 0.25, "MOMENTUM": 0.25, "VWAP": 0.25, "EDGE_DISCOVERY": 0.25},
 }
 
 # BEAR GUARD
