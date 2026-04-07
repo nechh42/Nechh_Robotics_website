@@ -427,7 +427,7 @@ class Orchestrator:
         if min_vol_ratio > 0 and len(df_1h) >= 20:
             vol_avg = df_1h["volume"].tail(20).mean()
             vol_current = df_1h["volume"].iloc[-1]
-            if vol_avg > 0 and (vol_current / vol_avg) < min_vol_ratio:
+            if vol_avg <= 0 or (vol_current / vol_avg) < min_vol_ratio:
                 return
 
         price = df_1h["close"].iloc[-1]
@@ -457,18 +457,13 @@ class Orchestrator:
         if combined.action == "NONE":
             return
 
-        # Korelasyon filtresi (aynı)
-        correlated_pairs = [
-            {"BTCUSDT", "ETHUSDT"},
-            {"ADAUSDT", "NEARUSDT"},
-            {"SOLUSDT", "AVAXUSDT"},
-        ]
-        for pair in correlated_pairs:
-            if symbol in pair:
-                other = (pair - {symbol}).pop()
-                if other in self.state.positions:
-                    logger.info(f"[1H-KORELASYON] {symbol}: {other} zaten acik — atlanir")
-                    return
+        # Korelasyon filtresi — config'den oku (1h)
+        for group in getattr(config, 'CORRELATION_GROUPS', []):
+            if symbol in group:
+                for other in group:
+                    if other != symbol and other in self.state.positions:
+                        logger.info(f"[1H-KORELASYON] {symbol}: {other} zaten acik (grup: {group}) — atlanir")
+                        return
 
         # Risk kontrolu
         approved, reason, params = self.risk.check(combined, self.state, regime)
@@ -546,8 +541,8 @@ class Orchestrator:
         if min_vol_ratio > 0 and len(df) >= 20:
             vol_avg = df["volume"].tail(20).mean()
             vol_current = df["volume"].iloc[-1]
-            if vol_avg > 0 and (vol_current / vol_avg) < min_vol_ratio:
-                logger.info(f"[BLOCK] {symbol}: Düşük hacim ({vol_current/vol_avg:.2f} < {min_vol_ratio}) — atlandı")
+            if vol_avg <= 0 or (vol_current / vol_avg) < min_vol_ratio:
+                logger.info(f"[BLOCK] {symbol}: Düşük hacim (avg={vol_avg:.2f}, cur={vol_current:.2f}, ratio={vol_current/vol_avg if vol_avg > 0 else 0:.2f} < {min_vol_ratio}) — atlandı")
                 return
 
         # Pozisyon varsa strateji calistirma
@@ -582,18 +577,13 @@ class Orchestrator:
         if combined.action == "NONE":
             return
 
-        # Korelasyon filtresi
-        correlated_pairs = [
-            {"BTCUSDT", "ETHUSDT"},
-            {"ADAUSDT", "NEARUSDT"},
-            {"SOLUSDT", "AVAXUSDT"},
-        ]
-        for pair in correlated_pairs:
-            if symbol in pair:
-                other = (pair - {symbol}).pop()
-                if other in self.state.positions:
-                    logger.info(f"[KORELASYON] {symbol}: {other} zaten acik — atlanir")
-                    return
+        # Korelasyon filtresi — config'den oku
+        for group in getattr(config, 'CORRELATION_GROUPS', []):
+            if symbol in group:
+                for other in group:
+                    if other != symbol and other in self.state.positions:
+                        logger.info(f"[KORELASYON] {symbol}: {other} zaten acik (grup: {group}) — atlanir")
+                        return
 
         # Risk kontrolu
         approved, reason, params = self.risk.check(combined, self.state, regime)

@@ -61,11 +61,20 @@ class PaperExecutor:
 
     def close_order(self, symbol: str, price: float, reason: str = "") -> Optional[ClosedTrade]:
         """
-        Close an existing position.
+        Close an existing position with simulated exit slippage.
 
         Returns:
             ClosedTrade if successful, None if no position
         """
+        # [BUG FIX] Exit slippage — girişteki gibi çıkışta da slippage uygulanır
+        pos = self.state.positions.get(symbol)
+        if pos:
+            slip = price * self.SLIPPAGE_PCT
+            if pos.side == "LONG":
+                price -= slip   # LONG satışta daha düşük fiyat alır
+            else:
+                price += slip   # SHORT kapatmada daha yüksek fiyat öder
+
         trade = self.state.close_position(symbol, price, reason)
         if trade:
             logger.info(

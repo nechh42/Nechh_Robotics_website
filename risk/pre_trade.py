@@ -29,8 +29,8 @@ from engine.state import TradingState
 
 logger = logging.getLogger(__name__)
 
-# Pozisyon boyutu sabiti — equity'nin max bu kadarı notional olabilir
-MAX_NOTIONAL_PCT = 0.10   # %10 equity = $10,000'de $1,000 max pozisyon
+# Pozisyon boyutu sabiti — config'den al
+MAX_NOTIONAL_PCT = getattr(config, 'MAX_NOTIONAL_PCT', 0.10)
 
 
 class PreTradeRisk:
