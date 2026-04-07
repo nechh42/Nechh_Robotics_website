@@ -135,6 +135,7 @@ COIN_BLACKLIST = [
     "KAVAUSDT", "INJUSDT", "PEPEUSDT", "ARPAUSDT",                       # WR<%45, net zararda
     "SUIUSDT",                                                             # v15.5.2: %30 WR, -$50
     "BNBUSDT", "XRPUSDT", "LDOUSDT",                                      # [v15.7] WR<%45, net zararda
+    "BTCUSDT",              # [v16.0] 45.7% WR, -$6 net | BL→PF 1.51→1.56 (+$47)
 ]
 
 # RISK (PRE-TRADE)

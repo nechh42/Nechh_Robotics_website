@@ -1,0 +1,173 @@
+PS C:\war_machine> python -m backtest.dynamic_coin_test
+
+PS C:\war_machine> python -m backtest.dynamic_coin_test
+
+======================================================================
+DİNAMİK COİN SEÇİMİ A/B TESTLERİ — 8 test
+======================================================================
+Days: 60 | Symbols: 29 | Active (after BL): 15
+
+[1/8] BASELINE-STATIC...
+  → 603 trade | WR=52.4% | PnL=$+583.32 | PF=1.50 | MaxDD=1.7%
+
+[2/8] WEEKLY-TOP10...
+  → 376 trade | WR=50.8% | PnL=$+207.40 | PF=1.23 | MaxDD=2.0%
+
+[3/8] WEEKLY-TOP8...
+  → 358 trade | WR=52.0% | PnL=$+180.28 | PF=1.21 | MaxDD=1.8%
+
+[4/8] WEEKLY-TOP12...
+  → 409 trade | WR=50.9% | PnL=$+284.56 | PF=1.32 | MaxDD=1.7%
+
+[5/8] DROP-WR<40...
+  → 509 trade | WR=52.3% | PnL=$+371.70 | PF=1.35 | MaxDD=2.0%
+
+[6/8] DROP-WR<45...
+  → 472 trade | WR=52.3% | PnL=$+285.71 | PF=1.28 | MaxDD=2.4%
+
+[7/8] TOP10-3W...
+  → 494 trade | WR=51.4% | PnL=$+335.67 | PF=1.31 | MaxDD=2.0%
+
+[8/8] HOT-COLD...
+  → 603 trade | WR=52.4% | PnL=$+586.89 | PF=1.50 | MaxDD=1.7%
+
+======================================================================
+SONUÇ TABLOSU (PnL sırası)
+======================================================================
+  Test                 | Trades |     WR |        PnL |    PF |    DD | vs BL
+  ─────────────────────┼────────┼────────┼────────────┼───────┼───────┼─────────
+  HOT-COLD             |    603 |  52.4% | $  +586.89 |  1.50 |  1.7% | $+4 ★
+  BASELINE-STATIC      |    603 |  52.4% | $  +583.32 |  1.50 |  1.7% | $+0 (BL)
+  DROP-WR<40           |    509 |  52.3% | $  +371.70 |  1.35 |  2.0% | $-212
+  TOP10-3W             |    494 |  51.4% | $  +335.67 |  1.31 |  2.0% | $-248
+  DROP-WR<45           |    472 |  52.3% | $  +285.71 |  1.28 |  2.4% | $-298
+  WEEKLY-TOP12         |    409 |  50.9% | $  +284.56 |  1.32 |  1.7% | $-299
+  WEEKLY-TOP10         |    376 |  50.8% | $  +207.40 |  1.23 |  2.0% | $-376
+  WEEKLY-TOP8          |    358 |  52.0% | $  +180.28 |  1.21 |  1.8% | $-403
+
+======================================================================
+KAZANANLAR
+======================================================================
+
+  ★ HOT-COLD
+    PnL: $+586.89 ($+3.58 vs BL)
+    WR:  52.4% (+0.0%)
+    PF:  1.50 | Trades: 603
+
+
+======================================================================
+COİN BAZLI PERFORMANS (BASELINE)
+======================================================================
+
+======================================================================
+WAR MACHINE BACKTEST v3.0
+======================================================================
+Balance: $10,000.00 | Days: 60
+Symbols: 29 | Interval: 4h
+Features: DynamicRR + PartialTP + Breakeven + SmartExit + Funding
+======================================================================
+  Fetching BTCUSDT... 420 candles ✓
+  Fetching ETHUSDT... 420 candles ✓
+  Fetching BNBUSDT... 420 candles ✓
+  Fetching XRPUSDT... 420 candles ✓
+  Fetching SOLUSDT... 420 candles ✓
+  Fetching AVAXUSDT... 420 candles ✓
+  Fetching ADAUSDT... 420 candles ✓
+  Fetching LTCUSDT... 420 candles ✓
+  Fetching DOGEUSDT... 420 candles ✓
+  Fetching AAVEUSDT... 420 candles ✓
+  Fetching UNIUSDT... 420 candles ✓
+  Fetching PEPEUSDT... 420 candles ✓
+  Fetching VETUSDT... 420 candles ✓
+  Fetching ZECUSDT... 420 candles ✓
+  Fetching FLOWUSDT... 420 candles ✓
+  Fetching LDOUSDT... 420 candles ✓
+  Fetching CRVUSDT... 420 candles ✓
+  Fetching OPUSDT... 420 candles ✓
+  Fetching ATOMUSDT... 420 candles ✓
+  Fetching NEARUSDT... 420 candles ✓
+  Fetching SUIUSDT... 420 candles ✓
+  Fetching INJUSDT... 420 candles ✓
+  Fetching WIFUSDT... 420 candles ✓
+  Fetching ARPAUSDT... 420 candles ✓
+  Fetching XLMUSDT... 420 candles ✓
+  Fetching KAVAUSDT... 420 candles ✓
+  Fetching FILUSDT... 420 candles ✓
+  Fetching DOTUSDT... 420 candles ✓
+  Fetching ARBUSDT... 420 candles ✓
+
+Total unique timestamps: 420
+Walking through candles...
+
+
+======================================================================
+BACKTEST v3.0 SONUÇLARI — 60d
+======================================================================
+
+  ─────────────────GENEL PERFORMANS─────────────────
+  Toplam Trade:    603
+  Kazanç:          317 (52.6%)
+  Kayıp:           286
+  Toplam PnL:      $+591.41
+  Komisyon:        $210.00
+  Funding Fee:     $5.42
+  Profit Factor:   1.51
+  Sharpe:          0.12
+  Max Drawdown:    $169.11 (1.7%)
+  Final Balance:   $10,376.79
+
+  ────────────────TRADE ANALİTİKLERİ────────────────
+  Ort. Kazanç:     $+5.55
+  Ort. Kayıp:      $-4.09
+  Ort. MFE:        2.15%
+  Ort. MAE:        1.20%
+  Ort. Holding:    1.4 candle
+
+  ─────────────REGIME BAZLI PERFORMANS──────────────
+  RANGING     : 603 trade | WR= 52.6% | PnL=$ +591.41 | MFE=2.15% MAE=1.20%
+
+  ────────────STRATEJİ BAZLI PERFORMANS─────────────
+  VOTE              : 603 trade | WR= 52.6% | PnL=$ +591.41
+
+  ─────────────────ÇIKIŞ NEDENLERİ──────────────────
+  PARTIAL-TP1         : 191 | PnL=$+1016.96
+  STOP-LOSS           : 166 | PnL=$ -355.78
+  TIME-EXIT           : 203 | PnL=$ -671.39
+  SMART-EXIT          :  41 | PnL=$ +597.42
+  TAKE-PROFIT         :   2 | PnL=$   +4.19
+
+  ──────────────────EN İYİ 5 TRADE──────────────────
+  FILUSDT    LONG  $  +78.21 | MFE=16.68% | SMART-EXIT: RANGING→VOLATILE (kârda)
+  FLOWUSDT   LONG  $  +67.51 | MFE=26.91% | SMART-EXIT: RANGING→VOLATILE (kârda)
+  ZECUSDT    LONG  $  +54.72 | MFE=11.34% | SMART-EXIT: RANGING→VOLATILE (kârda)
+  DOTUSDT    LONG  $  +43.22 | MFE=9.61% | SMART-EXIT: RANGING→VOLATILE (kârda)
+  ZECUSDT    LONG  $  +36.76 | MFE=7.81% | SMART-EXIT: RANGING→VOLATILE (kârda)
+
+  ─────────────────EN KÖTÜ 5 TRADE──────────────────
+  AAVEUSDT   LONG  $  -19.90 | MAE=3.89% | TIME-EXIT: 2 candle
+  CRVUSDT    LONG  $  -20.64 | MAE=4.46% | TIME-EXIT: 2 candle
+  ZECUSDT    LONG  $  -20.98 | MAE=5.36% | TIME-EXIT: 2 candle
+  ZECUSDT    LONG  $  -22.48 | MAE=4.64% | TIME-EXIT: 2 candle
+  FLOWUSDT   LONG  $  -22.90 | MAE=14.07% | STOP-LOSS
+
+======================================================================
+
+
+  Coin         | Trade |     WR |        PnL | Değerlendirme
+  ─────────────┼───────┼────────┼────────────┼─────────────────────
+  ZECUSDT      |    46 |  54.3% | $  +120.23 | ★ GÜÇLÜ
+  FLOWUSDT     |    44 |  50.0% | $   +97.14 | ★ GÜÇLÜ
+  FILUSDT      |    40 |  50.0% | $   +76.78 | ★ GÜÇLÜ
+  DOGEUSDT     |    55 |  56.4% | $   +69.37 | ★ GÜÇLÜ
+  WIFUSDT      |    45 |  51.1% | $   +50.57 | ★ GÜÇLÜ
+  DOTUSDT      |    25 |  56.0% | $   +50.22 | ★ GÜÇLÜ
+  ETHUSDT      |    53 |  58.5% | $   +39.92 | ✓ KÂRLI
+  VETUSDT      |    38 |  60.5% | $   +29.16 | ✓ KÂRLI
+  AAVEUSDT     |    36 |  58.3% | $   +24.67 | ✓ KÂRLI
+  AVAXUSDT     |    34 |  50.0% | $   +18.59 | ✓ KÂRLI
+  ADAUSDT      |    34 |  50.0% | $   +14.89 | ✓ KÂRLI
+  ARBUSDT      |    30 |  50.0% | $    +5.08 | ✓ KÂRLI
+  CRVUSDT      |    44 |  52.3% | $    +4.64 | ✓ KÂRLI
+  LTCUSDT      |    44 |  43.2% | $    -3.41 | ~ NÖT
+  BTCUSDT      |    35 |  45.7% | $    -6.42 | ~ NÖT
+PS C:\war_machine> ^C

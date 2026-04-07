@@ -98,3 +98,102 @@ BACKTEST v3.0 SONUÇLARI — 60d
 ======================================================================
 
 PS C:\war_machine> 
+
+============================================================================================
+
+PS C:\war_machine> python -m backtest.backtest_v3 --all --days 60
+
+======================================================================
+WAR MACHINE BACKTEST v3.0
+======================================================================
+Balance: $10,000.00 | Days: 60
+Symbols: 29 | Interval: 4h
+Features: DynamicRR + PartialTP + Breakeven + SmartExit + Funding
+======================================================================
+  Fetching BTCUSDT... 420 candles ✓
+  Fetching ETHUSDT... 420 candles ✓
+  Fetching BNBUSDT... 420 candles ✓
+  Fetching XRPUSDT... 420 candles ✓
+  Fetching SOLUSDT... 420 candles ✓
+  Fetching AVAXUSDT... 420 candles ✓
+  Fetching ADAUSDT... 420 candles ✓
+  Fetching LTCUSDT... 420 candles ✓
+  Fetching DOGEUSDT... 420 candles ✓
+  Fetching AAVEUSDT... 420 candles ✓
+  Fetching DOGEUSDT... 420 candles ✓
+  Fetching AAVEUSDT... 420 candles ✓
+  Fetching UNIUSDT... 420 candles ✓
+  Fetching PEPEUSDT... 420 candles ✓
+  Fetching VETUSDT... 420 candles ✓
+  Fetching ZECUSDT... 420 candles ✓
+  Fetching FLOWUSDT... 420 candles ✓
+  Fetching LDOUSDT... 420 candles ✓
+  Fetching CRVUSDT... 420 candles ✓
+  Fetching OPUSDT... 420 candles ✓
+  Fetching ATOMUSDT... 420 candles ✓
+  Fetching NEARUSDT... 420 candles ✓
+  Fetching SUIUSDT... 420 candles ✓
+  Fetching INJUSDT... 420 candles ✓
+  Fetching WIFUSDT... 420 candles ✓
+  Fetching ARPAUSDT... 420 candles ✓
+  Fetching XLMUSDT... 420 candles ✓
+  Fetching KAVAUSDT... 420 candles ✓
+  Fetching FILUSDT... 420 candles ✓
+  Fetching DOTUSDT... 420 candles ✓
+  Fetching ARBUSDT... 420 candles ✓
+
+Total unique timestamps: 420
+Walking through candles...
+
+
+======================================================================
+BACKTEST v3.0 SONUÇLARI — 60d
+======================================================================
+
+  ─────────────────GENEL PERFORMANS─────────────────
+  Toplam Trade:    603
+  Kazanç:          316 (52.4%)
+  Kayıp:           287
+  Toplam PnL:      $+578.57
+  Komisyon:        $209.99
+  Funding Fee:     $5.42
+  Profit Factor:   1.49
+  Sharpe:          0.12
+  Max Drawdown:    $169.11 (1.7%)
+  Final Balance:   $10,363.95
+
+  ────────────────TRADE ANALİTİKLERİ────────────────
+  Ort. Kazanç:     $+5.54
+  Ort. Kayıp:      $-4.08
+  Ort. MFE:        2.15%
+  Ort. MAE:        1.20%
+  Ort. Holding:    1.4 candle
+
+  ─────────────REGIME BAZLI PERFORMANS──────────────
+  RANGING     : 603 trade | WR= 52.4% | PnL=$ +578.57 | MFE=2.15% MAE=1.20%
+
+  ────────────STRATEJİ BAZLI PERFORMANS─────────────
+  VOTE              : 603 trade | WR= 52.4% | PnL=$ +578.57
+
+  ─────────────────ÇIKIŞ NEDENLERİ──────────────────
+  PARTIAL-TP1         : 191 | PnL=$+1016.96
+  STOP-LOSS           : 166 | PnL=$ -355.78
+  TIME-EXIT           : 203 | PnL=$ -676.58
+  SMART-EXIT          :  41 | PnL=$ +589.77
+  TAKE-PROFIT         :   2 | PnL=$   +4.19
+
+  ──────────────────EN İYİ 5 TRADE──────────────────
+  FILUSDT    LONG  $  +78.21 | MFE=16.68% | SMART-EXIT: RANGING→VOLATILE (kârda)
+  FLOWUSDT   LONG  $  +67.51 | MFE=26.91% | SMART-EXIT: RANGING→VOLATILE (kârda)
+  ZECUSDT    LONG  $  +54.72 | MFE=11.34% | SMART-EXIT: RANGING→VOLATILE (kârda)
+  DOTUSDT    LONG  $  +43.22 | MFE=9.61% | SMART-EXIT: RANGING→VOLATILE (kârda)
+  ZECUSDT    LONG  $  +36.76 | MFE=7.81% | SMART-EXIT: RANGING→VOLATILE (kârda)
+
+  ─────────────────EN KÖTÜ 5 TRADE──────────────────
+  AAVEUSDT   LONG  $  -19.90 | MAE=3.89% | TIME-EXIT: 2 candle
+  CRVUSDT    LONG  $  -20.64 | MAE=4.46% | TIME-EXIT: 2 candle
+  ZECUSDT    LONG  $  -20.98 | MAE=5.36% | TIME-EXIT: 2 candle
+  ZECUSDT    LONG  $  -22.48 | MAE=4.64% | TIME-EXIT: 2 candle
+  FLOWUSDT   LONG  $  -22.90 | MAE=14.07% | STOP-LOSS
+
+======================================================================
