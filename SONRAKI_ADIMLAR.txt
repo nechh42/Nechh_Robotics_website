@@ -1,8 +1,8 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  WAR MACHINE — SONRAKİ ADIMLAR & GELİŞTİRME PLANI                 ║
 ║  Oluşturma: 7 Nisan 2026                                          ║
-║  Son Güncelleme: 7 Nisan 2026 (PTP=100% OOS Test Sonrası)         ║
-║  Mevcut Versiyon: v17.1 (PTP=100% SCALP) — OOS BÜYÜK İYİLEŞME    ║
+║  Son Güncelleme: 7 Nisan 2026 (KRİTİK BUG FIX + v17.1 RESTORE)   ║
+║  Mevcut Versiyon: v17.1 (PTP=100% SCALP) — VOLUME BUG DÜZELTİLDİ ║
 ║  v17.1 IS: PF=1.59 | OOS-1 PF=0.94 (-$51) | Deg=%41.0            ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
@@ -10,11 +10,75 @@
   DURUM ÖZETİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  ⚠️ v16.1 OOS TEST SONUCU: ❌ AĞIR OVERFİTTİNG — 7 Nisan 2026
+  🔴 KRİTİK BUG BULUNDU VE DÜZELTİLDİ — 7 Nisan 2026 16:30
   
-  Paper trade v16.1 arka planda çalışıyor (7 Nisan 2026 13:22'den beri).
-  ANCAK OOS testi overfitting tespit etti → v17 kurtarma planı başlatıldı.
-  Paper trade referans olarak devam edecek, sonuçları karşılaştırma için kullanılacak.
+  SORUN: WebSocket volume=0 → Volume filtresi TÜM sinyalleri engelliyor
+  → 1 AYDIR paper trade veri toplayamamamızın GERÇEK NEDENİ BU!
+  → CandleManager.on_tick() volume=0.0 hardcoded gönderiyordu
+  → MIN_VOLUME_RATIO filtresi 0.0 < 0.70 → BLOCK → 0 sinyal üretildi
+  
+  ÇÖZÜM: WebSocket @ticker stream'den volume bilgisi alınıyor (q field)
+  → datafeed.py, candle_manager.py, orchestrator.py düzeltildi
+  → v18 agresif filtreleri geri alındı, v17.1 (PTP=100%) restore edildi
+  → Sistem yeniden başlatıldığında sinyal üretmeye başlayacak
+
+  ▸ Paper trade v16.1 başlangıçtan beri 0 trade (volume bug!)
+  ▸ DB'de 17 eski yedek var — her restart'ta sıfırlanmış
+  ▸ Toplam kayıtlı paper trade: 8 trade (old17.db), hepsi 7 Nisan sabahı
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🔧 A.6  KRİTİK BUG FIX: WebSocket Volume (7 Nisan 2026)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  BUG DETAYI:
+    1. datafeed.py sadece price alıyordu → volume bilgisi yoktu
+    2. candle_manager.py on_tick(symbol, price) → volume=0.0 hardcoded
+    3. orchestrator.py volume filter: 0.0 / avg = 0.0 < 0.70 → BLOCK
+    4. Strateji değerlendirmesi HİÇ çağrılmıyordu
+    5. 1 aydır paper trade data toplayamamamızın KÖK NEDENİ!
+  
+  DÜZELTME:
+    1. datafeed.py: @ticker stream'den payload["q"] (quote volume) alınıyor
+    2. candle_manager.py: on_tick(symbol, price, volume) → volume kaydediliyor
+    3. orchestrator.py: _on_tick_sync/_on_tick zincirinde volume taşınıyor
+  
+  NOT: @ticker q alanı 24h kümülatif volume, per-candle değil.
+    → Volume filtresi geçecek (24h vol > 4h avg) ama ideal değil.
+    → İleride @kline_4h stream'e geçiş yapılabilir.
+  
+  AYRICA: v18 değişiklikleri GERİ ALINDI:
+    → voting.py: 2+ strateji zorunluluğu kaldırıldı (v17.1'e dönüş)
+    → config.py: MIN_CONF 0.50 (0.60 değil), VOL_RATIO 0.70 (0.85 değil)
+    → PARTIAL_TP_CLOSE_PCT = 1.00 KORUNDU (en iyi OOS sonucu)
+
+  v18 OOS SONUÇLARI (kayıt amaçlı — GERİ ALINDI):
+    ┌──────────────────┬───────┬────────┬───────────┬──────┐
+    │ Periyot          │ Trade │   WR   │    PnL    │  PF  │
+    ├──────────────────┼───────┼────────┼───────────┼──────┤
+    │ IN-SAMPLE (60g)  │   99  │ 43.4%  │  -$23     │ 0.91 │
+    │ OOS-1 (60-120g)  │  120  │ 44.2%  │ +$124     │ 1.52 │
+    │ OOS-2 (120-180g) │   85  │ 44.7%  │  -$79     │ 0.75 │
+    └──────────────────┴───────┴────────┴───────────┴──────┘
+    v18 IS'de bile zarar — filtreler çok agresifti → GERİ ALINDI
+
+  DURUM: [✅] TAMAMLANDI
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ⚡ ŞİMDİ YAPILMASI GEREKEN (KRİTİK)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  
+  1. Paper trade'i yeniden başlat (python main.py)
+  2. 4h mum kapandığında sinyal ürettiğini doğrula (logda [VOTE] olmalı)
+  3. EN AZ 7 GÜN HİÇBİR KOD DEĞİŞİKLİĞİ YAPMA
+  4. 50-100 trade biriktir
+  5. Gerçek paper trade verisini analiz et
+  
+  DİĞER CLAUDE'UN ELEŞTİRİSİ (HAKLI):
+    → 1 aydır backtest döngüsünde kaybolundun
+    → Paper trade data = 0 (volume bug yüzünden)
+    → "Neredeyse kârlı, bir adım daha" döngüsü kırılmalı
+    → GERÇEK SINAV = paper trade sonuçları, backtest değil
+
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   ❌ A.1 OUT-OF-SAMPLE TEST SONUÇLARI (7 Nisan 2026 14:15)

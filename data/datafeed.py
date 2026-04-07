@@ -94,6 +94,7 @@ class DataFeed:
                 if "@ticker" in data["stream"]:
                     symbol = payload["s"].upper()
                     price = float(payload["c"])
-                    self.on_tick(symbol, price)
+                    volume = float(payload.get("q", 0))  # quote asset volume
+                    self.on_tick(symbol, price, volume)
         except Exception as e:
             logger.error(f"[DATAFEED] Parse/callback error: {e}")

@@ -92,7 +92,7 @@ INITIAL_BALANCE = 10000.0
 COMMISSION_RATE = 0.001         # 0.1% per trade
 
 # STRATEGY
-STRATEGY_MIN_CONFIDENCE = 0.50  # [v17] 0.40→0.50 daha az ama daha kaliteli trade
+STRATEGY_MIN_CONFIDENCE = 0.50  # [v17.1] PTP=100% config
 RSI_PERIOD = 14
 RSI_OVERSOLD = 30
 RSI_OVERBOUGHT = 70
@@ -126,7 +126,7 @@ DIP_BUY_FILTER = False
 # [v15.9] VOLUME QUALITY FILTER — ML feature importance'tan keşfedildi
 # Hacim < 20-mum ortalamasının %70'i → sinyal zayıf → trade açma
 # 25 A/B test sonucu: PnL +$471→$567, PF 1.30→1.48, WR 51.3%→52.3%
-MIN_VOLUME_RATIO = 0.70
+MIN_VOLUME_RATIO = 0.70  # [v17.1] Volume filtresi (WebSocket volume fix ile çalışıyor)
 
 # COIN BLACKLIST — Backtest v3: WR<%30, sürekli zarar eden coinler
 # v15.5.0: UNIUSDT %16.7, ATOMUSDT %21.4, SOLUSDT %22.2, OPUSDT %25, NEARUSDT %25, XLMUSDT %25

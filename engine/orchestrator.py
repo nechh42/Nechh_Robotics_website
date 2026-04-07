@@ -184,14 +184,14 @@ class Orchestrator:
         logger.info(f"Win Rate: {status['win_rate']:.1f}%")
         logger.info("=" * 60)
 
-    def _on_tick_sync(self, symbol: str, price: float):
+    def _on_tick_sync(self, symbol: str, price: float, volume: float = 0.0):
         """Sync wrapper for async tick handler"""
         try:
-            asyncio.create_task(self._on_tick(symbol, price))
+            asyncio.create_task(self._on_tick(symbol, price, volume))
         except RuntimeError as e:
             logger.error(f"[TICK] Task creation failed: {e}")
 
-    async def _on_tick(self, symbol: str, price: float):
+    async def _on_tick(self, symbol: str, price: float, volume: float = 0.0):
         """
         Handle every incoming tick.
         Update BOTH 4h and 1h candles.
@@ -204,9 +204,9 @@ class Orchestrator:
             self.state.update_price(symbol, price)
 
             # Update BOTH candle aggregations
-            self.candles_4h.on_tick(symbol, price)
-            self.candles_1h.on_tick(symbol, price)
-            self.candles_15m.on_tick(symbol, price)
+            self.candles_4h.on_tick(symbol, price, volume)
+            self.candles_1h.on_tick(symbol, price, volume)
+            self.candles_15m.on_tick(symbol, price, volume)
 
             # Update performance tracking
             self.performance.update_equity(self.state.equity)

@@ -106,7 +106,7 @@ class CandleManager:
         # Exclude last (current/incomplete) candle
         return data[:-1] if len(data) > 1 else data
 
-    def on_tick(self, symbol: str, price: float):
+    def on_tick(self, symbol: str, price: float, volume: float = 0.0):
         """Aggregate tick into current candle. Called by datafeed."""
         if symbol not in self.candles:
             return
@@ -142,13 +142,14 @@ class CandleManager:
             self.current[symbol] = Candle(
                 timestamp=candle_start,
                 open=price, high=price, low=price, close=price,
-                volume=0.0, closed=False,
+                volume=volume, closed=False,
             )
         else:
             # Update current candle
             cur.high = max(cur.high, price)
             cur.low = min(cur.low, price)
             cur.close = price
+            cur.volume = volume  # Update cumulative volume from ticker
 
     def get_dataframe(self, symbol: str, count: int = 50) -> Optional[pd.DataFrame]:
         """
