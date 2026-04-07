@@ -173,7 +173,7 @@ DYNAMIC_RR = {
 # PARTIAL TAKE PROFIT
 PARTIAL_TP_ENABLED = True
 PARTIAL_TP_RATIO = 0.50       # TP1 = TP mesafesinin %50'si
-PARTIAL_TP_CLOSE_PCT = 0.80   # [v15.7] 0.70→0.80 TP1'de %80 kapat (daha fazla kâr kilitle)
+PARTIAL_TP_CLOSE_PCT = 1.00   # [v18-TEST] TP1'de %100 kapat — scalp: TP1→TAM ÇIKIŞ
 
 # BREAKEVEN STOP
 BREAKEVEN_ATR_TRIGGER = 0.7    # [v15.5] 1.0→0.7 (0.5 çok agresif, 0.7 optimal)

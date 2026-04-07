@@ -1,9 +1,9 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  WAR MACHINE — SONRAKİ ADIMLAR & GELİŞTİRME PLANI                 ║
 ║  Oluşturma: 7 Nisan 2026                                          ║
-║  Son Güncelleme: 7 Nisan 2026 (v17 OOS Test Sonrası)              ║
-║  Mevcut Versiyon: v17.0 (anti-overfitting) — OOS HAFİF İYİLEŞME  ║
-║  v17 IS: %54.1 WR, PF=1.44 | OOS-1 PF=0.82 | Deg=%43.1          ║
+║  Son Güncelleme: 7 Nisan 2026 (PTP=100% OOS Test Sonrası)         ║
+║  Mevcut Versiyon: v17.1 (PTP=100% SCALP) — OOS BÜYÜK İYİLEŞME    ║
+║  v17.1 IS: PF=1.59 | OOS-1 PF=0.94 (-$51) | Deg=%41.0            ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -191,10 +191,57 @@
 │    → PARTIAL-TP1 hâlâ TÜM periyotlarda kârlı (+$780,+$522,+$652) │
 │    → STOP-LOSS & TIME-EXIT hâlâ ana kayıp kaynakları               │
 │                                                                     │
-│  SONRAKİ ADIM: Daha radikal basitleştirme gerekli                  │
-│    → Giriş kalitesini artır (daha sıkı filtreler)                  │
-│    → STOP-LOSS stratejisini optimize et                            │
-│    → TIME-EXIT zararını azalt                                      │
+│  SONRAKİ ADIM: PTP=100% TESTİ → TP1'de TAMAMEN ÇIKIŞ              │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  A.5  PTP=100% SCALP TESTİ (TP1'de Tamamen Çık)                   │
+│  ÖNCELİK: ★★★★★   ZORLUK: ★☆☆☆☆                                  │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  ✅ TAMAMLANDI — 7 Nisan 2026 15:00                                │
+│                                                                     │
+│  HİPOTEZ: PARTIAL-TP1 tek gerçek edge → PTP=%100 ile %20'lik      │
+│  kalan pozisyonun SL/TIME-EXIT kayıplarını tamamen ortadan kaldır  │
+│                                                                     │
+│  DEĞİŞİKLİK: PARTIAL_TP_CLOSE_PCT = 0.80 → 1.00                  │
+│                                                                     │
+│  PTP=100% OOS SONUÇLARI:                                           │
+│    ┌──────────────────┬───────┬────────┬───────────┬──────┬────────┐│
+│    │ Periyot          │ Trade │   WR   │    PnL    │  PF  │ MaxDD  ││
+│    ├──────────────────┼───────┼────────┼───────────┼──────┼────────┤│
+│    │ IN-SAMPLE (60g)  │  464  │ 43.8%  │  +$553    │ 1.59 │  1.6%  ││
+│    │ OOS-1 (60-120g)  │  343  │ 38.5%  │  -$51     │ 0.94 │  2.5%  ││
+│    │ OOS-2 (120-180g) │  351  │ 37.6%  │  -$311    │ 0.76 │  5.5%  ││
+│    └──────────────────┴───────┴────────┴───────────┴──────┴────────┘│
+│                                                                     │
+│  ★★★ v16.1 → v17 → PTP=100% EVRİM TABLOSU: ★★★                   │
+│    OOS-1 PF:  0.80 → 0.82 → 0.94  (+0.14 toplam iyileşme!)       │
+│    OOS-2 PF:  0.67 → 0.67 → 0.76  (+0.09 toplam iyileşme!)       │
+│    OOS-1 PnL: -$196 → -$156 → -$51 (%74 kayıp azalması!)         │
+│    MaxDD:     4.0% → 3.4% → 2.5%  (risk de azaldı!)               │
+│    Degradation: 48.7% → 43.1% → 41.0% (overfitting azalıyor!)     │
+│                                                                     │
+│  EXIT ANALİZİ (PTP=100%):                                          │
+│    PARTIAL-TP1: IS +$982, OOS-1 +$655, OOS-2 +$820 → HEP KÂRLI   │
+│    STOP-LOSS:  IS -$258, OOS-1 -$536, OOS-2 -$663 → ANA KAYIP     │
+│    TIME-EXIT:  IS -$630, OOS-1 -$290, OOS-2 -$561 → İKİNCİ KAYIP  │
+│                                                                     │
+│  KRİTİK İÇGÖRÜ:                                                   │
+│    → 464 trade'den sadece 148'i TP1'e ulaşıyor (%32)              │
+│    → Kalan 316 trade SL/TIME-EXIT ile kaybediyor                   │
+│    → Giriş kalitesi artırılırsa (TP1 hit oranı %35-40)            │
+│      sistem NET KÂRLI olabilir!                                    │
+│                                                                     │
+│  SONRAKİ ADIM: Giriş kalitesini artır                              │
+│    → Daha sıkı entry filtreler (daha az ama daha iyi trade)        │
+│    → Hedef: TP1 hit oranını %32 → %40'a çıkarmak                  │
+│    → Eğer TP1 hit %40 olursa: ~185 win × $6 = $1110 kâr           │
+│      vs ~279 loss × $4 = $1116 kayıp → BAŞABAŞ!                   │
+│                                                                     │
+│  ÇIKTI: backtest/oos_report.json (v17.1 PTP=100%)                 │
+│  DURUM: [✅] TAMAMLANDI — EN BÜYÜK İYİLEŞME BU!                    │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 
