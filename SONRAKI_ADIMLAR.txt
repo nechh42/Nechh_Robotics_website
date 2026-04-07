@@ -100,27 +100,42 @@
 │  ÖNCELİK: ★★★★★   ZORLUK: ★★★☆☆                                  │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
-│  AMAÇ: Her bileşeni TEK TEK kapatıp OOS performansını ölç.        │
-│  Hangi bileşen kapatılınca OOS İYİLEŞİYORSA → o overfitted.       │
+│  ✅ TAMAMLANDI — 7 Nisan 2026 14:26                                │
 │                                                                     │
-│  TEST KONFİGÜRASYONLARI:                                          │
+│  TEST SONUÇLARI:                                                   │
 │                                                                     │
-│    Test   │ Değişiklik              │ OOS-Avg PF  │ Sonuç          │
-│    ───────┼─────────────────────────┼─────────────┼──────────────  │
-│    BASE   │ v16.1 aynen (referans)  │ 0.74        │ ❌ FAIL        │
-│    T1     │ Blacklist KAPALI (tüm   │ ???         │ ???            │
-│           │ 29 coin)                │             │                │
-│    T2     │ Smart Exit KAPALI       │ ???         │ ???            │
-│    T3     │ Volume Filter KAPALI    │ ???         │ ???            │
-│    T4     │ R:R sl:1.0→1.5, tp:1.2 │ ???         │ ???            │
-│           │ →2.0 (RANGING)          │             │                │
-│    T5     │ MAX_HOLD 2→4 candle     │ ???         │ ???            │
-│    T6     │ TREND_UP_BLOCK KAPALI   │ ???         │ ???            │
-│    T7     │ Breakeven 0.7→1.0 ATR   │ ???         │ ???            │
-│    T8     │ TÜM overfitted bileşen- │ ???         │ ???            │
-│           │ ler kapalı (combined)   │             │                │
+│    Test   │ Değişiklik              │ OOS-1 PF │ OOS-2 PF │ Avg PF│ Δ     │ Etki          │
+│    ───────┼─────────────────────────┼──────────┼──────────┼───────┼───────┼───────────────│
+│    BASE   │ v16.1 aynen (referans)  │  0.80    │  0.67    │ 0.74  │ +0.00 │ REFERANS      │
+│    T1     │ Blacklist KAPALI (29cn) │  0.79    │  0.58    │ 0.68  │ -0.06 │ ❌ KÖTÜLEŞME  │
+│    T2     │ Smart Exit KAPALI       │  0.77    │  0.63    │ 0.70  │ -0.04 │ ■ NÖTR        │
+│    T3     │ Volume Filter KAPALI    │  0.73    │  0.67    │ 0.70  │ -0.04 │ ■ NÖTR        │
+│    T4     │ R:R sl→1.5, tp→2.0     │  0.56    │  0.55    │ 0.56  │ -0.18 │ ❌ KÖTÜLEŞME  │
+│    T5     │ MAX_HOLD 2→4 candle    │  0.78    │  0.70    │ 0.74  │ +0.00 │ ■ NÖTR        │
+│    T6     │ TREND_UP_BLOCK KAPALI  │  0.69    │  0.57    │ 0.63  │ -0.11 │ ❌ KÖTÜLEŞME  │
+│    T7     │ Breakeven 0.7→1.0 ATR  │  0.80    │  0.67    │ 0.74  │ +0.00 │ ■ NÖTR        │
+│    T8     │ (Atlandı — iyileşen    │  ---     │  ---     │ ---   │ ---   │ ⏭️ ATLANDI    │
+│           │  bileşen yok)          │          │          │       │       │               │
 │                                                                     │
-│  DURUM: [ ] Başlanmadı                                              │
+│  KRİTİK BULGULAR:                                                  │
+│    ❗ HİÇBİR BİLEŞEN TEK BAŞINA OVERFİTTED DEĞİL!                │
+│    → Tüm bileşenler OOS'de yardımcı veya nötr                     │
+│    → Overfitting SİSTEMİK — giriş sinyali ağırlıkları/eşikleri   │
+│       (4-strategy voting system + coin-specific weights)           │
+│    → v17'de GİRİŞ LOJİĞİNİ basitleştirmek gerekiyor              │
+│                                                                     │
+│  KORUMA SIRASI (OOS etki büyüklüğüne göre):                       │
+│    1. Dar R:R (sl:1.0/tp:1.2) → -0.18 etkisi → EN KRİTİK        │
+│    2. TREND_UP_BLOCK → -0.11 → ÇOK ÖNEMLİ                        │
+│    3. COIN_BLACKLIST → -0.06 → ÖNEMLİ                             │
+│    4. SMART_EXIT → -0.04 → HAFİF YARARLARI                        │
+│    5. VOL_FILTER → -0.04 → HAFİF YARARLI                          │
+│    6. MAX_HOLD → 0.00 → NÖTR (kalabilir veya kalkabilir)          │
+│    7. BREAKEVEN → 0.00 → NÖTR (aynı sonuç)                        │
+│                                                                     │
+│  ÇIKTI: backtest/ablation_test.py, backtest/ablation_report.json   │
+│                                                                     │
+│  DURUM: [✅] TAMAMLANDI                                             │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 
@@ -129,19 +144,25 @@
 │  ÖNCELİK: ★★★★★   ZORLUK: ★★★☆☆                                  │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
-│  AMAÇ: Ablation testinden çıkan sonuçlarla basitleştirilmiş v17.   │
+│  AMAÇ: Ablation bulgularına göre GİRİŞ LOJİĞİNİ basitleştir.      │
 │                                                                     │
-│  PRENSİPLER:                                                       │
-│    - Daha az filtre, daha az parametre → daha az overfitting       │
-│    - 180 gün backtest (60 değil) → daha geniş veri                 │
-│    - IS + OOS tutarlılığı ZORUNLU (PF farkı < %30)                │
-│    - "Mütevazi ama gerçek" kâr > "şişirilmiş ama sahte" kâr       │
+│  ABLATION TEŞHİSİ:                                                │
+│    → Hiçbir bileşen tek başına overfitted değil!                   │
+│    → Overfitting SİSTEMİK: 4-strategy voting + coin ağırlıkları   │
+│    → Tüm koruyucu bileşenler KALACAK (hepsi OOS'de yardımcı)     │
+│                                                                     │
+│  v17 DEĞİŞİKLİKLERİ:                                              │
+│    1. Coin-specific ağırlıklar → EŞİT AĞIRLIK (uniform weights)   │
+│    2. 4-strategy voting eşiğini düşür (0.55→0.50)                 │
+│    3. Tüm filtreler KALACAK (dar R:R, trend_block, blacklist vb)  │
+│    4. 180 gün backtest (60 değil) → daha geniş veri               │
+│    5. IS + OOS tutarlılığı ZORUNLU (PF farkı < %30)               │
 │                                                                     │
 │  HEDEF:                                                             │
 │    IS PF ≥ 1.1 VE OOS PF ≥ 1.0 VE degradasyon < %30              │
 │    → Mütevazi ama GERÇEK bir edge                                  │
 │                                                                     │
-│  DURUM: [ ] A.3'e bağımlı                                          │
+│  DURUM: [⏳] Ablation tamamlandı, v17 başlıyor                     │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 
