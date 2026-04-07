@@ -422,6 +422,14 @@ class Orchestrator:
         if df_1h is None or len(df_1h) < 30:
             return
 
+        # [v15.9] Volume quality filter — 1h de aynı kural
+        min_vol_ratio = getattr(config, 'MIN_VOLUME_RATIO', 0)
+        if min_vol_ratio > 0 and len(df_1h) >= 20:
+            vol_avg = df_1h["volume"].tail(20).mean()
+            vol_current = df_1h["volume"].iloc[-1]
+            if vol_avg > 0 and (vol_current / vol_avg) < min_vol_ratio:
+                return
+
         price = df_1h["close"].iloc[-1]
         logger.info(f"[1H-CANDLE] {symbol} closed @ ${price:.4f} | regime={regime}")
 
@@ -532,6 +540,15 @@ class Orchestrator:
         if symbol in getattr(config, 'COIN_BLACKLIST', []):
             logger.info(f"[BLOCK] {symbol}: Blacklist'te — atlandı")
             return
+
+        # [v15.9] Volume quality filter — düşük hacimde trade açma
+        min_vol_ratio = getattr(config, 'MIN_VOLUME_RATIO', 0)
+        if min_vol_ratio > 0 and len(df) >= 20:
+            vol_avg = df["volume"].tail(20).mean()
+            vol_current = df["volume"].iloc[-1]
+            if vol_avg > 0 and (vol_current / vol_avg) < min_vol_ratio:
+                logger.info(f"[BLOCK] {symbol}: Düşük hacim ({vol_current/vol_avg:.2f} < {min_vol_ratio}) — atlandı")
+                return
 
         # Pozisyon varsa strateji calistirma
         if symbol in self.state.positions:

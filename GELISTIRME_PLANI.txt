@@ -1,8 +1,8 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  WAR MACHINE — KAPSAMLI GELİŞTİRME PLANI                          ║
 ║  Hazırlanma: 6 Nisan 2026                                          ║
-║  Son Güncelleme: 6 Nisan 2026 — v15.7 WR %50+ AŞILDI!            ║
-║  Mevcut Durum: v15.7 — İLK KEZ WR>%50 + KÂRLI SİSTEM             ║
+║  Son Güncelleme: 7 Nisan 2026 — v15.8 PF=1.30!                    ║
+║  Mevcut Durum: v15.8 — 51.2% WR, +$462, PF=1.30                  ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -525,8 +525,31 @@ NEDEN TEHLİKELİ:
         → Toplam BLACKLIST: 14 coin (26→12 aktif coin)
         → AvgWin=$5.14 > AvgLoss=$4.31 (sürdürülebilir edge)
 
-    [11] ML sinyal filtresi (gelecek / SONRAKI ADIM)
-    [12] Dinamik coin seçimi (gelecek)
+    [10.8] ✅ Coin Expansion (v15.8)     → TAMAMLANDI (7 Nisan 2026)
+        → 7 coin seti test edildi (coin_expansion_test.py)
+        → 8 TIME-EXIT optimizasyonu test edildi (time_exit_optimize.py)
+        → TIME-EXIT: Hiçbir test baseline'ı geçemedi → v15.7 optimal
+        → v15.7 → v15.8: WR %50.5→%51.2, PnL +$316→+$462, PF 1.22→1.30
+        → 3 yeni coin eklendi (backtest kanıtlı):
+          1. FILUSDT: %54.8 WR, +$114 (EN İYİ YENİ COİN)
+          2. DOTUSDT: %43.5 WR, +$28 (büyük kazançlar)
+          3. ARBUSDT: %51.9 WR, +$17 (kârlı)
+        → LINKUSDT test edildi ama EKLENMEDİ (%33.3 WR, -$14)
+        → Toplam aktif coin: 15 (29 SYMBOLS - 14 BLACKLIST)
+        → MaxDD: %1.8 (tarihi en düşük!)
+
+    [11] ✅ ML Sinyal Filtresi (v15.9)    → TAMAMLANDI (7 Nisan 2026)
+        → ML feature importance analizi: volume_ratio #1 feature
+        → GradientBoosting eğitildi ama test accuracy %50 (overfitting)
+        → Data-driven kural yaklaşımına geçildi: 25 A/B test + 4 combo
+        → KAZANAN: MIN_VOLUME_RATIO = 0.70
+          (Hacim < 20-mum ort. %70'i → trade açma = zayıf sinyal filtresi)
+        → v15.8 → v15.9:
+          WR %51.2→%52.4, PnL +$462→+$579, PF 1.30→1.49, MaxDD 1.8%→1.7%
+        → 108 kötü trade engellendi, AvgLoss $4.48→$4.08'e düştü
+        → config.py + orchestrator.py (4h+1h) + backtest_v3.py güncellendi
+        → PF=1.49: KALDIРАÇ HEDEFİ PF>1.5'E ÇOK YAKIN!
+    [12] Dinamik coin seçimi (SONRAKI ADIM)
     [13] Portfolio-level risk (gelecek)
     [14] Live trade geçişi (gelecek)
 

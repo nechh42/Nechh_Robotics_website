@@ -330,6 +330,14 @@ class BacktestV3:
         if symbol in getattr(config, 'COIN_BLACKLIST', []):
             return
 
+        # [v15.9] Volume quality filter — düşük hacimde trade açma
+        min_vol_ratio = getattr(config, 'MIN_VOLUME_RATIO', 0)
+        if min_vol_ratio > 0 and len(df) >= 20:
+            vol_avg = df["volume"].tail(20).mean()
+            vol_current = df["volume"].iloc[-1]
+            if vol_avg > 0 and (vol_current / vol_avg) < min_vol_ratio:
+                return
+
         # DIP-BUY filter: RANGING'de sadece önceki candle RED ise gir
         # Mean reversion = düşüş sonrası alım, yükseliş sırasında değil
         if getattr(config, 'DIP_BUY_FILTER', False) and regime == "RANGING":

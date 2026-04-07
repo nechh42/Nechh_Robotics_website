@@ -122,6 +122,11 @@ TREND_UP_BLOCK = True
 # DIP-BUY FILTER — DEVRE DIŞI: 48.8% < 49.3%, ters etki
 DIP_BUY_FILTER = False
 
+# [v15.9] VOLUME QUALITY FILTER — ML feature importance'tan keşfedildi
+# Hacim < 20-mum ortalamasının %70'i → sinyal zayıf → trade açma
+# 25 A/B test sonucu: PnL +$471→$567, PF 1.30→1.48, WR 51.3%→52.3%
+MIN_VOLUME_RATIO = 0.70
+
 # COIN BLACKLIST — Backtest v3: WR<%30, sürekli zarar eden coinler
 # v15.5.0: UNIUSDT %16.7, ATOMUSDT %21.4, SOLUSDT %22.2, OPUSDT %25, NEARUSDT %25, XLMUSDT %25
 # v15.5.1: KAVAUSDT %33, INJUSDT %41, PEPEUSDT %44, ARPAUSDT %43 (hepsi net zararda)
