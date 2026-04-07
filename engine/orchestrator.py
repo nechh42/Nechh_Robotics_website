@@ -139,8 +139,9 @@ class Orchestrator:
         asyncio.create_task(telegram.startup_alert())
 
         # Start periodic health report
-        from monitoring.health import health_loop
+        from monitoring.health import health_loop, summary_loop
         asyncio.create_task(health_loop(self))
+        asyncio.create_task(summary_loop(self))
 
         # Start WebSocket feed
         await self.feed.start()

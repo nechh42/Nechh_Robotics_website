@@ -1,7 +1,7 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  WAR MACHINE — SONRAKİ ADIMLAR & GELİŞTİRME PLANI                 ║
 ║  Oluşturma: 7 Nisan 2026                                          ║
-║  Son Güncelleme: 7 Nisan 2026 (KRİTİK BUG FIX + v17.1 RESTORE)   ║
+║  Son Güncelleme: 7 Nisan 2026 (6H RAPOR + PAPER TRADE BAŞLAT)     ║
 ║  Mevcut Versiyon: v17.1 (PTP=100% SCALP) — VOLUME BUG DÜZELTİLDİ ║
 ║  v17.1 IS: PF=1.59 | OOS-1 PF=0.94 (-$51) | Deg=%41.0            ║
 ╚══════════════════════════════════════════════════════════════════════╝
@@ -10,21 +10,20 @@
   DURUM ÖZETİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  🔴 KRİTİK BUG BULUNDU VE DÜZELTİLDİ — 7 Nisan 2026 16:30
+  🟢 PAPER TRADE BAŞLATILDI — 7 Nisan 2026
   
-  SORUN: WebSocket volume=0 → Volume filtresi TÜM sinyalleri engelliyor
-  → 1 AYDIR paper trade veri toplayamamamızın GERÇEK NEDENİ BU!
-  → CandleManager.on_tick() volume=0.0 hardcoded gönderiyordu
-  → MIN_VOLUME_RATIO filtresi 0.0 < 0.70 → BLOCK → 0 sinyal üretildi
+  ✅ 5 kritik bug düzeltildi (volume=0, exit slippage, correlation, vol guard, notional)
+  ✅ 6 saatlik Telegram özet raporu eklendi (health.py summary_loop)
+  ✅ 15 dakikalık health rapor AYNEN devam ediyor
+  ✅ v17.1 PTP=100% aktif
   
-  ÇÖZÜM: WebSocket @ticker stream'den volume bilgisi alınıyor (q field)
-  → datafeed.py, candle_manager.py, orchestrator.py düzeltildi
-  → v18 agresif filtreleri geri alındı, v17.1 (PTP=100%) restore edildi
-  → Sistem yeniden başlatıldığında sinyal üretmeye başlayacak
+  ⚡ 7 GÜN BOYUNCA HİÇBİR KOD DEĞİŞİKLİĞİ YAPMA!
+  ⚡ Minimum 50 trade biriktir, sonra analiz yap
 
-  ▸ Paper trade v16.1 başlangıçtan beri 0 trade (volume bug!)
-  ▸ DB'de 17 eski yedek var — her restart'ta sıfırlanmış
-  ▸ Toplam kayıtlı paper trade: 8 trade (old17.db), hepsi 7 Nisan sabahı
+  📊 Telegram Raporları:
+    → Her 15 dk: Hızlı health check (balance, equity, pozisyonlar)
+    → Her 6 saat: Detaylı özet (son 6h işlemler, streak, sharpe, DD)
+    → Haftalık: Pazartesi 09:00 performans raporu
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   🔧 A.6  KRİTİK BUG FIX: WebSocket Volume (7 Nisan 2026)
