@@ -62,7 +62,7 @@ EDGE_MIN_WIN_RATE = 0.65                       # WR > 65% (yüksek kalite)
 # === PAPER TRADING v1 (7 günlük deneme) ===
 PAPER_TRADING_MODE = True                      # Bağlantı: REAL_TRADING_ENABLED=False
 PAPER_TRADING_DURATION_DAYS = 7               # 7 gün
-PAPER_TRADING_START_DATE = "2026-04-03"        # Başlangıç tarihi
+PAPER_TRADING_START_DATE = "2026-04-07"        # v16.1 temiz başlangıç
 PAPER_TRADING_LOG_SIGNALS = True               # Telegram'da sinyalleri kaydet
 
 # === LIKIDATION KORUMASI ===
@@ -112,7 +112,7 @@ REGIME_WEIGHTS = {
 BEAR_GUARD_ENABLED = False
 ALLOW_LONG = True                # LONG AÇIK: Sistem long-only mode'de
 ALLOW_SHORT = False  # SHORT KAPALI: genel olarak kapalı
-ALLOW_SHORT_CONDITIONAL = True  # Koşullu SHORT: sadece TREND_DOWN + kanıtlanmış edge patterns
+ALLOW_SHORT_CONDITIONAL = False  # [v16.1] KAPALI — backtest'te test edilmedi, temiz LONG-ONLY
 VOLATILE_BLOCK_ENABLED = True
 
 # TREND_UP BLOCK — Backtest v3: 88 trade, %30.7 WR, -$842
@@ -198,13 +198,16 @@ MTF_MIN_CANDLES = 20           # Minimum 15m candle for analysis
 TRAILING_STOP_ACTIVATE = 0.035
 TRAILING_STOP_DISTANCE = 0.01
 
-# CORRELATION GROUPS
+# CORRELATION GROUPS — [v16.1] Aktif 14 coin'e göre güncellendi
 CORRELATION_GROUPS = [
-    ["BTCUSDT", "ETHUSDT"],
-    ["XRPUSDT", "ADAUSDT"],
-    ["BNBUSDT"],
-    ["LTCUSDT"],
-    ["UNIUSDT", "AAVEUSDT"],
+    ["ETHUSDT", "ADAUSDT"],           # L1 grubu
+    ["AVAXUSDT", "DOTUSDT"],          # L1-alt grubu
+    ["LTCUSDT", "ZECUSDT"],           # PoW grubu
+    ["DOGEUSDT", "WIFUSDT"],          # Meme grubu
+    ["AAVEUSDT", "CRVUSDT"],          # DeFi grubu
+    ["FILUSDT", "ARBUSDT"],           # Infra/L2 grubu
+    ["FLOWUSDT"],                     # Tek
+    ["VETUSDT"],                      # Tek
 ]
 
 # BINANCE API
