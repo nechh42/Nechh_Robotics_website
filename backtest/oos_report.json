@@ -1,0 +1,40 @@
+{
+  "test_date": "2026-04-07 13:56",
+  "verdict": "FAIL",
+  "config_version": "v16.1",
+  "results": {
+    "IN-SAMPLE (son 60 gün)": {
+      "trades": 531,
+      "win_rate": 53.1,
+      "pnl": 593.05,
+      "profit_factor": 1.56,
+      "max_drawdown_pct": 1.6,
+      "sharpe": 0.13,
+      "avg_win": 5.83,
+      "avg_loss": -4.22,
+      "avg_hold_candles": 1.5
+    },
+    "OOS-1 (60-120 gün önce)": {
+      "trades": 386,
+      "win_rate": 45.3,
+      "pnl": -195.78,
+      "profit_factor": 0.8,
+      "max_drawdown_pct": 4.0,
+      "sharpe": -0.08,
+      "avg_win": 4.54,
+      "avg_loss": -4.69,
+      "avg_hold_candles": 1.4
+    },
+    "OOS-2 (120-180 gün önce)": {
+      "trades": 404,
+      "win_rate": 45.3,
+      "pnl": -495.23,
+      "profit_factor": 0.67,
+      "max_drawdown_pct": 7.3,
+      "sharpe": -0.13,
+      "avg_win": 5.46,
+      "avg_loss": -6.76,
+      "avg_hold_candles": 1.4
+    }
+  }
+}

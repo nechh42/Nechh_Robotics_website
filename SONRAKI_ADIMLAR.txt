@@ -1,80 +1,147 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  WAR MACHINE — SONRAKİ ADIMLAR & GELİŞTİRME PLANI                 ║
 ║  Oluşturma: 7 Nisan 2026                                          ║
-║  Mevcut Versiyon: v16.1 (Paper Trade ÇALIŞIYOR)                   ║
-║  Backtest Baseline: %54.4 WR, PF=1.75 (1x), +$1,514 (3x)        ║
+║  Son Güncelleme: 7 Nisan 2026 (OOS Test Sonrası)                  ║
+║  Mevcut Versiyon: v16.1 → OOS FAIL → v17 KURTARMA PLANI AKTİF    ║
+║  v16.1 Backtest (IS): %54.4 WR, PF=1.75 — OVERFITTED!            ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   DURUM ÖZETİ
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+  ⚠️ v16.1 OOS TEST SONUCU: ❌ AĞIR OVERFİTTİNG — 7 Nisan 2026
+  
   Paper trade v16.1 arka planda çalışıyor (7 Nisan 2026 13:22'den beri).
-  14 aktif coin, LONG-ONLY, RANGING rejim, 3x kaldıraç (futures referans).
-  Aşağıdaki geliştirmeler paper trade devam ederken PARALEL yapılacak.
-  Her geliştirme backtest ile KANIT gerektirir — sezgiyle değişiklik YOK.
+  ANCAK OOS testi overfitting tespit etti → v17 kurtarma planı başlatıldı.
+  Paper trade referans olarak devam edecek, sonuçları karşılaştırma için kullanılacak.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  FAZ A: OVERFİTTİNG SINAVI (ACİL — Bu Hafta)
+  ❌ A.1 OUT-OF-SAMPLE TEST SONUÇLARI (7 Nisan 2026 14:15)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  EN BÜYÜK RİSKİMİZ: 6+ optimizasyon turu aynı 60 günlük veri üzerinde.
-  PF 0.96→1.75 artışı gerçek mi yoksa eğri uydurma (curve fitting) mı?
-  Bu soruya cevap vermeden ilerlemek TEHLİKELİ.
+  ┌──────────────────────┬───────┬────────┬───────────┬──────┬────────┐
+  │ Periyot              │ Trade │   WR   │    PnL    │  PF  │ MaxDD  │
+  ├──────────────────────┼───────┼────────┼───────────┼──────┼────────┤
+  │ IN-SAMPLE (son 60g)  │  531  │ 53.1%  │  +$593    │ 1.56 │  1.6%  │
+  │ OOS-1 (60-120g önce) │  386  │ 45.3%  │  -$196    │ 0.80 │  4.0%  │
+  │ OOS-2 (120-180g önce)│  404  │ 45.3%  │  -$495    │ 0.67 │  7.3%  │
+  └──────────────────────┴───────┴────────┴───────────┴──────┴────────┘
+
+  TEŞHİS: IS PF=1.56 → OOS PF=0.80 → %48.7 bozulma → ❌ AĞIR OVERFİTTİNG
+
+  EXIT ANALİZİ (SORUNUN KAYNAĞI):
+  ┌─────────────────┬────────────┬────────────┬────────────┐
+  │ Exit Türü       │  IS PnL    │ OOS-1 PnL  │ OOS-2 PnL  │
+  ├─────────────────┼────────────┼────────────┼────────────┤
+  │ PARTIAL-TP1     │  +$883 ✅  │  +$600 ✅  │  +$708 ✅  │
+  │ SMART-EXIT      │  +$641 ⚠️  │  +$105     │  +$164     │
+  │ STOP-LOSS       │  -$336     │  -$596 ❌  │  -$655 ❌  │
+  │ TIME-EXIT       │  -$599 ❌  │  -$305 ❌  │  -$707 ❌  │
+  └─────────────────┴────────────┴────────────┴────────────┘
+
+  KRİTİK BULGULAR:
+    1. PARTIAL-TP1 TÜM PERİYOTLARDA KÂRLI → Bu GERÇEK bir edge!
+    2. SMART-EXIT IS'de 41 trade/+$641, OOS'de 11/+$105 → overfitted
+    3. STOP-LOSS OOS'de 2× daha fazla kayıp → giriş kalitesi düşük
+    4. TIME-EXIT her yerde zararlı → TP'ye ulaşamayan trade'ler kayıp
+    5. 15 coin blacklist IS verisine göre → OOS'de farklı coinler kârlı
+
+  RAPOR: backtest/oos_report.json
 
 ┌─────────────────────────────────────────────────────────────────────┐
 │  A.1  OUT-OF-SAMPLE BACKTEST                                       │
 │  ÖNCELİK: ★★★★★   ZORLUK: ★★☆☆☆                                  │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
-│  AMAÇ: v16.1 parametrelerini HİÇ GÖRMEDİĞİ veriye uygula.       │
+│  ✅ TAMAMLANDI — 7 Nisan 2026 14:15                                │
+│  SONUÇ: ❌ AĞIR OVERFİTTİNG                                        │
 │                                                                     │
-│  YÖNTEM:                                                            │
-│    1. Mevcut backtest: 60 gün (son 60 gün) — "in-sample"          │
-│    2. Yeni test: FARKLI 60 gün (Ocak-Şubat 2026) — "out-of-sample"│
-│    3. Bir de 120 gün test (Kasım 2025 - Şubat 2026)               │
-│    4. Tüm v16.1 parametreleri SABİT (hiçbir şey değiştirilmez)    │
+│  IS PF=1.56 → OOS-1 PF=0.80 → OOS-2 PF=0.67                      │
+│  Degradasyon: %48.7 → Parametreler sadece in-sample'a uydurulmuş  │
 │                                                                     │
-│  BAŞARI KRİTERİ:                                                    │
-│    ✅ Out-of-sample PF > 1.2 → Overfitting YOK, devam              │
-│    ⚠️ Out-of-sample PF 1.0-1.2 → Hafif overfitting, dikkatli ol   │
-│    ❌ Out-of-sample PF < 1.0 → Ağır overfitting, geri dön ve basit│
+│  ÇIKTI: backtest/oos_report.json, backtest/oos_test.py             │
 │                                                                     │
-│  ÇIKTI: out_of_sample_report.txt                                   │
+│  DURUM: [✅] TAMAMLANDI                                             │
 │                                                                     │
-│  DEĞİŞECEK DOSYALAR:                                              │
-│    - backtest/backtest_v3.py: --start-date --end-date parametresi  │
-│      (veya backtest/oos_test.py yeni dosya)                        │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  A.2  WALK-FORWARD ANALİZ → ASKIYA ALINDI                         │
+│  ÖNCELİK: ─   ZORLUK: ─                                           │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  ⏸️ ASKIDA — OOS testi FAIL verdi, WF anlamsız.                    │
+│  v17 kurtarma planı tamamlandıktan sonra tekrar değerlendirilecek. │
+│                                                                     │
+│  DURUM: [⏸️] ASKIDA (A.1 FAIL)                                     │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  FAZ A-KURTARMA: OVERFİTTİNG'DEN ÇIKIŞ PLANI (ACİL)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ★ OOS TESTİ OVERFİTTİNG KANITLADI — SORUNUN KÖKENİ:
+    v15.5→v16.1 arasında 6+ optimizasyon turunda eklenen özellikler
+    AYNI 60 günlük veriye (Şubat-Nisan 2026) uydurulmuş.
+
+  ★ AMA BİR GERÇEK EDGE VAR:
+    PARTIAL-TP1 TÜM periyotlarda kârlı (+$883, +$600, +$708)
+    → Temel mekanizma çalışıyor, sorun GİRİŞ KALİTESİ ve FİLTRELER.
+
+  ★ KURTARMA STRATEJİSİ:
+    1. Bileşen Ablation Testi → Hangi parça overfitted? (teşhis)
+    2. Overfitted bileşenleri kaldır/basitleştir (tedavi)
+    3. 180 gün OOS ile doğrula (kontrol)
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  A.3  BİLEŞEN ABLATION TESTİ (Overfitting Teşhisi)                │
+│  ÖNCELİK: ★★★★★   ZORLUK: ★★★☆☆                                  │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  AMAÇ: Her bileşeni TEK TEK kapatıp OOS performansını ölç.        │
+│  Hangi bileşen kapatılınca OOS İYİLEŞİYORSA → o overfitted.       │
+│                                                                     │
+│  TEST KONFİGÜRASYONLARI:                                          │
+│                                                                     │
+│    Test   │ Değişiklik              │ OOS-Avg PF  │ Sonuç          │
+│    ───────┼─────────────────────────┼─────────────┼──────────────  │
+│    BASE   │ v16.1 aynen (referans)  │ 0.74        │ ❌ FAIL        │
+│    T1     │ Blacklist KAPALI (tüm   │ ???         │ ???            │
+│           │ 29 coin)                │             │                │
+│    T2     │ Smart Exit KAPALI       │ ???         │ ???            │
+│    T3     │ Volume Filter KAPALI    │ ???         │ ???            │
+│    T4     │ R:R sl:1.0→1.5, tp:1.2 │ ???         │ ???            │
+│           │ →2.0 (RANGING)          │             │                │
+│    T5     │ MAX_HOLD 2→4 candle     │ ???         │ ???            │
+│    T6     │ TREND_UP_BLOCK KAPALI   │ ???         │ ???            │
+│    T7     │ Breakeven 0.7→1.0 ATR   │ ???         │ ???            │
+│    T8     │ TÜM overfitted bileşen- │ ???         │ ???            │
+│           │ ler kapalı (combined)   │             │                │
 │                                                                     │
 │  DURUM: [ ] Başlanmadı                                              │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────────┐
-│  A.2  WALK-FORWARD ANALİZ                                          │
+│  A.4  v17 BASİTLEŞTİRME & DOĞRULAMA                               │
 │  ÖNCELİK: ★★★★★   ZORLUK: ★★★☆☆                                  │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
-│  AMAÇ: "Train → Test → Shift → Repeat" ile gerçek performans ölç. │
+│  AMAÇ: Ablation testinden çıkan sonuçlarla basitleştirilmiş v17.   │
 │                                                                     │
-│  YÖNTEM:                                                            │
-│    Pencere 1: Train (Gün 1-60) → Test (Gün 61-90)                 │
-│    Pencere 2: Train (Gün 31-90) → Test (Gün 91-120)               │
-│    Pencere 3: Train (Gün 61-120) → Test (Gün 121-150)             │
-│    ...ve böyle devam                                                │
+│  PRENSİPLER:                                                       │
+│    - Daha az filtre, daha az parametre → daha az overfitting       │
+│    - 180 gün backtest (60 değil) → daha geniş veri                 │
+│    - IS + OOS tutarlılığı ZORUNLU (PF farkı < %30)                │
+│    - "Mütevazi ama gerçek" kâr > "şişirilmiş ama sahte" kâr       │
 │                                                                     │
-│    Her pencerede:                                                   │
-│    - Train: Optimal parametreleri bul (bizim v16.1 mantığıyla)     │
-│    - Test: O parametrelerle GÖRÜNMEYEN veride çalıştır             │
-│    - Sonuçları birleştir → "Walk-Forward Efficiency"               │
+│  HEDEF:                                                             │
+│    IS PF ≥ 1.1 VE OOS PF ≥ 1.0 VE degradasyon < %30              │
+│    → Mütevazi ama GERÇEK bir edge                                  │
 │                                                                     │
-│  BAŞARI KRİTERİ:                                                    │
-│    WFE (Walk-Forward Efficiency) > %50 → Sistem sağlam             │
-│    WFE = Test_PnL / Train_PnL × 100                               │
-│                                                                     │
-│  ÇIKTI: walk_forward_report.txt, backtest/walk_forward.py          │
-│                                                                     │
-│  DURUM: [ ] Başlanmadı                                              │
+│  DURUM: [ ] A.3'e bağımlı                                          │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 
@@ -402,40 +469,40 @@
   ┌─────┬────────────────────────────┬──────────┬───────────────────┐
   │  #  │ Görev                      │ Bağımlı  │ Ne Zaman          │
   ├─────┼────────────────────────────┼──────────┼───────────────────┤
-  │  1  │ A.1 Out-of-Sample Test     │ —        │ ŞİMDİ (bugün)     │
-  │  2  │ A.2 Walk-Forward Analiz    │ A.1      │ A.1 sonrası       │
-  │  3  │ B.1 Günlük Rapor Script    │ —        │ PARALEL (bugün)   │
-  │  4  │ C.2 Trade Log Geliştirme   │ —        │ Bu hafta          │
-  │  5  │ C.1 Gerçek Funding Fee     │ —        │ Bu hafta          │
-  │  6  │ C.3 Telegram Dashboard     │ —        │ Bu hafta          │
-  │  7  │ C.4 Sistem Sağlamlığı      │ —        │ Bu hafta          │
-  │  8  │ B.2 Sapma Analizi          │ 50+ trade│ 1-2 hafta sonra   │
-  │  9  │ D.1 Live Geçiş Checklist   │ B.2      │ Paper trade OK ise│
-  │ 10  │ D.2 Futures API            │ D.1      │ Live geçiş öncesi │
-  │ 11  │ E.1 Multi-Exchange         │ Live kâr │ Kripto kârlı ise  │
-  │ 12  │ E.2 ML Filter v2           │ 1000+    │ Veri birikince    │
-  │ 13  │ E.3 Portfolio Risk         │ Live     │ Birden fazla borsa│
+  │  1  │ ✅ A.1 Out-of-Sample Test  │ —        │ TAMAMLANDI (FAIL) │
+  │  2  │ ⏸️ A.2 Walk-Forward        │ A.1      │ ASKIDA (FAIL)     │
+  │  3  │ ★ A.3 Ablation Testi      │ A.1      │ ŞİMDİ (ACİL)     │
+  │  4  │ ★ A.4 v17 Basitleştirme   │ A.3      │ A.3 sonrası       │
+  │  5  │ B.1 Günlük Rapor Script    │ —        │ PARALEL           │
+  │  6  │ C.2 Trade Log Geliştirme   │ —        │ Bu hafta          │
+  │  7  │ C.1 Gerçek Funding Fee     │ —        │ Bu hafta          │
+  │  8  │ C.3 Telegram Dashboard     │ —        │ Bu hafta          │
+  │  9  │ C.4 Sistem Sağlamlığı      │ —        │ Bu hafta          │
+  │ 10  │ B.2 Sapma Analizi          │ 50+ trade│ 1-2 hafta sonra   │
+  │ 11  │ D.1 Live Geçiş Checklist   │ B.2      │ v17 OOS OK ise    │
+  │ 12  │ D.2 Futures API            │ D.1      │ Live geçiş öncesi │
+  │ 13  │ E.1 Multi-Exchange         │ Live kâr │ Kripto kârlı ise  │
+  │ 14  │ E.2 ML Filter v2           │ 1000+    │ Veri birikince    │
+  │ 15  │ E.3 Portfolio Risk         │ Live     │ Birden fazla borsa│
   └─────┴────────────────────────────┴──────────┴───────────────────┘
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   KARAR AĞACI (Ne Olursa Ne Yapılır?)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  Paper Trade 50+ trade sonrası:
-  
+  ★ OOS TESTİ TAMAMLANDI — SONUÇ: ❌ PF < 1.0 → AĞIR OVERFİTTİNG
+  → Karar ağacında "BAŞARISIZ" dalı aktif:
+    
   ┌─ WR > %45, PF > 1.2 ──────→ BAŞARI → Live geçiş Faz D
   │
   ├─ WR %40-45, PF 1.0-1.2 ──→ ORTA → ince ayar, devam et
-  │    → Out-of-sample sonuca bak
-  │    → Hangi exit tipi sorunlu? → o bileşeni düzelt
-  │    → 50 trade daha bekle
   │
-  └─ WR < %40, PF < 1.0 ─────→ BAŞARISIZ → DUR
-       → Overfitting kanıtlandı
-       → v16.1 parametrelerini basitleştir
+  └─ WR < %40, PF < 1.0 ─────→ ❌ BAŞARISIZ (ŞU AN BURADAYIZ)
+       → ✅ Overfitting kanıtlandı (OOS PF=0.74 avg)
+       → ⏳ Bileşen ablation testi yapılıyor (A.3)
+       → ⏳ v17 basitleştirme planlanıyor (A.4)
+       → 180 gün backtest (60 değil)
        → Daha az filtre, daha geniş coin listesi
-       → 120 gün backtest (60 değil)
-       → Radikal alternatif: sadece 1 strateji (VWAP mean reversion)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   NOTLAR
