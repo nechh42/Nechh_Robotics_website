@@ -312,6 +312,14 @@ class FuturesBacktest:
         if regime == "VOLATILE":
             return
 
+        # [v15.9] Volume quality filter
+        min_vol_ratio = getattr(config, 'MIN_VOLUME_RATIO', 0)
+        if min_vol_ratio > 0 and len(df) >= 20:
+            vol_avg = df["volume"].tail(20).mean()
+            vol_current = df["volume"].iloc[-1]
+            if vol_avg > 0 and (vol_current / vol_avg) < min_vol_ratio:
+                return
+
         # DIP_BUY filter
         if getattr(config, 'DIP_BUY_FILTER', False) and regime == "RANGING":
             if len(df) >= 2:

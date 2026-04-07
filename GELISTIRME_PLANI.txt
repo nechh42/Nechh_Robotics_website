@@ -1,8 +1,8 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  WAR MACHINE — KAPSAMLI GELİŞTİRME PLANI                          ║
 ║  Hazırlanma: 6 Nisan 2026                                          ║
-║  Son Güncelleme: 7 Nisan 2026 — v15.8 PF=1.30!                    ║
-║  Mevcut Durum: v15.8 — 51.2% WR, +$462, PF=1.30                  ║
+║  Son Güncelleme: 7 Nisan 2026 — v16.0 PF=1.56!                    ║
+║  Mevcut Durum: v16.0 — 52.9% WR, +$638, PF=1.56                  ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -549,9 +549,45 @@ NEDEN TEHLİKELİ:
         → 108 kötü trade engellendi, AvgLoss $4.48→$4.08'e düştü
         → config.py + orchestrator.py (4h+1h) + backtest_v3.py güncellendi
         → PF=1.49: KALDIРАÇ HEDEFİ PF>1.5'E ÇOK YAKIN!
-    [12] Dinamik coin seçimi (SONRAKI ADIM)
-    [13] Portfolio-level risk (gelecek)
-    [14] Live trade geçişi (gelecek)
+    [12] ✅ Dinamik Coin Seçimi (v16.0)   → TAMAMLANDI (7 Nisan 2026)
+        → 8 A/B dinamik coin rotation testi (dynamic_coin_test.py)
+        → WEEKLY-TOP10/8/12, DROP-WR<40/45, TOP10-3W, HOT-COLD
+        → SONUÇ: Sabit liste optimal — dinamik seçim baseline'ı geçemedi
+        → Coin bazlı deep analysis: 13/15 coin kârlı
+        → 4 blacklist testi (coin_blacklist_test.py):
+          - BL+BTC: PF 1.51→1.56 (+$47) ★ KAZANAN
+          - BL+LTC: PF 1.51→1.49 (-$13) ✗ Zarar
+          - BL+LTC+BTC: PF 1.51→1.54 (+$39) İyi ama BTC-only daha iyi
+        → BTCUSDT blacklist'e eklendi (45.7% WR, -$6 net zararda)
+        → v15.9 → v16.0:
+          WR %52.4→%52.9, PnL +$579→+$638, PF 1.49→1.56, MaxDD 1.7%
+        → 14 aktif coin: ETH,AVAX,ADA,LTC,DOGE,AAVE,VET,ZEC,FLOW,CRV,WIF,FIL,DOT,ARB
+        → PF=1.56: KALDIРАÇ EŞİĞİ (PF>1.5) GEÇİLDİ! ★★★
+    [13] ✅ Kaldıraç Re-Test (v16.1)     → TAMAMLANDI (7 Nisan 2026)
+        → v16.0 optimizasyonlarıyla futures backtest: 1x/3x/5x/10x
+        → Volume filter backtest_futures.py'ye eklendi
+        → v15.6'daki PF=1.06 ile karşılaştırma (v16.0 PF=1.75 @ 1x futures!)
+        ┌─────────────────────────────────────────────────────┐
+        │  v16.1 FUTURES KARŞILAŞTIRMA (60 gün, $10,000)     │
+        │                                                     │
+        │  Kaldıraç │ Trade │  WR   │    PnL    │  PF  │ DD  │
+        │  ────────┼───────┼───────┼───────────┼──────┼───── │
+        │     1x   │  596  │ 54.4% │   +$740   │ 1.75 │ 20% │
+        │     3x   │  596  │ 54.4% │ +$1,514   │ 1.71 │ 21% │
+        │     5x   │  596  │ 54.4% │ +$1,567   │ 1.70 │ 18% │
+        │    10x   │  596  │ 54.4% │ +$1,606   │ 1.70 │ 10% │
+        │                                                     │
+        │  ✅ LİKİDASYON: SIFIR (tüm kaldıraç seviyeleri)    │
+        │  ✅ FUNDING FEE: $0 (MAX_HOLD=2 → funding yetişmez)│
+        └─────────────────────────────────────────────────────┘
+        → v15.6 vs v16.1: 1x PnL $90→$740 (8x!), 3x $79→$1514 (19x!)
+        → KARAR: 3x KALDIРАÇ OPTİMAL
+          - PnL 2x çarpan ($740→$1514)
+          - PF yüksek (1.71)
+          - 0 likidasyon
+          - Futures komisyon avantajı (%0.04 vs %0.10 spot)
+        → config.py: LEVERAGE = 3
+    [14] Live trade geçişi (SONRAKI ADIM)
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

@@ -146,7 +146,7 @@ RISK_BASE_PCT = 0.005          # %0.5 base risk (volatility adjusted)
 VOLATILITY_MULTIPLIER = True   # Enable volatility adjustment
 MIN_EQUITY_THRESHOLD = 1000.0
 MAX_POSITIONS = 4              # [FIX-1] 6'ten 4'ye indirildi — deadlock onleme
-LEVERAGE = 5                   # Paper trade'de leverage yok
+LEVERAGE = 3                   # [v16.1] 3x optimal: PnL 2x, 0 likidasyon, PF=1.71
 MIN_PROFIT_PCT = 0.003
 MIN_TRADE_INTERVAL = 60
 MAX_DAILY_TRADES = 10
