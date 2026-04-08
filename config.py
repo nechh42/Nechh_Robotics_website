@@ -74,8 +74,8 @@ LIQUIDATION_CHECK_INTERVAL = 300               # Her 5 dakikada kontrol
 
 # WEBSOCKET
 WS_URI = "wss://stream.binance.com:9443/stream"
-WS_PING_INTERVAL = 20
-WS_PING_TIMEOUT = 20
+WS_PING_INTERVAL = 30   # [8 Nisan] 20→30: 29 coin stream için 20s çok sıkı
+WS_PING_TIMEOUT = 30    # [8 Nisan] 20→30: keepalive ping timeout önleme
 WS_RECONNECT_DELAY_MIN = 1
 WS_RECONNECT_DELAY_MAX = 60
 WS_MAX_RECONNECT_ATTEMPTS = 10
