@@ -130,7 +130,8 @@ MIN_VOLUME_RATIO = 0.70  # [v17.1] Volume filtresi (WebSocket volume fix ile ça
 
 # ML FILTER — Eğitilmiş model ile düşük kaliteli sinyalleri engelle
 # ml_model.pkl yoksa otomatik devre dışı kalır
-ML_FILTER_ENABLED = True
+# [8 Nisan] KAPALI: 6 trade ile model anlamsız, 50+ trade birikince aç
+ML_FILTER_ENABLED = False
 
 # COIN BLACKLIST — Backtest v3: WR<%30, sürekli zarar eden coinler
 # v15.5.0: UNIUSDT %16.7, ATOMUSDT %21.4, SOLUSDT %22.2, OPUSDT %25, NEARUSDT %25, XLMUSDT %25
