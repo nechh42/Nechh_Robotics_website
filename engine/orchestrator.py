@@ -56,7 +56,7 @@ class Orchestrator:
         self.performance = PerformanceTracker(config.INITIAL_BALANCE)
         self.risk = PreTradeRisk()
         self.executor = PaperExecutor(self.state)
-        self.adaptive = AdaptiveWeights()
+        self.adaptive = AdaptiveWeights(db=self.db)
         self.sizer = DynamicPositionSizer()
         self.mtf = MTFConfirmation()  # 15m confirmation gate
 

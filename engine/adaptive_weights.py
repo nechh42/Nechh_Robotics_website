@@ -31,14 +31,50 @@ class AdaptiveWeights:
       - Record which strategy suggested it and if it won/lost
       - Every 10 trades, recalculate weights proportional to accuracy
       - Per-regime tracking: weights learned separately for each regime
+      - Persists to DB: survives restarts
     """
 
-    def __init__(self):
+    def __init__(self, db=None):
         # Per-regime trade history: regime -> [(strategy, won)]
         self._history: Dict[str, List[Tuple[str, bool]]] = defaultdict(list)
         # Current learned weights per regime (overrides config defaults)
         self._learned: Dict[str, Dict[str, float]] = {}
         self._total_trades = 0
+        self._db = db
+
+        # Load from DB if available
+        if self._db:
+            self._load_from_db()
+
+    def set_db(self, db):
+        """Set database reference and load history"""
+        self._db = db
+        self._load_from_db()
+
+    def _load_from_db(self):
+        """Load trade outcome history from database"""
+        if not self._db:
+            return
+        try:
+            history = self._db.load_adaptive_history(lookback=LOOKBACK)
+            for regime, outcomes in history.items():
+                self._history[regime] = outcomes
+                self._total_trades += len(outcomes)
+            # Recalculate weights for all regimes with data
+            for regime in self._history:
+                self._recalculate(regime)
+            if self._total_trades > 0:
+                logger.info(
+                    f"[ADAPTIVE] DB'den yüklendi: {self._total_trades} trade, "
+                    f"{len(self._history)} regime"
+                )
+                for regime, weights in self._learned.items():
+                    logger.info(
+                        f"[ADAPTIVE] {regime}: "
+                        + " ".join(f"{k}={v:.2f}" for k, v in weights.items())
+                    )
+        except Exception as e:
+            logger.error(f"[ADAPTIVE] DB load failed: {e}")
 
     def record_outcome(self, strategy: str, regime: str, won: bool):
         """Record trade outcome for learning"""
@@ -49,6 +85,13 @@ class AdaptiveWeights:
         
         self._total_trades += 1
 
+        # Persist to DB
+        if self._db:
+            try:
+                self._db.save_adaptive_outcome(regime, strategy, won)
+            except Exception as e:
+                logger.error(f"[ADAPTIVE] DB save failed: {e}")
+
         # Recalculate every 5 trades
         if self._total_trades % 5 == 0:
             self._recalculate(regime)
@@ -57,7 +100,7 @@ class AdaptiveWeights:
         """Get current weights for a regime (learned or default)"""
         if regime in self._learned:
             return self._learned[regime]
-        return config.REGIME_WEIGHTS.get(regime, {"RSI": 0.33, "MOMENTUM": 0.34, "VWAP": 0.33})
+        return config.REGIME_WEIGHTS.get(regime, {"RSI": 0.25, "MOMENTUM": 0.25, "VWAP": 0.25, "EDGE_DISCOVERY": 0.25})
 
     def _recalculate(self, regime: str):
         """Recalculate weights based on accuracy"""
@@ -88,7 +131,7 @@ class AdaptiveWeights:
             return
 
         new_weights = {}
-        for strat in ["RSI", "MOMENTUM", "VWAP"]:
+        for strat in ["RSI", "MOMENTUM", "VWAP", "EDGE_DISCOVERY"]:
             if strat in accuracy:
                 raw = accuracy[strat] / total_acc
                 new_weights[strat] = max(WEIGHT_FLOOR, raw)

@@ -87,6 +87,15 @@ class Database:
                     message TEXT NOT NULL
                 )
             """)
+            c.execute("""
+                CREATE TABLE IF NOT EXISTS adaptive_weights (
+                    regime TEXT NOT NULL,
+                    strategy TEXT NOT NULL,
+                    won INTEGER NOT NULL,
+                    timestamp TEXT NOT NULL,
+                    PRIMARY KEY (regime, strategy, timestamp)
+                )
+            """)
             conn.commit()
 
     # ─── TRADES ─────────────────────────────────────────
@@ -192,3 +201,29 @@ class Database:
                 "INSERT INTO events (timestamp, event_type, message) VALUES (?,?,?)",
                 (datetime.now().isoformat(), event_type, message),
             )
+
+    # ─── ADAPTIVE WEIGHTS ──────────────────────────────
+    def save_adaptive_outcome(self, regime: str, strategy: str, won: bool):
+        """Save a single trade outcome for adaptive weight learning"""
+        with self._conn() as conn:
+            conn.execute(
+                "INSERT INTO adaptive_weights (regime, strategy, won, timestamp) VALUES (?,?,?,?)",
+                (regime, strategy, 1 if won else 0, datetime.now().isoformat()),
+            )
+
+    def load_adaptive_history(self, lookback: int = 50) -> Dict[str, List]:
+        """Load trade outcome history per regime (newest `lookback` per regime)"""
+        with self._conn() as conn:
+            rows = conn.execute(
+                "SELECT regime, strategy, won FROM adaptive_weights ORDER BY timestamp ASC"
+            ).fetchall()
+        history: Dict[str, List] = {}
+        for regime, strategy, won in rows:
+            if regime not in history:
+                history[regime] = []
+            history[regime].append((strategy, bool(won)))
+        # Trim to lookback per regime
+        for regime in history:
+            if len(history[regime]) > lookback:
+                history[regime] = history[regime][-lookback:]
+        return history
