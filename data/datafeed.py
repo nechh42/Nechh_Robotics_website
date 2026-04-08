@@ -77,14 +77,19 @@ class DataFeed:
                     f"Retry in {delay}s"
                 )
 
-            if self._reconnect_count >= config.WS_MAX_RECONNECT_ATTEMPTS:
-                logger.error("[DATAFEED] Max reconnect attempts reached")
-                self._running = False
+            if not self._running:
                 break
 
-            if self._running:
-                await asyncio.sleep(delay)
-                delay = min(delay * 2, config.WS_RECONNECT_DELAY_MAX)
+            # Never give up — keep retrying with max 60s delay
+            if self._reconnect_count >= config.WS_MAX_RECONNECT_ATTEMPTS:
+                logger.warning(
+                    f"[DATAFEED] {self._reconnect_count} failed attempts. "
+                    f"Continuing with {config.WS_RECONNECT_DELAY_MAX}s interval..."
+                )
+                delay = config.WS_RECONNECT_DELAY_MAX
+            
+            await asyncio.sleep(delay)
+            delay = min(delay * 2, config.WS_RECONNECT_DELAY_MAX)
 
     def _parse(self, raw: str):
         try:
