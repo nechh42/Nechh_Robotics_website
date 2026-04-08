@@ -59,9 +59,26 @@ class Database:
                     entry_time TEXT NOT NULL,
                     strategy TEXT,
                     trailing_active INTEGER DEFAULT 0,
-                    trailing_peak REAL DEFAULT 0
+                    trailing_peak REAL DEFAULT 0,
+                    entry_atr REAL DEFAULT 0,
+                    breakeven_applied INTEGER DEFAULT 0,
+                    partial_closed INTEGER DEFAULT 0,
+                    entry_regime TEXT DEFAULT '',
+                    take_profit_1 REAL DEFAULT 0
                 )
             """)
+            # Migrate: add missing columns to existing positions table
+            for col, typ, default in [
+                ("entry_atr", "REAL", "0"),
+                ("breakeven_applied", "INTEGER", "0"),
+                ("partial_closed", "INTEGER", "0"),
+                ("entry_regime", "TEXT", "''"),
+                ("take_profit_1", "REAL", "0"),
+            ]:
+                try:
+                    c.execute(f"ALTER TABLE positions ADD COLUMN {col} {typ} DEFAULT {default}")
+                except sqlite3.OperationalError:
+                    pass  # Column already exists
             c.execute("""
                 CREATE TABLE IF NOT EXISTS events (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -119,8 +136,10 @@ class Database:
             conn.execute("""
                 INSERT OR REPLACE INTO positions
                     (symbol, side, entry_price, size, stop_loss, take_profit,
-                     entry_time, strategy, trailing_active, trailing_peak)
-                VALUES (?,?,?,?,?,?,?,?,?,?)
+                     entry_time, strategy, trailing_active, trailing_peak,
+                     entry_atr, breakeven_applied, partial_closed,
+                     entry_regime, take_profit_1)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
             """, (
                 symbol, pos["side"], pos["entry_price"], pos["size"],
                 pos["stop_loss"], pos["take_profit"],
@@ -128,6 +147,11 @@ class Database:
                 pos.get("strategy", ""),
                 1 if pos.get("trailing_active", False) else 0,
                 pos.get("trailing_peak", 0.0),
+                pos.get("entry_atr", 0.0),
+                1 if pos.get("breakeven_applied", False) else 0,
+                1 if pos.get("partial_closed", False) else 0,
+                pos.get("entry_regime", ""),
+                pos.get("take_profit_1", 0.0),
             ))
 
     def delete_position(self, symbol: str):
@@ -136,14 +160,28 @@ class Database:
 
     def load_positions(self) -> Dict[str, Dict]:
         with self._conn() as conn:
-            rows = conn.execute("SELECT * FROM positions").fetchall()
+            c = conn.cursor()
+            c.execute("SELECT * FROM positions")
+            cols = [d[0] for d in c.description]
+            rows = c.fetchall()
         result = {}
         for r in rows:
-            result[r[0]] = {
-                "side": r[1], "entry_price": r[2], "size": r[3],
-                "stop_loss": r[4], "take_profit": r[5],
-                "entry_time": r[6], "strategy": r[7],
-                "trailing_active": bool(r[8]), "trailing_peak": r[9],
+            row = dict(zip(cols, r))
+            result[row["symbol"]] = {
+                "side": row["side"],
+                "entry_price": row["entry_price"],
+                "size": row["size"],
+                "stop_loss": row["stop_loss"],
+                "take_profit": row["take_profit"],
+                "entry_time": row["entry_time"],
+                "strategy": row.get("strategy", ""),
+                "trailing_active": bool(row.get("trailing_active", 0)),
+                "trailing_peak": row.get("trailing_peak", 0.0),
+                "entry_atr": row.get("entry_atr", 0.0),
+                "breakeven_applied": bool(row.get("breakeven_applied", 0)),
+                "partial_closed": bool(row.get("partial_closed", 0)),
+                "entry_regime": row.get("entry_regime", ""),
+                "take_profit_1": row.get("take_profit_1", 0.0),
             }
         return result
 

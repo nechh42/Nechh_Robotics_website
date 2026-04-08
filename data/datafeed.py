@@ -30,6 +30,7 @@ class DataFeed:
         self._running = False
         self._ws = None
         self._reconnect_count = 0
+        self._telegram_alert = None  # async callback for disconnect alerts
 
     async def start(self):
         self._running = True
@@ -76,6 +77,17 @@ class DataFeed:
                     f"[DATAFEED] Disconnected (#{self._reconnect_count}): {e}. "
                     f"Retry in {delay}s"
                 )
+                # Send Telegram alert on first disconnect and every 5th attempt
+                if self._telegram_alert and (self._reconnect_count == 1 or self._reconnect_count % 5 == 0):
+                    try:
+                        await self._telegram_alert(
+                            f"⚠️ <b>WEBSOCKET KOPTU!</b>\n"
+                            f"Deneme #{self._reconnect_count}\n"
+                            f"Hata: {e}\n"
+                            f"Sonraki deneme: {delay}s"
+                        )
+                    except Exception:
+                        pass
 
             if not self._running:
                 break

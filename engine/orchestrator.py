@@ -85,6 +85,8 @@ class Orchestrator:
             symbols=config.SYMBOLS,
             on_tick=self._on_tick_sync,
         )
+        # Telegram alert on WebSocket disconnect
+        self.feed._telegram_alert = lambda msg: telegram.send(msg)
 
         # Strategies (RSI gets 1h manager injected)
         self.strategies = [
@@ -102,7 +104,18 @@ class Orchestrator:
         saved = self.db.load_positions()
         for symbol, pos_data in saved.items():
             self.state.restore_position(symbol, pos_data)
-            logger.info(f"[RESTORE] Position loaded: {symbol} {pos_data['side']}")
+            # Calculate _candles_held from entry_time (survive restarts)
+            pos = self.state.positions.get(symbol)
+            if pos and pos.entry_time:
+                elapsed = (datetime.now() - pos.entry_time).total_seconds()
+                candle_secs = 4 * 3600  # 4h candle
+                pos._candles_held = int(elapsed / candle_secs)
+                logger.info(
+                    f"[RESTORE] Position loaded: {symbol} {pos_data['side']} "
+                    f"(candles_held={pos._candles_held}, regime={pos._entry_regime})"
+                )
+            else:
+                logger.info(f"[RESTORE] Position loaded: {symbol} {pos_data['side']}")
         if saved:
             logger.info(f"[RESTORE] {len(saved)} positions restored from DB")
 
