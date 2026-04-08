@@ -37,6 +37,8 @@ from risk.position_sizer import DynamicPositionSizer
 from execution.paper import PaperExecutor
 from persistence.database import Database
 from persistence.trade_journal import record_entry as journal_entry, record_exit as journal_exit
+from persistence.signal_logger import SignalLogger
+from strategies.ml_filter import MLFilter
 from monitoring.telegram import telegram
 from monitoring.performance import PerformanceTracker
 
@@ -58,6 +60,8 @@ class Orchestrator:
         self.executor = PaperExecutor(self.state)
         self.adaptive = AdaptiveWeights(db=self.db)
         self.sizer = DynamicPositionSizer()
+        self.signal_logger = SignalLogger()
+        self.ml_filter = MLFilter()
         self.mtf = MTFConfirmation()  # 15m confirmation gate
 
         # Triple Candle managers: 4h (trend) + 1h (mean reversion) + 15m (trigger)
@@ -170,8 +174,10 @@ class Orchestrator:
 
         # Start periodic health report
         from monitoring.health import health_loop, summary_loop
+        from monitoring.analyst import analyst_loop
         asyncio.create_task(health_loop(self))
         asyncio.create_task(summary_loop(self))
+        asyncio.create_task(analyst_loop(self))
 
         # Start WebSocket feed
         await self.feed.start()
@@ -560,11 +566,13 @@ class Orchestrator:
         # TREND_UP block — backtest v3: %30.7 WR, -$842
         if getattr(config, 'TREND_UP_BLOCK', False) and regime == "TREND_UP":
             logger.info(f"[BLOCK] {symbol}: TREND_UP girişi engellendi (TREND_UP_BLOCK=True)")
+            self.signal_logger.log_block(symbol, regime, price, "TREND_UP", df)
             return
 
         # Coin blacklist — backtest v3: WR<%30 coinler
         if symbol in getattr(config, 'COIN_BLACKLIST', []):
             logger.info(f"[BLOCK] {symbol}: Blacklist'te — atlandı")
+            self.signal_logger.log_block(symbol, regime, price, "BLACKLIST", df)
             return
 
         # [v15.9] Volume quality filter — düşük hacimde trade açma
@@ -574,6 +582,7 @@ class Orchestrator:
             vol_current = df["volume"].iloc[-1]
             if vol_avg <= 0 or (vol_current / vol_avg) < min_vol_ratio:
                 logger.info(f"[BLOCK] {symbol}: Düşük hacim (avg={vol_avg:.2f}, cur={vol_current:.2f}, ratio={vol_current/vol_avg if vol_avg > 0 else 0:.2f} < {min_vol_ratio}) — atlandı")
+                self.signal_logger.log_block(symbol, regime, price, "LOW_VOLUME", df)
                 return
 
         # Pozisyon varsa strateji calistirma
@@ -596,16 +605,15 @@ class Orchestrator:
                 logger.error(f"[STRATEGY] {strategy.name} error on {symbol}: {e}")
                 self._send_error_alert(f"STRATEJİ HATASI: {strategy.name} / {symbol}\n{e}")
 
-        # Regime-based agirlikli oylama (config'den)
-        weights = config.REGIME_WEIGHTS.get(regime, {
-            "RSI": 0.25,
-            "MOMENTUM": 0.25,
-            "VWAP": 0.25,
-            "EDGE_DISCOVERY": 0.25,
-        })
+        # Regime-based agirlikli oylama (ADAPTIVE — öğrenilmiş veya config default)
+        weights = self.adaptive.get_weights(regime)
         combined = combine_signals(signals, regime, weights)
 
         if combined.action == "NONE":
+            self.signal_logger.log_evaluation(
+                symbol, regime, price, signals, combined, weights,
+                decision="NO_SIGNAL", df=df,
+            )
             return
 
         # Korelasyon filtresi — config'den oku
@@ -614,12 +622,30 @@ class Orchestrator:
                 for other in group:
                     if other != symbol and other in self.state.positions:
                         logger.info(f"[KORELASYON] {symbol}: {other} zaten acik (grup: {group}) — atlanir")
+                        self.signal_logger.log_evaluation(
+                            symbol, regime, price, signals, combined, weights,
+                            decision="BLOCKED_CORRELATION",
+                            block_reason=f"{other} zaten açık", df=df,
+                        )
                         return
 
         # Risk kontrolu
         approved, reason, params = self.risk.check(combined, self.state, regime)
 
         if not approved:
+            self.signal_logger.log_evaluation(
+                symbol, regime, price, signals, combined, weights,
+                decision="BLOCKED_RISK", block_reason=reason, df=df,
+            )
+            return
+
+        # ML Filtre — düşük kaliteli sinyalleri engelle
+        ml_approved, ml_score, ml_reason = self.ml_filter.predict(df, symbol, regime, price)
+        if not ml_approved:
+            self.signal_logger.log_evaluation(
+                symbol, regime, price, signals, combined, weights,
+                decision="BLOCKED_ML", block_reason=ml_reason, df=df,
+            )
             return
 
         # MTF Confirmation Gate: 15m onay bekleniyor
@@ -635,15 +661,27 @@ class Orchestrator:
                 confirmed, mtf_reason = self.mtf.check_confirmation(symbol, df_15m)
                 if confirmed:
                     logger.info(f"[MTF] {symbol}: Immediate confirmation! {mtf_reason}")
-                    await self._execute_trade(symbol, params, combined.strategy)
+                    sig_id = self.signal_logger.log_evaluation(
+                        symbol, regime, price, signals, combined, weights,
+                        decision="TRADE_OPENED", df=df,
+                    )
+                    await self._execute_trade(symbol, params, combined.strategy, sig_id)
                 else:
                     logger.info(f"[MTF] {symbol}: Waiting for 15m confirmation... {mtf_reason}")
+                    self.signal_logger.log_evaluation(
+                        symbol, regime, price, signals, combined, weights,
+                        decision="MTF_PENDING", block_reason=mtf_reason, df=df,
+                    )
             return
 
         # MTF disabled → direkt execute
-        await self._execute_trade(symbol, params, combined.strategy)
+        sig_id = self.signal_logger.log_evaluation(
+            symbol, regime, price, signals, combined, weights,
+            decision="TRADE_OPENED", df=df,
+        )
+        await self._execute_trade(symbol, params, combined.strategy, sig_id)
 
-    async def _execute_trade(self, symbol: str, params: dict, strategy_name: str):
+    async def _execute_trade(self, symbol: str, params: dict, strategy_name: str, signal_log_id: int = -1):
         """Execute a trade (called after MTF confirmation or directly)"""
         result = self.executor.open_order(params)
 
@@ -689,6 +727,15 @@ class Orchestrator:
                 indicators, pos.stop_loss, pos.take_profit,
                 0.02, f"MTF confirmed" if MTF_ENABLED else "Direct entry",
             )
+            pos._signal_log_id = signal_log_id
+
+            # Signal log: trade_opened flag
+            if signal_log_id > 0:
+                try:
+                    with self.signal_logger._conn() as conn:
+                        conn.execute("UPDATE signal_log SET trade_opened = 1 WHERE id = ?", (signal_log_id,))
+                except Exception:
+                    pass
 
             logger.info(
                 f"[TRADE] OPENED {pos.side} {symbol} @ ${pos.entry_price:.4f} "
@@ -825,6 +872,10 @@ class Orchestrator:
         duration = (trade.exit_time - trade.entry_time).total_seconds()
         journal_id = getattr(trade, '_journal_id', -1)
         journal_exit(journal_id, trade.exit_price, reason, trade.net_pnl, duration)
+
+        # Signal Log - sonuç güncelle
+        signal_log_id = getattr(trade, '_signal_log_id', -1)
+        self.signal_logger.update_outcome(signal_log_id, trade.net_pnl, reason)
 
         # Database kaydi
         self.db.save_trade({

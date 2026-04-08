@@ -1,8 +1,8 @@
 ╔══════════════════════════════════════════════════════════════════════╗
 ║  WAR MACHINE — SONRAKİ ADIMLAR & GELİŞTİRME PLANI                 ║
 ║  Oluşturma: 7 Nisan 2026                                          ║
-║  Son Güncelleme: 7 Nisan 2026 (6H RAPOR + PAPER TRADE BAŞLAT)     ║
-║  Mevcut Versiyon: v17.1 (PTP=100% SCALP) — VOLUME BUG DÜZELTİLDİ ║
+║  Son Güncelleme: 8 Nisan 2026 (AI/ML ENTEGRASYON + SWARM v1)      ║
+║  Mevcut Versiyon: v17.1 (PTP=100% SCALP) — AI KATMANI EKLENDİ    ║
 ║  v17.1 IS: PF=1.59 | OOS-1 PF=0.94 (-$51) | Deg=%41.0            ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
@@ -16,6 +16,15 @@
   ✅ 6 saatlik Telegram özet raporu eklendi (health.py summary_loop)
   ✅ 15 dakikalık health rapor AYNEN devam ediyor
   ✅ v17.1 PTP=100% aktif
+  
+  ✅ [8 Nisan] AdaptiveWeights DB persistence (restart'ta öğrenme kaybı düzeltildi)
+  ✅ [8 Nisan] AdaptiveWeights → Voting BAĞLANDI (önceden öğreniyordu ama kullanmıyordu!)
+  ✅ [8 Nisan] Signal Logger: HER sinyal değerlendirmesi DB'ye kaydediliyor (34 feature)
+  ✅ [8 Nisan] ML Filter: GradientBoosting modeli live trading'e bağlandı
+  ✅ [8 Nisan] Auto-Analyst: Otonom analiz ajanı (6 saatte rapor, saatlik anomali)
+  ✅ [8 Nisan] WebSocket disconnect Telegram alarm
+  ✅ [8 Nisan] DB positions 5 yeni kolon + candles_held restore
+  ✅ [8 Nisan] Performance/balance DB'den restore
   
   ⚡ 7 GÜN BOYUNCA HİÇBİR KOD DEĞİŞİKLİĞİ YAPMA!
   ⚡ Minimum 50 trade biriktir, sonra analiz yap

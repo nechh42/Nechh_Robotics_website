@@ -128,6 +128,10 @@ DIP_BUY_FILTER = False
 # 25 A/B test sonucu: PnL +$471→$567, PF 1.30→1.48, WR 51.3%→52.3%
 MIN_VOLUME_RATIO = 0.70  # [v17.1] Volume filtresi (WebSocket volume fix ile çalışıyor)
 
+# ML FILTER — Eğitilmiş model ile düşük kaliteli sinyalleri engelle
+# ml_model.pkl yoksa otomatik devre dışı kalır
+ML_FILTER_ENABLED = True
+
 # COIN BLACKLIST — Backtest v3: WR<%30, sürekli zarar eden coinler
 # v15.5.0: UNIUSDT %16.7, ATOMUSDT %21.4, SOLUSDT %22.2, OPUSDT %25, NEARUSDT %25, XLMUSDT %25
 # v15.5.1: KAVAUSDT %33, INJUSDT %41, PEPEUSDT %44, ARPAUSDT %43 (hepsi net zararda)
