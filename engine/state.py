@@ -103,6 +103,34 @@ class TradingState:
         self.last_tick_time: Optional[datetime] = None
         self.last_candle_time: Optional[datetime] = None
 
+    def _reload_from_db(self, db):
+        """Restore balance and trades list from DB after restart"""
+        with self._lock:
+            db_trades = db.get_trades(limit=500)
+            total_pnl = sum(t["net_pnl"] for t in db_trades)
+            total_comm = sum(t["commission"] for t in db_trades)
+            self.balance = self.initial_balance + total_pnl
+            self.equity = self.balance
+            self.total_commission = total_comm
+            # Rebuild trades list for get_status
+            self.trades = []
+            for t in reversed(db_trades):  # chronological order
+                ct = ClosedTrade(
+                    symbol=t["symbol"], side=t["side"],
+                    size=t.get("size", 0), entry_price=t["entry_price"],
+                    exit_price=t["exit_price"],
+                    entry_time=datetime.fromisoformat(t["timestamp"]),
+                    exit_time=datetime.fromisoformat(t["timestamp"]),
+                    gross_pnl=t.get("gross_pnl", 0), commission=t["commission"],
+                    net_pnl=t["net_pnl"], strategy=t.get("strategy", ""),
+                    reason=t.get("reason", ""),
+                )
+                self.trades.append(ct)
+            logger.info(
+                f"[STATE] Reloaded from DB: balance=${self.balance:.2f}, "
+                f"{len(self.trades)} trades, comm=${self.total_commission:.2f}"
+            )
+
     def update_price(self, symbol: str, price: float):
         """Update position PnL and equity on new price"""
         with self._lock:

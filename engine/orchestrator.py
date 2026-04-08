@@ -98,6 +98,8 @@ class Orchestrator:
 
         # Restore positions from database (survive restarts)
         self._restore_positions()
+        # Restore performance metrics from DB trades
+        self._restore_performance()
 
     def _restore_positions(self):
         """Load saved positions from database"""
@@ -118,6 +120,21 @@ class Orchestrator:
                 logger.info(f"[RESTORE] Position loaded: {symbol} {pos_data['side']}")
         if saved:
             logger.info(f"[RESTORE] {len(saved)} positions restored from DB")
+
+    def _restore_performance(self):
+        """Reload past trade PnLs into PerformanceTracker so metrics survive restarts"""
+        trades = self.db.get_trades(limit=500)
+        if not trades:
+            return
+        # get_trades returns newest first, we want chronological order
+        for t in reversed(trades):
+            self.performance.record_trade(t["net_pnl"])
+        # Also restore balance from state (which loads from DB trades)
+        self.state._reload_from_db(self.db)
+        logger.info(
+            f"[RESTORE] Performance loaded: {self.performance.total_trades} trades, "
+            f"PnL=${self.performance.total_pnl:.2f}, WR={self.performance.win_rate:.1f}%"
+        )
 
     async def start(self):
         """Start the war machine"""
