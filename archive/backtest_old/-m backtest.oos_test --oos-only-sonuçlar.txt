@@ -1,0 +1,205 @@
+PS C:\war_machine> python -m backtest.oos_test --oos-only
+======================================================================
+WAR MACHINE — OUT-OF-SAMPLE TEST
+======================================================================
+Tarih: 2026-04-07 13:56
+Config: v16.1 parametreleri SABİT (hiçbir şey değiştirilmez)
+Sembol: 29 coin
+Interval: 4h
+======================================================================
+
+──────────────────────────────────────────────────────────────────────
+  TEST: IN-SAMPLE (son 60 gün)
+  Tarih: 2026-02-06 → 2026-04-07
+──────────────────────────────────────────────────────────────────────
+  BTCUSDT... 360 candles ✓
+  ETHUSDT... 360 candles ✓
+  BTCUSDT... 360 candles ✓
+  ETHUSDT... 360 candles ✓
+  BNBUSDT... 360 candles ✓
+  XRPUSDT... 360 candles ✓
+  SOLUSDT... 360 candles ✓
+  AVAXUSDT... 360 candles ✓
+  ADAUSDT... 360 candles ✓
+  LTCUSDT... 360 candles ✓
+  DOGEUSDT... 360 candles ✓
+  AAVEUSDT... 360 candles ✓
+  UNIUSDT... 360 candles ✓
+  PEPEUSDT... 360 candles ✓
+  VETUSDT... 360 candles ✓
+  ZECUSDT... 360 candles ✓
+  FLOWUSDT... 360 candles ✓
+  LDOUSDT... 360 candles ✓
+  CRVUSDT... 360 candles ✓
+  OPUSDT... 360 candles ✓
+  ATOMUSDT... 360 candles ✓
+  NEARUSDT... 360 candles ✓
+  SUIUSDT... 360 candles ✓
+  INJUSDT... 360 candles ✓
+  WIFUSDT... 360 candles ✓
+  ARPAUSDT... 360 candles ✓
+  XLMUSDT... 360 candles ✓
+  KAVAUSDT... 360 candles ✓
+  FILUSDT... 360 candles ✓
+  DOTUSDT... 360 candles ✓
+  ARBUSDT... 360 candles ✓
+
+  [IN-SAMPLE (son 60 gün)] 360 candle, 29 sembol
+    İlerleme: 0/360 (0%)
+    İlerleme: 50/360 (13%)
+    İlerleme: 100/360 (27%)
+    İlerleme: 150/360 (41%)
+    İlerleme: 200/360 (55%)
+    İlerleme: 250/360 (69%)
+    İlerleme: 300/360 (83%)
+    İlerleme: 350/360 (97%)
+
+──────────────────────────────────────────────────────────────────────
+  TEST: OOS-1 (60-120 gün önce)
+  Tarih: 2025-12-08 → 2026-02-06
+──────────────────────────────────────────────────────────────────────
+  BTCUSDT... 360 candles ✓
+  ETHUSDT... 360 candles ✓
+  BNBUSDT... 360 candles ✓
+  XRPUSDT... 360 candles ✓
+  SOLUSDT... 360 candles ✓
+  AVAXUSDT... 360 candles ✓
+  ADAUSDT... 360 candles ✓
+  LTCUSDT... 360 candles ✓
+  DOGEUSDT... 360 candles ✓
+  AAVEUSDT... 360 candles ✓
+  UNIUSDT... 360 candles ✓
+  PEPEUSDT... 360 candles ✓
+  VETUSDT... 360 candles ✓
+  ZECUSDT... 360 candles ✓
+  FLOWUSDT... 360 candles ✓
+  LDOUSDT... 360 candles ✓
+  CRVUSDT... 360 candles ✓
+  OPUSDT... 360 candles ✓
+  ATOMUSDT... 360 candles ✓
+  NEARUSDT... 360 candles ✓
+  SUIUSDT... 360 candles ✓
+  INJUSDT... 360 candles ✓
+  WIFUSDT... 360 candles ✓
+  ARPAUSDT... 360 candles ✓
+  XLMUSDT... 360 candles ✓
+  KAVAUSDT... 360 candles ✓
+  FILUSDT... 360 candles ✓
+  DOTUSDT... 360 candles ✓
+  ARBUSDT... 360 candles ✓
+
+  [OOS-1 (60-120 gün önce)] 360 candle, 29 sembol
+    İlerleme: 0/360 (0%)
+    İlerleme: 50/360 (13%)
+    İlerleme: 100/360 (27%)
+    İlerleme: 150/360 (41%)
+    İlerleme: 200/360 (55%)
+    İlerleme: 250/360 (69%)
+    İlerleme: 300/360 (83%)
+    İlerleme: 350/360 (97%)
+
+──────────────────────────────────────────────────────────────────────
+  TEST: OOS-2 (120-180 gün önce)
+  Tarih: 2025-10-09 → 2025-12-08
+──────────────────────────────────────────────────────────────────────
+  BTCUSDT... 360 candles ✓
+  ETHUSDT... 360 candles ✓
+  BNBUSDT... 360 candles ✓
+  XRPUSDT... 360 candles ✓
+  SOLUSDT... 360 candles ✓
+  AVAXUSDT... 360 candles ✓
+  ADAUSDT... 360 candles ✓
+  LTCUSDT... 360 candles ✓
+  DOGEUSDT... 360 candles ✓
+  AAVEUSDT... 360 candles ✓
+  UNIUSDT... 360 candles ✓
+  PEPEUSDT... 360 candles ✓
+  VETUSDT... 360 candles ✓
+  ZECUSDT... 360 candles ✓
+  FLOWUSDT... 360 candles ✓
+  LDOUSDT... 360 candles ✓
+  CRVUSDT... 360 candles ✓
+  OPUSDT... 360 candles ✓
+  ATOMUSDT... 360 candles ✓
+  NEARUSDT... 360 candles ✓
+  SUIUSDT... 360 candles ✓
+  INJUSDT... 360 candles ✓
+  WIFUSDT... 360 candles ✓
+  ARPAUSDT... 360 candles ✓
+  XLMUSDT... 360 candles ✓
+  KAVAUSDT... 360 candles ✓
+  FILUSDT... 360 candles ✓
+  DOTUSDT... 360 candles ✓
+  ARBUSDT... 360 candles ✓
+
+  [OOS-2 (120-180 gün önce)] 360 candle, 29 sembol
+    İlerleme: 0/360 (0%)
+    İlerleme: 50/360 (13%)
+    İlerleme: 100/360 (27%)
+    İlerleme: 150/360 (41%)
+    İlerleme: 200/360 (55%)
+    İlerleme: 250/360 (69%)
+    İlerleme: 300/360 (83%)
+    İlerleme: 350/360 (97%)
+
+======================================================================
+OUT-OF-SAMPLE KARŞILAŞTIRMA
+======================================================================
+  Periyot                        │ Trade │     WR │        PnL │    PF │  MaxDD │   AvgW │   AvgL    
+  ─────────────────────────────────────────────────────────────────────────────────────────────────  
+  IN-SAMPLE                      │   531 │  53.1% │ $  +593.05 │  1.56 │   1.6% │ $ 5.83 │ $-4.22    
+  OOS-1                          │   386 │  45.3% │ $  -195.78 │  0.80 │   4.0% │ $ 4.54 │ $-4.69    
+  OOS-2                          │   404 │  45.3% │ $  -495.23 │  0.67 │   7.3% │ $ 5.46 │ $-6.76    
+
+======================================================================
+OVERFİTTİNG TEŞHİSİ
+======================================================================
+
+  In-Sample PF:       1.56
+  Out-of-Sample PF:   0.80
+  Degradation:        +48.7%
+
+  ❌ SONUÇ: AĞIR OVERFİTTİNG — DUR!
+     OOS PF < 1.0 → Parametreler sadece in-sample'a uydurulmuş
+     Öneri: Daha basit strateji, daha az filtre, geniş coin listesi
+
+======================================================================
+REGIME BAZLI KARŞILAŞTIRMA
+======================================================================
+
+  IN-SAMPLE:
+    RANGING     : 531 trade, WR= 53.1%, PnL=$+593.05
+
+  OOS-1:
+    RANGING     : 386 trade, WR= 45.3%, PnL=$-195.78
+
+  OOS-2:
+    RANGING     : 404 trade, WR= 45.3%, PnL=$-495.23
+
+======================================================================
+EXIT REASON KARŞILAŞTIRMA
+======================================================================
+
+  IN-SAMPLE:
+    PARTIAL-TP1         : 165 trade, PnL=$+882.82
+    SMART-EXIT          :  41 trade, PnL=$+640.67
+    STOP-LOSS           : 142 trade, PnL=$-335.70
+    TAKE-PROFIT         :   2 trade, PnL=$+4.21
+    TIME-EXIT           : 181 trade, PnL=$-598.96
+
+  OOS-1:
+    PARTIAL-TP1         : 117 trade, PnL=$+600.08
+    SMART-EXIT          :  11 trade, PnL=$+105.20
+    STOP-LOSS           : 142 trade, PnL=$-596.38
+    TIME-EXIT           : 116 trade, PnL=$-304.68
+
+  OOS-2:
+    END_OF_DATA         :   4 trade, PnL=$-8.27
+    PARTIAL-TP1         : 107 trade, PnL=$+708.45
+    SMART-EXIT          :  23 trade, PnL=$+164.00
+    STOP-LOSS           : 124 trade, PnL=$-654.79
+    TAKE-PROFIT         :   1 trade, PnL=$+2.24
+    TIME-EXIT           : 145 trade, PnL=$-706.87
+
+📄 Rapor kaydedildi: backtest/oos_report.json
+PS C:\war_machine> 

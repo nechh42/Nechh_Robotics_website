@@ -1,0 +1,539 @@
+﻿
+#################################################################
+  VER─░ PER─░YODU: 60 G├£N
+#################################################################
+
+  ­şôÑ Veri indiriliyor (60 g├╝n)...
+     BTCUSDT... 420 mum Ô£ô
+     ETHUSDT... 420 mum Ô£ô
+     BNBUSDT... 420 mum Ô£ô
+     SOLUSDT... 420 mum Ô£ô
+     XRPUSDT... 420 mum Ô£ô
+     AVAXUSDT... 420 mum Ô£ô
+     DOGEUSDT... 420 mum Ô£ô
+     DOTUSDT... 420 mum Ô£ô
+
+=================================================================
+  COMBO SL=1.0 TP=1.0 HOLD=1 ÔÇö 60 G├£N
+=================================================================
+  Trade: 155 | Kazanan: 88 (56.8%) | Kaybeden: 67
+  PnL: $+236.06 | PF: 1.48 | MaxDD: $92.31
+  Ort.Kazan├ğ: $8.27
+  Ort.Kay─▒p: $7.34
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  24 trade | $ +385.41
+    END            :   2 trade | $   -4.00
+    TIME-EXIT      : 124 trade | $  -48.42
+    STOP-LOSS      :   5 trade | $  -96.94
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    EMA_PB      :  80 trade | WR= 52.5% | $ +191.40
+    VWAP_REV    :  72 trade | WR= 61.1% | $  +42.49
+    KELTNER     :   3 trade | WR= 66.7% | $   +2.16
+
+  Coin bazl─▒:
+    SOLUSDT     :  18 trade | WR= 50.0% | $  +58.35
+    DOGEUSDT    :  12 trade | WR= 75.0% | $  +53.66
+    ETHUSDT     :  16 trade | WR= 56.2% | $  +46.12
+    BNBUSDT     :  20 trade | WR= 55.0% | $  +29.33
+    DOTUSDT     :  25 trade | WR= 52.0% | $  +26.27
+    BTCUSDT     :  18 trade | WR= 61.1% | $  +10.24
+    AVAXUSDT    :  24 trade | WR= 45.8% | $   +6.42
+    XRPUSDT     :  22 trade | WR= 68.2% | $   +5.65
+=================================================================
+
+  ­şôè KARAR: Ô£à GE├çT─░ ÔÇö PF=1.48, WR=56.8%
+
+=================================================================
+  COMBO SL=1.0 TP=1.0 HOLD=2 ÔÇö 60 G├£N
+=================================================================
+  Trade: 131 | Kazanan: 62 (47.3%) | Kaybeden: 69
+  PnL: $-5.52 | PF: 0.99 | MaxDD: $188.14
+  Ort.Kazan├ğ: $12.69
+  Ort.Kay─▒p: $11.48
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  38 trade | $ +607.76
+    END            :   2 trade | $   -4.00
+    TIME-EXIT      :  68 trade | $ -171.06
+    STOP-LOSS      :  23 trade | $ -438.22
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    EMA_PB      :  73 trade | WR= 45.2% | $  +33.53
+    KELTNER     :   2 trade | WR=  0.0% | $   -9.78
+    VWAP_REV    :  56 trade | WR= 51.8% | $  -29.28
+
+  Coin bazl─▒:
+    SOLUSDT     :  15 trade | WR= 53.3% | $  +65.06
+    DOTUSDT     :  22 trade | WR= 59.1% | $  +42.79
+    BTCUSDT     :  16 trade | WR= 62.5% | $  +37.27
+    ETHUSDT     :  13 trade | WR= 53.8% | $  +35.51
+    DOGEUSDT    :  10 trade | WR= 50.0% | $  +17.72
+    BNBUSDT     :  16 trade | WR= 56.2% | $   +2.90
+    AVAXUSDT    :  20 trade | WR= 30.0% | $  -89.07
+    XRPUSDT     :  19 trade | WR= 21.1% | $ -117.69
+=================================================================
+
+  ­şôè KARAR: ÔØî KALDI ÔÇö PF=0.99, WR=47.3%
+
+=================================================================
+  COMBO SL=1.0 TP=1.2 HOLD=2 ÔÇö 60 G├£N
+=================================================================
+  Trade: 130 | Kazanan: 59 (45.4%) | Kaybeden: 71
+  PnL: $-23.55 | PF: 0.97 | MaxDD: $199.37
+  Ort.Kazan├ğ: $13.41
+  Ort.Kay─▒p: $11.47
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  31 trade | $ +579.35
+    END            :   2 trade | $   -4.00
+    TIME-EXIT      :  73 trade | $ -139.37
+    STOP-LOSS      :  24 trade | $ -459.53
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    EMA_PB      :  72 trade | WR= 41.7% | $   +2.81
+    KELTNER     :   2 trade | WR=  0.0% | $   -9.78
+    VWAP_REV    :  56 trade | WR= 51.8% | $  -16.58
+
+  Coin bazl─▒:
+    SOLUSDT     :  15 trade | WR= 53.3% | $  +86.78
+    ETHUSDT     :  13 trade | WR= 53.8% | $  +50.80
+    BTCUSDT     :  16 trade | WR= 62.5% | $  +28.23
+    BNBUSDT     :  16 trade | WR= 56.2% | $  +17.01
+    DOGEUSDT    :  10 trade | WR= 50.0% | $  +12.27
+    DOTUSDT     :  21 trade | WR= 47.6% | $  -35.83
+    AVAXUSDT    :  20 trade | WR= 30.0% | $  -73.04
+    XRPUSDT     :  19 trade | WR= 21.1% | $ -109.77
+=================================================================
+
+  ­şôè KARAR: ÔØî KALDI ÔÇö PF=0.97, WR=45.4%
+
+=================================================================
+  COMBO SL=1.0 TP=1.5 HOLD=3 ÔÇö 60 G├£N
+=================================================================
+  Trade: 120 | Kazanan: 61 (50.8%) | Kaybeden: 59
+  PnL: $+107.43 | PF: 1.15 | MaxDD: $170.46
+  Ort.Kazan├ğ: $13.84
+  Ort.Kay─▒p: $12.48
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  23 trade | $ +520.76
+    TIME-EXIT      :  67 trade | $ +150.32
+    END            :   2 trade | $   -4.00
+    STOP-LOSS      :  28 trade | $ -559.65
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    VWAP_REV    :  52 trade | WR= 53.8% | $  +63.24
+    EMA_PB      :  66 trade | WR= 48.5% | $  +44.46
+    KELTNER     :   2 trade | WR= 50.0% | $   -0.27
+
+  Coin bazl─▒:
+    ETHUSDT     :  12 trade | WR= 66.7% | $ +112.66
+    BTCUSDT     :  14 trade | WR= 64.3% | $  +47.79
+    DOGEUSDT    :  10 trade | WR= 70.0% | $  +39.54
+    BNBUSDT     :  16 trade | WR= 56.2% | $  +38.68
+    DOTUSDT     :  18 trade | WR= 50.0% | $  +18.58
+    SOLUSDT     :  13 trade | WR= 53.8% | $  +13.65
+    AVAXUSDT    :  18 trade | WR= 38.9% | $  -36.87
+    XRPUSDT     :  19 trade | WR= 26.3% | $ -126.61
+=================================================================
+
+  ­şôè KARAR: Ô£à GE├çT─░ ÔÇö PF=1.15, WR=50.8%
+
+=================================================================
+  COMBO SL=0.8 TP=1.0 HOLD=2 ÔÇö 60 G├£N
+=================================================================
+  Trade: 132 | Kazanan: 62 (47.0%) | Kaybeden: 70
+  PnL: $-9.44 | PF: 0.99 | MaxDD: $218.59
+  Ort.Kazan├ğ: $12.69
+  Ort.Kay─▒p: $11.37
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  38 trade | $ +607.76
+    END            :   2 trade | $   -4.00
+    TIME-EXIT      :  59 trade | $  -45.00
+    STOP-LOSS      :  33 trade | $ -568.20
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    EMA_PB      :  73 trade | WR= 45.2% | $  +49.54
+    KELTNER     :   2 trade | WR=  0.0% | $   -9.78
+    VWAP_REV    :  57 trade | WR= 50.9% | $  -49.21
+
+  Coin bazl─▒:
+    DOTUSDT     :  22 trade | WR= 59.1% | $  +50.39
+    SOLUSDT     :  16 trade | WR= 50.0% | $  +46.36
+    BTCUSDT     :  16 trade | WR= 62.5% | $  +42.72
+    DOGEUSDT    :  10 trade | WR= 50.0% | $  +22.50
+    BNBUSDT     :  16 trade | WR= 56.2% | $  +14.67
+    ETHUSDT     :  13 trade | WR= 53.8% | $  +12.35
+    AVAXUSDT    :  20 trade | WR= 30.0% | $  -93.31
+    XRPUSDT     :  19 trade | WR= 21.1% | $ -105.13
+=================================================================
+
+  ­şôè KARAR: ÔØî KALDI ÔÇö PF=0.99, WR=47.0%
+
+#################################################################
+  VER─░ PER─░YODU: 90 G├£N
+#################################################################
+
+  ­şôÑ Veri indiriliyor (90 g├╝n)...
+     BTCUSDT... 600 mum Ô£ô
+     ETHUSDT... 600 mum Ô£ô
+     BNBUSDT... 600 mum Ô£ô
+     SOLUSDT... 600 mum Ô£ô
+     XRPUSDT... 600 mum Ô£ô
+     AVAXUSDT... 600 mum Ô£ô
+     DOGEUSDT... 600 mum Ô£ô
+     DOTUSDT... 600 mum Ô£ô
+
+=================================================================
+  COMBO SL=1.0 TP=1.0 HOLD=1 ÔÇö 90 G├£N
+=================================================================
+  Trade: 196 | Kazanan: 109 (55.6%) | Kaybeden: 87
+  PnL: $+185.30 | PF: 1.28 | MaxDD: $134.94
+  Ort.Kazan├ğ: $7.77
+  Ort.Kay─▒p: $7.61
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  25 trade | $ +402.09
+    TIME-EXIT      : 157 trade | $   +1.17
+    END            :   2 trade | $   -4.00
+    STOP-LOSS      :  12 trade | $ -213.96
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    EMA_PB      :  97 trade | WR= 53.6% | $ +190.54
+    VWAP_REV    :  91 trade | WR= 60.4% | $  +18.05
+    KELTNER     :   7 trade | WR= 28.6% | $   -9.14
+    MEAN_REV    :   1 trade | WR=  0.0% | $  -14.15
+
+  Coin bazl─▒:
+    ETHUSDT     :  23 trade | WR= 60.9% | $  +66.66
+    XRPUSDT     :  29 trade | WR= 72.4% | $  +52.87
+    SOLUSDT     :  22 trade | WR= 50.0% | $  +46.74
+    BNBUSDT     :  23 trade | WR= 56.5% | $  +35.60
+    DOGEUSDT    :  16 trade | WR= 68.8% | $  +27.64
+    BTCUSDT     :  27 trade | WR= 48.1% | $  -11.16
+    AVAXUSDT    :  26 trade | WR= 42.3% | $  -15.60
+    DOTUSDT     :  30 trade | WR= 50.0% | $  -17.45
+=================================================================
+
+  ­şôè KARAR: Ô£à GE├çT─░ ÔÇö PF=1.28, WR=55.6%
+
+=================================================================
+  COMBO SL=1.0 TP=1.0 HOLD=2 ÔÇö 90 G├£N
+=================================================================
+  Trade: 166 | Kazanan: 80 (48.2%) | Kaybeden: 86
+  PnL: $+0.72 | PF: 1.00 | MaxDD: $201.40
+  Ort.Kazan├ğ: $12.07
+  Ort.Kay─▒p: $11.22
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  45 trade | $ +721.76
+    END            :   2 trade | $   -4.00
+    TIME-EXIT      :  87 trade | $ -145.88
+    STOP-LOSS      :  32 trade | $ -571.16
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    VWAP_REV    :  71 trade | WR= 54.9% | $  +46.69
+    KELTNER     :   5 trade | WR= 40.0% | $  -12.16
+    MEAN_REV    :   1 trade | WR=  0.0% | $  -14.15
+    EMA_PB      :  89 trade | WR= 43.8% | $  -19.66
+
+  Coin bazl─▒:
+    ETHUSDT     :  20 trade | WR= 65.0% | $  +78.41
+    DOTUSDT     :  26 trade | WR= 57.7% | $  +30.94
+    SOLUSDT     :  19 trade | WR= 42.1% | $  +30.14
+    BTCUSDT     :  23 trade | WR= 52.2% | $   +9.13
+    BNBUSDT     :  19 trade | WR= 57.9% | $   -0.84
+    DOGEUSDT    :  12 trade | WR= 41.7% | $   -4.86
+    XRPUSDT     :  25 trade | WR= 36.0% | $  -45.28
+    AVAXUSDT    :  22 trade | WR= 31.8% | $  -96.93
+=================================================================
+
+  ­şôè KARAR: Ô£à GE├çT─░ ÔÇö PF=1.00, WR=48.2%
+
+=================================================================
+  COMBO SL=1.0 TP=1.2 HOLD=2 ÔÇö 90 G├£N
+=================================================================
+  Trade: 165 | Kazanan: 77 (46.7%) | Kaybeden: 88
+  PnL: $-5.55 | PF: 0.99 | MaxDD: $202.59
+  Ort.Kazan├ğ: $12.75
+  Ort.Kay─▒p: $11.22
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  36 trade | $ +682.00
+    END            :   2 trade | $   -4.00
+    TIME-EXIT      :  94 trade | $  -91.08
+    STOP-LOSS      :  33 trade | $ -592.47
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    VWAP_REV    :  71 trade | WR= 54.9% | $  +70.81
+    KELTNER     :   5 trade | WR= 40.0% | $  -13.35
+    MEAN_REV    :   1 trade | WR=  0.0% | $  -14.15
+    EMA_PB      :  88 trade | WR= 40.9% | $  -48.86
+
+  Coin bazl─▒:
+    ETHUSDT     :  20 trade | WR= 65.0% | $  +95.23
+    SOLUSDT     :  19 trade | WR= 42.1% | $  +51.86
+    BNBUSDT     :  19 trade | WR= 57.9% | $  +13.27
+    BTCUSDT     :  23 trade | WR= 52.2% | $   -1.09
+    DOGEUSDT    :  12 trade | WR= 41.7% | $  -10.31
+    XRPUSDT     :  25 trade | WR= 36.0% | $  -20.11
+    DOTUSDT     :  25 trade | WR= 48.0% | $  -53.50
+    AVAXUSDT    :  22 trade | WR= 31.8% | $  -80.89
+=================================================================
+
+  ­şôè KARAR: ÔØî KALDI ÔÇö PF=0.99, WR=46.7%
+
+=================================================================
+  COMBO SL=1.0 TP=1.5 HOLD=3 ÔÇö 90 G├£N
+=================================================================
+  Trade: 153 | Kazanan: 74 (48.4%) | Kaybeden: 79
+  PnL: $+38.28 | PF: 1.04 | MaxDD: $195.40
+  Ort.Kazan├ğ: $13.32
+  Ort.Kay─▒p: $11.99
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  25 trade | $ +574.52
+    TIME-EXIT      :  86 trade | $ +214.23
+    END            :   2 trade | $   -4.00
+    STOP-LOSS      :  40 trade | $ -746.46
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    VWAP_REV    :  66 trade | WR= 54.5% | $ +102.48
+    KELTNER     :   5 trade | WR= 40.0% | $   -8.32
+    MEAN_REV    :   1 trade | WR=  0.0% | $  -14.15
+    EMA_PB      :  81 trade | WR= 44.4% | $  -41.72
+
+  Coin bazl─▒:
+    ETHUSDT     :  18 trade | WR= 72.2% | $ +144.10
+    BNBUSDT     :  19 trade | WR= 52.6% | $  +26.32
+    DOGEUSDT    :  12 trade | WR= 58.3% | $  +23.33
+    BTCUSDT     :  21 trade | WR= 47.6% | $  +11.51
+    DOTUSDT     :  21 trade | WR= 47.6% | $   -0.15
+    SOLUSDT     :  17 trade | WR= 41.2% | $  -30.14
+    AVAXUSDT    :  20 trade | WR= 40.0% | $  -46.21
+    XRPUSDT     :  25 trade | WR= 36.0% | $  -90.47
+=================================================================
+
+  ­şôè KARAR: Ô£à GE├çT─░ ÔÇö PF=1.04, WR=48.4%
+
+=================================================================
+  COMBO SL=0.8 TP=1.0 HOLD=2 ÔÇö 90 G├£N
+=================================================================
+  Trade: 168 | Kazanan: 79 (47.0%) | Kaybeden: 89
+  PnL: $-18.89 | PF: 0.98 | MaxDD: $227.97
+  Ort.Kazan├ğ: $12.21
+  Ort.Kay─▒p: $11.05
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  45 trade | $ +721.76
+    TIME-EXIT      :  75 trade | $  +12.40
+    END            :   2 trade | $   -4.00
+    STOP-LOSS      :  46 trade | $ -749.05
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    EMA_PB      :  89 trade | WR= 43.8% | $   +4.16
+    VWAP_REV    :  73 trade | WR= 52.1% | $   -0.49
+    KELTNER     :   5 trade | WR= 40.0% | $  -10.84
+    MEAN_REV    :   1 trade | WR=  0.0% | $  -11.72
+
+  Coin bazl─▒:
+    ETHUSDT     :  20 trade | WR= 65.0% | $  +55.25
+    DOTUSDT     :  26 trade | WR= 53.8% | $  +19.99
+    BTCUSDT     :  23 trade | WR= 52.2% | $  +18.64
+    SOLUSDT     :  20 trade | WR= 40.0% | $  +17.46
+    BNBUSDT     :  19 trade | WR= 57.9% | $   +8.54
+    DOGEUSDT    :  13 trade | WR= 38.5% | $  -10.60
+    XRPUSDT     :  25 trade | WR= 36.0% | $  -30.48
+    AVAXUSDT    :  22 trade | WR= 31.8% | $  -97.71
+=================================================================
+
+  ­şôè KARAR: ÔØî KALDI ÔÇö PF=0.98, WR=47.0%
+
+#################################################################
+  VER─░ PER─░YODU: 120 G├£N
+#################################################################
+
+  ­şôÑ Veri indiriliyor (120 g├╝n)...
+     BTCUSDT... 780 mum Ô£ô
+     ETHUSDT... 780 mum Ô£ô
+     BNBUSDT... 780 mum Ô£ô
+     SOLUSDT... 780 mum Ô£ô
+     XRPUSDT... 780 mum Ô£ô
+     AVAXUSDT... 780 mum Ô£ô
+     DOGEUSDT... 780 mum Ô£ô
+     DOTUSDT... 780 mum Ô£ô
+
+=================================================================
+  COMBO SL=1.0 TP=1.0 HOLD=1 ÔÇö 120 G├£N
+=================================================================
+  Trade: 280 | Kazanan: 154 (55.0%) | Kaybeden: 126
+  PnL: $+202.00 | PF: 1.21 | MaxDD: $199.11
+  Ort.Kazan├ğ: $7.47
+  Ort.Kay─▒p: $7.53
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  40 trade | $ +570.80
+    TIME-EXIT      : 216 trade | $   +7.07
+    END            :   3 trade | $   -6.00
+    STOP-LOSS      :  21 trade | $ -369.87
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    EMA_PB      : 144 trade | WR= 50.7% | $ +137.78
+    VWAP_REV    : 127 trade | WR= 62.2% | $  +93.71
+    BB_BOUNCE   :   1 trade | WR=  0.0% | $   -6.20
+    KELTNER     :   7 trade | WR= 28.6% | $   -9.14
+    MEAN_REV    :   1 trade | WR=  0.0% | $  -14.15
+
+  Coin bazl─▒:
+    ETHUSDT     :  31 trade | WR= 61.3% | $  +80.05
+    SOLUSDT     :  37 trade | WR= 56.8% | $  +79.57
+    XRPUSDT     :  39 trade | WR= 61.5% | $  +31.65
+    DOGEUSDT    :  25 trade | WR= 64.0% | $  +16.88
+    DOTUSDT     :  40 trade | WR= 57.5% | $  +16.14
+    BNBUSDT     :  39 trade | WR= 48.7% | $  +15.30
+    AVAXUSDT    :  28 trade | WR= 42.9% | $  -10.58
+    BTCUSDT     :  41 trade | WR= 48.8% | $  -27.00
+=================================================================
+
+  ­şôè KARAR: Ô£à GE├çT─░ ÔÇö PF=1.21, WR=55.0%
+
+=================================================================
+  COMBO SL=1.0 TP=1.0 HOLD=2 ÔÇö 120 G├£N
+=================================================================
+  Trade: 240 | Kazanan: 122 (50.8%) | Kaybeden: 118
+  PnL: $+15.83 | PF: 1.01 | MaxDD: $257.57
+  Ort.Kazan├ğ: $10.68
+  Ort.Kay─▒p: $10.91
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  68 trade | $+1000.42
+    END            :   3 trade | $   -6.00
+    TIME-EXIT      : 123 trade | $ -162.28
+    STOP-LOSS      :  46 trade | $ -816.31
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    VWAP_REV    : 103 trade | WR= 62.1% | $ +176.98
+    KELTNER     :   5 trade | WR= 40.0% | $  -12.16
+    MEAN_REV    :   1 trade | WR=  0.0% | $  -14.15
+    BB_BOUNCE   :   1 trade | WR=  0.0% | $  -18.01
+    EMA_PB      : 130 trade | WR= 43.1% | $ -116.84
+
+  Coin bazl─▒:
+    ETHUSDT     :  27 trade | WR= 63.0% | $  +94.78
+    SOLUSDT     :  31 trade | WR= 51.6% | $  +88.83
+    DOTUSDT     :  34 trade | WR= 58.8% | $  +25.12
+    BTCUSDT     :  35 trade | WR= 48.6% | $   +2.70
+    BNBUSDT     :  33 trade | WR= 54.5% | $  -19.83
+    DOGEUSDT    :  21 trade | WR= 47.6% | $  -28.70
+    XRPUSDT     :  35 trade | WR= 45.7% | $  -37.40
+    AVAXUSDT    :  24 trade | WR= 33.3% | $ -109.68
+=================================================================
+
+  ­şôè KARAR: Ô£à GE├çT─░ ÔÇö PF=1.01, WR=50.8%
+
+=================================================================
+  COMBO SL=1.0 TP=1.2 HOLD=2 ÔÇö 120 G├£N
+=================================================================
+  Trade: 237 | Kazanan: 117 (49.4%) | Kaybeden: 120
+  PnL: $+28.32 | PF: 1.02 | MaxDD: $272.22
+  Ort.Kazan├ğ: $11.44
+  Ort.Kay─▒p: $10.92
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  53 trade | $ +939.28
+    END            :   3 trade | $   -6.00
+    TIME-EXIT      : 134 trade | $  -67.35
+    STOP-LOSS      :  47 trade | $ -837.62
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    VWAP_REV    : 102 trade | WR= 61.8% | $ +215.63
+    KELTNER     :   5 trade | WR= 40.0% | $  -13.35
+    MEAN_REV    :   1 trade | WR=  0.0% | $  -14.15
+    BB_BOUNCE   :   1 trade | WR=  0.0% | $  -18.01
+    EMA_PB      : 128 trade | WR= 40.6% | $ -141.80
+
+  Coin bazl─▒:
+    SOLUSDT     :  31 trade | WR= 51.6% | $ +125.22
+    ETHUSDT     :  27 trade | WR= 63.0% | $ +118.49
+    BNBUSDT     :  33 trade | WR= 54.5% | $   -2.28
+    BTCUSDT     :  34 trade | WR= 47.1% | $  -11.38
+    XRPUSDT     :  34 trade | WR= 44.1% | $  -22.41
+    DOGEUSDT    :  21 trade | WR= 47.6% | $  -32.61
+    DOTUSDT     :  33 trade | WR= 51.5% | $  -55.44
+    AVAXUSDT    :  24 trade | WR= 33.3% | $  -91.28
+=================================================================
+
+  ­şôè KARAR: Ô£à GE├çT─░ ÔÇö PF=1.02, WR=49.4%
+
+=================================================================
+  COMBO SL=1.0 TP=1.5 HOLD=3 ÔÇö 120 G├£N
+=================================================================
+  Trade: 217 | Kazanan: 112 (51.6%) | Kaybeden: 105
+  PnL: $+116.33 | PF: 1.09 | MaxDD: $252.58
+  Ort.Kazan├ğ: $12.60
+  Ort.Kay─▒p: $12.33
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  40 trade | $ +876.95
+    TIME-EXIT      : 118 trade | $ +276.82
+    END            :   3 trade | $   -6.00
+    STOP-LOSS      :  56 trade | $-1031.44
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    VWAP_REV    :  94 trade | WR= 56.4% | $ +239.22
+    KELTNER     :   5 trade | WR= 40.0% | $   -8.32
+    MEAN_REV    :   1 trade | WR=  0.0% | $  -14.15
+    BB_BOUNCE   :   1 trade | WR=  0.0% | $  -18.01
+    EMA_PB      : 116 trade | WR= 49.1% | $  -82.41
+
+  Coin bazl─▒:
+    ETHUSDT     :  24 trade | WR= 75.0% | $ +187.56
+    SOLUSDT     :  28 trade | WR= 57.1% | $  +80.35
+    BTCUSDT     :  31 trade | WR= 51.6% | $  +29.62
+    BNBUSDT     :  30 trade | WR= 56.7% | $   +9.07
+    DOGEUSDT    :  20 trade | WR= 50.0% | $  -35.27
+    DOTUSDT     :  28 trade | WR= 42.9% | $  -37.99
+    AVAXUSDT    :  22 trade | WR= 40.9% | $  -53.06
+    XRPUSDT     :  34 trade | WR= 41.2% | $  -63.96
+=================================================================
+
+  ­şôè KARAR: Ô£à GE├çT─░ ÔÇö PF=1.09, WR=51.6%
+
+=================================================================
+  COMBO SL=0.8 TP=1.0 HOLD=2 ÔÇö 120 G├£N
+=================================================================
+  Trade: 244 | Kazanan: 118 (48.4%) | Kaybeden: 126
+  PnL: $-63.13 | PF: 0.95 | MaxDD: $331.63
+  Ort.Kazan├ğ: $10.86
+  Ort.Kay─▒p: $10.67
+
+  ├ç─▒k─▒┼ş nedenleri:
+    TAKE-PROFIT    :  66 trade | $ +978.33
+    TIME-EXIT      : 108 trade | $  +35.80
+    END            :   3 trade | $   -6.00
+    STOP-LOSS      :  67 trade | $-1071.26
+
+  Alt strateji k─▒r─▒l─▒m─▒:
+    VWAP_REV    : 107 trade | WR= 56.1% | $  +64.28
+    KELTNER     :   5 trade | WR= 40.0% | $  -10.84
+    MEAN_REV    :   1 trade | WR=  0.0% | $  -11.72
+    BB_BOUNCE   :   1 trade | WR=  0.0% | $  -14.80
+    EMA_PB      : 130 trade | WR= 43.1% | $  -90.04
+
+  Coin bazl─▒:
+    ETHUSDT     :  27 trade | WR= 63.0% | $  +73.51
+    SOLUSDT     :  33 trade | WR= 51.5% | $  +60.98
+    BTCUSDT     :  35 trade | WR= 48.6% | $  +16.40
+    BNBUSDT     :  33 trade | WR= 54.5% | $   -2.02
+    DOTUSDT     :  35 trade | WR= 51.4% | $   -6.94
+    DOGEUSDT    :  22 trade | WR= 40.9% | $  -48.07
+    XRPUSDT     :  35 trade | WR= 40.0% | $  -50.63
+    AVAXUSDT    :  24 trade | WR= 33.3% | $ -106.35
+=================================================================
+
+  ­şôè KARAR: ÔØî KALDI ÔÇö PF=0.95, WR=48.4%
+
+  ­şôä Test tamamland─▒!

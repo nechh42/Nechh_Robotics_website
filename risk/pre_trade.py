@@ -152,26 +152,12 @@ class PreTradeRisk:
         size_by_notional = (equity * MAX_NOTIONAL_PCT) / signal.price  # Notional sinir
         size = min(size_by_risk, size_by_notional)                      # Guvenli olan
 
-        # Regime-based pozisyon boyutu çarpanı
+        # v0: Regime multiplier kapalı — tüm rejimlerde eşit
         regime_mult = 1.0
-        if regime == "RANGING":
-            regime_mult = 0.50
         size *= regime_mult
 
-        # Sentiment-based pozisyon boyutu çarpanı
+        # v0: Sentiment multiplier kapalı — basitlik
         sentiment_mult = 1.0
-        try:
-            from data.sentiment import fear_greed
-            fg = fear_greed.get_score()
-            if fg < 10:
-                sentiment_mult = 0.25
-            elif fg < 20:
-                sentiment_mult = 0.50
-            elif fg < 40:
-                sentiment_mult = 0.75
-            logger.info(f"[RISK] Sentiment={fg} → mult={sentiment_mult:.2f}, Regime={regime} → mult={regime_mult:.2f}")
-        except Exception:
-            pass
         size *= sentiment_mult
 
         if size < 0.0001:

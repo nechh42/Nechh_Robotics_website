@@ -68,7 +68,7 @@ def check_exit(pos: Position, price: float) -> Optional[str]:
                     pos.stop_loss = new_sl
 
     # ─── ACTIVATE TRAILING ──────────────────────────────
-    if not pos.trailing_active:
+    if not pos.trailing_active and config.TRAILING_STOP_ACTIVATE > 0:
         if pos.side == "LONG":
             profit_pct = (price - pos.entry_price) / pos.entry_price
             if profit_pct >= config.TRAILING_STOP_ACTIVATE:

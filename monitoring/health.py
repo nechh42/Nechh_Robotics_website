@@ -11,7 +11,15 @@ import logging
 from datetime import datetime, timedelta
 
 import config
-from data.sentiment import fear_greed
+
+# Sentiment modülü (opsiyonel — arşivdeyse de çalışsın)
+try:
+    from data.sentiment import fear_greed
+except ImportError:
+    class _DummyFG:
+        def get_score(self): return 0
+        def get_label(self): return "N/A"
+    fear_greed = _DummyFG()
 
 logger = logging.getLogger(__name__)
 

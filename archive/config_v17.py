@@ -1,12 +1,12 @@
 """
-config.py - War Machine v0 (COMBO V1)
+config.py - War Machine Configuration v13.0
 =======================================
-Single source of truth. 5 mean-reversion strateji.
+Single source of truth. All settings here.
 
-8 Nisan 2026: Combo V1 Paper Trading başlangıcı
-  - Strateji: ComboV1 (VWAP + EMA PB + Bollinger + Mean Rev + Keltner)
-  - Dinamik coin keşfi aktif
-  - MAX_HOLD=1 candle (4h)
+Degisiklikler (v13.0):
+  [FIX-1] MAX_POSITIONS: 4 -> 2 (deadlock onleme, $10k bakiyede 2 pozisyon yeterli)
+  [FIX-2] SYMBOLS: 24 coin -> 9 coin (kanıtlanmis, backtest'te karli olanlar)
+  [FIX-3] MAX_NOTIONAL_PCT config'e tasindi (pre_trade.py ile tutarli)
 """
 
 import os
@@ -18,27 +18,51 @@ load_dotenv()
 EXCHANGE = "BINANCE"
 BASE_CURRENCY = "USDT"
 
-# Coin listesi: Combo V1 backtest'te kârlı olan coinler
-# ADAUSDT ve LTCUSDT çıkarıldı (sürekli zararlı: -$27 ve -$44)
-# Dinamik coin keşfi ile liste otomatik güncellenecek
+# Coin listesi: VERIFIED kazanan kombinasyonlar SADECE
+# Edge Discovery v2.0'dan gelen yeni coinler eklendi
+# SHORT KAPALI: 57 trade, %35 WR, -$3,658 zarar kanıtlanmış
+# LONG-ONLY: %54 WR, +$2,679 kâr kanıtlanmış
 SYMBOLS = [
-    "BTCUSDT", "ETHUSDT", "BNBUSDT", "SOLUSDT", "XRPUSDT",
-    "AVAXUSDT", "DOGEUSDT", "DOTUSDT",
+    # === ÇEKİRDEK (19 coin, backtest'te kanıtlı + Edge keşfedilen) ===
+    # STRONG EDGE'LER (WR ≥ 60%)
+    "BTCUSDT", "ETHUSDT", "BNBUSDT",              # Top 3 market cap
+    "XRPUSDT", "SOLUSDT", "AVAXUSDT",             # Edge proven, strong patterns
+    
+    # GOOD EDGE'LER (WR 50-60%)
+    "ADAUSDT", "LTCUSDT", "DOGEUSDT",             # Trend down/oversold patterns
+    "AAVEUSDT", "UNIUSDT", "PEPEUSDT",            # Volatility/momentum patterns
+    
+    # VOLATIILITE + HACIM OYUNCULAR
+    "VETUSDT", "ZECUSDT", "FLOWUSDT",             # Strong momentum patterns
+    "LDOUSDT", "CRVUSDT", "OPUSDT",               # High volatility edges
+    
+    # === UYDU HAVUZU (Edge-based, dinamik) ===
+    "ATOMUSDT", "NEARUSDT",                       # Discovered patterns
+    "SUIUSDT", "INJUSDT",                         # Squeeze breakout, BB squeeze
+    "WIFUSDT", "ARPAUSDT",                        # Low volatility, BB squeeze
+    "XLMUSDT", "KAVAUSDT",                        # Legacy support
+    
+    # === v15.8 YENİ COİNLER (backtest kanıtlı) ===
+    "FILUSDT",                                      # %54.8 WR, +$114 (EN İYİ YENİ COİN)
+    "DOTUSDT",                                      # %43.5 WR, +$28 (büyük kazançlar)
+    "ARBUSDT",                                      # %51.9 WR, +$17 (kârlı)
 ]
 
-# Dinamik Coin Keşfi
-DYNAMIC_COIN_ENABLED = True
-DYNAMIC_COIN_INTERVAL = 21600    # 6 saat (saniye)
-DYNAMIC_COIN_MAX = 15            # Maksimum coin sayısı
-DYNAMIC_COIN_MIN_VOLUME = 50_000_000  # Min $50M günlük hacim
-DYNAMIC_COIN_BASE = [            # Her zaman listede kalacak coinler
-    "BTCUSDT", "ETHUSDT", "BNBUSDT", "SOLUSDT",
+# === EDGE DISCOVERY v3 AYARLARI ===
+ALLOW_EDGE_DISCOVERY = True                     # Edge patterns aktif
+TOP_3_COINS = [                                 # Backtest v3 kârlı coinler
+    "AAVEUSDT",   # %60 WR, +$40
+    "AVAXUSDT",   # %51.9 WR, +$32
+    "DOGEUSDT",   # %52 WR, +$31
 ]
+EDGE_DISCOVERY_FOCUS_MODE = True               # Sadece top 3'e odaklan
+EDGE_MIN_SAMPLE_SIZE = 50                      # N > 50 (istatistiksel güven)
+EDGE_MIN_WIN_RATE = 0.65                       # WR > 65% (yüksek kalite)
 
 # === PAPER TRADING v1 (7 günlük deneme) ===
 PAPER_TRADING_MODE = True                      # Bağlantı: REAL_TRADING_ENABLED=False
 PAPER_TRADING_DURATION_DAYS = 7               # 7 gün
-PAPER_TRADING_START_DATE = "2026-04-08"        # Combo V1 temiz başlangıç
+PAPER_TRADING_START_DATE = "2026-04-07"        # v16.1 temiz başlangıç
 PAPER_TRADING_LOG_SIGNALS = True               # Telegram'da sinyalleri kaydet
 
 # === LIKIDATION KORUMASI ===
@@ -68,7 +92,7 @@ INITIAL_BALANCE = 10000.0
 COMMISSION_RATE = 0.001         # 0.1% per trade
 
 # STRATEGY
-STRATEGY_MIN_CONFIDENCE = 0.55  # v0: biraz daha seçici
+STRATEGY_MIN_CONFIDENCE = 0.50  # [v17.1] PTP=100% config
 RSI_PERIOD = 14
 RSI_OVERSOLD = 30
 RSI_OVERBOUGHT = 70
@@ -90,10 +114,11 @@ BEAR_GUARD_ENABLED = False
 ALLOW_LONG = True                # LONG AÇIK: Sistem long-only mode'de
 ALLOW_SHORT = False  # SHORT KAPALI: genel olarak kapalı
 ALLOW_SHORT_CONDITIONAL = False  # [v16.1] KAPALI — backtest'te test edilmedi, temiz LONG-ONLY
-VOLATILE_BLOCK_ENABLED = False  # v0: kapalı
+VOLATILE_BLOCK_ENABLED = True
 
-# v0: Tüm rejim blokları kapalı — strateji kendi filtrelerini uygular
-TREND_UP_BLOCK = False
+# TREND_UP BLOCK — Backtest v3: 88 trade, %30.7 WR, -$842
+# Trend zirve girişleri sürekli kaybettiriyor → TREND_UP'ta işlem açma
+TREND_UP_BLOCK = True
 
 # DIP-BUY FILTER — DEVRE DIŞI: 48.8% < 49.3%, ters etki
 DIP_BUY_FILTER = False
@@ -108,8 +133,16 @@ MIN_VOLUME_RATIO = 0.70  # [v17.1] Volume filtresi (WebSocket volume fix ile ça
 # [8 Nisan] KAPALI: 6 trade ile model anlamsız, 50+ trade birikince aç
 ML_FILTER_ENABLED = False
 
-# v0: Blacklist boş — 10 coin hepsi açık
-COIN_BLACKLIST = []
+# COIN BLACKLIST — Backtest v3: WR<%30, sürekli zarar eden coinler
+# v15.5.0: UNIUSDT %16.7, ATOMUSDT %21.4, SOLUSDT %22.2, OPUSDT %25, NEARUSDT %25, XLMUSDT %25
+# v15.5.1: KAVAUSDT %33, INJUSDT %41, PEPEUSDT %44, ARPAUSDT %43 (hepsi net zararda)
+COIN_BLACKLIST = [
+    "UNIUSDT", "ATOMUSDT", "OPUSDT", "NEARUSDT", "XLMUSDT", "SOLUSDT",  # WR<%30
+    "KAVAUSDT", "INJUSDT", "PEPEUSDT", "ARPAUSDT",                       # WR<%45, net zararda
+    "SUIUSDT",                                                             # v15.5.2: %30 WR, -$50
+    "BNBUSDT", "XRPUSDT", "LDOUSDT",                                      # [v15.7] WR<%45, net zararda
+    "BTCUSDT",              # [v16.0] 45.7% WR, -$6 net | BL→PF 1.51→1.56 (+$47)
+]
 
 # RISK (PRE-TRADE)
 MAX_POSITION_SIZE_PCT = 0.10   # Her pozisyon max equity %10 notional
@@ -132,24 +165,28 @@ MAX_ATR_VOLATILITY = 0.05
 SL_ATR_MULTIPLIER = 1.5        # Fallback (kullanılmıyorsa)
 TP_ATR_MULTIPLIER = 3.0        # Fallback (kullanılmıyorsa)
 
-# v0: Tüm rejimlerde aynı SL/TP — basit, eşit
+# Regime-based Dynamic R:R
+# RANGING: Dar SL/TP → hızlı kapanış (4-8h), R:R=1.5:1
+# TREND_UP/DOWN: Geniş TP → trend yakala, R:R=2.67:1
 DYNAMIC_RR = {
-    "TREND_UP":   {"sl": 1.0, "tp": 1.0},
-    "TREND_DOWN": {"sl": 1.0, "tp": 1.0},
-    "RANGING":    {"sl": 1.0, "tp": 1.0},
-    "VOLATILE":   {"sl": 1.0, "tp": 1.0},
+    "TREND_UP":   {"sl": 1.5, "tp": 4.0},   # R:R = 2.67:1 (BLOCKED by TREND_UP_BLOCK)
+    "TREND_DOWN": {"sl": 1.5, "tp": 4.0},   # R:R = 2.67:1
+    "RANGING":    {"sl": 1.0, "tp": 1.2},   # R:R = 1.2:1 [v15.5] 1.5→1.2
+    "VOLATILE":   {"sl": 1.5, "tp": 3.0},   # R:R = 2.0:1 (fallback)
 }
 
-# v0: Partial TP kapalı — sadece SL veya TP
-PARTIAL_TP_ENABLED = False
-PARTIAL_TP_RATIO = 0.50
-PARTIAL_TP_CLOSE_PCT = 0.50
+# PARTIAL TAKE PROFIT
+PARTIAL_TP_ENABLED = True
+PARTIAL_TP_RATIO = 0.50       # TP1 = TP mesafesinin %50'si
+PARTIAL_TP_CLOSE_PCT = 1.00   # [v18-TEST] TP1'de %100 kapat — scalp: TP1→TAM ÇIKIŞ
 
-# v0: Breakeven kapalı — basitlik
-BREAKEVEN_ATR_TRIGGER = 0  # 0 = devre dışı
+# BREAKEVEN STOP
+BREAKEVEN_ATR_TRIGGER = 0.7    # [v15.5] 1.0→0.7 (0.5 çok agresif, 0.7 optimal)
 
-# v0: 1 candle = 4 saat — veriden kanıtlı: 4h'de çıkış +$514
-MAX_HOLD_CANDLES = 1
+# MAX HOLD — v15.5: 3 candle, v15.7: 2 candle
+# Analiz: 1 candle WR=49.9% +$518, 2 candle WR=46.5% -$167, 3 candle WR=48.6% -$413
+# MAX_HOLD=2 → PnL +$96, PF=1.06, MaxDD=2.8% (baseline'dan +$157 iyileşme)
+MAX_HOLD_CANDLES = 2           # [v15.7] 3→2 candle (8h sonra pozisyonu kapat)
 
 # SMART EXIT (Regime Change)
 SMART_EXIT_ENABLED = True       # Regime değiştiğinde akıllı çıkış
@@ -159,14 +196,13 @@ SMART_EXIT_ENABLED = True       # Regime değiştiğinde akıllı çıkış
 FUNDING_FEE_RATE = 0.0001     # 0.01% per 8 hours (Binance default)
 FUNDING_FEE_INTERVAL = 28800  # 8 saat = 28800 saniye
 
-# v0: MTF kapalı — basitlik
-MTF_ENABLED = False
+# MTF CONFIRMATION (15m trigger)
+MTF_ENABLED = True             # 15m onay gate'i aktif
 MTF_MAX_RETRIES = 4            # Max 4×15m = 1 saat bekleme
 MTF_MIN_CANDLES = 20           # Minimum 15m candle for analysis
 
-# v0: Trailing stop kapalı
-TRAILING_STOP_ACTIVATE = 0  # 0 = devre dışı
-TRAILING_STOP_DISTANCE = 0
+TRAILING_STOP_ACTIVATE = 0.035
+TRAILING_STOP_DISTANCE = 0.01
 
 # CORRELATION GROUPS — [v16.1] Aktif 14 coin'e göre güncellendi
 CORRELATION_GROUPS = [

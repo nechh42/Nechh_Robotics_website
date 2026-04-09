@@ -1,0 +1,648 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║  WAR MACHINE — KAPSAMLI GELİŞTİRME PLANI                          ║
+║  Hazırlanma: 6 Nisan 2026                                          ║
+║  Son Güncelleme: 7 Nisan 2026 — v16.0 PF=1.56!                    ║
+║  Mevcut Durum: v16.0 — 52.9% WR, +$638, PF=1.56                  ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  "FUTURES'TA POZİSYON BU KADAR UZUN SÜRER Mİ?" SORUSUNUN CEVABI
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+KISA CEVAP: Mevcut ayarlarla EVET, normal. Ama GERÇEK futures'ta
+TEHLİKELİ olabilir — çünkü funding fee var.
+
+NEDEN TEHLİKELİ:
+
+1. FUNDING FEE: Binance Futures'ta her 8 saatte bir funding ödemesi var.
+   - Genelde %0.01 (%0.03/gün, %0.9/ay)
+   - Extreme Fear'da (şu an fg=13) long pozisyonlar FEE ÖDER
+   - 15 saatlik pozisyon = 2 funding dönemi = ~%0.02 kayıp
+   - $250 notional × %0.02 = $0.05 (küçük ama birikir)
+
+2. ATR-BASED TP ÇOK GENİŞ:
+   - Şu anki: TP = 3.0 × ATR
+   - BTC ATR = $496 → TP mesafesi = $1,488 (giriş fiyatının %2.15'i)
+   - 4h mumda ortalama hareket = ~$300-500
+   - TP'ye ulaşmak = 3-4 mum = 12-16 saat (normal)
+   - AMA: Ranging piyasada ortalamaya dönüş = TP'ye asla ulaşmaz
+
+3. RANGING PİYASADA 2:1 R:R SORUNLU:
+   - Piyasanın %58'i RANGING (15/26 coin)
+   - Ranging = fiyat ileri geri salınır
+   - TP çok uzak → SL'ye dönme olasılığı yüksek
+   - Çözüm: Regime'e göre dinamik R:R
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ÖNCELİK 1: ACİL — İLK HAFTA YAPILMASI GEREKENLER
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  1.1  DİNAMİK R:R — Regime'e Göre TP Ayarla                       │
+│  ETKİ: ★★★★★  ZORLUK: ★★☆☆☆  RİSK: Düşük                        │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  SORUN: Sabit 2:1 R:R her piyasaya uymuyor.                       │
+│  Trending'de 3:1 bile az — fiyat koşuyor.                          │
+│  Ranging'de 2:1 çok fazla — fiyat dönüyor.                        │
+│                                                                     │
+│  ÇÖZÜM:                                                            │
+│    TREND_UP / TREND_DOWN:                                          │
+│      SL = 1.5 × ATR                                               │
+│      TP = 4.0 × ATR  (R:R = 2.67:1)                              │
+│      → Trend devam ederse büyük kâr                                │
+│                                                                     │
+│    RANGING:                                                         │
+│      SL = 1.0 × ATR                                               │
+│      TP = 1.5 × ATR  (R:R = 1.5:1)                               │
+│      → Hızlı giriş-çıkış, ortalamaya dönüş yakalanır              │
+│      → Breakeven WR = %40 (ulaşılabilir)                          │
+│                                                                     │
+│    VOLATILE:                                                        │
+│      Trade açılmıyor (zaten bloklu)                                │
+│                                                                     │
+│  DEĞİŞECEK DOSYALAR:                                              │
+│    - config.py: SL/TP multiplier'ları regime-based dict olacak     │
+│    - risk/pre_trade.py: regime'e göre SL/TP hesaplama              │
+│    - engine/orchestrator.py: SL/TP'yi regime ile geçirme           │
+│                                                                     │
+│  BEKLENTİ:                                                         │
+│    - Ranging trade'ler 4-8 saatte kapanır (şu an 15+ saat)        │
+│    - Trend trade'ler daha fazla kâr getirir                        │
+│    - Toplam win rate artışı beklenir (%5-10)                       │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  1.2  FUNDING FEE HESAPLAMA (GERÇEK TRADE İÇİN KRİTİK)           │
+│  ETKİ: ★★★★☆  ZORLUK: ★★★☆☆  RİSK: Düşük                        │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  SORUN: Paper trade'de funding fee yok. Gerçekte var.              │
+│  Her 8 saatte bir %0.01 ödeme. 24 saatlik pozisyon = %0.03.       │
+│  TP'si %2 olan trade'de funding %0.03 = kârın %1.5'ini yer.       │
+│                                                                     │
+│  ÇÖZÜM:                                                            │
+│    1. Binance API'den canlı funding rate çek                       │
+│    2. Paper trade PnL'ye funding fee ekle (simüle et)              │
+│    3. Pre-trade check: funding rate > %0.05 ise pozisyon açma      │
+│    4. Holding süresi × funding rate = ek maliyet olarak kaydet     │
+│                                                                     │
+│  DEĞİŞECEK DOSYALAR:                                              │
+│    - data/datafeed.py: Funding rate stream ekle                    │
+│    - execution/paper.py: Funding fee simülasyonu                   │
+│    - risk/pre_trade.py: Funding rate kontrolü                      │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  1.3  PARTIAL TP (Kısmi Kâr Alma)                                  │
+│  ETKİ: ★★★★☆  ZORLUK: ★★★☆☆  RİSK: Orta                         │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  SORUN: Ya full TP ya full SL — arada hiçbir şey yok.             │
+│  BTC'de fiyat 1.5% yükseldi, sonra geri döndü → kâr sıfır.       │
+│                                                                     │
+│  ÇÖZÜM:                                                            │
+│    TP1 = 1.5 × ATR → Pozisyonun %50'sini kapat + SL'yi           │
+│                        breakeven'a taşı                             │
+│    TP2 = 3.0 × ATR → Kalan %50'yi kapat                           │
+│                                                                     │
+│  ETKİ:                                                              │
+│    - Kârlı trade'lerin bir kısmı garanti altında                   │
+│    - SL breakeven'a taşınınca risk = 0                             │
+│    - Asla "kârdayken zarara dönmez" senaryosu                      │
+│    - Psikolojik rahatlık büyük                                     │
+│                                                                     │
+│  DEĞİŞECEK DOSYALAR:                                              │
+│    - engine/state.py: partial_closed_pct field ekle                │
+│    - risk/stop_manager.py: TP1 kontrolü + SL → BE taşıma          │
+│    - execution/paper.py: Kısmi kapama desteği                      │
+│    - persistence/database.py: partial state kaydetme               │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ÖNCELİK 2: ÖNEMLİ — İLK 2 HAFTADA YAPILMASI GEREKENLER
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  2.1  1h TIMEFRAME'İ AKTİFLEŞTİR (Daha Hızlı Giriş/Çıkış)       │
+│  ETKİ: ★★★★☆  ZORLUK: ★★★☆☆  RİSK: Orta                         │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  SORUN: Sistem 4h candle close'da sinyal üretiyor.                 │
+│  Bir sonraki değerlendirme = 4 saat sonra.                         │
+│  Fırsat kaçırma oranı çok yüksek.                                  │
+│                                                                     │
+│  MEVCUT DURUM:                                                      │
+│    - 1h CandleManager zaten var ve veri topluyor                   │
+│    - AMA: on_candle_close=None → sinyal üretmiyor                  │
+│    - Sadece RSI stratejisi 1h veriye bakıyor (ama 4h candle       │
+│      close'da tetikleniyor)                                         │
+│                                                                     │
+│  ÇÖZÜM:                                                            │
+│    1. candles_1h'ın on_candle_close callback'ini aktifleştir       │
+│    2. 1h kapanışta: SADECE RANGING rejimde VWAP + RSI çalıştır    │
+│    3. 4h kapanışta: TRENDING rejimde MOMENTUM + EDGE çalıştır     │
+│    4. Pozisyon boyutunu 1h trade'lerde %50 küçült (daha hızlı,    │
+│       daha küçük)                                                   │
+│                                                                     │
+│  ETKİ:                                                              │
+│    - Günde 6 sinyal noktası → 24 sinyal noktası                   │
+│    - Ranging piyasada daha hızlı giriş/çıkış                      │
+│    - Trending piyasada hâlâ büyük hamleler                         │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  2.2  BREAKEVEN STOP (Risk-Free Trade Sistemi)                     │
+│  ETKİ: ★★★★☆  ZORLUK: ★★☆☆☆  RİSK: Düşük                        │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  SORUN: Trailing %3.5'te aktifleşiyor. Ama birçok trade           │
+│  +%1-2'ye çıkıp geri dönüyor. Trailing hiç aktifleşmeden         │
+│  SL'ye ulaşıyor.                                                   │
+│                                                                     │
+│  ÇÖZÜM:                                                            │
+│    Fiyat +1.0 × ATR (TP yolunun %33'ü) kâra geçtiğinde:          │
+│    → SL'yi entry price'a taşı (breakeven)                          │
+│    → Artık bu trade'den asla zarar gelmez                          │
+│    → Trailing %3.5'te ayrıca aktifleşir                            │
+│                                                                     │
+│  DEĞİŞECEK DOSYA:                                                  │
+│    - risk/stop_manager.py: breakeven check ekle (5 satır)          │
+│                                                                     │
+│  ETKİ:                                                              │
+│    - Kaybeden trade sayısı düşer                                   │
+│    - Toplam risk azalır                                            │
+│    - Zararlı trade'ler → sıfır trade'ye dönüşür                   │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  2.3  VOTİNG SİSTEMİ İYİLEŞTİRME                                  │
+│  ETKİ: ★★★☆☆  ZORLUK: ★★☆☆☆  RİSK: Düşük                        │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  SORUN: 4 stratejinin eşit ağırlıklı oyu kullanılıyor ama         │
+│  aslında regime_weights config'te farklı tanımlı.                  │
+│  Orchestrator'da "equal weights" hardcoded.                         │
+│                                                                     │
+│  MEVCUT KOD (orchestrator.py):                                      │
+│    equal_weights = {"RSI": 0.25, "MOMENTUM": 0.25,                │
+│                     "VWAP": 0.25, "EDGE_DISCOVERY": 0.25}         │
+│    → Config'teki REGIME_WEIGHTS kullanılmıyor!                     │
+│                                                                     │
+│  ÇÖZÜM:                                                            │
+│    1. REGIME_WEIGHTS'e EDGE_DISCOVERY ekle                         │
+│    2. Orchestrator'da regime_weights kullan, hardcoded kaldır       │
+│    3. TREND'de: MOMENTUM %40 + EDGE %30 + RSI %15 + VWAP %15     │
+│    4. RANGING'de: VWAP %35 + RSI %30 + EDGE %20 + MOMENTUM %15   │
+│                                                                     │
+│  ETKİ:                                                              │
+│    - Trend piyasada momentum ağırlıklı (doğru davranış)           │
+│    - Ranging piyasada mean reversion ağırlıklı (doğru davranış)   │
+│    - Edge discovery her yerde katkı sağlar                         │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ÖNCELİK 3: STRATEJİK — İLK AY İÇİNDE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  3.1  MULTI-TIMEFRAME CONFIRMATION                                 │
+│  ETKİ: ★★★★☆  ZORLUK: ★★★★☆  RİSK: Orta                         │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  FİKİR: "Büyük resim + küçük resim" prensibi                      │
+│                                                                     │
+│    Katman 1 (4h): Trend yönünü belirle (REGIME)                   │
+│    Katman 2 (1h): Giriş noktası bul (RSI, VWAP)                  │
+│    Katman 3 (15m): Tetik çek (fiyat hareketi konfirmasyonu)       │
+│                                                                     │
+│  AVANTAJ:                                                           │
+│    - Yanlış sinyal oranı dramatik düşer                            │
+│    - Giriş zamanlaması çok daha iyi                                │
+│    - Daha dar SL = daha büyük pozisyon = daha fazla kâr            │
+│                                                                     │
+│  ZORLUK:                                                            │
+│    - 15m candle manager eklenmeli                                  │
+│    - 26 coin × 3 timeframe = 78 stream → performance              │
+│    - Kod karmaşıklığı artar                                       │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  3.2  SMART EXIT — Regime Değişim Çıkışı                           │
+│  ETKİ: ★★★★☆  ZORLUK: ★★☆☆☆  RİSK: Orta                         │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  SORUN: Pozisyon TREND_UP'ta açıldı, rejim RANGING'e döndü.       │
+│  Sistem hâlâ TP bekliyor ama fiyat artık trend yapmıyor.           │
+│  Ne SL ne TP — sonsuza kadar açık kalır.                           │
+│                                                                     │
+│  ÇÖZÜM (dikkatli):                                                 │
+│    Pozisyon açıldığındaki regime'i kaydet.                          │
+│    Eğer regime değişirse VE pozisyon kârdaysa:                     │
+│      → Kârlı kapat (regime change exit)                            │
+│    Eğer regime değişirse VE pozisyon zarardaysa:                   │
+│      → TP'yi daralt (regime_new'a göre)                            │
+│      → SL'yi değiştirme (koruma)                                   │
+│                                                                     │
+│  NOT: Daha önce regime-based exit VARDI ve kaldırıldı çünkü       │
+│  her 4h'de pozisyon kapatıyordu. Bu sefer KÂRDA İSE kapatma      │
+│  kuralı ekleniyor — zararda zorla kapatma YOK.                     │
+│                                                                     │
+│  DEĞİŞECEK DOSYALAR:                                              │
+│    - engine/state.py: entry_regime field                            │
+│    - engine/orchestrator.py: regime change check (_on_candle_close) │
+│    - risk/stop_manager.py: dynamic TP adjustment                   │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  3.3  ORDER BOOK DEPTH ANALİZİ (Likidite Duvarları)               │
+│  ETKİ: ★★★☆☆  ZORLUK: ★★★★☆  RİSK: Düşük                        │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  FİKİR: Binance order book'tan büyük alım/satım duvarlarını       │
+│  tespit et.                                                        │
+│                                                                     │
+│  KULLANIM:                                                          │
+│    1. TP'yi büyük satış duvarının önüne koy (ulaşılabilir TP)     │
+│    2. SL'yi büyük alış duvarının arkasına koy (destek koruması)   │
+│    3. Likidite thin ise trade açma (manipülasyon riski)             │
+│                                                                     │
+│  TEKNİK:                                                            │
+│    - Binance depth stream: wss://stream.binance.com                │
+│    - İlk 20 seviye yeterli                                         │
+│    - Büyük duvar ≥ 5× ortalama seviye hacmi                        │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  3.4  BACKTEST MOTORU v3 — Gerçekçi Simülasyon                     │
+│  ETKİ: ★★★★★  ZORLUK: ★★★★☆  RİSK: Yok (sadece analiz)          │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  SORUN: Mevcut backtest ile live sistem arasında uyumsuzluk var.   │
+│  Backtest'te kazanan strateji live'da çalışmıyor.                  │
+│                                                                     │
+│  İHTİYAÇ:                                                          │
+│    1. Tick-level backtest (candle close yerine)                    │
+│    2. Funding fee dahil                                            │
+│    3. Slippage simülasyonu (%0.05)                                 │
+│    4. Regime detection live ile aynı kod                           │
+│    5. Pre-trade checks live ile aynı                               │
+│    6. MFE/MAE analizi (trade kalitesi ölçümü)                     │
+│                                                                     │
+│  ÇIKTI:                                                             │
+│    - Her parametre seti için: WR, PnL, MaxDD, Sharpe, Avg RR      │
+│    - Optimal SL/TP/trailing parametre matrisi                      │
+│    - "Hangi coin, hangi regime'de, hangi stratejiyle kârlı?"       │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ÖNCELİK 4: GELECEK — 2. AY VE SONRASI
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  4.1  ML-TABANLİ SİNYAL FİLTRESİ                                  │
+│  → Trade açmadan önce ML modeli "bu trade kârlı olur mu?" sorar   │
+│  → Geçmiş trade'lerden öğrenir (regime + indicators + coin)        │
+│  → İlk 100 trade sonrası aktifleştirilebilir                      │
+│                                                                     │
+│  4.2  DİNAMİK COİN SEÇİMİ                                        │
+│  → Her hafta edge scan yap, en iyi 10 coin'i seç                  │
+│  → Düşük hacimli/spreadli coinleri otomatik ele                    │
+│  → Yeni listingler otomatik eklensin                               │
+│                                                                     │
+│  4.3  KORELASYON MATRISI                                           │
+│  → Aynı anda BTC + ETH + BNB LONG = %300 BTC maruz kalma         │
+│  → Mevcut korelasyon grupları çok basit                            │
+│  → Rolling correlation hesapla, max %150 net exposure              │
+│                                                                     │
+│  4.4  PORTFOLIO-LEVEL RISK                                         │
+│  → Tek pozisyon SL'si yerine portföy VaR hesapla                  │
+│  → Toplam portföy drawdown > %5 ise tüm pozisyonları kapat       │
+│  → Günlük kayıp limiti $200 → akıllı position reduction           │
+│                                                                     │
+│  4.5  LIVE TRADE GEÇİŞİ                                           │
+│  → Paper'dan live'a geçiş checklist'i                              │
+│  → İlk $100 ile test (mikro pozisyon)                              │
+│  → 50 kârlı paper trade ZORUNLU (şu an 0)                         │
+│  → Emergency kill switch (Telegram'dan "STOP" komutu)              │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  MEVCUT SİSTEMİN SWOT ANALİZİ
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  GÜÇLÜ YANLAR (Strengths):
+    ✓ Tick-by-tick SL/TP kontrolü (instant execution)
+    ✓ 4-strateji voting sistemi (tek strateji riski yok)
+    ✓ Wilder ADX + DI (gerçek regime detection)
+    ✓ Gradual sentiment (akıllı pozisyon boyutu)
+    ✓ Correlation grupları (aşırı maruz kalma engeli)
+    ✓ Edge Discovery (veri-odaklı coin seçimi)
+    ✓ DB persistence (restart-safe)
+    ✓ Telegram bildirimleri (şeffaflık)
+
+  ZAYIF YANLAR (Weaknesses):
+    ✗ Sabit R:R — regime'e uymuyor
+    ✗ 4h sinyal → fırsat kaçırma yüksek
+    ✗ Funding fee yok → gerçek PnL yanıltıcı
+    ✗ Partial TP yok → ya hep ya hiç
+    ✗ Regime weights kullanılmıyor (hardcoded eşit ağırlık)
+    ✗ Breakeven stop yok → kârlı trade zarara dönüyor
+    ✗ Backtest-live uyumsuzluğu
+
+  FIRSATLAR (Opportunities):
+    ○ 1h timeframe zaten altyapısı var, aktifleştirmek kolay
+    ○ Binance API zengin (orderbook, funding, OI)
+    ○ 26 coin havuzu geniş — dinamik seçim yapılabilir
+    ○ Extreme Fear = tarihsel dip → iyi giriş noktaları
+    ○ Trailing stop mekanizması var, geliştirilmeli
+
+  TEHDİTLER (Threats):
+    ✘ Funding fee birikimi (uzun holding süreleri)
+    ✘ Flash crash → SL atlanabilir (gap risk, paper'da yok)
+    ✘ API rate limit → pozisyon kaçırma
+    ✘ Exchange downtime → pozisyon yönetimi kaybolur
+    ✘ Extreme Fear uzarsa → tüm long'lar zarar eder
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  UYGULAMA SIRASI (ROADMAp)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  HAFTA 1 (Acil — Paper trade devam ederken):
+    [1] ✅ Dinamik R:R (1.1)             → TAMAMLANDI (6 Nisan 2026)
+        → config.py: DYNAMIC_RR dict eklendi
+        → pre_trade.py: regime'e göre SL/TP çarpanları
+        → RANGING: SL=1.0×ATR, TP=1.5×ATR (R:R=1.5:1)
+        → TREND: SL=1.5×ATR, TP=4.0×ATR (R:R=2.67:1)
+    [2] ✅ Breakeven Stop (2.2)          → TAMAMLANDI (6 Nisan 2026)
+        → stop_manager.py: +1×ATR kârda SL → entry price
+        → state.py: _entry_atr, _breakeven_applied fields
+        → paper.py: ATR kaydı pozisyon açarken
+    [3] ✅ Funding Fee simülasyonu (1.2)  → TAMAMLANDI (6 Nisan 2026)
+        → orchestrator.py: _apply_funding_fee() her tick'te
+        → config.py: FUNDING_FEE_RATE=0.0001, INTERVAL=28800s
+        → state.py: _total_funding_paid, _last_funding_time
+    [+] ✅ Voting düzeltme (2.3)         → TAMAMLANDI (6 Nisan 2026)
+        → Hardcoded eşit ağırlık → config.REGIME_WEIGHTS
+        → EDGE_DISCOVERY ağırlığı tüm regime'lere eklendi
+        → TREND: MOMENTUM %45 dominant
+        → RANGING: VWAP %35 dominant
+
+  HAFTA 2 (Önemli):
+    [4] ✅ Partial TP (1.3)             → TAMAMLANDI (6 Nisan 2026)
+        → stop_manager.py: TP1 kontrolü (PARTIAL-TP1 sinyali)
+        → state.py: partial_close_position() metodu
+        → config.py: PARTIAL_TP_RATIO=0.50, PARTIAL_TP_CLOSE_PCT=0.50
+        → TP1 = TP mesafesinin %50'si, %50 pozisyon kapatır
+        → TP1 sonrası SL → entry (breakeven)
+    [5] ✅ 1h sinyal üretimi (2.1)      → TAMAMLANDI (6 Nisan 2026)
+        → orchestrator.py: _on_candle_close_1h + _evaluate_strategies_1h
+        → SADECE RANGING rejimde, RSI + VWAP çalışır
+        → 1h pozisyon boyutu %50 küçültülmüş
+        → 4h regime detection korunuyor (1h noise yok)
+        → Günde 6 sinyal → 24 sinyal noktası
+
+  AUDIT FIX (v15.1):
+    [6] ✅ SL/TP Floor Fix               → TAMAMLANDI (6 Nisan 2026)
+        → ESKİ: price×0.015 SL + price×0.030 TP = sabit 2.0:1 R:R
+        → YENİ: price×0.005 floor + orantılı TP ölçekleme
+        → Dynamic R:R artık GERÇEKTEN çalışıyor
+        → TREND 2.67:1, RANGING 1.50:1 doğrulandı (6 test PASS)
+    [+] ✅ 1h Voting Weight Fix           → TAMAMLANDI (6 Nisan 2026)
+        → RSI, RANGING'de sinyal üretmiyor (NONE döner)
+        → 1h weights {"RSI":0.50,"VWAP":0.50} → {"RSI":0.0,"VWAP":1.0}
+
+  HAFTA 3-4 (Stratejik):
+    [7] ✅ Smart Exit — regime change (3.2) → TAMAMLANDI (6 Nisan 2026)
+        → state.py: _entry_regime field eklendi
+        → pre_trade.py: entry_regime params'ta döner
+        → paper.py: open_order'da _entry_regime kaydedilir
+        → orchestrator.py: _check_smart_exit() — 4h candle close'da kontrol
+        → KÂRDA + regime change → pozisyon kapatılır
+        → ZARARDA + regime change → TP yeni regime'e göre daraltılır, SL değişmez
+        → config.py: SMART_EXIT_ENABLED = True
+        → DB save/restore entry_regime destekli
+
+  EDGE DISCOVERY KRİTİK FIX (v15.3):
+    [+] ✅ Edge Direction Bug Fix         → TAMAMLANDI (6 Nisan 2026)
+        → KRİTİK BUG: En iyi 3 edge (%87, %84, %81 WR) SHORT olarak
+          sınıflandırılmıştı → ALLOW_SHORT=False → HİÇ ATEŞLENMIYORDU!
+        → GERÇEK: Pozitif AvgRet = fiyat YUKARI gider = LONG sinyali
+        → FIX: Tüm edge pattern'leri LONG'a taşındı
+        → _calculate_short_score() tamamen kaldırıldı
+        → 3 katmanlı puanlama: Tier1 (WR≥75%), Tier2 (60-75%), Tier3 (50-60%)
+        → 15 coin-spesifik ağırlık (_get_coin_weights) eklendi
+        → FOCUS_MODE: TOP_3_COINS'de ×1.15 boost
+        → edge_top.txt + edge_top_validated.csv sonuçları TAM entegre
+
+    [8] ✅ Backtest v3 (3.4)             → TAMAMLANDI (6 Nisan 2026)
+        → backtest/backtest_v3.py: Live sistemi birebir simüle eder
+        → 4 strategy voting (RSI, Momentum, VWAP, EdgeDiscovery)
+        → Dynamic R:R, Partial TP, Breakeven Stop, Smart Exit
+        → Funding fee simulation (0.01% per 8h)
+        → MFE/MAE analizi per trade
+        → Regime/strategy bazlı performans breakdown
+        → CLI: python -m backtest.backtest_v3 --all --days 60 --save
+
+    [9] ✅ MTF confirmation (3.1)        → TAMAMLANDI (6 Nisan 2026)
+        → engine/mtf_confirmation.py: 15m confirmation gate
+        → 4h trend → 1h entry → 15m trigger (3 katmanlı)
+        → 4 kriter: RSI>40, Price>EMA9, 2/3 yeşil mum, hacim>ort
+        → 3/4 kriter gerekli, max 4 retry (1 saat), sonra expire
+        → Orchestrator v11.0: Triple candle manager (4h+1h+15m)
+        → config.py: MTF_ENABLED=True, MTF_MAX_RETRIES=4
+
+  AY 2+ (Gelecek):
+    [10] ✅ Parametre Optimizasyonu (v15.5) → TAMAMLANDI (8 Nisan 2026)
+        → İLK KÂRLI BACKTEST: 688 trade, %49.3 WR, +$15, PF=1.01
+        → v15.4 vs v15.5: WR %43.7→%49.3, PnL -$969→+$15, MaxDD %12.5→%3.5
+        → 6 cerrahi optimizasyon:
+          1. TREND_UP_BLOCK=True (88 trade, %30.7 WR, -$842 kurtarıldı)
+          2. RANGING TP 1.5→1.2×ATR (daha fazla TP vuruşu)
+          3. BREAKEVEN 1.0→0.7×ATR (kâr daha erken korunur)
+          4. MAX_HOLD_CANDLES=3 (12h sonra pozisyon kapatılır)
+          5. COIN_BLACKLIST: 11 coin filtrelendi (UNI, ATOM, OP, NEAR, XLM,
+             SOL, KAVA, INJ, PEPE, ARPA, SUI)
+          6. PARTIAL_TP_CLOSE_PCT %50→%70 (AvgWin>AvgLoss sağlandı)
+        → TOP_3_COINS güncellendi: AAVE, AVAX, DOGE (backtest kârlılar)
+        → Orchestrator + pre_trade + stop_manager tutarlı güncellendi
+    [10.5] ✅ Futures Kaldıraçlı Backtest (v15.6) → TAMAMLANDI (6 Nisan 2026)
+        → backtest/backtest_futures.py: Gerçek Binance Futures simülasyonu
+        → Isolated margin, likidasyon fiyatı, funding fee (%0.01/8h)
+        → Futures komisyon: %0.04 taker (spot %0.1 yerine)
+        → 1x / 3x / 5x / 10x kaldıraç karşılaştırması (60 gün)
+        ┌─────────────────────────────────────────────────────┐
+        │  KARŞILAŞTIRMA SONUÇLARI (60 gün, $10,000)         │
+        │                                                     │
+        │  Kaldıraç │ Trade │  WR   │   PnL   │  PF  │ MaxDD │
+        │  ────────┼───────┼───────┼─────────┼──────┼─────── │
+        │     1x   │  686  │ 48.8% │  +$90   │ 1.06 │ 20.1% │
+        │     3x   │  679  │ 48.9% │  +$79   │ 1.03 │ 22.0% │
+        │     5x   │  679  │ 48.9% │   +$5   │ 1.00 │ 18.6% │
+        │    10x   │  679  │ 48.9% │   -$1   │ 1.00 │ 12.3% │
+        │                                                     │
+        │  ✅ LİKİDASYON: SIFIR (tüm kaldıraç seviyeleri)    │
+        └─────────────────────────────────────────────────────┘
+        → KARAR: Risk-bazlı position sizing kaldıraçta fark yaratmıyor
+        → Kaldıraç arttıkça komisyon + funding birikir, PnL eriyor
+        → 1x (SPOT) en iyi PF (1.06), en düşük masraf
+        → SONUÇ: KALDIRAÇ ÇIKARILDI — SPOT BACKTESTE DEVAM EDİLECEK
+        → backtest/futures_comparison.txt dosyasına tam sonuç kaydedildi
+
+    [10.7] ✅ WR %50+ Optimizasyonu (v15.7) → TAMAMLANDI (6 Nisan 2026)
+        → İLK KEZ WR>%50 AŞILDI! 677 trade, %50.5 WR, +$316, PF=1.22
+        → v15.5 → v15.7: WR %48.7→%50.5, PnL -$60→+$316, MaxDD %3.8→%1.9
+        → 7 A/B test + 7 kombinasyon testi yapıldı (deep_analysis.py + combo_test.py)
+        → 3 cerrahi optimizasyon:
+          1. MAX_HOLD_CANDLES 3→2 (8h sonra kapat, 3. candle zararlı)
+          2. PARTIAL_TP_CLOSE_PCT %70→%80 (daha fazla kâr kilitle)
+          3. COIN_BLACKLIST +3: BNBUSDT(%41.3 WR), XRPUSDT(%44.8), LDOUSDT(%41.7)
+        → Toplam BLACKLIST: 14 coin (26→12 aktif coin)
+        → AvgWin=$5.14 > AvgLoss=$4.31 (sürdürülebilir edge)
+
+    [10.8] ✅ Coin Expansion (v15.8)     → TAMAMLANDI (7 Nisan 2026)
+        → 7 coin seti test edildi (coin_expansion_test.py)
+        → 8 TIME-EXIT optimizasyonu test edildi (time_exit_optimize.py)
+        → TIME-EXIT: Hiçbir test baseline'ı geçemedi → v15.7 optimal
+        → v15.7 → v15.8: WR %50.5→%51.2, PnL +$316→+$462, PF 1.22→1.30
+        → 3 yeni coin eklendi (backtest kanıtlı):
+          1. FILUSDT: %54.8 WR, +$114 (EN İYİ YENİ COİN)
+          2. DOTUSDT: %43.5 WR, +$28 (büyük kazançlar)
+          3. ARBUSDT: %51.9 WR, +$17 (kârlı)
+        → LINKUSDT test edildi ama EKLENMEDİ (%33.3 WR, -$14)
+        → Toplam aktif coin: 15 (29 SYMBOLS - 14 BLACKLIST)
+        → MaxDD: %1.8 (tarihi en düşük!)
+
+    [11] ✅ ML Sinyal Filtresi (v15.9)    → TAMAMLANDI (7 Nisan 2026)
+        → ML feature importance analizi: volume_ratio #1 feature
+        → GradientBoosting eğitildi ama test accuracy %50 (overfitting)
+        → Data-driven kural yaklaşımına geçildi: 25 A/B test + 4 combo
+        → KAZANAN: MIN_VOLUME_RATIO = 0.70
+          (Hacim < 20-mum ort. %70'i → trade açma = zayıf sinyal filtresi)
+        → v15.8 → v15.9:
+          WR %51.2→%52.4, PnL +$462→+$579, PF 1.30→1.49, MaxDD 1.8%→1.7%
+        → 108 kötü trade engellendi, AvgLoss $4.48→$4.08'e düştü
+        → config.py + orchestrator.py (4h+1h) + backtest_v3.py güncellendi
+        → PF=1.49: KALDIРАÇ HEDEFİ PF>1.5'E ÇOK YAKIN!
+    [12] ✅ Dinamik Coin Seçimi (v16.0)   → TAMAMLANDI (7 Nisan 2026)
+        → 8 A/B dinamik coin rotation testi (dynamic_coin_test.py)
+        → WEEKLY-TOP10/8/12, DROP-WR<40/45, TOP10-3W, HOT-COLD
+        → SONUÇ: Sabit liste optimal — dinamik seçim baseline'ı geçemedi
+        → Coin bazlı deep analysis: 13/15 coin kârlı
+        → 4 blacklist testi (coin_blacklist_test.py):
+          - BL+BTC: PF 1.51→1.56 (+$47) ★ KAZANAN
+          - BL+LTC: PF 1.51→1.49 (-$13) ✗ Zarar
+          - BL+LTC+BTC: PF 1.51→1.54 (+$39) İyi ama BTC-only daha iyi
+        → BTCUSDT blacklist'e eklendi (45.7% WR, -$6 net zararda)
+        → v15.9 → v16.0:
+          WR %52.4→%52.9, PnL +$579→+$638, PF 1.49→1.56, MaxDD 1.7%
+        → 14 aktif coin: ETH,AVAX,ADA,LTC,DOGE,AAVE,VET,ZEC,FLOW,CRV,WIF,FIL,DOT,ARB
+        → PF=1.56: KALDIРАÇ EŞİĞİ (PF>1.5) GEÇİLDİ! ★★★
+    [13] ✅ Kaldıraç Re-Test (v16.1)     → TAMAMLANDI (7 Nisan 2026)
+        → v16.0 optimizasyonlarıyla futures backtest: 1x/3x/5x/10x
+        → Volume filter backtest_futures.py'ye eklendi
+        → v15.6'daki PF=1.06 ile karşılaştırma (v16.0 PF=1.75 @ 1x futures!)
+        ┌─────────────────────────────────────────────────────┐
+        │  v16.1 FUTURES KARŞILAŞTIRMA (60 gün, $10,000)     │
+        │                                                     │
+        │  Kaldıraç │ Trade │  WR   │    PnL    │  PF  │ DD  │
+        │  ────────┼───────┼───────┼───────────┼──────┼───── │
+        │     1x   │  596  │ 54.4% │   +$740   │ 1.75 │ 20% │
+        │     3x   │  596  │ 54.4% │ +$1,514   │ 1.71 │ 21% │
+        │     5x   │  596  │ 54.4% │ +$1,567   │ 1.70 │ 18% │
+        │    10x   │  596  │ 54.4% │ +$1,606   │ 1.70 │ 10% │
+        │                                                     │
+        │  ✅ LİKİDASYON: SIFIR (tüm kaldıraç seviyeleri)    │
+        │  ✅ FUNDING FEE: $0 (MAX_HOLD=2 → funding yetişmez)│
+        └─────────────────────────────────────────────────────┘
+        → v15.6 vs v16.1: 1x PnL $90→$740 (8x!), 3x $79→$1514 (19x!)
+        → KARAR: 3x KALDIРАÇ OPTİMAL
+          - PnL 2x çarpan ($740→$1514)
+          - PF yüksek (1.71)
+          - 0 likidasyon
+          - Futures komisyon avantajı (%0.04 vs %0.10 spot)
+        → config.py: LEVERAGE = 3
+    [14] Live trade geçişi (SONRAKI ADIM)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  SAYISAL HEDEFLER (Paper Trade'den Beklentiler)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Mevcut (v14):
+    - Trade sıklığı: ~4 trade/gün (4h candle close)
+    - Ort. holding süresi: 12-24 saat (tahmin)
+    - Win rate hedef: >%45 (breakeven %33.3 for 2:1)
+    - Max drawdown hedef: <%5
+
+  Dinamik R:R sonrası (v15 hedef):
+    - Ranging trade'ler: 4-8 saatte kapanır
+    - Trending trade'ler: 8-24 saatte kapanır
+    - Win rate: >%50 (ranging'de %40 WR yeterli with 1.5:1)
+    - Günlük trade: 6-8 (1h sinyal aktifleşince daha fazla)
+
+  Live geçiş minimum gereksinimleri:
+    - 50+ paper trade tamamlanmış
+    - Overall WR > %45
+    - MaxDD < %5
+    - Sharpe > 0.5
+    - 0 kritik bug (Telegram uyarısı almadan 7 gün)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  SON SÖZ
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Pozisyonların 15+ saat açık kalması şu anki ayarlarla NORMAL.
+  GERÇEK futures'ta bu süre tehlikeli (funding fee).
+  
+  En acil çözüm: DİNAMİK R:R (Ranging'de 1.5:1, Trend'de 2.67:1).
+  Bu tek değişiklik pozisyon kapanma süresini yarıya indirir,
+  win rate'i artırır, ve gerçek trade'e geçişi hızlandırır.
+
+  İkinci acil: BREAKEVEN STOP. 5 satır kod, büyük etki.
+  Kârdaki trade asla zarara dönmez.
+
+  Üçüncü acil: FUNDING FEE simülasyonu. Gerçeği görmeden 
+  live'a geçmek intihar olur.
+
+  Plan hazır. Onayınızla başlıyorum.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+###### ÖNEMLİ ######
+
+"C:\war_machine\edge makinesi" BU KLASÖRDE " C:\war_machine\edge_discovery.py" SONUÇLARI VAR !!DİKKATE ALMAYI UNUTMA!!!!
+
+→→→ v15.3'TE TAM ENTEGRE EDİLDİ ✅ (6 Nisan 2026)
+    - edge_top.txt: 40 top edge (WR%, AvgRet, forward windows)
+    - edge_top_validated.csv: 28+ validated edge with statistics
+    - 15 coin-spesifik ağırlık sisteme gömüldü
+    - Direction bug düzeltildi (SHORT→LONG)
+    - FOCUS_MODE aktif (TOP_3: ARPAUSDT, SOLUSDT, XRPUSDT)
