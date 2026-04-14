@@ -83,8 +83,30 @@ class Supervisor:
         logger.info(f"Telegram: {'ON' if BOT_TOKEN else 'OFF'}")
         logger.info("=" * 50)
 
+        # PID dosyası yaz (watchdog için)
+        pid_file = os.path.join(LOG_DIR, "supervisor.pid")
+        with open(pid_file, "w") as f:
+            f.write(str(os.getpid()))
+
+        # Watchdog durumunu kontrol et
         try:
-            _telegram("🟢 <b>WAR MACHINE SUPERVISOR STARTED</b>")
+            import subprocess as _sp
+            result = _sp.run(
+                ["schtasks", "/Query", "/TN", "WarMachineWatchdog", "/FO", "CSV", "/NH"],
+                capture_output=True, encoding="cp857", errors="replace", timeout=10
+            )
+            watchdog_on = "WarMachineWatchdog" in result.stdout
+        except Exception:
+            watchdog_on = False
+
+        wd_status = "WATCHDOG: ON ✅" if watchdog_on else "WATCHDOG: OFF ⚠️"
+        logger.info(wd_status)
+
+        try:
+            _telegram(
+                f"🟢 <b>WAR MACHINE SUPERVISOR STARTED</b>\n"
+                f"🛡️ {wd_status}"
+            )
         except Exception:
             pass
 

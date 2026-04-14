@@ -425,6 +425,9 @@ class Orchestrator:
                     continue
                 # Stablecoin ve leveraged token hariç
                 base = sym.replace("USDT", "")
+                # ASCII olmayan semboller filtrele (bozuk Unicode coinler)
+                if not sym.isascii() or not base.isalpha():
+                    continue
                 if base in ("USDC", "BUSD", "DAI", "TUSD", "FDUSD", "USDD",
                             "USD1", "USDP", "AEUR", "EURI", "EUR", "PAXG"):
                     continue
