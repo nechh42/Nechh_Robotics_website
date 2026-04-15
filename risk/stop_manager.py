@@ -53,34 +53,61 @@ def check_exit(pos: Position, price: float) -> Optional[str]:
                     logger.info(f"[BREAKEVEN] {symbol}: SL ${old_sl:.2f} → ${pos.stop_loss:.2f} (entry)")
 
     # ─── TRAILING STOP UPDATE ───────────────────────────
+    # [ADIM 9] ATR bazlı trailing: 0.3×ATR mesafe
     if pos.trailing_active:
+        trail_dist_atr = getattr(config, 'TRAIL_DISTANCE_ATR', 0.3)
+        entry_atr = getattr(pos, '_entry_atr', 0)
         if pos.side == "LONG":
             if price > pos.trailing_peak:
                 pos.trailing_peak = price
-                new_sl = price * (1 - config.TRAILING_STOP_DISTANCE)
+                if entry_atr > 0:
+                    new_sl = price - entry_atr * trail_dist_atr
+                else:
+                    new_sl = price * (1 - config.TRAILING_STOP_DISTANCE)
                 if new_sl > pos.stop_loss:
                     pos.stop_loss = new_sl
         else:  # SHORT
             if price < pos.trailing_peak:
                 pos.trailing_peak = price
-                new_sl = price * (1 + config.TRAILING_STOP_DISTANCE)
+                if entry_atr > 0:
+                    new_sl = price + entry_atr * trail_dist_atr
+                else:
+                    new_sl = price * (1 + config.TRAILING_STOP_DISTANCE)
                 if new_sl < pos.stop_loss:
                     pos.stop_loss = new_sl
 
     # ─── ACTIVATE TRAILING ──────────────────────────────
-    if not pos.trailing_active and config.TRAILING_STOP_ACTIVATE > 0:
-        if pos.side == "LONG":
-            profit_pct = (price - pos.entry_price) / pos.entry_price
-            if profit_pct >= config.TRAILING_STOP_ACTIVATE:
-                pos.trailing_active = True
-                pos.trailing_peak = price
-                logger.info(f"[TRAIL] {symbol}: Trailing activated at ${price:.2f} (+{profit_pct*100:.2f}%)")
-        else:  # SHORT
-            profit_pct = (pos.entry_price - price) / pos.entry_price
-            if profit_pct >= config.TRAILING_STOP_ACTIVATE:
-                pos.trailing_active = True
-                pos.trailing_peak = price
-                logger.info(f"[TRAIL] {symbol}: Trailing activated at ${price:.2f} (+{profit_pct*100:.2f}%)")
+    # [ADIM 9] ATR bazlı aktivasyon: 0.7×ATR kâr
+    if not pos.trailing_active:
+        trail_activate_atr = getattr(config, 'TRAIL_ACTIVATE_ATR', 0)
+        entry_atr = getattr(pos, '_entry_atr', 0)
+        if trail_activate_atr > 0 and entry_atr > 0:
+            if pos.side == "LONG":
+                activate_price = pos.entry_price + entry_atr * trail_activate_atr
+                if price >= activate_price:
+                    pos.trailing_active = True
+                    pos.trailing_peak = price
+                    logger.info(f"[TRAIL] {symbol}: Trailing activated at ${price:.2f} (+{(price-pos.entry_price)/pos.entry_price*100:.2f}%)")
+            else:  # SHORT
+                activate_price = pos.entry_price - entry_atr * trail_activate_atr
+                if price <= activate_price:
+                    pos.trailing_active = True
+                    pos.trailing_peak = price
+                    logger.info(f"[TRAIL] {symbol}: Trailing activated at ${price:.2f} (+{(pos.entry_price-price)/pos.entry_price*100:.2f}%)")
+        elif config.TRAILING_STOP_ACTIVATE > 0:
+            # Fallback: yüzde bazlı (ATR yoksa)
+            if pos.side == "LONG":
+                profit_pct = (price - pos.entry_price) / pos.entry_price
+                if profit_pct >= config.TRAILING_STOP_ACTIVATE:
+                    pos.trailing_active = True
+                    pos.trailing_peak = price
+                    logger.info(f"[TRAIL] {symbol}: Trailing activated at ${price:.2f} (+{profit_pct*100:.2f}%)")
+            else:  # SHORT
+                profit_pct = (pos.entry_price - price) / pos.entry_price
+                if profit_pct >= config.TRAILING_STOP_ACTIVATE:
+                    pos.trailing_active = True
+                    pos.trailing_peak = price
+                    logger.info(f"[TRAIL] {symbol}: Trailing activated at ${price:.2f} (+{profit_pct*100:.2f}%)")
 
     # ─── CHECK STOP LOSS ────────────────────────────────
     if pos.side == "LONG" and price <= pos.stop_loss:

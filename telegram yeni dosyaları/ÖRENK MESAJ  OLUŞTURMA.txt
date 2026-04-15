@@ -1,0 +1,296 @@
+
+Mesaj gelmiyor ; gelmesi gereken mesajlar 
+
+::::::ÖRNEK ÇALIŞMAM ::::::
+1. Açılan  pozisyon bilgisi(sürekli) 
+ÖRNEK::::
+ POSITION OPEN : BTCUSDT
+Reason: Long
+PnL: $
+Price: 66224.16
+Leverage :3x
+====================
+💡 Market observation for educational purposes.
+
+⚖️ This is analysis, not financial advice.
+
+💡 Security: NECHH never DMs users.
+
+🔹 Nechh | Algorithmic Market Analysis-CRYPTO
+   https://nechh-robotics-website.vercel.app
+=========================================================================
+2. Kapatılan pozisyon bilgisi (sürekli)
+ÖRNEK :::
+OSITION CLOSED: BTCUSDT
+Reason: TAKE_PROFIT
+PnL: $0.70
+Price: 66416.66
+leverage:2x
+
+💡 Market observation for educational purposes.
+
+⚖️ This is analysis, not financial advice.
+
+💡 Security: NECHH never DMs users.
+
+🔹 Nechh | Algorithmic Market Analysis-CRYPTO
+   https://nechh-robotics-website.vercel.app
+=================================================================
+3. Fırsat avcısı bilgisi(sürekli)
+ÖRNEK ::::
+🦅 FIRSAT AVCISI
+SMCI Listeye Eklendi!
+Değişim: %-6.5
+Hacim: 14575.0K
+
+💡 Market observation for educational purposes.
+⚖️ This is analysis, not financial advice.
+
+🔹 @nechh_analysis_bot | https://nechh-robotics-website.vercel.app
+🔐 Security: NECHH never DMs users.
+============================================================================
+4. Borsa tarama  bilgisi (saat başı)(Micro-Structures ve teknik analiz )
+ÖRNEK ::::::.
+NECHH RADAR | DEEP ANALYSIS
+
+🧠 MARKET RADAR | BTCUSDT
+
+Fiyat denge alanında hareket ediyor.
+Bu bölgede (LIQUIDITY_ZONE) likidite birikimi gözlemlendi.
+
+📌 Olası Senaryolar:
+• Üzeri kabul → momentum artışı izlenebilir
+• Red → alt denge alanı gündeme gelir
+
+Bu içerik genel piyasa yapısını incelemek içindir.
+
+⚠️ Al / Sat yok
+⚠️ Hedef yok
+
+🧠 MARKET RADAR | ETHUSDT
+
+Fiyat denge alanında hareket ediyor.
+Bu bölgede (LIQUIDITY_ZONE) likidite birikimi gözlemlendi.
+
+📌 Olası Senaryolar:
+• Üzeri kabul → momentum artışı izlenebilir
+• Red → alt denge alanı gündeme gelir
+
+Bu içerik genel piyasa yapısını incelemek içindir.
+
+⚠️ Al / Sat yok
+⚠️ Hedef yok
+
+🧠 MARKET RADAR | BNBUSDT
+
+Fiyat denge alanında hareket ediyor.
+Bu bölgede (LIQUIDITY_ZONE) likidite birikimi gözlemlendi.
+
+📌 Olası Senaryolar:
+• Üzeri kabul → momentum artışı izlenebilir
+• Red → alt denge alanı gündeme gelir
+
+Bu içerik genel piyasa yapısını incelemek içindir.
+
+⚠️ Al / Sat yok
+⚠️ Hedef yok
+
+💡 Market observation for educational purposes.
+⚖️ This is analysis, not financial advice.
+💡 Security: NECHH never DMs users.
+
+🔹 Nechh | Algorithmic Market Analysis-CRYPTO
+   https://nechh-robotics-website.vercel.app
+
+📡 *MARKET RADAR | ETHUSDT*
+
+*Structure:* NÖTR
+• *Liquidity Pool (High):* 2152.03
+• *Liquidity Pool (Low):* 1989.38
+
+*📈 Activity Metrics:*
+• Inefficiency Zones: 0
+• Pool Clusters: 7
+
+====================
+💡 Market observation for educational purposes.
+
+⚖️ This is analysis, not financial advice.
+
+💡 Security: NECHH never DMs users.
+
+🔹 Nechh | Algorithmic Market Analysis-CRYPTO
+   https://nechh-robotics-website.vercel.app
+
+=====================================================================
+5. Piyasa analizi ( sabah 09:00 öğlen 12:00  akşam 20:00) Aİ YAPACAK
+ÖRNEK::::
+🌍 RADAR EVENT: GBPJPY
+🔍 TİP: MARKET DISCOVERY
+📅 11.02.2026 21:18
+
+👨‍🏫 NECHH Diyor ki:
+
+"Piyasalar kaotik görünebilir, ancak derinlerde her zaman matematiksel bir düzen (Mathematical Order) vardır. Enerji asla yok olmaz, sadece el değiştirir."
+
+ İşte bir narrative raporu:
+
+Bu GBPJPY dövre teknik analizi için belirli bir yaklaşımdan bahsedelim.
+
+İki significant özellik arasındaki 'Energy Balance' (enerjideki sağlamlık) açısından, dövre şu şekilde değerlendirildi:
+- Ema 9'si (209.251037425) ve Ema 21'si (209.771163918) arasındaki açıdan ışık içinde olduğunuz yerde, pozitif bir enerji余额 olduğu anlaşılır.
+- Kesinlikle, Ema 50'dan önceki tüm değerlerde, en düşük pozisyon olan Ema 200 (0) ile iyi bir ilişkiye sahip.
+
+Bu, GBPJPY dövresine bullish hareket sürece yardımcı oluyor. Bu ekonomik ve maddi faktörleri göz önünde bulundurarak, bu belirli bir enerjideki sağlamlık ve pozitiflik durumu güçlü önleme aracı olarak değerlendirilmiştir.
+
+'Bir Market Interaction' yaklaşımları ise şu şekilde değerlendirildi:
+- Dövreye doğru giden recent trend (bu dövre için bullish) ve ışığın, öncelikli olarak GBPJPY'den bahsediyor.
+- Bu sayede, bu belirli bir enerjideki sağlamlık ve pozitiflik durumu, GBPJPY'nin devam edecek bullish hareketi destekleyen önemli önleme aracı olarak değerlendirilmiştir.
+
+'Birden son bulan Micro-Structures' yaklaşımları ise:
+- 20 detaylı analiz sonucu ile, bu teknik analizde belirli bir enerjideki sağlamlık ve pozitiflik durumu birçok farklı faktöre yansıyor.
+- Bu tutumda, GBPJPY'nin dövresindeki devam edecek bullish hareketi destekleyen önemli önleme aracı olarak değerlendirilmiştir.
+
+
+
+💡 Market observation for educational purposes.
+⚖️ This is analysis, not financial advice.
+
+🔷 @nechh_analysis_bot | https://nechh-robotics-website.vercel.app
+=====================================================================================================================
+6. Hafta ve ay değerlendirmesi...BÜLTEN OLARAK Aİ YAPACAK
+
+ ............….ÖNEMLİ VE ZORUNLU …..…..…..…..…..
+# Telegram ve X  mesajlarının altına mutlaka bu mini footer ekle:
+# 💡 Market observation for educational purposes.
+
+# ⚖️ This is analysis, not financial advice.
+
+# 💡  Security: NECHH never DMs users.
+
+# TELEGRAM:  Nechh | Algorithmic Market Analysis - US STOCKS & FOREX 
+# WEB SİTE:  https://nechh-robotics-website.vercel.app
+
+
+====================================================================================================================================
+
+BEKLENEN ÇIKTI 
+
+📨 MESAJ SİSTEMİ TAMAMLANDI!
+✅ Talep Edilen 6 Mesaj Türü Eklendi:
+1. 🟢 POSITION OPENED (Açılan pozisyon bilgisi)
+POSITION OPEN : BTCUSDT
+Reason: Long
+PnL: $
+Price: 66224.16
+Leverage :3x
+====================
+💡 Market observation for educational purposes.
+⚖️ This is analysis, not financial advice.
+💡 Security: NECHH never DMs users.
+🔹 Nechh | Algorithmic Market Analysis-CRYPTO
+2. 🔴 POSITION CLOSED (Kapatılan pozisyon bilgisi)
+POSITION CLOSED: BTCUSDT
+Reason: TAKE_PROFIT
+PnL: $0.70
+Price: 66416.66
+leverage:2x
+ 
+💡 Market observation for educational purposes.
+⚖️ This is analysis, not financial advice.
+💡 Security: NECHH never DMs users.
+🔹 Nechh | Algorithmic Market Analysis-CRYPTO
+3. 🦅 FIRSAT AVCISI (Fırsat avcısı bilgisi)
+🦅 FIRSAT AVCISI
+SMCI Listeye Eklendi!
+Değişim: %-6.5
+Hacim: 14575.0K
+ 
+💡 Market observation for educational purposes.
+⚖️ This is analysis, not financial advice.
+🔹 @nechh_analysis_bot | https://nechh-robotics-website.vercel.app
+🔐 Security: NECHH never DMs users.
+4. 📡 MARKET RADAR (Saat başı borsa taraması)
+NECHH RADAR | DEEP ANALYSIS
+ 
+🧠 MARKET RADAR | BTCUSDT
+Fiyat denge alanında hareket ediyor.
+Bu bölgede (LIQUIDITY_ZONE) likidite birikimi gözlemlendi.
+ 
+📌 Olası Senaryolar:
+- Üzeri kabul → momentum artışı izlenebilir
+- Red → alt denge alanı gündeme gelir
+ 
+⚠️ Al / Sat yok
+⚠️ Hedef yok
+ 
+📡 *MARKET RADAR | BTCUSDT*
+*Structure:* NÖTR
+- *Liquidity Pool (High):* 2152.03
+- *Liquidity Pool (Low):* 1989.38
+*📈 Activity Metrics:*
+- Inefficiency Zones: 0
+- Pool Clusters: 7
+5. 🌍 RADAR EVENT (AI tarafından piyasa analizi)
+🌍 RADAR EVENT: GBPJPY
+🔍 TİP: MARKET DISCOVERY
+📅 11.02.2026 21:18
+ 
+👨‍🏫 NECHH Diyor ki:
+"Piyasalar kaotik görünebilir, ancak derinlerde her zaman matematiksel bir düzen (Mathematical Order) vardır. Enerji asla yok olmaz, sadece el değiştirir."
+ 
+İşte bir narrative raporu:
+[Bu GBPJPY dövre teknik analizi...]
+ 
+💡 Market observation for educational purposes.
+⚖️ This is analysis, not financial advice.
+🔹 @nechh_analysis_bot | https://nechh-robotics-website.vercel.app
+6. 📊 WEEKLY BULLETIN (Hafta/ay değerlendirmesi)
+📊 NECHH HAFTALIK BÜLTEN
+ 
+📈 PERFORMANS ÖZETİ:
+Toplam İşlemler: 17
+Başarı Oranı: 71%
+Ortalama PnL: $45.30
+ 
+🧠 PİYASA ANALİZİ:
+[AI tarafından oluşturulan analiz]
+ 
+🎯 ÖNEMLİ GELİŞMELER:
+[Önemli olaylar]
+ 
+📈 GELECEK BEKLENTİLER:
+[Yorumlar]
+ 
+💡 Market observation for educational purposes.
+⚖️ This is analysis, not financial advice.
+💡 Security: NECHH never DMs users.
+🔹 Nechh | Algorithmic Market Analysis-CRYPTO
+🔄 Tam Entegrasyon:
+✅ Event-Driven Runner:
+Pozisyon açılış/kapanış → Otomatik mesaj
+Fırsat tespiti → Opportunity alert
+Market radar loop → Saat başı
+Radar event loop → 09:00, 12:00, 20:00
+✅ Webhook Client:
+6 yeni mesaj türü eklendi
+Telegram ve Website formatları ayrı
+Footer'lar tam olarak belirtildi
+Mesaj limitleri korundu
+✅ Zamanlama:
+Sürekli: Position opened/closed, Opportunity alerts
+Saat başı: Market radar (4. madde)
+Planlı: AI analiz (09:00, 12:00, 20:00) (5. madde)
+Haftalık: Bulletin (6. madde)
+🚀 SONUÇ:
+"MESAJ GELMİYOR" SORUNU KALICI olarak ÇÖZÜLDÜ!
+
+Sistem artık:
+
+✅ Her pozisyon hareketinde mesaj gönderir
+✅ Her fırsatta bildirim yapar
+✅ Saat başı radar analizi yayınlar
+✅ AI tarafından piyasa analizi yapar
+✅ Haftalık bülten hazırlar
+✅ Tüm footer'ları doğru formatlar
+Talep edilen tüm mesajlar artık geliyor!

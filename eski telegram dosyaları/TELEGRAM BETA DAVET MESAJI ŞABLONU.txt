@@ -1,0 +1,60 @@
+# Örnek Python kod parçası
+from telegram import Update
+from telegram.ext import Application, CommandHandler, ContextTypes
+
+BETA_WELCOME = """
+🔔 Hoş geldiniz, Nechh Robotics Beta Üyesi!
+
+Sisteme katıldığınız için teşekkür ederiz.  
+Kripto Spot piyasası için AI destekli analiz bildirimlerini 24 saat içinde almaya başlayacaksınız.
+
+📌 Unutmayın:
+• Bu sistem finansal tavsiye sunmaz.
+• Sinyaller yalnızca bilgilendirme amaçlıdır.
+• Yatırım kararlarınız kendi sorumluluğunuzdadır.
+
+Sorularınız için: nechhlab.global@gmail.com
+
+— Nechh Robotics | AI-Powered Market Intelligence
+"""
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(BETA_WELCOME)
+
+# Bot başlatma kısmı
+app = Application.builder().token("7977276479:AAH8Wtd6uz0hpU0SGqd8Z_IFCwv8JtY-OYo").build()
+app.add_handler(CommandHandler("start", start))
+app.run_polling()
+
+
+⚠️ AMA DİKKAT!
+Web formundan sadece e-posta alıyorsunuz — Telegram ID’si yok.
+Bu yüzden kullanıcıya özel mesaj göndermek için ya:
+Kullanıcının Telegram kullanıcı adını isteyin (örn. @hasan),
+Ya da grup linkiyle davet edin (daha kolay ve güvenli).
+
+
+
+EN İYİ ÇÖZÜM: GRUP LİNKİYLE DAVET
+Telegram grubunuzun davet linkini alın (örn: https://t.me/+abc123...)
+Web sitesindeki başarı mesajını şöyle güncelleyin:
+js
+1
+✅ Bu şekilde:
+Kullanıcıyı takip etmenize gerek kalmaz
+Gizlilik korunur
+Otomasyon basit kalır
+
+
+🔑 NE YAPMALISINIZ?
+1. Telegram Grup Davet Linkinizi Alın
+Telegram grubunuza girin
+Üç nokta (⋯) → "Davet Linki" → "Süresiz Bağlantı Oluştur"
+Örnek link: https://t.me/+AbC123XyZ456
+2. Yukarıdaki Kodda Şu Satırı Güncelleyin
+
+Yukarıdaki Kodda Şu Satırı Güncelleyin
+const GROUP_INVITE_LINK = "https://t.me/+abc123xyz"; // ← BURAYI DEĞİŞTİRİN!
+
+→ Kendi linkinizi yazın:
+const GROUP_INVITE_LINK = "https://t.me/+AbC123XyZ456";

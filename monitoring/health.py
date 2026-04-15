@@ -12,9 +12,9 @@ from datetime import datetime, timedelta
 
 import config
 
-# Sentiment modülü (opsiyonel — arşivdeyse de çalışsın)
+# Sentiment modülü — yeni monitoring.sentiment kullan
 try:
-    from data.sentiment import fear_greed
+    from monitoring.sentiment import fear_greed_compat as fear_greed
 except ImportError:
     class _DummyFG:
         def get_score(self): return 0

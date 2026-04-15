@@ -1,0 +1,197 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .tg-wrap {
+    background: var(--color-background-secondary);
+    border-radius: var(--border-radius-lg);
+    padding: 16px;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .tg-header {
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 0.5px solid var(--color-border-tertiary);
+    padding-bottom: 12px; margin-bottom: 12px;
+  }
+  .tg-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: #229ED9; display: flex; align-items: center;
+    justify-content: center; color: white; font-weight: 500; font-size: 14px;
+  }
+  .tg-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+  .tg-sub { font-size: 11px; color: var(--color-text-secondary); }
+  .msg-bubble {
+    background: var(--color-background-primary);
+    border-radius: 12px 12px 12px 2px;
+    padding: 10px 13px;
+    margin-bottom: 8px;
+    border: 0.5px solid var(--color-border-tertiary);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--color-text-primary);
+  }
+  .msg-time { font-size: 10px; color: var(--color-text-tertiary); text-align: right; margin-top: 4px; }
+  .msg-bubble b { font-weight: 500; }
+  .msg-bubble code {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--color-background-secondary);
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+  .msg-bubble i { color: var(--color-text-secondary); font-style: italic; }
+  .divider { font-family: var(--font-mono); font-size: 11px; color: var(--color-text-tertiary); }
+  .tab-row {
+    display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap;
+  }
+  .tab {
+    font-size: 11px; padding: 4px 10px;
+    border-radius: var(--border-radius-md);
+    border: 0.5px solid var(--color-border-secondary);
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    background: var(--color-background-primary);
+  }
+  .tab.active {
+    background: var(--color-background-info);
+    color: var(--color-text-info);
+    border-color: var(--color-border-info);
+  }
+  .green { color: #2ecc71; }
+  .red { color: #e74c3c; }
+  .gold { color: #f39c12; }
+  .blue { color: #3498db; }
+  .muted { color: var(--color-text-secondary); }
+</style>
+
+<div class="tg-wrap">
+  <h2 class="sr-only">Telegram mesaj önizlemeleri — Nechh Robotics</h2>
+
+  <div class="tg-header">
+    <div class="tg-avatar">N</div>
+    <div>
+      <div class="tg-title">Nechh | Algorithmic Market Analysis</div>
+      <div class="tg-sub">Kanal • WAR MACHINE</div>
+    </div>
+  </div>
+
+  <div class="tab-row">
+    <div class="tab active" onclick="show('health')">Health</div>
+    <div class="tab" onclick="show('open')">Trade Açılış</div>
+    <div class="tab" onclick="show('close')">Trade Kapanış</div>
+    <div class="tab" onclick="show('weekly')">Haftalık</div>
+    <div class="tab" onclick="show('liq')">Likidasyön</div>
+  </div>
+
+  <div id="msg-health" class="msg-container">
+    <div class="msg-bubble">
+      <b>📊 WAR MACHINE HEALTH</b> 📋 <code>PAPERTRADE</code><br>
+      <span class="divider">────────────────────────────────</span><br><br>
+      <b>⏱ Uptime:</b> &nbsp;&nbsp;&nbsp;<code>2 days, 11:17:36</code><br>
+      <b>🔁 Ticks:</b> &nbsp;&nbsp;&nbsp;<code>1,825,879</code><br><br>
+      <b>💼 Balance:</b> <code>$10,028.34</code><br>
+      <b>📈 Equity:</b> &nbsp;<code>$10,028.34</code><br>
+      🟢 <b>PnL:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>+$28.34</code><br><br>
+      <span class="divider">────────────────────────────────</span><br>
+      <b>🎯 Trades:</b> &nbsp;&nbsp;<code>18 &nbsp;(W:5 &nbsp;L:13)</code><br>
+      <b>🏆 Win Rate:</b><code>[███░░░░░░░] 27.8%</code><br>
+      <b>📉 Max DD:</b> &nbsp;<code>0.3%</code><br><br>
+      <span class="divider">────────────────────────────────</span><br>
+      <b>📌 Pozisyonlar (0):</b><br>
+      &nbsp;&nbsp;<i>Açık pozisyon yok</i><br><br>
+      <b>🧠 Sentiment:</b> <code>[████░░░░░░] 42 &nbsp;Korku 😰</code><br><br>
+      <span class="divider">────────────────────────────────</span><br>
+      ✅ <i>Şeffaflık: Tüm işlemler kaydedilmiştir</i><br>
+      <i>🕐 15.04.2025 &nbsp;12:20 UTC</i>
+      <div class="msg-time">12:20 ✓✓</div>
+    </div>
+  </div>
+
+  <div id="msg-open" class="msg-container" style="display:none">
+    <div class="msg-bubble">
+      <b>⚡ FUTURES • POZİSYON AÇILDI</b><br>
+      <span class="divider">────────────────────────────────</span><br><br>
+      🟢 <b>#BTCUSDT</b> — <b>LONG</b><br><br>
+      <b>📍 Entry:</b> &nbsp;&nbsp;<code>$83,420.5000</code><br>
+      <b>📦 Size:</b> &nbsp;&nbsp;&nbsp;<code>0.0120</code><br>
+      <b>⚙️ Kaldıraç:</b> <code>10x</code><br>
+      <b>🎯 TP:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>$85,000.0000</code><br>
+      <b>🛡️ SL:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>$82,000.0000</code><br><br>
+      <span class="divider">────────────────────────────────</span><br>
+      <i>🕐 15.04.2025 &nbsp;09:14 UTC</i><br>
+      <i>SİSTEM KONUŞUR • ŞANS DEĞİL</i>
+      <div class="msg-time">09:14 ✓✓</div>
+    </div>
+  </div>
+
+  <div id="msg-close" class="msg-container" style="display:none">
+    <div class="msg-bubble">
+      <b>⚡ FUTURES • POZİSYON KAPANDI</b><br>
+      <span class="divider">────────────────────────────────</span><br><br>
+      🟢 <b>#BTCUSDT</b> — <b>LONG</b> • KAR ✅<br><br>
+      <b>📍 Entry:</b> &nbsp;&nbsp;<code>$83,420.5000</code><br>
+      <b>🏁 Exit:</b> &nbsp;&nbsp;&nbsp;<code>$85,100.0000</code><br>
+      <b>💰 PnL:</b> &nbsp;&nbsp;&nbsp;&nbsp;<code>+$20.16 &nbsp;(+2.01%)</code><br>
+      <b>⏱ Süre:</b> &nbsp;&nbsp;&nbsp;<code>4s 22dk</code><br><br>
+      <span class="divider">────────────────────────────────</span><br>
+      <i>🕐 15.04.2025 &nbsp;13:36 UTC</i><br>
+      <i>SİSTEM KONUŞUR • ŞANS DEĞİL</i>
+      <div class="msg-time">13:36 ✓✓</div>
+    </div>
+  </div>
+
+  <div id="msg-weekly" class="msg-container" style="display:none">
+    <div class="msg-bubble">
+      <b>📊 HAFTALIK RAPOR — Hafta #1</b><br>
+      <span class="divider">────────────────────────────────</span><br><br>
+      <b>🤖 NECHH ROBOTICS</b><br>
+      <i>PAPERTRADE</i><br><br>
+      <span class="divider">────────────────────────────────</span><br>
+      <b>İŞLEM ÖZETİ</b><br>
+      <b>📋 Toplam:</b> &nbsp;&nbsp;<code>18</code><br>
+      <b>✅ Kazanan:</b> &nbsp;<code>5</code><br>
+      <b>❌ Kaybeden:</b>&nbsp;<code>13</code><br>
+      <b>🏆 Win Rate:</b>&nbsp;<code>27.8%</code><br><br>
+      <span class="divider">────────────────────────────────</span><br>
+      <b>PERFORMANS</b><br>
+      <b>💰 Net PnL:</b> &nbsp;<code>+$28.34 &nbsp;(+0.28%)</code> ✅<br>
+      <b>📉 Max DD:</b> &nbsp;&nbsp;<code>0.30%</code><br><br>
+      <b>🥇 En İyi:</b> &nbsp;&nbsp;<code>#ETHUSDT &nbsp;+$14.20</code><br>
+      <b>🥴 En Kötü:</b> &nbsp;<code>#SOLUSDT &nbsp;-$3.10</code><br><br>
+      <span class="divider">────────────────────────────────</span><br>
+      <b>BAKİYE</b><br>
+      <b>📌 Başlangıç:</b> <code>$10,000.00</code><br>
+      <b>🏁 Bitiş:</b> &nbsp;&nbsp;&nbsp;&nbsp;<code>$10,028.34</code><br><br>
+      ✅ <i>Şeffaflık: Tüm işlemler kaydedilmiştir</i><br>
+      <i>⚠️ Bu bir yatırım tavsiyesi değildir.</i><br>
+      <i>SİSTEM KONUŞUR • ŞANS DEĞİL</i>
+      <div class="msg-time">20:00 ✓✓</div>
+    </div>
+  </div>
+
+  <div id="msg-liq" class="msg-container" style="display:none">
+    <div class="msg-bubble">
+      🚨 <b>LİKİDASYON DALGASI — #BTCUSDT</b><br>
+      <span class="divider">────────────────────────────────</span><br><br>
+      <b>💥 Toplam:</b> &nbsp;&nbsp;&nbsp;<code>$48,200,000</code><br>
+      <b>🟢 Long liq:</b> &nbsp;<code>$3,100,000</code><br>
+      <b>🔴 Short liq:</b>&nbsp;<code>$45,100,000</code><br><br>
+      <b>⚡ Baskın:</b> &nbsp;&nbsp;&nbsp;🔴 SHORT taraf<br><br>
+      <span class="divider">────────────────────────────────</span><br>
+      <i>⚠️ Bu bir yatırım tavsiyesi değildir.</i><br>
+      <i>🕐 15.04.2025 &nbsp;14:08 UTC</i>
+      <div class="msg-time">14:08 ✓✓</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.msg-container').forEach(el => el.style.display = 'none');
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('msg-' + id).style.display = 'block';
+  event.target.classList.add('active');
+}
+</script>

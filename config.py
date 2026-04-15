@@ -108,8 +108,8 @@ MIN_VOLUME_RATIO = 0.70  # [v17.1] Volume filtresi (WebSocket volume fix ile ça
 # [8 Nisan] KAPALI: 6 trade ile model anlamsız, 50+ trade birikince aç
 ML_FILTER_ENABLED = False
 
-# v0: Blacklist boş — 10 coin hepsi açık
-COIN_BLACKLIST = []
+# [ADIM 9] DOT blacklist: 60g -$35.6, 90g -$47.4 sürekli zarar
+COIN_BLACKLIST = ["DOTUSDT"]
 
 # RISK (PRE-TRADE)
 MAX_POSITION_SIZE_PCT = 0.10   # Her pozisyon max equity %10 notional
@@ -145,11 +145,13 @@ PARTIAL_TP_ENABLED = False
 PARTIAL_TP_RATIO = 0.50
 PARTIAL_TP_CLOSE_PCT = 0.50
 
-# v0: Breakeven kapalı — basitlik
-BREAKEVEN_ATR_TRIGGER = 0  # 0 = devre dışı
+# [ADIM 9] Breakeven: fiyat +0.5×ATR kâra geçince SL → entry
+# Backtest: PF 1.46→2.15, PnL $172→$420 (60g)
+BREAKEVEN_ATR_TRIGGER = 0.5
 
-# v0: 1 candle = 4 saat — veriden kanıtlı: 4h'de çıkış +$514
-MAX_HOLD_CANDLES = 1
+# [ADIM 9] 2 candle = 8 saat — trailing stop ile kazımı uzat
+# Backtest: trail + hold=2 en iyi combo
+MAX_HOLD_CANDLES = 2
 
 # SMART EXIT (Regime Change)
 SMART_EXIT_ENABLED = True       # Regime değiştiğinde akıllı çıkış
@@ -164,9 +166,14 @@ MTF_ENABLED = False
 MTF_MAX_RETRIES = 4            # Max 4×15m = 1 saat bekleme
 MTF_MIN_CANDLES = 20           # Minimum 15m candle for analysis
 
-# v0: Trailing stop kapalı
-TRAILING_STOP_ACTIVATE = 0  # 0 = devre dışı
-TRAILING_STOP_DISTANCE = 0
+# [ADIM 9] Trailing stop: 0.7×ATR tetik, 0.3×ATR mesafe
+# Backtest (60g): PF 2.15, PnL +$420 | (90g): PF 1.81, PnL +$396
+TRAILING_STOP_ACTIVATE = 0.007   # 0.7% → orchestrator ATR bazlı kullanacak
+TRAILING_STOP_DISTANCE = 0.003   # 0.3% → orchestrator ATR bazlı kullanacak
+
+# [ADIM 9] ATR bazlı trailing (stop_manager.py tarafından kullanılır)
+TRAIL_ACTIVATE_ATR = 0.7   # Fiyat +0.7×ATR kâra geçince trail başlasın
+TRAIL_DISTANCE_ATR = 0.3   # Trail mesafesi: 0.3×ATR
 
 # CORRELATION GROUPS — [v16.1] Aktif 14 coin'e göre güncellendi
 CORRELATION_GROUPS = [
@@ -191,6 +198,19 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 TELEGRAM_ENABLED = bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID)
 HEALTH_REPORT_INTERVAL_HOURS = 0.25  # 15 dakika
 SUMMARY_REPORT_INTERVAL_HOURS = 6    # 6 saatte bir genel özet raporu
+
+# TELEGRAM — NECHH ROBOTICS (Abonelik + Kanal sistemi)
+TELEGRAM_SUB_BOT_TOKEN = os.getenv("TELEGRAM_SUB_BOT_TOKEN", "")
+TELEGRAM_PRO_CHANNEL_ID = os.getenv("TELEGRAM_PRO_CHANNEL_ID", "")
+TELEGRAM_VIP_CHANNEL_ID = os.getenv("TELEGRAM_VIP_CHANNEL_ID", "")
+TELEGRAM_ADMIN_IDS = os.getenv("TELEGRAM_ADMIN_IDS", "")
+
+# EXTERNAL APIs (Telegram modülleri için)
+CRYPTOPANIC_TOKEN = os.getenv("CRYPTOPANIC_TOKEN", "")
+NOWPAYMENTS_API_KEY = os.getenv("NOWPAYMENTS_API_KEY", "")
+SUPABASE_URL = os.getenv("SUPABASE_URL", "")
+SUPABASE_KEY = os.getenv("SUPABASE_KEY", "")
+OLLAMA_MODEL = "deepseek-r1:1.5b"
 
 # LOGGING
 LOG_LEVEL = "INFO"

@@ -39,6 +39,7 @@ logger = logging.getLogger("watchdog")
 
 TASK_NAME = "WarMachineWatchdog"
 SUPERVISOR_PY = os.path.join(SCRIPT_DIR, "supervisor.py")
+SHUTDOWN_FLAG = os.path.join(LOG_DIR, "shutdown.flag")
 
 
 def _load_env():
@@ -84,7 +85,8 @@ def is_supervisor_running() -> bool:
             # PID gerçekten yaşıyor mu?
             result = subprocess.run(
                 ["tasklist", "/FI", f"PID eq {pid}", "/FO", "CSV", "/NH"],
-                capture_output=True, encoding="cp857", errors="replace", timeout=10
+                capture_output=True, encoding="cp857", errors="replace", timeout=10,
+                creationflags=subprocess.CREATE_NO_WINDOW
             )
             if str(pid) in result.stdout:
                 return True
@@ -95,9 +97,10 @@ def is_supervisor_running() -> bool:
     try:
         result = subprocess.run(
             ["powershell", "-NoProfile", "-Command",
-             "Get-CimInstance Win32_Process -Filter \"name='python.exe'\" | "
+             "Get-CimInstance Win32_Process -Filter \"name='python.exe' or name='pythonw.exe'\" | "
              "Select-Object -ExpandProperty CommandLine"],
-            capture_output=True, encoding="utf-8", errors="replace", timeout=15
+            capture_output=True, encoding="utf-8", errors="replace", timeout=15,
+            creationflags=subprocess.CREATE_NO_WINDOW
         )
         return "supervisor.py" in result.stdout
     except Exception as e:
@@ -124,6 +127,16 @@ def start_supervisor():
 
 def check_and_restart():
     """Ana kontrol döngüsü"""
+    # Graceful shutdown flag kontrolü — kasıtlı kapanmayı yeniden başlatma
+    if os.path.exists(SHUTDOWN_FLAG):
+        try:
+            with open(SHUTDOWN_FLAG, "r") as f:
+                reason = f.read().strip()
+            logger.info(f"Shutdown flag mevcut — restart yapılmayacak. Sebep: {reason}")
+        except Exception:
+            logger.info("Shutdown flag mevcut — restart yapılmayacak")
+        return
+
     if is_supervisor_running():
         logger.info("OK - Supervisor çalışıyor")
         return
@@ -147,6 +160,69 @@ def check_and_restart():
         logger.error("Supervisor başlatılamadı!")
 
 
+def stop_system():
+    """Sistemi güvenli durdur + shutdown flag yaz"""
+    # 1. Shutdown flag yaz
+    try:
+        with open(SHUTDOWN_FLAG, "w") as f:
+            f.write(f"Manual stop via watchdog --stop at {datetime.now():%Y-%m-%d %H:%M:%S}\n")
+        logger.info("Shutdown flag yazıldı")
+    except Exception as e:
+        logger.error(f"Flag yazılamadı: {e}")
+
+    # 2. Supervisor'ı bul ve durdur
+    pid_file = os.path.join(LOG_DIR, "supervisor.pid")
+    killed = False
+    if os.path.exists(pid_file):
+        try:
+            with open(pid_file, "r") as f:
+                pid = int(f.read().strip())
+            # PID'i ve alt proseslerini öldür
+            subprocess.run(
+                ["taskkill", "/PID", str(pid), "/T", "/F"],
+                capture_output=True, timeout=15,
+                creationflags=subprocess.CREATE_NO_WINDOW
+            )
+            killed = True
+            logger.info(f"Supervisor (PID={pid}) durduruldu")
+        except Exception as e:
+            logger.error(f"PID {pid} durdurulamadı: {e}")
+
+    if not killed:
+        # PID dosyası yoksa proses adıyla ara
+        try:
+            subprocess.run(
+                ["powershell", "-NoProfile", "-Command",
+                 "Get-CimInstance Win32_Process -Filter \"name='python.exe' or name='pythonw.exe'\" | "
+                 "Where-Object { $_.CommandLine -like '*supervisor.py*' } | "
+                 "ForEach-Object { Stop-Process -Id $_.ProcessId -Force }"],
+                capture_output=True, timeout=15,
+                creationflags=subprocess.CREATE_NO_WINDOW
+            )
+            logger.info("Supervisor prosesi durduruldu (proses adıyla)")
+        except Exception as e:
+            logger.error(f"Proses durdurulamadı: {e}")
+
+    _telegram(
+        f"🛑 <b>SİSTEM DURDURULDU</b>\n"
+        f"Komut: watchdog --stop\n"
+        f"Zaman: {datetime.now():%Y-%m-%d %H:%M:%S}\n"
+        f"Watchdog restart: DEVRE DIŞI (flag aktif)"
+    )
+    print("✅ Sistem durduruldu. Watchdog yeniden başlatmayacak.")
+    print("   Tekrar başlatmak için: python supervisor.py")
+
+
+def clear_shutdown_flag():
+    """Shutdown flag'ini temizle (watchdog tekrar aktif olsun)"""
+    if os.path.exists(SHUTDOWN_FLAG):
+        os.remove(SHUTDOWN_FLAG)
+        logger.info("Shutdown flag silindi — watchdog aktif")
+        print("✅ Shutdown flag silindi. Watchdog artık restart yapabilir.")
+    else:
+        print("ℹ️ Shutdown flag zaten yok.")
+
+
 def install_task():
     """Windows Task Scheduler'a gardiyan görevi ekle"""
     python_exe = sys.executable
@@ -163,11 +239,20 @@ def install_task():
     if not os.path.exists(pythonw_exe):
         pythonw_exe = python_exe  # fallback
 
-    # Her 5 dakikada çalışan görev oluştur (pencere açmadan)
+    # VBS wrapper oluştur (tamamen gizli çalışma garantisi)
+    vbs_path = os.path.join(SCRIPT_DIR, "watchdog_silent.vbs")
+    vbs_content = (
+        f'Set ws = CreateObject("WScript.Shell")\n'
+        f'ws.Run """{pythonw_exe}"" ""{script_path}"" --check", 0, False\n'
+    )
+    with open(vbs_path, "w", encoding="utf-8") as f:
+        f.write(vbs_content)
+
+    # Her 5 dakikada çalışan görev oluştur (VBS ile tamamen gizli)
     cmd = [
         "schtasks", "/Create",
         "/TN", TASK_NAME,
-        "/TR", f'"{ pythonw_exe}" "{script_path}" --check',
+        "/TR", f'wscript.exe "{vbs_path}"',
         "/SC", "MINUTE",
         "/MO", "5",
         "/F",
@@ -205,6 +290,8 @@ if __name__ == "__main__":
     parser.add_argument("--install", action="store_true", help="Task Scheduler'a kur")
     parser.add_argument("--uninstall", action="store_true", help="Task Scheduler'dan kaldır")
     parser.add_argument("--check", action="store_true", help="Kontrol et, gerekirse başlat")
+    parser.add_argument("--stop", action="store_true", help="Sistemi güvenli durdur (watchdog restart yapmaz)")
+    parser.add_argument("--clear-flag", action="store_true", help="Shutdown flag'ini temizle")
     args = parser.parse_args()
 
     if args.install:
@@ -213,5 +300,9 @@ if __name__ == "__main__":
         uninstall_task()
     elif args.check:
         check_and_restart()
+    elif args.stop:
+        stop_system()
+    elif args.clear_flag:
+        clear_shutdown_flag()
     else:
         parser.print_help()

@@ -1,0 +1,6 @@
+📜 The Golden Rules
+"3 Gün Kuralı"nı Bozma: Sistem şu an gerçekten komisyon düşüyor. Karlarınız eskisinden az görünebilir ama gerçektir. Sistemi 3 gün boyunca KESİNTİSİZ çalıştırın. Eğer 3 günün sonunda PnL pozitifse, bu bot para basma makinesidir. Değilse, strateji ayarlarıyla (RSI, Leverage) oynayacağız.
+Bulut'a Taşınma Vakti: Bilgisayarınız 7/24 açık kalamaz, elektrik gider, internet kopar. Bu sistem artık Docker olduğu için, aylık 5-10$'a bir sanal sunucuya (DigitalOcean, AWS, Hetzner) kopyala-yapıştır ile taşınabilir. Para kazanmaya başladığınız an, ilk yatırımınız bu olsun.
+"Açgözlülük" Ayarı: 
+config.py
+ içindeki LEVERAGE = 5 şu an ideal. Bunu asla 10 veya 20 yapmayın. Piyasa yapıcılar (Market Makers) yüksek kaldıraçlı botları avlamayı severler. Bizim botumuz "Sinsice, az ama öz" kazanan bir avcı olsun, av olmasın.

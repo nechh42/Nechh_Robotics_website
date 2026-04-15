@@ -65,6 +65,9 @@ def _telegram(msg: str):
         pass
 
 
+SHUTDOWN_FLAG = os.path.join(LOG_DIR, "shutdown.flag")
+
+
 class Supervisor:
     def __init__(self):
         self.restarts = 0
@@ -77,6 +80,11 @@ class Supervisor:
         self.engine_log = os.path.join(LOG_DIR, f"engine_{datetime.now():%Y%m%d_%H%M%S}.log")
 
     def run(self):
+        # Başlatılınca shutdown flag'ini sil (artık aktifiz)
+        if os.path.exists(SHUTDOWN_FLAG):
+            os.remove(SHUTDOWN_FLAG)
+            logger.info("Shutdown flag silindi — sistem aktif")
+
         logger.info("=" * 50)
         logger.info("SUPERVISOR STARTING")
         logger.info(f"Engine: {self.main_py}")
@@ -164,6 +172,12 @@ class Supervisor:
 
         if self.restarts >= MAX_RESTARTS:
             _telegram(f"🚨 <b>SUPERVISOR STOPPED - MAX RESTARTS ({MAX_RESTARTS})</b>")
+            # Max restart'a ulaşıldı — ciddi sorun var, watchdog da başlatmasın
+            try:
+                with open(SHUTDOWN_FLAG, "w") as f:
+                    f.write(f"Max restarts ({MAX_RESTARTS}) reached at {datetime.now():%Y-%m-%d %H:%M:%S}\n")
+            except Exception:
+                pass
         else:
             _telegram("🟡 <b>SUPERVISOR STOPPED BY USER</b>")
 
@@ -172,6 +186,13 @@ class Supervisor:
 
     def _stop(self):
         self.running = False
+        # Kasıtlı kapanma — shutdown flag yaz ki watchdog yeniden başlatmasın
+        try:
+            with open(SHUTDOWN_FLAG, "w") as f:
+                f.write(f"Graceful shutdown at {datetime.now():%Y-%m-%d %H:%M:%S}\n")
+            logger.info("Shutdown flag yazıldı — watchdog restart yapmayacak")
+        except Exception as e:
+            logger.error(f"Shutdown flag yazılamadı: {e}")
         self._kill()
 
     def _kill(self):

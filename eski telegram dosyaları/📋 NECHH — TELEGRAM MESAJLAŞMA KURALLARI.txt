@@ -1,0 +1,183 @@
+📋 NECHH — TELEGRAM MESAJLAŞMA KURALLARI (V1.0 – ONAYLI)
+🏛️ FELSEFE
+
+“Mesaj az, değerli ve zamanında olsun.
+Spam değil, içgörü (insight) olsun.”
+
+Bu kanal:
+
+Trade yönlendirmez
+
+Karar vermez
+
+Algoritmik analiz sonuçlarını paylaşır
+
+📊 MESAJ TİPLERİ (ONAYLI – SEÇENEK A)
+1️⃣ TİP 1 — ANALİZ BİLDİRİMİ 📊
+
+Amaç:
+Piyasada önemli bir yapısal değişim olduğunda kullanıcıyı bilgilendirmek.
+
+Tetiklenme koşulları (örnek):
+
+Trend yön değişimi
+
+Volatilite rejimi değişimi
+
+Algoritmik olasılık eşiği aşılması
+
+Format:
+📊 BTC/USDT – Algoritmik Analiz
+
+Trend: Weak Bullish
+Volatilite: Medium
+Momentum: Artan
+Algoritmik Olasılık: %72
+
+Durum: İzleme / Yüksek dikkat
+
+⏱️ Zaman: 14:32 UTC
+
+⚠️ Bu içerik yatırım tavsiyesi değildir.
+⚠️ Tüm karar ve risk kullanıcıya aittir.
+
+
+📌 Notlar:
+
+❌ AL / SAT yok
+
+❌ Entry / Stop / Target yok
+
+✅ Yorum + bağlam var
+
+2️⃣ TİP 2 — PAZAR DURUM GÜNCELLEMESİ 📈
+
+Amaç:
+Trade olmasa bile “piyasa şu an ne anlatıyor?” sorusuna cevap vermek.
+
+Zamanlama (revize):
+
+10:00 UTC
+
+14:00 UTC
+
+18:00 UTC
+
+22:00 UTC
+(Günde max 4 kez)
+
+Format:
+📊 MARKET DURUMU – 14:00 UTC
+
+BTC: $45,200 (▲1.2%)
+ETH: $3,450 (▼0.3%)
+Toplam Piyasa Değeri: $1.72T
+Volatilite: Orta
+Sentiment: Nötr → Pozitif
+
+Sistem Durumu:
+• Aktif analiz: 8 parite
+• Uygun trade koşulu: Hayır
+
+📌 Sonraki değerlendirme: 18:00 UTC
+
+
+📌 Not:
+
+Trade yoksa özellikle belirtilir
+
+Sessizlik yerine kontrollü bilgilendirme yapılır
+
+3️⃣ TİP 3 — GÜNLÜK SİSTEM RAPORU 📜
+
+Amaç:
+Şeffaflık + güven + uzun vadeli sadakat.
+
+Zaman:
+
+Her gün 20:00 UTC
+
+Format:
+📅 GÜNLÜK SİSTEM RAPORU – 27 OCAK
+
+📊 ÖZET:
+• Toplam analiz: 42
+• Sinyal koşulu oluşan durum: 6
+• Aktif pozisyon: 0
+
+📈 MODEL DAVRANIŞI:
+• Genel trend: Sideways → Bullish
+• Volatilite: Medium
+• Risk iştahı: Kontrollü
+
+📌 Not:
+Bu rapor algoritmik model davranışını özetler.
+Gerçek işlem sonuçlarını temsil etmez.
+
+⚠️ Geçmiş performans gelecek garantisi değildir.
+
+
+📌 Çok önemli:
+
+“Net P&L” yazılmaz
+
+“Model davranışı” dili kullanılır
+
+4️⃣ TİP 4 — ACİL DURUM / RİSK UYARISI 🔴
+
+Amaç:
+Korumak, sakinleştirmek, yanlış hareketi önlemek.
+
+Tetiklenir:
+
+Flash crash
+
+Aşırı volatilite
+
+Büyük haber / regülasyon
+
+Sistem bakım / duraklama
+
+Format:
+🚨 RİSK UYARISI
+
+BTC kısa sürede %6’dan fazla hareket etti.
+Volatilite aşırı yükseldi.
+
+Önerilen yaklaşım:
+• Yeni pozisyonlardan kaçınılması
+• Mevcut risklerin gözden geçirilmesi
+• Soğukkanlı kalınması
+
+🛡️ Sistem: Koruma modunda
+
+⏰ MESAJ SIKLIĞI ÖZETİ
+Mesaj Tipi	Maksimum
+Tip 1	Koşula bağlı
+Tip 2	Günde 4
+Tip 3	Günde 1
+Tip 4	Olay bazlı
+🎯 KULLANICI BEKLENTİ YÖNETİMİ (AÇILIŞ METNİ)
+🤖 NECHH – Algoritmik Piyasa Analizi
+
+Bu kanal:
+• Algoritmik analiz çıktıları paylaşır
+• Trade yönlendirmez
+• Riskleri kullanıcıya bırakır
+
+Beklememeniz gerekenler:
+❌ Garantili kazanç
+❌ Sürekli sinyal
+❌ Finansal danışmanlık
+
+Amaç: Piyasa farkındalığı ve disiplinli bakış açısı.
+
+✅ BU METİNLE NE YAPIYORSUN?
+
+Yasal riski düşürüyorsun
+
+Spam algısını bitiriyorsun
+
+Ürünü “sinyalci”den ayırıyorsun
+
+Uzun vadeli abonelik zemini kuruyorsun

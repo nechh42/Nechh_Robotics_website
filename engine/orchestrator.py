@@ -86,16 +86,22 @@ class Orchestrator:
             logger.info(f"[RESTORE] {len(saved)} positions restored from DB")
 
     def _restore_performance(self):
-        """Reload past trade PnLs into PerformanceTracker"""
+        """Reload past trade PnLs into PerformanceTracker + Kelly Sizer"""
         trades = self.db.get_trades(limit=500)
         if not trades:
             return
         for t in reversed(trades):
             self.performance.record_trade(t["net_pnl"])
+            self.sizer.record_trade(t["net_pnl"])
         self.state._reload_from_db(self.db)
         logger.info(
             f"[RESTORE] Performance: {self.performance.total_trades} trades, "
             f"PnL=${self.performance.total_pnl:.2f}, WR={self.performance.win_rate:.1f}%"
+        )
+        stats = self.sizer.get_stats()
+        logger.info(
+            f"[RESTORE] Kelly: {stats.get('trades', 0)} trades loaded, "
+            f"WR={stats.get('win_rate', 0):.1%}"
         )
 
     async def start(self):
@@ -233,8 +239,9 @@ class Orchestrator:
             logger.info(f"[SKIP] {symbol}: conf={signal.confidence:.2f} < {config.STRATEGY_MIN_CONFIDENCE}")
             return
 
-        # Risk check
-        approved, reason, params = self.risk.check(signal, self.state, regime)
+        # Risk check (Kelly position sizing)
+        kelly_pct = self.sizer.get_position_pct(regime)
+        approved, reason, params = self.risk.check(signal, self.state, regime, position_pct=kelly_pct)
         if not approved:
             logger.info(f"[RISK] {symbol}: {reason}")
             return

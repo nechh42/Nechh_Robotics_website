@@ -109,17 +109,20 @@ class PreTradeRisk:
         # POZISYON BOYUTU HESABI
         equity = state.equity
         
+        # Kelly-driven risk: position_pct gelirse Kelly çarpanını uygula
+        # Kelly None/0 ise config'den sabit base risk kullanılır
+        base_risk_pct = config.RISK_BASE_PCT
+        if position_pct and position_pct > 0:
+            # Kelly fraction → risk olarak kullan (cap: 2×base_risk)
+            base_risk_pct = min(position_pct, base_risk_pct * 2)
+
         # Volatility-adjusted risk
-        # Base: 0.5%, Multiplier: current_volatility / avg_volatility
-        # High vol = higher risk reduction
         volatility_mult = 1.0
         if config.VOLATILITY_MULTIPLIER and signal.atr > 0:
-            # ATR > 2% price = high volatility → reduce risk
             atr_pct = signal.atr / signal.price
             volatility_mult = max(0.5, min(1.5, 1.0 / (1.0 + atr_pct * 5)))
-            # Formula: 1.0 at normal vol, 0.5 when atr=2%, 1.5 when atr near 0
         
-        risk_amount = equity * config.RISK_BASE_PCT * volatility_mult
+        risk_amount = equity * base_risk_pct * volatility_mult
 
         atr = signal.atr if signal.atr > 0 else signal.price * 0.02
 
