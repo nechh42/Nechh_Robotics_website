@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Nechh Robotics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        .trademark { font-size: 0.6em; vertical-align: super; }
+        .project-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
+            border-color: #2563eb;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .status-prototype { background: #fef3c7; color: #92400e; }
+        .status-mvp { background: #d1fae5; color: #065f46; }
+        .status-research { background: #e0e7ff; color: #3730a3; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="sticky top-0 bg-white/95 backdrop-blur-sm border-b z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <a href="https://nechh-robotics-website.vercel.app/" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold">NR</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="text-xl font-bold gradient-text">Nechh Robotics<span class="trademark"></span></div>
+                        <div class="text-xs text-gray-500">AI Research & Development</div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="https://nechh-robotics-website.vercel.app/" class="font-medium hover:text-blue-600">Home</a>
+                <a href="https://nechh-robotics-website.vercel.app/projects/" class="font-medium hover:text-blue-600">Projects</a>
+                <a href="https://nechh-robotics-website.vercel.app/projects/telegram-ai.html" class="font-medium hover:text-blue-600">Telegram AI</a>
+                <a href="https://nechh-robotics-website.vercel.app/subscription.html" class="font-medium hover:text-blue-600">Subscription</a>
+                <a href="https://nechh-robotics-website.vercel.app/about.html" class="font-medium hover:text-blue-600">About</a>
+                <a href="https://nechh-robotics-website.vercel.app/contact.html" class="font-medium hover:text-blue-600">Contact</a>
+            </div>
+            
+            <div class="md:hidden">
+                <button id="mobileMenuBtn" class="text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden mt-4 pt-4 border-t">
+            <div class="space-y-3">
+                <a href="https://nechh-robotics-website.vercel.app/" class="block py-2 hover:text-blue-600">Home</a>
+                <a href="https://nechh-robotics-website.vercel.app/projects/" class="block py-2 hover:text-blue-600">Projects</a>
+                <a href="https://nechh-robotics-website.vercel.app/projects/telegram-ai.html" class="block py-2 hover:text-blue-600">Telegram AI</a>
+                <a href="https://nechh-robotics-website.vercel.app/subscription.html" class="block py-2 hover:text-blue-600">Subscription</a>
+                <a href="https://nechh-robotics-website.vercel.app/about.html" class="block py-2 hover:text-blue-600">About</a>
+                <a href="https://nechh-robotics-website.vercel.app/contact.html" class="block py-2 hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Mobile menu toggle
+    document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+</script>
+
+    <!-- Hero -->
+    <section class="pt-12 pb-16 px-4 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                Nechh Robotics<span class="trademark"></span> Projects
+            </h1>
+            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                All projects are conducted under the Nechh Robotics brand, 
+                scientifically and transparently.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- AEHS -->
+                <div class="project-card bg-white rounded-2xl p-8">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">AEHS</h3>
+                            <p class="text-gray-600 text-sm">
+                                Field operations incident/action handling  structured workflow and traceability.
+                            </p>
+                        </div>
+                        <span class="status-badge status-prototype">Prototype / R&D</span>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="text-sm text-gray-700 font-medium mb-2">Technology Stack:</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">Web UI</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs">API</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs">Data Layer</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>Started: 2024
+                    </div>
+                </div>
+                
+                <!-- Emotice -->
+                <div class="project-card bg-white rounded-2xl p-8">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Emotice</h3>
+                            <p class="text-gray-600 text-sm">
+                                Interpretable sentiment/intent signals for text-based interactions.
+                            </p>
+                        </div>
+                        <span class="status-badge status-mvp">MVP / Iterating</span>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="text-sm text-gray-700 font-medium mb-2">Technology Stack:</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs">NLP</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs">Classification</span>
+                            <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">Integration</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>Active Development
+                    </div>
+                </div>
+                
+                <!-- Broker Agent System -->
+                <div class="project-card bg-white rounded-2xl p-8">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Broker Agent System</h3>
+                            <p class="text-gray-600 text-sm">
+                                Task routing and observability surface for agent-like workflows.
+                            </p>
+                        </div>
+                        <span class="status-badge status-prototype">Prototype</span>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="text-sm text-gray-700 font-medium mb-2">Technology Stack:</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">Job Routing</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs">State Model</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs">Observability</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-calendar mr-2"></i>Early Stage
+                    </div>
+                </div>
+                
+                <!-- HealthAI Dietitian -->
+                <div class="project-card bg-white rounded-2xl p-8">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">HealthAI Dietitian</h3>
+                            <p class="text-gray-600 text-sm">
+                                Research prototype for traceable, constraint-driven diet recommendations.
+                            </p>
+                        </div>
+                        <span class="status-badge status-research">Research / Prototype</span>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="text-sm text-gray-700 font-medium mb-2">Technology Stack:</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs">AI</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs">Constraints</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">Traceability</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-flask mr-2"></i>Research Phase
+                    </div>
+                </div>
+                
+                <!-- Telegram AI Trading System -->
+                <div class="project-card bg-white rounded-2xl p-8 border-2 border-blue-200">
+                    <div class="flex items-start justify-between mb-6">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2">Telegram AI Trading System</h3>
+                            <p class="text-gray-600 text-sm">
+                                AI consensus-based market analysis system. Currently in beta.
+                            </p>
+                        </div>
+                        <span class="status-badge" style="background:#3b82f6; color:white;">Beta Live</span>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="text-sm text-gray-700 font-medium mb-2">Subscription:</div>
+                        <div class="bg-blue-50 p-4 rounded-xl">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="font-bold text-blue-700">1 month free</div>
+                                    <div class="text-sm text-gray-600">then $55/month</div>
+                                </div>
+                                <a href="https://nechh-robotics-website.vercel.app/projects/telegram-ai.html" 
+                                   class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium">
+                                    Join Beta
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-bolt mr-2"></i>Active Beta  Crypto Payments Only
+                    </div>
+                </div>
+                
+                <!-- Upcoming Projects -->
+                <div class="project-card bg-white rounded-2xl p-8 border-2 border-dashed border-gray-300">
+                    <div class="text-center py-8">
+                        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-plus text-gray-400 text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-400 mb-4">Upcoming Projects</h3>
+                        <ul class="text-gray-500 text-sm space-y-2 text-left">
+                            <li><i class="fas fa-robot mr-2"></i> Tarým Robotu (Green Warrior)</li>
+                            <li><i class="fas fa-shield-virus mr-2"></i> UVC Sterilization (Moruk)</li>
+                            <li><i class="fas fa-charging-station mr-2"></i> Infinite Charge Drone</li>
+                            <li><i class="fas fa-ad mr-2"></i> Olly (Advertisement Robot)</li>
+                            <li><i class="fas fa-heart mr-2"></i> Start Healthy Day (Social Project)</li>
+                            <li><i class="fas fa-wind mr-2"></i> Ionocraft Drone Research</li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-400 mb-8">
+                Nechh Robotics<span class="trademark" style="color:#9ca3af;"></span>  All projects developed scientifically and transparently
+            </p>
+            <a href="https://nechh-robotics-website.vercel.app/" class="inline-flex items-center text-blue-400 hover:text-blue-300">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Return to Home
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
+
+

@@ -1,0 +1,20 @@
+POSITION OPENED  {{SYMBOL}}
+
+Model Decision: OPEN
+Position Type: {{SIDE}}
+
+Model Scores:
+Combined: {{COMBINED}}
+Technical: {{TECH}}
+Sentiment: {{SENTIMENT}}
+Consensus: {{CONSENSUS}}
+
+Entry Price: {{ENTRY}}
+Position Size: {{SIZE}}
+
+Risk Parameters:
+Stop Loss: {{SL}}
+Take Profit: {{TP}}
+
+Algorithmic system output
+Not investment advice

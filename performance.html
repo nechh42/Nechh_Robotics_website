@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NECHH ROBOTICS | Performance</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #12121a;
+    --bg3: #1a1a26;
+    --border: #2a2a3a;
+    --text: #e0e0f0;
+    --muted: #6b6b8a;
+    --green: #00d4aa;
+    --red: #ff4d6d;
+    --blue: #4d9fff;
+    --gold: #ffd166;
+    --font: 'Courier New', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 13px; }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 10px;
+  }
+  .logo { font-size: 16px; font-weight: bold; letter-spacing: 2px; color: var(--blue); }
+  .logo span { color: var(--text); }
+  .mode-badge {
+    padding: 3px 12px; border-radius: 20px; font-size: 11px; font-weight: bold;
+    border: 1px solid;
+  }
+  .mode-paper { color: var(--gold); border-color: var(--gold); background: rgba(255,209,102,0.08); }
+  .mode-live  { color: var(--green); border-color: var(--green); background: rgba(0,212,170,0.08); }
+
+  .last-updated { color: var(--muted); font-size: 11px; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 20px 16px; }
+
+  /* STAT CARDS */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px;
+  }
+  .card-label { color: var(--muted); font-size: 10px; letter-spacing: 1px; margin-bottom: 6px; }
+  .card-value { font-size: 22px; font-weight: bold; }
+  .card-sub { color: var(--muted); font-size: 10px; margin-top: 3px; }
+  .green { color: var(--green); }
+  .red   { color: var(--red); }
+  .blue  { color: var(--blue); }
+  .gold  { color: var(--gold); }
+
+  /* CHARTS */
+  .charts { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px; }
+  @media(max-width:700px){ .charts { grid-template-columns: 1fr; } }
+  .chart-box {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px;
+  }
+  .chart-title { color: var(--muted); font-size: 11px; letter-spacing: 1px; margin-bottom: 12px; }
+  .chart-box canvas { max-height: 200px; }
+
+  /* TABLE */
+  .table-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .table-header { padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+  .table-title { color: var(--muted); font-size: 11px; letter-spacing: 1px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { padding: 9px 12px; text-align: left; color: var(--muted); font-size: 10px; letter-spacing: 1px; border-bottom: 1px solid var(--border); }
+  td { padding: 9px 12px; font-size: 12px; border-bottom: 1px solid rgba(42,42,58,0.5); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(77,159,255,0.04); }
+  .outcome-win  { color: var(--green); font-weight: bold; }
+  .outcome-loss { color: var(--red);   font-weight: bold; }
+  .side-long  { color: var(--green); }
+  .side-short { color: var(--red); }
+
+  /* DISCLAIMER */
+  footer {
+    border-top: 1px solid var(--border); padding: 16px 24px;
+    color: var(--muted); font-size: 10px; line-height: 1.8; text-align: center;
+  }
+  footer a { color: var(--blue); text-decoration: none; }
+
+  .no-data { padding: 40px; text-align: center; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">NECHH <span>ROBOTICS</span></div>
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+    <span class="mode-badge mode-paper" id="modeBadge">PAPERTRADE</span>
+    <span class="last-updated" id="lastUpdated">Loading...</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- STAT CARDS -->
+  <div class="cards" id="cards">
+    <div class="card"><div class="card-label">TOTAL SETUPS</div><div class="card-value blue" id="totalTrades">—</div></div>
+    <div class="card"><div class="card-label">WIN RATE</div><div class="card-value gold" id="winRate">—</div></div>
+    <div class="card"><div class="card-label">AVG RR</div><div class="card-value green" id="avgRR">—</div></div>
+    <div class="card"><div class="card-label">NET PnL</div><div class="card-value" id="totalPnl">—</div></div>
+    <div class="card"><div class="card-label">BALANCE</div><div class="card-value blue" id="balance">—</div></div>
+    <div class="card"><div class="card-label">MAX DRAWDOWN</div><div class="card-value" id="maxDD">—</div></div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="charts">
+    <div class="chart-box">
+      <div class="chart-title">EQUITY CURVE (Sermaye Eğrisi)</div>
+      <canvas id="equityChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">WIN / LOSS</div>
+      <canvas id="winLossChart"></canvas>
+    </div>
+  </div>
+
+  <!-- TRADE TABLE -->
+  <div class="table-box">
+    <div class="table-header">
+      <span class="table-title">EXECUTION LOG (Tüm İşlemler)</span>
+      <span class="last-updated" id="tradeCount">—</span>
+    </div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th><th>SYMBOL</th><th>SIDE</th><th>STRUCTURE</th>
+            <th>SESSION</th><th>RR</th><th>OUTCOME</th><th>PnL</th><th>DATE</th>
+          </tr>
+        </thead>
+        <tbody id="tradeTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  💡 Market observation for educational purposes. &nbsp;|&nbsp;
+  ⚖️ This is analysis, not financial advice. &nbsp;|&nbsp;
+  💡 Security: NECHH never DMs users.<br>
+  🔹 <a href="https://nechh-robotics-website.vercel.app">nechh-robotics-website.vercel.app</a>
+</footer>
+
+<script>
+// trades.json'dan veriyi çek
+async function loadData() {
+  try {
+    const r = await fetch('trades.json?' + Date.now());
+    const data = await r.json();
+    render(data);
+  } catch(e) {
+    document.getElementById('tradeTable').innerHTML =
+      '<tr><td colspan="9" class="no-data">trades.json yüklenemedi. Aynı klasörde olmalı.</td></tr>';
+  }
+}
+
+function fmt(n, digits=2) {
+  return Number(n).toLocaleString('en-US', {minimumFractionDigits:digits, maximumFractionDigits:digits});
+}
+
+function render(data) {
+  const s = data.summary;
+  const trades = (data.trades || []).slice().reverse(); // yeniden eskiye
+  const mode = data.meta?.mode || 'PAPERTRADE';
+
+  // Badge
+  const badge = document.getElementById('modeBadge');
+  badge.textContent = mode;
+  badge.className = 'mode-badge ' + (mode === 'LIVE' ? 'mode-live' : 'mode-paper');
+
+  // Last updated
+  if (data.meta?.last_updated) {
+    const d = new Date(data.meta.last_updated);
+    document.getElementById('lastUpdated').textContent =
+      'Updated: ' + d.toUTCString().slice(0,25);
+  }
+
+  // Cards
+  document.getElementById('totalTrades').textContent = s.total_trades || 0;
+  document.getElementById('winRate').textContent = (s.win_rate || 0) + '%';
+  document.getElementById('avgRR').textContent = fmt(s.avg_rr || 0);
+
+  const pnl = s.total_pnl || 0;
+  const pnlEl = document.getElementById('totalPnl');
+  pnlEl.textContent = (pnl >= 0 ? '+' : '') + '$' + fmt(pnl);
+  pnlEl.className = 'card-value ' + (pnl >= 0 ? 'green' : 'red');
+
+  document.getElementById('balance').textContent = '$' + fmt(s.balance_current || 10000);
+
+  const ddEl = document.getElementById('maxDD');
+  ddEl.textContent = (s.max_drawdown || 0) + '%';
+  ddEl.className = 'card-value ' + ((s.max_drawdown || 0) > 2 ? 'red' : 'green');
+
+  // Trade count
+  document.getElementById('tradeCount').textContent =
+    (s.wins||0) + ' wins / ' + (s.losses||0) + ' losses';
+
+  // Table
+  const tbody = document.getElementById('tradeTable');
+  if (!trades.length) {
+    tbody.innerHTML = '<tr><td colspan="9" class="no-data">Henüz işlem yok.</td></tr>';
+  } else {
+    tbody.innerHTML = trades.map((t,i) => {
+      const win = t.outcome === 'Target Reached';
+      const date = t.closed_at ? new Date(t.closed_at).toLocaleDateString('en-GB') : '—';
+      const pnlSign = t.pnl >= 0 ? '+' : '';
+      return `<tr>
+        <td class="muted">${trades.length - i}</td>
+        <td><b>${t.symbol}</b></td>
+        <td class="${t.side === 'LONG' ? 'side-long' : 'side-short'}">${t.side}</td>
+        <td>${t.structure}</td>
+        <td>${t.session}</td>
+        <td class="${t.rr >= 0 ? 'green' : 'red'}">${fmt(t.rr,1)}</td>
+        <td class="${win ? 'outcome-win' : 'outcome-loss'}">${t.outcome}</td>
+        <td class="${t.pnl >= 0 ? 'green' : 'red'}">${pnlSign}$${fmt(t.pnl)}</td>
+        <td style="color:var(--muted)">${date}</td>
+      </tr>`;
+    }).join('');
+  }
+
+  // Equity curve
+  const chronoTrades = (data.trades || []);
+  let eq = s.balance_start || 10000;
+  const labels = ['Start'];
+  const eqData = [eq];
+  chronoTrades.forEach(t => {
+    eq += t.pnl;
+    labels.push(t.id);
+    eqData.push(parseFloat(eq.toFixed(2)));
+  });
+
+  new Chart(document.getElementById('equityChart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        data: eqData,
+        borderColor: '#4d9fff',
+        backgroundColor: 'rgba(77,159,255,0.08)',
+        borderWidth: 2,
+        pointRadius: 3,
+        pointBackgroundColor: eqData.map((v,i) =>
+          i === 0 ? '#4d9fff' :
+          eqData[i] >= eqData[i-1] ? '#00d4aa' : '#ff4d6d'
+        ),
+        fill: true,
+        tension: 0.3,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { display: false },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          ticks: { color: '#6b6b8a', font: { family: 'Courier New', size: 10 },
+            callback: v => '$' + v.toLocaleString() }
+        }
+      }
+    }
+  });
+
+  // Win/Loss donut
+  new Chart(document.getElementById('winLossChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Wins', 'Losses'],
+      datasets: [{
+        data: [s.wins || 0, s.losses || 0],
+        backgroundColor: ['#00d4aa', '#ff4d6d'],
+        borderColor: '#12121a',
+        borderWidth: 3,
+      }]
+    },
+    options: {
+      responsive: true,
+      cutout: '70%',
+      plugins: {
+        legend: {
+          labels: { color: '#6b6b8a', font: { family: 'Courier New', size: 11 } }
+        }
+      }
+    }
+  });
+}
+
+loadData();
+// Her 60 saniyede bir yenile
+setInterval(loadData, 60000);
+</script>
+</body>
+</html>

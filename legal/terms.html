@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Nechh Robotics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
+        .container { max-width: 800px; }
+        h1, h2 { color: #1f2937; }
+        a { color: #2563eb; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body class="text-gray-800 py-12">
+    <div class="container mx-auto px-4">
+        <!-- Header -->
+        <header class="mb-10 border-b pb-6">
+            <a href="../index.html" class="text-blue-600 hover:underline">← Back to Home</a>
+            <h1 class="text-3xl font-bold mt-4">Terms of Service</h1>
+            <p class="text-gray-600 mt-2">Last Updated: <span id="currentDate"></span></p>
+            <script>document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-CA');</script>
+        </header>
+
+        <!-- Content -->
+        <main class="prose prose-lg max-w-none">
+            <section class="mb-8">
+                <p><strong>IMPORTANT:</strong> These Terms of Service ("Terms") govern your use of the analysis, data, and content (the "Services") provided by <strong>[Nechh Robotics]</strong> ("we," "us," or "our"). By accessing or using our Services, you agree to be bound by these Terms. If you do not agree, you may not use our Services.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">1. No Investment Advice</h2>
+                <p>Our Services provide algorithmic market analysis and data for <strong>educational and informational purposes only</strong>. Nothing we provide constitutes investment advice, a recommendation, or an endorsement of any financial instrument. You are solely responsible for your trading and investment decisions.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">2. High Risk Acknowledgment</h2>
+                <p>You acknowledge that trading cryptocurrencies, stocks, forex, and other financial instruments involves <strong>substantial risk of loss</strong>. Past performance is not indicative of future results. You should only trade with capital you are prepared to lose entirely.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">3. Age Restriction</h2>
+                <p>Our Services are available only to individuals who are <strong>at least 18 years old</strong>. By using our Services, you represent and warrant that you meet this age requirement.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">4. User Account & Subscription</h2>
+                <p>To access certain Services, you must register an account and purchase a subscription. You agree to provide accurate information and keep your login credentials secure. Subscriptions may auto-renew according to their chosen billing cycle. Refunds are governed by our separate <a href="refund-policy.html">Refund Policy</a>.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">5. Intellectual Property</h2>
+                <p>All analysis reports, algorithms, software, website content, and logos are the intellectual property of <strong>[ Nechh Robotics]</strong>. You are granted a limited, non-exclusive, non-transferable license to use the Services for personal use only.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">6. Limitation of Liability</h2>
+                <p>To the fullest extent permitted by law, <strong>[ Nechh Robotics]</strong> shall not be liable for any direct, indirect, incidental, or consequential damages (including trading losses) arising from your use of or reliance on our Services.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">7. Modification & Termination</h2>
+                <p>We reserve the right to modify these Terms or discontinue any Service at any time. We will provide notice of material changes. We may suspend or terminate your access if you violate these Terms.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">8. Governing Law</h2>
+                <p>These Terms shall be governed by and construed in accordance with the laws of <strong>[COUNTRY]</strong>, without regard to its conflict of law principles.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">9. Contact</h2>
+                <p>For questions about these Terms, please contact us at: <strong>[nechhlab.global@gmail.com]</strong>.</p>
+            </section>
+
+            <section class="mt-12 p-6 bg-yellow-50 border-l-4 border-yellow-500">
+                <p class="font-semibold">By using our Services, you confirm that you have read, understood, and agree to be bound by these Terms of Service, our <a href="privacy.html">Privacy Policy</a>, and our <a href="risk-disclosure.html">Risk Disclosure</a>.</p>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-12 pt-8 border-t text-center text-gray-500 text-sm">
+            <p>© <span id="currentYear"></span> <strong>[ Nechh Robotics]</strong>. All rights reserved.</p>
+            <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+            <p class="mt-2">
+                <a href="terms.html" class="mx-2">Terms</a> |
+                <a href="privacy.html" class="mx-2">Privacy</a> |
+                <a href="risk-disclosure.html" class="mx-2">Risk Disclosure</a> |
+                <a href="refund-policy.html" class="mx-2">Refund Policy</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

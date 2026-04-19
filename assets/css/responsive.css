@@ -1,0 +1,114 @@
+﻿/* Mobile Optimizations */
+@media (max-width: 640px) {
+    /* Age Verification Modal */
+    #ageVerificationModal > div {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    /* Project Cards */
+    .card-hover {
+        margin: 0 1rem;
+        padding: 1.5rem;
+    }
+    
+    /* Navigation */
+    nav .hidden.md\\:flex {
+        display: none;
+    }
+    
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+        display: block !important;
+    }
+    
+    /* Hero Section */
+    .hero-section h1 {
+        font-size: 2rem;
+        line-height: 2.5rem;
+    }
+    
+    .hero-section p {
+        font-size: 1rem;
+    }
+    
+    /* Form Inputs */
+    input, select, textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+    
+    /* Buttons */
+    button, .btn {
+        padding: 0.75rem 1rem;
+        min-height: 48px; /* Better touch target */
+    }
+}
+
+/* Tablet Optimizations */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    
+    /* Two column layouts become single column */
+    .md\\:grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    nav, footer, .age-modal, .card-hover:hover {
+        display: none !important;
+    }
+    
+    body {
+        color: black !important;
+        background: white !important;
+    }
+    
+    a {
+        color: black !important;
+        text-decoration: underline !important;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0f172a;
+        color: #f1f5f9;
+    }
+    
+    .bg-white {
+        background-color: #1e293b;
+    }
+    
+    .text-gray-800 {
+        color: #cbd5e1;
+    }
+    
+    .border-gray-300 {
+        border-color: #475569;
+    }
+    
+    input, select, textarea {
+        background-color: #334155;
+        color: #f1f5f9;
+        border-color: #475569;
+    }
+}

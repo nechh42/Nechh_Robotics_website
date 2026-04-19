@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund Policy - Nechh Robotics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>body { font-family: 'Inter', sans-serif; background-color: #f9fafb; } .container { max-width: 800px; }</style>
+</head>
+<body class="text-gray-800 py-12">
+    <div class="container mx-auto px-4">
+        <header class="mb-10 border-b pb-6">
+            <a href="../index.html" class="text-blue-600 hover:underline">← Back to Home</a>
+            <h1 class="text-3xl font-bold mt-4">Refund & Cancellation Policy</h1>
+            <p class="text-gray-600 mt-2">Last Updated: <span id="currentDate"></span></p>
+            <script>document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-CA');</script>
+        </header>
+
+        <main class="prose prose-lg max-w-none">
+            <section class="mb-8 p-6 border-2 border-blue-600 bg-blue-50 rounded-xl">
+                <h2 class="text-xl font-bold text-blue-700 mb-2">📋 Policy Summary</h2>
+                <p><strong>Digital Subscription Service:</strong> Due to the immediate, non-returnable nature of digital content access, <strong>all subscription sales are generally final.</strong> Refunds are considered only under the specific conditions outlined below.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">1. General "No Refund" Rule</h2>
+                <p>By purchasing a subscription to Nechh Robotics' analysis services, you acknowledge that you are purchasing access to digital content and data streams. Therefore, our default policy is <strong>"No Refunds"</strong> after payment is processed and access is granted.</p>
+                <p class="mt-2"><strong>This includes, but is not limited to:</strong></p>
+                <ul>
+                    <li>Dissatisfaction with market analysis outcomes or trading results.</li>
+                    <li>Personal change of mind after purchase.</li>
+                    <li>Failure to actively use the service during the subscription period.</li>
+                    <li>Market conditions leading to personal trading losses.</li>
+                </ul>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">2. Exceptional Refund Considerations</h2>
+                <p>We may, at our <strong>sole and absolute discretion</strong>, issue a refund only if <strong>ALL</strong> of the following conditions are met:</p>
+                <ol class="list-decimal pl-6">
+                    <li><strong>Technical Failure on Our Side:</strong> The service was completely unusable due to a verifiable, prolonged technical fault on our infrastructure for more than 72 consecutive hours.</li>
+                    <li><strong>Immediate Request:</strong> The refund request is submitted via email to <strong>nechhlab.global@gmail.com</strong> within <strong>24 hours</strong> of the initial subscription purchase.</li>
+                    <li><strong>No Material Use:</strong> You have not accessed or downloaded a significant portion of the analysis content (as determined by our system logs).</li>
+                </ol>
+                <p class="mt-4"><strong>Refunds are NOT guaranteed</strong> even if the above conditions are met. Each request is reviewed manually.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">3. Subscription Cancellation & Non-Renewal</h2>
+                <p>You may <strong>cancel your subscription renewal</strong> at any time. Cancellation prevents future automatic charges but does NOT result in a refund for the current billing period.</p>
+                <p class="mt-2"><strong>How to Cancel:</strong> Access your account settings on our website or contact us at <strong>nechhlab.global@gmail.com</strong> at least 48 hours before your next renewal date.</p>
+                <p class="mt-2">Upon cancellation, you will retain access to the service until the end of your pre-paid billing cycle.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">4. Chargebacks & Disputes</h2>
+                <p>Initiating a credit card chargeback or payment dispute without first contacting us to resolve the issue will result in:</p>
+                <ul>
+                    <li>Immediate and permanent termination of all your accounts and services.</li>
+                    <li>A permanent ban from any future services.</li>
+                    <li>Pursuit of recovery for the disputed amount plus any associated fees.</li>
+                </ul>
+                <p class="mt-2">Please contact us directly to resolve any billing issues.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">5. Changes to This Policy</h2>
+                <p>We reserve the right to modify this Refund Policy at any time. Changes will be posted on this page with an updated "Last Updated" date. It is your responsibility to review this policy periodically.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">6. Contact for Refund Requests</h2>
+                <p>For any questions or to submit a refund request (under the strict conditions above), contact us at:</p>
+                <p><strong>Email:</strong> nechhlab.global@gmail.com<br>
+                <strong>Subject:</strong> Refund Request - [Your Account Email]</p>
+                <p class="mt-2">Please include your registered email address and the transaction ID from your payment receipt.</p>
+            </section>
+
+            <section class="mt-12 p-6 bg-gray-100 border rounded-lg">
+                <p class="font-semibold">By completing a purchase, you confirm that you have read, understood, and agree to be bound by this Refund & Cancellation Policy.</p>
+            </section>
+        </main>
+
+        <footer class="mt-12 pt-8 border-t text-center text-gray-500 text-sm">
+            <p>© <span id="currentYear"></span> <strong>Nechh Robotics</strong>. All rights reserved.</p>
+            <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+            <p class="mt-2">
+                <a href="terms.html" class="mx-2">Terms</a> |
+                <a href="privacy.html" class="mx-2">Privacy</a> |
+                <a href="risk-disclosure.html" class="mx-2">Risk Disclosure</a> |
+                <a href="refund-policy.html" class="mx-2">Refund Policy</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

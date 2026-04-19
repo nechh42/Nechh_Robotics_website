@@ -1,0 +1,162 @@
+<!-- assets/ai-chat-widget.html -->
+<div id="ai-chat-widget" style="position:fixed; bottom:20px; right:20px; z-index:1000;">
+    <button id="chat-toggle" style="background:#007bff; color:white; border:none; border-radius:50%; width:60px; height:60px; font-size:24px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+        
+    </button>
+    
+    <div id="chat-container" style="display:none; position:absolute; bottom:70px; right:0; width:350px; height:500px; background:white; border-radius:15px; box-shadow:0 10px 30px rgba(0,0,0,0.3); overflow:hidden;">
+        <div style="background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:white; padding:15px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <strong>Nechh AI Assistant</strong>
+                <div style="font-size:12px; opacity:0.8;">24/7 Otomatik Destek</div>
+            </div>
+            <button id="close-chat" style="background:none; border:none; color:white; font-size:20px; cursor:pointer;"></button>
+        </div>
+        
+        <div id="chat-messages" style="height:350px; padding:15px; overflow-y:auto; font-size:14px;">
+            <div class="message ai">
+                <div class="bubble">Merhaba! Ben Nechh AI asistanýyým. Size nasýl yardýmcý olabilirim? </div>
+                <div class="time">18:08</div>
+            </div>
+        </div>
+        
+        <div style="padding:15px; border-top:1px solid #eee;">
+            <div style="display:flex; gap:10px;">
+                <input type="text" id="chat-input" placeholder="Mesajýnýzý yazýn..." style="flex:1; padding:10px; border:1px solid #ddd; border-radius:25px; outline:none;">
+                <button id="send-message" style="background:#007bff; color:white; border:none; border-radius:50%; width:40px; height:40px; cursor:pointer;"></button>
+            </div>
+            <div style="font-size:11px; color:#666; text-align:center; margin-top:10px;">
+                Otomatik yanýt sistemi  7/24 aktif
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.message { margin-bottom: 15px; }
+.message.user { text-align: right; }
+.message.ai { text-align: left; }
+.bubble {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 18px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+.message.ai .bubble { background: #f1f1f1; }
+.message.user .bubble { background: #007bff; color: white; }
+.time { font-size: 11px; color: #999; margin-top: 5px; }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.getElementById('chat-toggle');
+    const chatContainer = document.getElementById('chat-container');
+    const closeBtn = document.getElementById('close-chat');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-message');
+    const chatMessages = document.getElementById('chat-messages');
+    
+    toggleBtn.addEventListener('click', () => {
+        chatContainer.style.display = chatContainer.style.display === 'none' ? 'block' : 'none';
+    });
+    
+    closeBtn.addEventListener('click', () => {
+        chatContainer.style.display = 'none';
+    });
+    
+    function addMessage(text, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = message ;
+        
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        bubble.textContent = text;
+        
+        const time = document.createElement('div');
+        time.className = 'time';
+        time.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        
+        messageDiv.appendChild(bubble);
+        messageDiv.appendChild(time);
+        chatMessages.appendChild(messageDiv);
+        
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    async function sendToAI(message) {
+        // Basit AI yanýtlarý (sonra OpenAI API baðlayacaðýz)
+        const responses = {
+            'kayýt': 'Kayýt olmak için lütfen ana sayfadaki "Beta Programýna Katýl" butonuna týklayýn. Size adým adým rehberlik edeceðim!',
+            'ödeme': 'Ödemeler sadece crypto (BTC, ETH) ile kabul ediliyor. 1 ay ücretsiz denemeden sonra /ay.',
+            'telegram': 'Ödeme onaylandýktan sonra otomatik olarak Telegram grubuna eklenirsiniz.',
+            'destek': '24/7 destek için: @nechh_robotics veya nechhlab.global@gmail.com',
+            'proje': 'Þu anda Telegram AI Trading System beta aþamasýnda. Diðer projeler: AEHS, Emotice Codeburn, HealthAI Dietitian.',
+            'ücret': 'Fiyat: 1 ay ücretsiz  sonra /ay. Sadece crypto ödeme kabul ediyoruz.',
+            'nasýl': '1. Kayýt ol 2. Crypto ödeme yap 3. Telegram grubuna otomatik eklen 4. Sinyalleri al ve trade yap!'
+        };
+        
+        let response = "Anladým! Size þu konuda yardýmcý olabilirim: kayýt, ödeme, telegram, destek, proje, ücret, nasýl. Lütfen daha spesifik sorun.";
+        
+        for (const [key, value] of Object.entries(responses)) {
+            if (message.toLowerCase().includes(key)) {
+                response = value;
+                break;
+            }
+        }
+        
+        // Yanýtý ekle (gecikmeli)
+        setTimeout(() => {
+            addMessage(response);
+        }, 500);
+    }
+    
+    sendBtn.addEventListener('click', async () => {
+        const message = chatInput.value.trim();
+        if (!message) return;
+        
+        addMessage(message, true);
+        chatInput.value = '';
+        
+        await sendToAI(message);
+    });
+    
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendBtn.click();
+        }
+    });
+    
+    // Hýzlý sorular butonlarý
+    const quickQuestions = document.createElement('div');
+    quickQuestions.style.padding = '10px 15px';
+    quickQuestions.style.borderTop = '1px solid #eee';
+    quickQuestions.style.display = 'flex';
+    quickQuestions.style.flexWrap = 'wrap';
+    quickQuestions.style.gap = '5px';
+    
+    const questions = ['Kayýt nasýl?', 'Ücret ne kadar?', 'Telegram?', 'Destek?'];
+    
+    questions.forEach(q => {
+        const btn = document.createElement('button');
+        btn.textContent = q;
+        btn.style.padding = '5px 10px';
+        btn.style.border = '1px solid #007bff';
+        btn.style.background = 'white';
+        btn.style.color = '#007bff';
+        btn.style.borderRadius = '15px';
+        btn.style.fontSize = '12px';
+        btn.style.cursor = 'pointer';
+        
+        btn.addEventListener('click', () => {
+            chatInput.value = q;
+            sendBtn.click();
+        });
+        
+        quickQuestions.appendChild(btn);
+    });
+    
+    chatMessages.parentNode.insertBefore(quickQuestions, chatMessages.nextSibling);
+});
+</script>
+

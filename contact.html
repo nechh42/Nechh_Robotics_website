@@ -1,0 +1,101 @@
+<footer style="margin-top:40px; text-align:center;">
+    <a href="index.html">← Back to Home</a>
+</footer>
+</body>
+<footer> <a href="index.html">← Back to Home</a> </footer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Nechh Robotics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-white text-gray-800">
+    <nav class="navbar"> <a href="index.html">Home</a> <a href="about.html">About</a> <a href="register.html">Beta Access</a> </nav>
+    <nav class="sticky top-0 bg-white/95 backdrop-blur-sm border-b z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <a href="https://nechh-robotics-website.vercel.app/" class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold">NR</span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="text-xl font-bold gradient-text">Nechh Robotics<span class="trademark"></span></div>
+                        <div class="text-xs text-gray-500">AI Research & Development</div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="https://nechh-robotics-website.vercel.app/" class="font-medium hover:text-blue-600">Home</a>
+                <a href="https://nechh-robotics-website.vercel.app/projects/" class="font-medium hover:text-blue-600">Projects</a>
+                <a href="https://nechh-robotics-website.vercel.app/projects/telegram-ai.html" class="font-medium hover:text-blue-600">Telegram AI</a>
+                <a href="https://nechh-robotics-website.vercel.app/subscription.html" class="font-medium hover:text-blue-600">Subscription</a>
+                <a href="https://nechh-robotics-website.vercel.app/about.html" class="font-medium hover:text-blue-600">About</a>
+                <a href="https://nechh-robotics-website.vercel.app/contact.html" class="font-medium hover:text-blue-600">Contact</a>
+            </div>
+            
+            <div class="md:hidden">
+                <button id="mobileMenuBtn" class="text-gray-600">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden mt-4 pt-4 border-t">
+            <div class="space-y-3">
+                <a href="https://nechh-robotics-website.vercel.app/" class="block py-2 hover:text-blue-600">Home</a>
+                <a href="https://nechh-robotics-website.vercel.app/projects/" class="block py-2 hover:text-blue-600">Projects</a>
+                <a href="https://nechh-robotics-website.vercel.app/projects/telegram-ai.html" class="block py-2 hover:text-blue-600">Telegram AI</a>
+                <a href="https://nechh-robotics-website.vercel.app/subscription.html" class="block py-2 hover:text-blue-600">Subscription</a>
+                <a href="https://nechh-robotics-website.vercel.app/about.html" class="block py-2 hover:text-blue-600">About</a>
+                <a href="https://nechh-robotics-website.vercel.app/contact.html" class="block py-2 hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Mobile menu toggle
+    document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+</script>
+
+    <section class="py-16 px-4">
+        <div class="max-w-2xl mx-auto">
+            <h1 class="text-4xl font-bold mb-8 text-center">Contact Us</h1>
+            
+            <div class="space-y-8">
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <h2 class="text-xl font-bold mb-4">Official Email</h2>
+                    <a href="mailto:nechhlab.global@gmail.com" 
+                       class="text-blue-600 hover:text-blue-800 text-lg font-medium">
+                        <i class="fas fa-envelope mr-3"></i>
+                        nechhlab.global@gmail.com
+                    </a>
+                    <p class="text-gray-600 mt-3">
+                        For research collaborations, partnership inquiries, 
+                        and technical discussions.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-2xl">
+                    <h2 class="text-xl font-bold mb-4">Response Time</h2>
+                    <p class="text-gray-600">
+                        We typically respond within 24-48 hours for business inquiries.
+                        Research collaboration requests may take 3-5 business days.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Nechh Robotics</title>
+    <!-- ANA SİTEYLE AYNI STİLLER -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        :root { --blue: #2563eb; --cyan: #06b6d4; }
+        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
+        .gradient-text {
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .trademark { font-size: 0.6em; vertical-align: super; margin-left: 2px; }
+        .consent-box { border-left: 4px solid #3b82f6; }
+        #submitBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- NAVIGATION (Ana sayfayla aynı) -->
+    <nav class="sticky top-0 bg-white/95 backdrop-blur-sm border-b z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="text-xl font-bold gradient-text">Nechh Robotics<span class="trademark"></span></a>
+                </div>
+                            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="font-medium hover:text-blue-600">Home</a>
+                <a href="about.html" class="font-medium hover:text-blue-600">About</a>
+                <a href="pricing.html" class="font-medium hover:text-blue-600">Pricing</a>
+                <a href="register.html" class="font-medium text-blue-600 border-b-2 border-blue-600">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN REGISTRATION FORM -->
+    <main class="max-w-2xl mx-auto px-4 py-12">
+        <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+            <!-- Header -->
+            <div class="text-center mb-10">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Create Your Account</h1>
+                <p class="text-gray-600">Register for access to algorithmic market analysis. All fields are required.</p>
+                <div class="mt-4 text-sm text-amber-700 bg-amber-50 rounded-lg p-3 inline-block">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    <strong>Important:</strong> This service provides analysis only, not financial advice.
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <form id="registrationForm" class="space-y-6">
+                <!-- Email & Password -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2" for="email">Email Address *</label>
+                        <input type="email" id="email" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                               placeholder="your.email@example.com">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2" for="password">Password *</label>
+                        <input type="password" id="password" required minlength="8"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                               placeholder="Minimum 8 characters">
+                    </div>
+                </div>
+
+                <!-- ===== MANDATORY LEGAL CONSENT SECTION ===== -->
+                <div class="mt-10 pt-8 border-t">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Legal Consent & Acknowledgments</h2>
+                    <p class="text-gray-600 mb-6">You must read and agree to all of the following to create an account.</p>
+
+                    <!-- Consent Box 1: Age & Capacity -->
+                    <div class="consent-box bg-gray-50 p-5 rounded-lg mb-4">
+                        <label class="flex items-start cursor-pointer">
+                            <input type="checkbox" id="consentAge" class="mt-1 mr-3 h-5 w-5 text-blue-600 rounded focus:ring-blue-500" required>
+                            <span class="text-gray-800">
+                                <strong class="text-gray-900">I confirm that I am at least 18 years old</strong> and have the legal capacity to enter into this agreement. I understand that this service is not available to minors.
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Consent Box 2: Risk Disclosure -->
+                    <div class="consent-box bg-gray-50 p-5 rounded-lg mb-4">
+                        <label class="flex items-start cursor-pointer">
+                            <input type="checkbox" id="consentRisk" class="mt-1 mr-3 h-5 w-5 text-blue-600 rounded focus:ring-blue-500" required>
+                            <span class="text-gray-800">
+                                <strong class="text-gray-900">I have read, understood, and accept the full <a href="legal/risk-disclosure.html" target="_blank" class="text-blue-600 hover:underline font-semibold">Risk Disclosure Statement</a>.</strong> I acknowledge that trading involves a high risk of loss and that Nechh Robotics provides analysis for informational purposes only, not investment advice.
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Consent Box 3: Terms & Privacy -->
+                    <div class="consent-box bg-gray-50 p-5 rounded-lg mb-6">
+                        <label class="flex items-start cursor-pointer">
+                            <input type="checkbox" id="consentTerms" class="mt-1 mr-3 h-5 w-5 text-blue-600 rounded focus:ring-blue-500" required>
+                            <span class="text-gray-800">
+                                <strong class="text-gray-900">I agree to the <a href="legal/terms.html" target="_blank" class="text-blue-600 hover:underline font-semibold">Terms of Service</a> and <a href="legal/privacy.html" target="_blank" class="text-blue-600 hover:underline font-semibold">Privacy Policy</a>.</strong> This includes understanding the subscription terms, refund policy, and how my personal data will be processed.
+                            </span>
+                        </label>
+                    </div>
+                    <!-- ===== LEGAL CONSENT SECTION END ===== -->
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-6">
+                    <button type="submit" id="submitBtn"
+                            class="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold py-4 px-6 rounded-lg text-lg hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed transition duration-300 shadow-md">
+                        <i class="fas fa-user-plus mr-2"></i> Create Account
+                    </button>
+                    <p class="text-center text-gray-500 text-sm mt-4">
+                        Already have an account? <a href="#" class="text-blue-600 hover:underline font-medium">Sign in here</a> (Coming soon).
+                    </p>
+                </div>
+            </form>
+
+            <!-- Final Legal Notice -->
+            <div class="mt-12 p-6 border-2 border-red-200 bg-red-50 rounded-xl">
+                <h3 class="font-bold text-red-800 mb-2"><i class="fas fa-exclamation-circle mr-2"></i>Final Warning</h3>
+                <p class="text-red-700 text-sm">
+                    The analysis provided is for educational and informational purposes only. It is NOT investment advice. You are solely responsible for your trading decisions. Past performance does not guarantee future results. Only risk capital you are prepared to lose.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER (Ana sayfayla aynı) -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 mt-20">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-800 pb-8 mb-8">
+                <div class="mb-6 md:mb-0">
+                    <span class="text-xl font-bold text-white">Nechh Robotics</span>
+                    <p class="text-sm mt-2 max-w-md">Independent algorithmic market research.<br>For educational and informational purposes only.</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <div class="text-xs px-4 py-2 bg-gray-800 rounded-full inline-block">⚠️ NOT INVESTMENT ADVICE</div>
+                    <p class="text-xs mt-3">High risk involved. 18+ only.</p>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-white font-semibold mb-3">Legal</h3>
+                    <div class="flex flex-wrap gap-4 text-sm">
+                        <a href="legal/terms.html" class="hover:text-white hover:underline">Terms of Service</a>
+                        <a href="legal/privacy.html" class="hover:text-white hover:underline">Privacy Policy</a>
+                        <a href="legal/risk-disclosure.html" class="hover:text-white hover:underline">Risk Disclosure</a>
+                        <a href="legal/refund-policy.html" class="hover:text-white hover:underline">Refund Policy</a>
+                    </div>
+                </div>
+                <div class="text-center md:text-right">
+                    <h3 class="text-white font-semibold mb-3">Contact</h3>
+                    <p class="text-sm">nechhlab.global@gmail.com</p>
+                    <p class="text-xs mt-2">Türkiye</p>
+                </div>
+            </div>
+            <div class="text-center pt-8 mt-8 border-t border-gray-800 text-xs">
+                <p>© <span id="currentYear"></span> Nechh Robotics. All rights reserved. "Nechh Robotics" is a trademark.</p>
+                <p class="mt-2">This is an experimental research platform. Past performance is no guarantee of future results.</p>
+            </div>
+        </div>
+    </footer>
+    <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+
+    <!-- JAVASCRIPT FOR BUTTON DISABLE/ENABLE -->
+    <script>
+        const consentAge = document.getElementById('consentAge');
+        const consentRisk = document.getElementById('consentRisk');
+        const consentTerms = document.getElementById('consentTerms');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Function to check if all checkboxes are checked
+        function checkConsent() {
+            if (consentAge.checked && consentRisk.checked && consentTerms.checked) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        }
+
+        // Add event listeners to all checkboxes
+        consentAge.addEventListener('change', checkConsent);
+        consentRisk.addEventListener('change', checkConsent);
+        consentTerms.addEventListener('change', checkConsent);
+
+        // Initially disable the button
+        submitBtn.disabled = true;
+
+        // Form submission handler (for demonstration)
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission for now
+            const email = document.getElementById('email').value;
+            alert('Registration would be processed for: ' + email + '\n\nIn the next step, we will connect this form to a real database and payment system.');
+            // In the future: Here you will send data to your backend
+        });
+    </script>
+</body>
+</html>

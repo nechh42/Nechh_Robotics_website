@@ -1,0 +1,13 @@
+MARKET SCENARIO  OVERVIEW ({{TIMEFRAME}})
+
+Status: NO POSITION OPENED
+
+High-score symbols:
+{{SYMBOL_LIST}}
+
+Reason:
+ Risk management active
+ Position limit reached
+
+Informational & educational output
+This is NOT a trade signal

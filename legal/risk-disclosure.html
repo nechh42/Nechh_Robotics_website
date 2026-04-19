@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Disclosure - Nechh Robotics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>body { font-family: 'Inter', sans-serif; background-color: #f9fafb; } .container { max-width: 800px; }</style>
+</head>
+<body class="text-gray-800 py-12">
+    <div class="container mx-auto px-4">
+        <header class="mb-10 border-b pb-6">
+            <a href="../index.html" class="text-blue-600 hover:underline">← Back to Home</a>
+            <h1 class="text-3xl font-bold mt-4">Risk Disclosure Statement</h1>
+            <p class="text-gray-600 mt-2">Last Updated: <span id="currentDate"></span></p>
+            <script>document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-CA');</script>
+        </header>
+
+        <main class="prose prose-lg max-w-none">
+            <!-- CRITICAL WARNING BOX -->
+            <section class="mb-8 p-6 border-2 border-red-600 bg-red-50 rounded-xl">
+                <h2 class="text-xl font-bold text-red-700 mb-2">⚠️ CRITICAL WARNING</h2>
+                <p class="font-semibold">Trading and investing in financial markets carry a HIGH LEVEL OF RISK. You may lose SOME or ALL of your invested capital. Do not trade with money you cannot afford to lose.</p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">1. No Investment Advice</h2>
+                <p><strong>Nechh Robotics</strong> is NOT a registered investment advisor, broker-dealer, or financial planner. The algorithmic analysis, data, charts, and any content we provide ("Services") are for <strong>INFORMATIONAL AND EDUCATIONAL PURPOSES ONLY</strong>.</p>
+                <p class="mt-2">Nothing in our Services constitutes:</p>
+                <ul>
+                    <li>A recommendation to buy, sell, or hold any financial instrument.</li>
+                    <li>Personalized investment advice tailored to your situation.</li>
+                    <li>A guarantee or promise of future performance or profits.</li>
+                </ul>
+                <p class="mt-2"><strong>All trading decisions are solely your responsibility.</strong></p>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">2. Specific Risks of Trading</h2>
+                <p>You acknowledge and accept the following inherent risks:</p>
+                <ul>
+                    <li><strong>Market Risk:</strong> Prices can move rapidly and unpredictably due to news, regulations, or market sentiment.</li>
+                    <li><strong>Liquidity Risk:</strong> You may be unable to buy/sell at your desired price, especially in volatile conditions.</li>
+                    <li><strong>Leverage Risk (Futures/Margin):</strong> Leveraged products can amplify losses, potentially exceeding your initial deposit.</li>
+                    <li><strong>Technical Risk:</strong> System failures, internet problems, or exchange outages may prevent order execution.</li>
+                    <li><strong>Algorithmic & Backtesting Risk:</strong> Past algorithmic performance does not guarantee future results. Market conditions change.</li>
+                </ul>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">3. Disclaimer of Warranty & Limitation of Liability</h2>
+                <p>Our Services are provided "AS IS" without warranties of any kind. To the fullest extent permitted by Turkish law, <strong>Nechh Robotics, its developers, and affiliates shall NOT be liable</strong> for any direct, indirect, incidental, special, or consequential damages (including, but not limited to, trading losses, loss of profits, or data) arising from:</p>
+                <ul>
+                    <li>Your use of or reliance on our analysis or data.</li>
+                    <li>Any errors, omissions, or inaccuracies in our content.</li>
+                    <li>Any decision made or action taken based on our Services.</li>
+                    <li>Any interruption or cessation of service.</li>
+                </ul>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">4. Your Acknowledgment & Agreement</h2>
+                <p>By using our Services, you explicitly acknowledge and represent that:</p>
+                <ol class="list-decimal pl-6">
+                    <li>You are at least <strong>18 years old</strong>.</li>
+                    <li>You understand the high risks involved in trading.</li>
+                    <li>You have sufficient knowledge and experience to evaluate the merits and risks of any trade.</li>
+                    <li>You are solely responsible for determining the suitability of your investments.</li>
+                    <li>You have read and understood this entire <strong>Risk Disclosure Statement</strong>.</li>
+                </ol>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold mb-4">5. Seek Independent Advice</h2>
+                <p>If you are unsure about any investment decision, you should consult with a qualified, independent financial advisor or professional before trading.</p>
+            </section>
+
+            <section class="mt-12 p-6 bg-yellow-50 border-l-4 border-yellow-500">
+                <p class="font-semibold">Trading is not suitable for everyone. Only risk capital you are prepared to lose entirely.</p>
+            </section>
+        </main>
+
+        <footer class="mt-12 pt-8 border-t text-center text-gray-500 text-sm">
+            <p>© <span id="currentYear"></span> <strong>Nechh Robotics</strong>. All rights reserved.</p>
+            <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+            <p class="mt-2">
+                <a href="terms.html" class="mx-2">Terms</a> |
+                <a href="privacy.html" class="mx-2">Privacy</a> |
+                <a href="risk-disclosure.html" class="mx-2">Risk Disclosure</a> |
+                <a href="refund-policy.html" class="mx-2">Refund Policy</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
