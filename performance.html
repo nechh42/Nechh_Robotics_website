@@ -162,8 +162,18 @@
 async function loadData() {
   try {
     const r = await fetch('/trades.json?' + Date.now());
-    const data = await r.json();
-    render(data);
+   // fetch yerine direkt veri:
+const data = {
+  "meta": {"last_updated": "2026-04-19T20:42:00Z", "mode": "PAPERTRADE"},
+  "summary": {
+    "total_trades": 33, "wins": 9, "losses": 24,
+    "win_rate": 27.3, "avg_rr": 2.1,
+    "total_pnl": 51.39, "max_drawdown": 0.6,
+    "balance_start": 10000, "balance_current": 10051.39
+  },
+  "trades": []
+};
+render(data);
   } catch(e) {
     document.getElementById('tradeTable').innerHTML =
       '<tr><td colspan="9" class="no-data">trades.json yüklenemedi. Aynı klasörde olmalı.</td></tr>';
