@@ -1,83 +1,10 @@
-{
-  "meta": {
-    "last_updated": "2026-04-17T10:00:00Z",
-    "mode": "PAPERTRADE",
-    "version": "1.0"
-  },
-  "summary": {
-    "total_trades": 18,
-    "wins": 5,
-    "losses": 13,
-    "win_rate": 27.8,
-    "avg_rr": 2.1,
-    "total_pnl": 28.34,
-    "max_drawdown": 0.3,
-    "balance_start": 10000.00,
-    "balance_current": 10028.34
-  },
-  "trades": [
-    {
-      "id": "T001",
-      "symbol": "BTCUSDT",
-      "market": "FUTURES",
-      "side": "LONG",
-      "structure": "Liquidity Sweep",
-      "session": "NY",
-      "entry": 83420.5,
-      "exit": 85100.0,
-      "invalidation": 82000.0,
-      "target": 85000.0,
-      "leverage": 3,
-      "size": 0.012,
-      "rr": 1.8,
-      "outcome": "Target Reached",
-      "pnl": 20.16,
-      "pnl_pct": 2.01,
-      "duration_minutes": 262,
-      "opened_at": "2026-04-15T09:14:00Z",
-      "closed_at": "2026-04-15T13:36:00Z"
-    },
-    {
-      "id": "T002",
-      "symbol": "ETHUSDT",
-      "market": "FUTURES",
-      "side": "SHORT",
-      "structure": "Breakout Retest",
-      "session": "London",
-      "entry": 2152.0,
-      "exit": 2098.0,
-      "invalidation": 2200.0,
-      "target": 2050.0,
-      "leverage": 2,
-      "size": 0.5,
-      "rr": 1.5,
-      "outcome": "Target Reached",
-      "pnl": 27.0,
-      "pnl_pct": 2.51,
-      "duration_minutes": 180,
-      "opened_at": "2026-04-14T08:00:00Z",
-      "closed_at": "2026-04-14T11:00:00Z"
-    },
-    {
-      "id": "T003",
-      "symbol": "SOLUSDT",
-      "market": "FUTURES",
-      "side": "LONG",
-      "structure": "Range Expansion",
-      "session": "Asia",
-      "entry": 142.5,
-      "exit": 140.1,
-      "invalidation": 139.0,
-      "target": 148.0,
-      "leverage": 2,
-      "size": 1.0,
-      "rr": -1.0,
-      "outcome": "Invalidated",
-      "pnl": -2.4,
-      "pnl_pct": -1.68,
-      "duration_minutes": 95,
-      "opened_at": "2026-04-13T02:00:00Z",
-      "closed_at": "2026-04-13T03:35:00Z"
-    }
-  ]
+"summary": {
+  "total_trades": 33,
+  "wins": 9,
+  "losses": 24,
+  "win_rate": 27.3,
+  "total_pnl": 51.39,
+  "max_drawdown": 0.6,
+  "balance_start": 10000.00,
+  "balance_current": 10051.39
 }
