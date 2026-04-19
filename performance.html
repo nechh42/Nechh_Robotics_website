@@ -161,7 +161,7 @@
 // trades.json'dan veriyi çek
 async function loadData() {
   try {
-    const r = await fetch('trades.json?' + Date.now());
+    const r = await fetch('/trades.json?' + Date.now());
     const data = await r.json();
     render(data);
   } catch(e) {
