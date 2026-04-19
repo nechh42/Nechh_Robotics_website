@@ -1,202 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Nechh Robotics</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <style>
-        :root { --blue: #2563eb; --cyan: #06b6d4; }
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-text {
-            background: linear-gradient(135deg, var(--blue), var(--cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .trademark { font-size: 0.6em; vertical-align: super; margin-left: 2px; }
-        .card-hover { transition: all 0.3s ease; border: 1px solid #e5e7eb; }
-        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1); border-color: var(--blue); }
-        .phase-badge { font-size: 0.75rem; padding: 2px 10px; border-radius: 12px; font-weight: 600; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Nechh Robotics</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:#111827;font-size:14px;line-height:1.6}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:60px;border-bottom:1px solid #e5e7eb;background:#fff;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:15px;color:#2563eb;text-decoration:none}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:#6b7280;text-decoration:none;font-size:13px;font-weight:500;transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:#111827}
+.nav-cta{background:#2563eb;color:#fff!important;padding:7px 16px;border-radius:7px;font-size:12px!important;font-weight:600!important}
+.nav-cta:hover{background:#1d4ed8!important}
+
+.page{max-width:760px;margin:0 auto;padding:56px 24px 80px}
+h1{font-size:26px;font-weight:700;margin-bottom:6px}
+.sub{color:#6b7280;font-size:14px;margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid #e5e7eb}
+
+.sec-label{font-size:11px;font-weight:600;color:#2563eb;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.sec-title{font-size:20px;font-weight:700;margin-bottom:14px}
+.sec-text{color:#374151;font-size:14px;line-height:1.8;margin-bottom:16px}
+
+hr{border:none;border-top:1px solid #e5e7eb;margin:48px 0}
+
+/* QUOTE BLOCK */
+.quote{
+  border-left:3px solid #2563eb;
+  padding:16px 22px;
+  background:#f9fafb;
+  border-radius:0 8px 8px 0;
+  margin:24px 0;
+  font-size:15px;
+  color:#111827;
+  font-style:italic;
+  line-height:1.7;
+}
+
+/* TIMELINE */
+.timeline{list-style:none;position:relative;padding-left:24px}
+.timeline::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:1px;background:#e5e7eb}
+.timeline li{position:relative;padding:0 0 24px 20px}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:'';position:absolute;left:-1px;top:6px;width:8px;height:8px;border-radius:50%;background:#2563eb;border:2px solid #fff;box-shadow:0 0 0 1px #2563eb}
+.tl-date{font-size:11px;font-weight:600;color:#2563eb;letter-spacing:1px;margin-bottom:3px}
+.tl-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.tl-text{font-size:13px;color:#6b7280;line-height:1.7}
+
+/* PRINCIPLES */
+.principles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+@media(max-width:540px){.principles{grid-template-columns:1fr}}
+.principle{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:18px}
+.pr-icon{font-size:20px;margin-bottom:8px}
+.pr-title{font-size:13px;font-weight:700;margin-bottom:4px}
+.pr-text{font-size:12px;color:#6b7280;line-height:1.6}
+
+/* MARKETS TABLE */
+.mkt-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px}
+.mkt-table th{text-align:left;padding:10px 14px;font-size:11px;letter-spacing:1px;color:#9ca3af;border-bottom:1px solid #e5e7eb;font-weight:600}
+.mkt-table td{padding:12px 14px;border-bottom:1px solid #f3f4f6;color:#374151}
+.mkt-table tr:last-child td{border:none}
+.badge-live{background:#dcfce7;color:#16a34a;font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px}
+.badge-soon{background:#f3f4f6;color:#9ca3af;font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px}
+
+/* SCAM BOX */
+.scam-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:20px 24px}
+.scam-box h3{font-size:14px;font-weight:700;color:#9a3412;margin-bottom:12px}
+.scam-list{list-style:none}
+.scam-list li{font-size:13px;color:#7c2d12;padding:6px 0;border-bottom:1px solid #fde8d0;display:flex;gap:8px;align-items:flex-start}
+.scam-list li:last-child{border:none}
+
+/* CONTACT */
+.contact-box{background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:20px 24px}
+.contact-box p{font-size:13px;color:#374151;margin-bottom:8px}
+.contact-box a{color:#2563eb;text-decoration:none}
+
+footer{background:#f9fafb;border-top:1px solid #e5e7eb;padding:28px 40px}
+.fi{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
+.flogo{font-weight:700;color:#2563eb;font-size:14px}
+.fwarn{font-size:11px;color:#9ca3af;margin-top:2px}
+.flinks{display:flex;gap:18px;flex-wrap:wrap}
+.flinks a{font-size:12px;color:#6b7280;text-decoration:none}.flinks a:hover{color:#111827}
+.fbot{max-width:960px;margin:14px auto 0;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;padding-top:14px}
+</style>
 </head>
-<body class="bg-white text-gray-800">
-    <!-- Navigation (Ana sayfayla aynı) -->
-    <nav class="sticky top-0 bg-white/95 backdrop-blur-sm border-b z-50">
-        <div class="max-w-7xl mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-3">
-                    <a href="index.html" class="text-xl font-bold gradient-text">Nechh Robotics<span class="trademark"></span></a>
-                </div>
-                            <div class="hidden md:flex space-x-8">
-                <a href="index.html" class="font-medium hover:text-blue-600">Home</a>
-                <a href="about.html" class="font-medium text-blue-600 border-b-2 border-blue-600">About</a>
-                <a href="pricing.html" class="font-medium hover:text-blue-600">Pricing</a>
-                <a href="register.html" class="font-medium hover:text-blue-600">Register</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+<body>
 
-    <!-- HERO SECTION -->
-    <section class="pt-20 pb-10 px-4 bg-gradient-to-b from-blue-50 to-white">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Beyond Code: A Philosophy of Observation</h1>
-            <p class="text-xl text-gray-700">Nechh Robotics is an independent technology initiative that bridges scientific thought with experimental engineering across multiple disciplines.</p>
-        </div>
-    </section>
+<nav>
+  <a class="nav-logo" href="index.html">Nechh Robotics</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="performance.html">Performance</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="pricing.html" class="nav-cta">Get Access →</a>
+  </div>
+</nav>
 
-    <!-- FOUNDER SECTION -->
-    <section class="py-12 px-4 bg-white">
-        <div class="max-w-4xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center gap-10">
-                <div class="md:w-2/3">
-                    <h2 class="text-3xl font-bold mb-6 text-gray-900">Founder & Approach</h2>
-                    <p class="text-lg text-gray-700 mb-4">
-                        I am the founder—a former physics teacher with nearly 30 years of experience, and a lifelong inventor, developer, and writer. My work has always been driven by a core principle: moving beyond theoretical knowledge to <strong class="text-gray-900">build systems, test them rigorously, and observe real-world behaviors.</strong>
-                    </p>
-                    <p class="text-gray-600">
-                        This empirical, scenario-based mindset is the foundation of every project at Nechh Robotics. We don't claim to have absolute answers; instead, we generate scenarios, discuss probabilities, and aim to create awareness.
-                    </p>
-                </div>
-                <div class="md:w-1/3 bg-gray-50 p-8 rounded-2xl border text-center">
-                    <div class="text-5xl mb-4">👨‍🔬</div>
-                    <h3 class="text-xl font-bold mb-2">M. Bayrak</h3>
-                    <p class="text-gray-600 text-sm">Founder, Developer & Researcher</p>
-                    <p class="text-gray-500 text-xs mt-3">Physics Teacher (30 yrs) | Inventor | Systems Thinker</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="page">
 
-    <!-- PROJECTS SHOWCASE -->
-    <section class="py-12 px-4 bg-gray-50">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold mb-10 text-center text-gray-900">A Portfolio of Experimental Projects</h2>
-            <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12">Projects at Nechh Robotics exist at various maturity levels—from research and prototype to MVP and live beta. This ecosystem reflects our continuous exploration across different fields.</p>
+  <h1>About Nechh Robotics</h1>
+  <p class="sub">Independent algorithmic market research platform. Built by one person. Running 24/7.</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Project Card 1 -->
-                <div class="card-hover bg-white p-6 rounded-xl">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="font-bold text-lg text-gray-900">Telegram AI Trading System</h3>
-                        <span class="phase-badge bg-green-100 text-green-800">Beta (Live)</span>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-4">Algorithmic market analysis delivered via Telegram. A live experiment in observing systematic model behavior on real market data.</p>
-                    <div class="text-xs text-blue-600">Algorithmic Models • Data Analysis • Automation</div>
-                </div>
-                <!-- Project Card 2 -->
-                <div class="card-hover bg-white p-6 rounded-xl">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="font-bold text-lg text-gray-900">AEHS</h3>
-                        <span class="phase-badge bg-blue-100 text-blue-800">Prototype / R&D</span>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-4">Advanced Environmental & Habitat Systems. Research-focused prototyping.</p>
-                    <div class="text-xs text-blue-600">Research • Prototyping • Systems Design</div>
-                </div>
-                <!-- Project Card 3 -->
-                <div class="card-hover bg-white p-6 rounded-xl">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="font-bold text-lg text-gray-900">HealthAI Dietitian</h3>
-                        <span class="phase-badge bg-purple-100 text-purple-800">Research / Prototype</span>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-4">AI-driven personal health and nutrition analysis system.</p>
-                    <div class="text-xs text-blue-600">AI • Health Tech • Personalization</div>
-                </div>
-                <!-- Project Card 4 -->
-                <div class="card-hover bg-white p-6 rounded-xl">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="font-bold text-lg text-gray-900">Broker Agent System</h3>
-                        <span class="phase-badge bg-blue-100 text-blue-800">Prototype</span>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-4">Multi-agent automation system for brokerage and data interaction.</p>
-                    <div class="text-xs text-blue-600">Automation • Multi-Agent • Finance</div>
-                </div>
-                <!-- Project Card 5 -->
-                <div class="card-hover bg-white p-6 rounded-xl">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="font-bold text-lg text-gray-900">Agricultural Robot (Green Warrior)</h3>
-                        <span class="phase-badge bg-yellow-100 text-yellow-800">Robotics</span>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-4">Experimental robotics project focused on agricultural automation.</p>
-                    <div class="text-xs text-blue-600">Robotics • Automation • Agritech</div>
-                </div>
-                <!-- Project Card 6 -->
-                <div class="card-hover bg-white p-6 rounded-xl">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="font-bold text-lg text-gray-900">Emotice Codeburn</h3>
-                        <span class="phase-badge bg-green-100 text-green-800">MVP / Iterating</span>
-                    </div>
-                    <p class="text-gray-600 text-sm mb-4">A unique project at the intersection of emotion, code, and system behavior.</p>
-                    <div class="text-xs text-blue-600">Experimental • Software • Behavior</div>
-                </div>
-            </div>
+  <!-- STORY -->
+  <div class="sec-label">The Story</div>
+  <div class="sec-title">Why This Exists</div>
+  <p class="sec-text">
+    Most market analysis services sell emotions. They react to price moves, amplify fear and greed, and package noise as insight. After years of watching this, a different approach was built from scratch.
+  </p>
+  <p class="sec-text">
+    Nechh Robotics is an algorithmic system that reads market structure the way a machine does — without bias, without urgency, without a narrative to push. It identifies liquidity zones, detects structural setups, and reports what it observes. Nothing more.
+  </p>
 
-            <p class="text-center text-gray-500 text-sm mt-12">
-                ... alongside many others like <strong>Sterilization Car (M.O.R.U.K.)</strong>, <strong>Infinite Drone</strong>, <strong>Ionocraft</strong>, and <strong>Olly</strong> in the fields of robotics, automation, AI, and experimental engineering.
-            </p>
-        </div>
-    </section>
+  <div class="quote">
+    "Markets may appear chaotic, but beneath the surface lies mathematical order.<br>
+    Energy never disappears — it only changes hands."
+  </div>
 
-    <!-- KEY MESSAGE & DISCLAIMER -->
-    <section class="py-12 px-4 bg-white">
-        <div class="max-w-4xl mx-auto">
-            <div class="border-l-4 border-amber-500 bg-amber-50 p-6 rounded-r-xl mb-8">
-                <h3 class="text-xl font-bold text-amber-800 mb-2">A Critical Clarification</h3>
-                <p class="text-amber-700">
-                    The <strong>Telegram AI Trading System</strong> is just <em>one</em> project among many. The market analysis it provides is <strong>NOT investment advice, does NOT constitute a recommendation, and carries NO profit guarantee.</strong> Its purpose is purely observational: to analyze market data, explore different scenarios, and note conditions worth attention.
-                </p>
-            </div>
+  <hr>
 
-            <div class="p-6 border rounded-xl bg-gray-50">
-                <h3 class="text-2xl font-bold mb-4 text-gray-900">Our Structure & Access</h3>
-                <p class="text-gray-700 mb-3">
-                    Nechh Robotics is <strong>not an investment firm</strong> and does not provide financial intermediation. Some projects may be open-access, while others, based on their nature and development stage, may be offered under a subscription or limited-access model.
-                </p>
-                <p class="text-gray-600">
-                    This structure allows us to sustain focused research and development while providing value to those interested in our experimental approach to technology and system analysis.
-                </p>
-            </div>
-        </div>
-    </section>
+  <!-- TIMELINE -->
+  <div class="sec-label">Development</div>
+  <div class="sec-title">How It Was Built</div>
+  <ul class="timeline" style="margin-top:20px">
+    <li>
+      <div class="tl-date">2023</div>
+      <div class="tl-title">Research & Strategy Development</div>
+      <div class="tl-text">Deep study of market microstructure, liquidity theory, and algorithmic execution models. Strategy frameworks defined.</div>
+    </li>
+    <li>
+      <div class="tl-date">2024</div>
+      <div class="tl-title">System Architecture</div>
+      <div class="tl-text">Core engine built. Backtesting framework developed. First signals generated in controlled environment. Thousands of hours of iteration.</div>
+    </li>
+    <li>
+      <div class="tl-date">Early 2025</div>
+      <div class="tl-title">Papertrade Phase</div>
+      <div class="tl-text">System moved to live market data. Papertrade execution began. All results logged transparently. No live capital at risk during validation.</div>
+    </li>
+    <li>
+      <div class="tl-date">2026</div>
+      <div class="tl-title">Public Launch — Crypto</div>
+      <div class="tl-text">First market coverage opened to subscribers. Crypto — Spot & Futures. Full output, single tier, no upsells.</div>
+    </li>
+    <li>
+      <div class="tl-date">2026 — 2027</div>
+      <div class="tl-title">Expanding Coverage</div>
+      <div class="tl-text">US Stocks, Forex, BIST, and China markets in development. Each market gets its own dedicated system — not a repackaged version.</div>
+    </li>
+  </ul>
 
-    <!-- FOOTER (Ana sayfayla aynı) -->
-    <footer class="bg-gray-900 text-gray-400 py-12 px-4 mt-20">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center border-b border-gray-800 pb-8 mb-8">
-                <div class="mb-6 md:mb-0">
-                    <span class="text-xl font-bold text-white">Nechh Robotics</span>
-                    <p class="text-sm mt-2 max-w-md">Independent algorithmic market research.<br>For educational and informational purposes only.</p>
-                </div>
-                <div class="text-center md:text-right">
-                    <div class="text-xs px-4 py-2 bg-gray-800 rounded-full inline-block">⚠️ NOT INVESTMENT ADVICE</div>
-                    <p class="text-xs mt-3">High risk involved. 18+ only.</p>
-                </div>
-            </div>
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h3 class="text-white font-semibold mb-3">Legal</h3>
-                    <div class="flex flex-wrap gap-4 text-sm">
-                        <a href="legal/terms.html" class="hover:text-white hover:underline">Terms of Service</a>
-                        <a href="legal/privacy.html" class="hover:text-white hover:underline">Privacy Policy</a>
-                        <a href="legal/risk-disclosure.html" class="hover:text-white hover:underline">Risk Disclosure</a>
-                        <a href="legal/refund-policy.html" class="hover:text-white hover:underline">Refund Policy</a>
-                    </div>
-                </div>
-                <div class="text-center md:text-right">
-                    <h3 class="text-white font-semibold mb-3">Contact</h3>
-                    <p class="text-sm">nechhlab.global@gmail.com</p>
-                    <p class="text-xs mt-2">Türkiye</p>
-                </div>
-            </div>
-            <div class="text-center pt-8 mt-8 border-t border-gray-800 text-xs">
-                <p>© <span id="currentYear"></span> Nechh Robotics. All rights reserved. "Nechh Robotics" is a trademark.</p>
-                <p class="mt-2">This is an experimental research platform. Past performance is no guarantee of future results.</p>
-            </div>
-        </div>
-    </footer>
-    <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+  <hr>
+
+  <!-- PRINCIPLES -->
+  <div class="sec-label">Principles</div>
+  <div class="sec-title">How We Operate</div>
+  <div class="principles">
+    <div class="principle">
+      <div class="pr-icon">📊</div>
+      <div class="pr-title">Transparency First</div>
+      <div class="pr-text">Every setup is logged. Wins and losses reported equally. Nothing is hidden or cherry-picked.</div>
+    </div>
+    <div class="principle">
+      <div class="pr-icon">🤖</div>
+      <div class="pr-title">System Driven</div>
+      <div class="pr-text">No human emotion in execution. The algorithm decides based on structure — not opinion.</div>
+    </div>
+    <div class="principle">
+      <div class="pr-icon">🛡️</div>
+      <div class="pr-title">Capital Protection</div>
+      <div class="pr-text">Strategy never compromises on risk rules. Max drawdown kept minimal. Waiting is also a position.</div>
+    </div>
+    <div class="principle">
+      <div class="pr-icon">⚖️</div>
+      <div class="pr-title">Educational Framing</div>
+      <div class="pr-text">All content is market observation for educational purposes. Not investment advice. No guarantees offered.</div>
+    </div>
+    <div class="principle">
+      <div class="pr-icon">🔇</div>
+      <div class="pr-title">No Noise</div>
+      <div class="pr-text">Silence is not a problem. We only send a message when the system has something to say.</div>
+    </div>
+    <div class="principle">
+      <div class="pr-icon">🌍</div>
+      <div class="pr-title">Multi-Market Vision</div>
+      <div class="pr-text">Crypto is the start. US Stocks, Forex, BIST, and China markets are in development roadmap.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- MARKETS -->
+  <div class="sec-label">Coverage</div>
+  <div class="sec-title">Markets in Scope</div>
+  <table class="mkt-table">
+    <thead>
+      <tr>
+        <th>Market</th>
+        <th>Coverage</th>
+        <th>Status</th>
+        <th>Launch</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>₿ Crypto</b></td>
+        <td>BTC, ETH, Major Alts — Spot & Futures</td>
+        <td><span class="badge-live">LIVE</span></td>
+        <td>2026</td>
+      </tr>
+      <tr>
+        <td><b>📈 US Stocks</b></td>
+        <td>NYSE & NASDAQ — Market Structure Analysis</td>
+        <td><span class="badge-soon">Q3 2026</span></td>
+        <td>2026</td>
+      </tr>
+      <tr>
+        <td><b>💱 Forex</b></td>
+        <td>Major & Minor Pairs — 4H & Daily</td>
+        <td><span class="badge-soon">Q4 2026</span></td>
+        <td>2026</td>
+      </tr>
+      <tr>
+        <td><b>🇹🇷 BIST</b></td>
+        <td>BIST 30 & BIST 100 — Turkish Equities</td>
+        <td><span class="badge-soon">2027</span></td>
+        <td>2027</td>
+      </tr>
+      <tr>
+        <td><b>🇨🇳 China</b></td>
+        <td>CSI 300 & Hang Seng — Asian Session</td>
+        <td><span class="badge-soon">2027</span></td>
+        <td>2027</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+
+  <!-- ANTI-SCAM -->
+  <div class="sec-label">Security</div>
+  <div class="sec-title">Anti-Scam Policy</div>
+  <div class="scam-box">
+    <h3>⚠ Important — Read Before You Engage</h3>
+    <ul class="scam-list">
+      <li>⚠ NECHH never sends direct messages first — any DM asking for payment is a scam</li>
+      <li>⚠ Payments are accepted only through the official website (nechh-robotics-website.vercel.app)</li>
+      <li>⚠ We do not offer discounts, urgency messages, or limited slots via Telegram</li>
+      <li>⚠ We do not ask for your private keys, wallet seed, or any personal credentials</li>
+      <li>⚠ Any account impersonating Nechh Robotics is not affiliated with us</li>
+      <li>⚠ If in doubt, contact us via email before making any payment</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <!-- CONTACT -->
+  <div class="sec-label">Contact</div>
+  <div class="sec-title">Get in Touch</div>
+  <div class="contact-box">
+    <p>For subscription questions, payment issues, or general inquiries:</p>
+    <p><b>Email:</b> <a href="mailto:nechhlab.global@gmail.com">nechhlab.global@gmail.com</a></p>
+    <p style="margin-top:12px;font-size:12px;color:#9ca3af">
+      Response time: 24–48 hours. We do not provide investment advice via email.
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="fi">
+    <div>
+      <div class="flogo">Nechh Robotics</div>
+      <div class="fwarn">Independent algorithmic market research. Educational purposes only.</div>
+      <div class="fwarn">⚠️ NOT INVESTMENT ADVICE — High risk involved. 18+ only.</div>
+    </div>
+    <div class="flinks">
+      <a href="legal/terms.html">Terms</a>
+      <a href="legal/privacy.html">Privacy</a>
+      <a href="legal/risk-disclosure.html">Risk Disclosure</a>
+      <a href="legal/refund-policy.html">Refund Policy</a>
+    </div>
+  </div>
+  <div class="fbot">© Nechh Robotics. All rights reserved. &nbsp;|&nbsp; nechhlab.global@gmail.com &nbsp;|&nbsp; Türkiye</div>
+</footer>
+
 </body>
 </html>
