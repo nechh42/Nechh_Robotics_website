@@ -1,5 +1,11 @@
 {
     "version": 2,
+    "crons": [
+        {
+            "path": "/api/cron/daily-check",
+            "schedule": "0 9 * * *"
+        }
+    ],
     "builds": [
         {
             "src": "api/**/*.js",
