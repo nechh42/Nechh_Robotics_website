@@ -112,12 +112,12 @@ footer a{color:var(--blue);text-decoration:none}
 <script>
 // ── VERİ — trades.json yoksa bu sabit veri kullanılır ────────
 const FALLBACK = {
-  meta: { last_updated: "2026-04-19T20:42:00Z", mode: "PAPERTRADE" },
+  meta: { last_updated: new Date().toISOString(), mode: "PAPERTRADE" },
   summary: {
-    total_trades: 33, wins: 9, losses: 24,
-    win_rate: 27.3, avg_rr: 2.1,
-    total_pnl: 51.39, max_drawdown: 0.6,
-    balance_start: 10000, balance_current: 10051.39
+    total_trades: 0, wins: 0, losses: 0,
+    win_rate: 0, avg_rr: 0,
+    total_pnl: 0, max_drawdown: 0,
+    balance_start: 10000, balance_current: 10000
   },
   trades: []
 };

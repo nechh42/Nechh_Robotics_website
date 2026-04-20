@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
         {
-            "src": "api/*.js",
+            "src": "api/**/*.js",
             "use": "@vercel/node"
         },
         {
@@ -12,12 +12,27 @@
         {
             "src": "assets/**",
             "use": "@vercel/static"
+        },
+        {
+            "src": "trades.json",
+            "use": "@vercel/static"
+        },
+        {
+            "src": "radar_data.js",
+            "use": "@vercel/static"
         }
     ],
     "routes": [
         {
             "src": "/api/nechh-data",
             "dest": "/api/nechh-data.js"
+        },
+        {
+            "src": "/trades.json",
+            "dest": "/trades.json",
+            "headers": {
+                "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120"
+            }
         },
         {
             "src": "/(.*)",

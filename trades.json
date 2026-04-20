@@ -1,10 +1,18 @@
-"summary": {
-  "total_trades": 33,
-  "wins": 9,
-  "losses": 24,
-  "win_rate": 27.3,
-  "total_pnl": 51.39,
-  "max_drawdown": 0.6,
-  "balance_start": 10000.00,
-  "balance_current": 10051.39
+{
+  "meta": {
+    "last_updated": "2026-04-20T18:00:00Z",
+    "mode": "PAPERTRADE"
+  },
+  "summary": {
+    "total_trades": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": 0,
+    "avg_rr": 0,
+    "total_pnl": 0,
+    "max_drawdown": 0,
+    "balance_start": 10000.00,
+    "balance_current": 10000.00
+  },
+  "trades": []
 }
