@@ -1,0 +1,47 @@
+{
+  "website_data": {
+    "system_status": {
+      "status": "OPERATIONAL",
+      "mode": "PAPER",
+      "last_update": "20.04.2026 20:46 UTC",
+      "uptime": "0:01:03",
+      "active_symbols": 3
+    },
+    "performance": {
+      "balance": 10000.0,
+      "equity": 10000.0,
+      "total_pnl": 0.0,
+      "total_trades": 0,
+      "wins": 0,
+      "losses": 0,
+      "win_rate": 0.0,
+      "max_drawdown_pct": 0.0,
+      "sharpe": 0.0
+    },
+    "open_positions": [],
+    "quick_cards": [
+      {
+        "symbol": "BTC",
+        "price": "$76,237.57",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "ETH",
+        "price": "$2,326.89",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "SOL",
+        "price": "$85.82",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      }
+    ],
+    "recent_trades": []
+  }
+}
