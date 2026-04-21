@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-21T19:41:53.774121+00:00",
+    "last_updated": "2026-04-21T23:54:32.601534+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 1,
+    "total_trades": 2,
     "wins": 0,
-    "losses": 1,
+    "losses": 2,
     "win_rate": 0.0,
     "avg_rr": 0,
-    "total_pnl": -13.62,
+    "total_pnl": -10.4,
     "max_drawdown": 0.14,
     "balance_start": 10000.0,
-    "balance_current": 9986.38
+    "balance_current": 9989.6
   },
   "trades": [
     {
@@ -35,6 +35,27 @@
       "duration_minutes": 161,
       "opened_at": "2026-04-21T20:00:17.409800",
       "closed_at": "2026-04-21T19:41:53.774121+00:00"
+    },
+    {
+      "id": "T002",
+      "symbol": "ARBUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MOMENTUM_BREAKOUT",
+      "session": "Asia",
+      "entry": 0.12448645,
+      "exit": 0.12501220000000002,
+      "invalidation": 0,
+      "target": 0,
+      "leverage": 1,
+      "size": 8033.292705608808,
+      "rr": 0.0,
+      "outcome": "Invalidated",
+      "pnl": 3.22,
+      "pnl_pct": 0.32,
+      "duration_minutes": 174,
+      "opened_at": "2026-04-22T00:00:22.031584",
+      "closed_at": "2026-04-21T23:54:32.601534+00:00"
     }
   ]
 }
