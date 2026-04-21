@@ -1,7 +1,7 @@
 // api/admin/subscribers.js
 // Admin panel için abone listesi — sadece ADMIN_SECRET header ile erişilebilir.
 
-import { createClient } from '@supabase/supabase-js';
+const { createClient } = require('@supabase/supabase-js');
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
 const BOT_TOKEN   = process.env.TELEGRAM_BOT_TOKEN;
@@ -25,7 +25,7 @@ async function kickUser(telegramUserId) {
     return true;
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Admin-Secret');

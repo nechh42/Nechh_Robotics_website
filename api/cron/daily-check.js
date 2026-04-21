@@ -6,7 +6,7 @@
 //   3. Ödeme bekleyenlere 3. günde hatırlatma yap
 //   4. Admin'e günlük özet Telegram mesajı gönder
 
-import { createClient } from '@supabase/supabase-js';
+const { createClient } = require('@supabase/supabase-js');
 
 const supabase = createClient(
     process.env.SUPABASE_URL,
@@ -214,7 +214,7 @@ async function sendAdminSummary(stats) {
 
 // ── Handler ───────────────────────────────────────────────────────────────────
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     // Vercel Cron güvenlik başlığı
     if (req.headers['authorization'] !== `Bearer ${process.env.CRON_SECRET}`) {
         return res.status(401).json({ error: 'Unauthorized' });
