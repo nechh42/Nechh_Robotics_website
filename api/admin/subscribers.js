@@ -95,6 +95,11 @@ module.exports = async function handler(req, res) {
     }
 
     try {
+        // DEBUG: minimal response test
+        if (req.query && req.query.debug === '1') {
+            return res.status(200).json({ ok: true, env_set: !!process.env.SUPABASE_SERVICE_KEY, method: req.method });
+        }
+
         // GET: abone listesi + istatistikler
         if (req.method === 'GET') {
             var subs = await sbGet('subscribers?select=id,email,telegram_username,telegram_user_id,country,plan,subscription_status,subscription_start,subscription_end,last_payment_at,warning_count,created_at&order=created_at.desc');
