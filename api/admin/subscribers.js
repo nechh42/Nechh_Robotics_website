@@ -94,10 +94,11 @@ module.exports = async function handler(req, res) {
                 update.subscription_start  = new Date().toISOString();
                 update.subscription_end    = new Date(Date.now() + 30 * 86400_000).toISOString();
                 break;
-            case 'extend_30':
+            case 'extend_30': {
                 const base = new Date(Math.max(Date.now(), new Date(user.subscription_end || Date.now()).getTime()));
                 update.subscription_end = new Date(base.getTime() + 30 * 86400_000).toISOString();
                 break;
+            }
             case 'cancel':
                 update.subscription_status = 'cancelled';
                 if (user.telegram_user_id) await kickUser(user.telegram_user_id);
