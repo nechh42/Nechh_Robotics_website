@@ -1,4 +1,4 @@
-{
+﻿{
     "version": 2,
     "crons": [
         {
@@ -7,35 +7,6 @@
         }
     ],
     "routes": [
-        {
-            "src": "/api/nechh-data",
-            "dest": "/api/nechh-data.js"
-        },
-        {
-            "src": "/api/admin/subscribers",
-            "dest": "/api/admin/subscribers.js"
-        },
-        {
-            "src": "/api/register",
-            "dest": "/api/register.js"
-        },
-        {
-            "src": "/api/cron/daily-check",
-            "dest": "/api/cron/daily-check.js"
-        },
-        {
-            "src": "/trades.json",
-            "dest": "/trades.json",
-            "headers": {
-                "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120"
-            }
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/$1"
-        }
-    ]
-}
         {
             "src": "/api/nechh-data",
             "dest": "/api/nechh-data.js"
