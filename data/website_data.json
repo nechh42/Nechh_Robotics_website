@@ -3,8 +3,8 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "21.04.2026 00:24 UTC",
-      "uptime": "3:16:18",
+      "last_update": "21.04.2026 00:39 UTC",
+      "uptime": "3:31:19",
       "active_symbols": 3
     },
     "performance": {
@@ -22,14 +22,14 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$75,912.08",
+        "price": "$75,902.52",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,316.55",
+        "price": "$2,316.76",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
