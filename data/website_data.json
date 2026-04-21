@@ -3,9 +3,9 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "21.04.2026 14:33 UTC",
-      "uptime": "4:46:44",
-      "active_symbols": 3
+      "last_update": "21.04.2026 14:46 UTC",
+      "uptime": "0:01:30",
+      "active_symbols": 19
     },
     "performance": {
       "balance": 10000.0,
@@ -22,21 +22,133 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$76,176.31",
+        "price": "$76,401.22",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,316.39",
+        "price": "$2,318.74",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$86.21",
+        "price": "$86.42",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "BNB",
+        "price": "$634.10",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "XRP",
+        "price": "$1.44",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "TREND_UP"
+      },
+      {
+        "symbol": "AVAX",
+        "price": "$9.44",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "TRX",
+        "price": "$0.33",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "LTC",
+        "price": "$55.75",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "MATIC",
+        "price": "$0.38",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "TREND_DOWN"
+      },
+      {
+        "symbol": "DOT",
+        "price": "$1.28",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "LINK",
+        "price": "$9.45",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "ADA",
+        "price": "$0.25",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "ARB",
+        "price": "$0.13",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "TREND_UP"
+      },
+      {
+        "symbol": "APT",
+        "price": "$0.94",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "NEAR",
+        "price": "$1.38",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "DOGE",
+        "price": "$0.10",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "PEPE",
+        "price": "$0.00",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "WIF",
+        "price": "$0.20",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "RANGING"
+      },
+      {
+        "symbol": "SUI",
+        "price": "$0.96",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
