@@ -1,17 +1,33 @@
-// api/register.js
-// Kayıt formu backend — Supabase'e yazar, email gönderir, admin'e bildirim yapar.
-// register.html formu bu endpoint'e POST atar.
+// api/register.js — npm paketi yok, saf fetch (Node 18 built-in)
 
-const { createClient } = require('@supabase/supabase-js');
-
-const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_KEY
-);
-
+const SB_URL     = process.env.SUPABASE_URL;
+const SB_KEY     = process.env.SUPABASE_SERVICE_KEY;
 const BOT_TOKEN  = process.env.TELEGRAM_BOT_TOKEN;
 const ADMIN_CHAT = process.env.TELEGRAM_ADMIN_CHAT_ID;
 const RESEND_KEY = process.env.RESEND_API_KEY;
+
+function sbHeaders() {
+    return { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
+}
+
+async function sbGetOne(query) {
+    const r = await fetch(`${SB_URL}/rest/v1/subscribers?${query}&limit=1`, {
+        headers: { ...sbHeaders(), 'Accept': 'application/vnd.pgrst.object+json' }
+    });
+    if (r.status === 406 || r.status === 404) return null;
+    const d = await r.json();
+    return d.code ? null : d;
+}
+
+async function sbInsert(body) {
+    const r = await fetch(`${SB_URL}/rest/v1/subscribers`, { method: 'POST', headers: sbHeaders(), body: JSON.stringify(body) });
+    if (!r.ok) { const e = await r.json(); throw new Error(e.message || e.details || 'Insert failed'); }
+    return r.json();
+}
+
+async function sbPatch(id, body) {
+    await fetch(`${SB_URL}/rest/v1/subscribers?id=eq.${encodeURIComponent(id)}`, { method: 'PATCH', headers: sbHeaders(), body: JSON.stringify(body) });
+}
 
 async function sendAdminAlert(text) {
     if (!ADMIN_CHAT || !BOT_TOKEN) return;
@@ -68,44 +84,26 @@ module.exports = async function handler(req, res) {
     }
 
     try {
-        // Daha önce kayıt var mı?
-        const { data: existing } = await supabase
-            .from('subscribers')
-            .select('id, subscription_status')
-            .eq('email', email.toLowerCase().trim())
-            .single();
+        const existing = await sbGetOne(`email=eq.${encodeURIComponent(email.toLowerCase().trim())}&select=id,subscription_status`);
 
         if (existing) {
             if (existing.subscription_status === 'active') {
                 return res.status(409).json({ error: 'Bu email zaten aktif bir aboneliğe sahip.' });
             }
-            // Pending kayıt varsa güncelle (yeniden kayıt senaryosu)
-            await supabase.from('subscribers')
-                .update({
-                    telegram_username: telegram_username || null,
-                    country: country || null,
-                    plan,
-                    updated_at: new Date().toISOString(),
-                })
-                .eq('id', existing.id);
-
+            await sbPatch(existing.id, { telegram_username: telegram_username || null, country: country || null, plan, updated_at: new Date().toISOString() });
             return res.status(200).json({ ok: true, status: 'updated', message: 'Kaydınız güncellendi.' });
         }
 
-        // Yeni kayıt oluştur
-        const { error: insertError } = await supabase.from('subscribers').insert({
-            email:               email.toLowerCase().trim(),
-            telegram_username:   telegram_username?.replace('@', '') || null,
-            country:             country || null,
+        await sbInsert({
+            email: email.toLowerCase().trim(),
+            telegram_username: telegram_username ? telegram_username.replace('@', '') : null,
+            country: country || null,
             plan,
             subscription_status: 'pending',
-            created_at:          new Date().toISOString(),
-            updated_at:          new Date().toISOString(),
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
         });
 
-        if (insertError) throw insertError;
-
-        // Email + admin bildirim (paralel, hata olsa da kayıt tamamlandı sayılır)
         await Promise.allSettled([
             sendWelcomeEmail(email, telegram_username),
             sendAdminAlert(

@@ -1,12 +1,121 @@
-// api/cron/daily-check.js
-// Vercel Cron Job — her gün 09:00 UTC çalışır.
-// Görevler:
-//   1. Aboneliği biten kullanıcıları deaktive et + Telegram'dan çıkar
-//   2. 5 gün / 1 gün kalan kullanıcılara email gönder
-//   3. Ödeme bekleyenlere 3. günde hatırlatma yap
-//   4. Admin'e günlük özet Telegram mesajı gönder
+// api/cron/daily-check.js — npm paketi yok, saf fetch (Node 18 built-in)
+// Vercel Cron Job — her gün 09:00 UTC
 
-const { createClient } = require('@supabase/supabase-js');
+const SB_URL    = process.env.SUPABASE_URL;
+const SB_KEY    = process.env.SUPABASE_SERVICE_KEY;
+const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const ADMIN_CHAT= process.env.TELEGRAM_ADMIN_CHAT_ID;
+const GROUP_ID  = process.env.TELEGRAM_GROUP_ID;
+const RESEND_KEY= process.env.RESEND_API_KEY;
+
+function sbH() {
+    return { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
+}
+async function sbQ(path) {
+    const r = await fetch(`${SB_URL}/rest/v1/${path}`, { headers: sbH() });
+    return r.json();
+}
+async function sbPatch(path, body) {
+    await fetch(`${SB_URL}/rest/v1/${path}`, { method: 'PATCH', headers: sbH(), body: JSON.stringify(body) });
+}
+
+async function sendTelegram(chatId, text) {
+    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'HTML' }),
+    }).catch(() => {});
+}
+
+async function kickFromGroup(telegramId) {
+    if (!GROUP_ID || !telegramId) return;
+    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/banChatMember`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: GROUP_ID, user_id: telegramId, revoke_messages: false }),
+    });
+    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/unbanChatMember`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: GROUP_ID, user_id: telegramId, only_if_banned: true }),
+    });
+}
+
+async function sendEmail(to, subject, html) {
+    if (!RESEND_KEY || !to) return;
+    await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${RESEND_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ from: 'Nechh Robotics <noreply@nechh-robotics.com>', to: [to], subject, html }),
+    }).catch(() => {});
+}
+
+async function checkExpiredSubscriptions() {
+    const now = new Date().toISOString();
+    const expired = await sbQ(`subscribers?subscription_status=eq.active&subscription_end=lt.${encodeURIComponent(now)}&select=id,email,telegram_user_id`);
+    if (!Array.isArray(expired) || !expired.length) return 0;
+    for (const u of expired) {
+        await sbPatch(`subscribers?id=eq.${u.id}`, { subscription_status: 'expired', updated_at: now });
+        if (u.telegram_user_id) await kickFromGroup(u.telegram_user_id);
+        await sendEmail(u.email, '❌ Subscription expired — Nechh Robotics',
+            '<h2>Subscription Expired</h2><p>Your access has been deactivated.</p><p><a href="https://nechh-robotics-website.vercel.app/pricing.html">Rejoin →</a></p>');
+    }
+    return expired.length;
+}
+
+async function sendExpiryReminders() {
+    const in5d = new Date(Date.now() + 5 * 86400_000).toISOString().slice(0, 10);
+    const in1d = new Date(Date.now() + 1 * 86400_000).toISOString().slice(0, 10);
+    let count = 0;
+    for (const [days, date] of [[5, in5d], [1, in1d]]) {
+        const users = await sbQ(`subscribers?subscription_status=eq.active&subscription_end=gte.${date}T00:00:00Z&subscription_end=lt.${date}T23:59:59Z&select=id,email,telegram_user_id`);
+        if (!Array.isArray(users)) continue;
+        for (const u of users) {
+            await sendEmail(u.email, `⏰ ${days === 1 ? 'Last day!' : `${days} days left`} — Nechh Robotics`,
+                `<h2>Subscription Reminder</h2><p>Expires ${date}.</p><p><a href="https://nechh-robotics-website.vercel.app/pricing.html">Renew →</a></p>`);
+            count++;
+        }
+    }
+    return count;
+}
+
+async function chasePendingPayments() {
+    const threeDaysAgo = new Date(Date.now() - 3 * 86400_000).toISOString();
+    const pending = await sbQ(`subscribers?subscription_status=eq.pending&created_at=lt.${encodeURIComponent(threeDaysAgo)}&last_payment_reminder_at=is.null&select=id,email`);
+    if (!Array.isArray(pending)) return 0;
+    for (const u of pending) {
+        await sendEmail(u.email, '💳 Complete your Nechh Robotics registration',
+            '<h2>Payment Pending</h2><p>Your account is registered but payment not received.</p><p><a href="https://nechh-robotics-website.vercel.app/pricing.html">Pay →</a></p>');
+        await sbPatch(`subscribers?id=eq.${u.id}`, { last_payment_reminder_at: new Date().toISOString() });
+    }
+    return pending.length;
+}
+
+module.exports = async function handler(req, res) {
+    if (req.headers['authorization'] !== `Bearer ${process.env.CRON_SECRET}`) {
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
+    try {
+        const [all, actives] = await Promise.all([
+            sbQ('subscribers?select=id,subscription_status'),
+            sbQ('subscribers?subscription_status=eq.active&select=id'),
+        ]);
+        const total   = Array.isArray(all) ? all.length : 0;
+        const active  = Array.isArray(actives) ? actives.length : 0;
+        const pending = Array.isArray(all) ? all.filter(u => u.subscription_status === 'pending').length : 0;
+
+        const [expired_today, reminded, chased] = await Promise.all([
+            checkExpiredSubscriptions(),
+            sendExpiryReminders(),
+            chasePendingPayments(),
+        ]);
+
+        await sendTelegram(ADMIN_CHAT,
+            `📊 <b>Günlük Özet</b>\n👥 Toplam: ${total} | ✅ Aktif: ${active} | ⏳ Bekliyor: ${pending}\n🔴 Bugün bitti: ${expired_today} | 📧 Hatırlatma: ${reminded} | 💳 Takip: ${chased}\n💰 Gelir: $${active * 55}/ay`
+        );
+        return res.status(200).json({ ok: true, total, active, pending, expired_today, reminded, chased });
+    } catch (err) {
+        await sendTelegram(ADMIN_CHAT, `🚨 CRON HATA: ${err.message}`).catch(() => {});
+        return res.status(500).json({ error: err.message });
+    }
+}
 
 const supabase = createClient(
     process.env.SUPABASE_URL,

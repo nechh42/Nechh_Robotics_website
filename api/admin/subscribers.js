@@ -1,12 +1,38 @@
-// api/admin/subscribers.js
-// Admin panel için abone listesi — sadece ADMIN_SECRET header ile erişilebilir.
+// api/admin/subscribers.js — npm paketi yok, saf fetch (Node 18 built-in)
 
-const { createClient } = require('@supabase/supabase-js');
+const SB_URL = process.env.SUPABASE_URL;
+const SB_KEY = process.env.SUPABASE_SERVICE_KEY;
+const BOT_TOKEN  = process.env.TELEGRAM_BOT_TOKEN;
+const GROUP_ID   = process.env.TELEGRAM_GROUP_ID;
+const ADMIN_CHAT = process.env.TELEGRAM_ADMIN_CHAT_ID;
 
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY);
-const BOT_TOKEN   = process.env.TELEGRAM_BOT_TOKEN;
-const GROUP_ID    = process.env.TELEGRAM_GROUP_ID;
-const ADMIN_CHAT  = process.env.TELEGRAM_ADMIN_CHAT_ID;
+// ── Supabase REST yardımcıları ─────────────────────────────────────────
+function sbHeaders() {
+    return { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=representation' };
+}
+
+async function sbGet(table, query = '') {
+    const r = await fetch(`${SB_URL}/rest/v1/${table}?${query}`, { headers: sbHeaders() });
+    const data = await r.json();
+    return { data: Array.isArray(data) ? data : [], error: data.error || null };
+}
+
+async function sbGetOne(table, query = '') {
+    const r = await fetch(`${SB_URL}/rest/v1/${table}?${query}&limit=1`, { headers: { ...sbHeaders(), 'Accept': 'application/vnd.pgrst.object+json' } });
+    if (r.status === 406 || r.status === 404) return { data: null };
+    const data = await r.json();
+    return { data: data.code ? null : data };
+}
+
+async function sbPatch(table, match, body) {
+    const r = await fetch(`${SB_URL}/rest/v1/${table}?${match}`, { method: 'PATCH', headers: sbHeaders(), body: JSON.stringify(body) });
+    return r.ok;
+}
+
+async function sbInsert(table, body) {
+    const r = await fetch(`${SB_URL}/rest/v1/${table}`, { method: 'POST', headers: sbHeaders(), body: JSON.stringify(body) });
+    return r.ok;
+}
 
 function isAuthorized(req) {
     return req.headers['x-admin-secret'] === process.env.ADMIN_SECRET;
@@ -35,27 +61,20 @@ module.exports = async function handler(req, res) {
 
     // ── GET: abone listesi + istatistikler ────────────────────────────
     if (req.method === 'GET') {
-        const { data: subscribers, error } = await supabase
-            .from('subscribers')
-            .select('id, email, telegram_username, telegram_user_id, country, plan, subscription_status, subscription_start, subscription_end, last_payment_at, warning_count, created_at')
-            .order('created_at', { ascending: false });
-
-        if (error) return res.status(500).json({ error: error.message });
+        const { data: subscribers, error } = await sbGet('subscribers',
+            'select=id,email,telegram_username,telegram_user_id,country,plan,subscription_status,subscription_start,subscription_end,last_payment_at,warning_count,created_at&order=created_at.desc'
+        );
+        if (error) return res.status(500).json({ error });
 
         const total   = subscribers.length;
         const active  = subscribers.filter(u => u.subscription_status === 'active').length;
         const pending = subscribers.filter(u => u.subscription_status === 'pending').length;
         const expired = subscribers.filter(u => u.subscription_status === 'expired').length;
         const banned  = subscribers.filter(u => u.subscription_status === 'banned').length;
+        const mrr     = subscribers.filter(u => u.subscription_status === 'active')
+            .reduce((s, u) => s + (u.plan === 'monthly' ? 55 : u.plan === 'quarterly' ? 45 : 35), 0);
 
-        const mrr = subscribers
-            .filter(u => u.subscription_status === 'active')
-            .reduce((sum, u) => sum + (u.plan === 'monthly' ? 55 : u.plan === 'quarterly' ? 45 : 35), 0);
-
-        return res.status(200).json({
-            stats: { total, active, pending, expired, banned, mrr },
-            subscribers,
-        });
+        return res.status(200).json({ stats: { total, active, pending, expired, banned, mrr }, subscribers });
     }
 
     // ── PATCH: kullanıcıya aksiyon uygula ─────────────────────────────
@@ -63,7 +82,7 @@ module.exports = async function handler(req, res) {
         const { id, action, note } = req.body || {};
         if (!id || !action) return res.status(400).json({ error: 'id ve action gerekli' });
 
-        const { data: user } = await supabase.from('subscribers').select('*').eq('id', id).single();
+        const { data: user } = await sbGetOne('subscribers', `id=eq.${encodeURIComponent(id)}&select=*`);
         if (!user) return res.status(404).json({ error: 'Kullanıcı bulunamadı' });
 
         let update = { updated_at: new Date().toISOString() };
@@ -104,16 +123,10 @@ module.exports = async function handler(req, res) {
 
         if (note) update.notes = note;
 
-        await supabase.from('subscribers').update(update).eq('id', id);
+        await sbPatch('subscribers', `id=eq.${encodeURIComponent(id)}`, update);
 
-        // İhlal logu
         if (violationAction) {
-            await supabase.from('violations').insert({
-                subscriber_id:  id,
-                violation_type: 'admin_action',
-                description:    note || action,
-                action_taken:   violationAction,
-            });
+            await sbInsert('violations', { subscriber_id: id, violation_type: 'admin_action', description: note || action, action_taken: violationAction });
         }
 
         // Admin bildirimi
