@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-22T04:04:23.567144+00:00",
+    "last_updated": "2026-04-22T04:20:49.823851+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 4,
+    "total_trades": 5,
     "wins": 0,
-    "losses": 4,
+    "losses": 5,
     "win_rate": 0.0,
     "avg_rr": 0.01,
-    "total_pnl": -3.34,
+    "total_pnl": 6.34,
     "max_drawdown": 0.14,
     "balance_start": 10000.0,
-    "balance_current": 9996.66
+    "balance_current": 10006.34
   },
   "trades": [
     {
@@ -98,6 +98,27 @@
       "duration_minutes": 184,
       "opened_at": "2026-04-22T04:00:19.203178",
       "closed_at": "2026-04-22T04:04:23.567144+00:00"
+    },
+    {
+      "id": "T005",
+      "symbol": "BTCUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "EMA Pullback \u2014 Trend Continuation",
+      "session": "Asia",
+      "entry": 76450.65422499999,
+      "exit": 77268.00388,
+      "invalidation": 0,
+      "target": 0,
+      "leverage": 1,
+      "size": 0.013083712030311482,
+      "rr": 0.01,
+      "outcome": "Invalidated",
+      "pnl": 9.68,
+      "pnl_pct": 0.97,
+      "duration_minutes": 260,
+      "opened_at": "2026-04-22T03:00:15.800182",
+      "closed_at": "2026-04-22T04:20:49.823851+00:00"
     }
   ]
 }
