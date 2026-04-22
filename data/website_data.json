@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "22.04.2026 18:29 UTC",
-      "uptime": "0:46:44",
+      "last_update": "22.04.2026 18:44 UTC",
+      "uptime": "1:01:44",
       "active_symbols": 28
     },
     "performance": {
       "balance": 10068.16,
-      "equity": 10073.09,
-      "total_pnl": 73.09,
+      "equity": 10072.19,
+      "total_pnl": 72.19,
       "total_trades": 8,
       "wins": 7,
       "losses": 1,
@@ -22,7 +22,7 @@
       {
         "symbol": "XRPUSDT",
         "side": "LONG",
-        "pnl": -3.37
+        "pnl": -4.27
       },
       {
         "symbol": "ARPAUSDT",
@@ -38,28 +38,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,940.98",
+        "price": "$79,006.01",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,398.32",
+        "price": "$2,401.90",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$88.18",
+        "price": "$88.22",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$645.87",
+        "price": "$646.01",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -87,14 +87,14 @@
       },
       {
         "symbol": "LTC",
-        "price": "$56.14",
+        "price": "$56.15",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BCH",
-        "price": "$463.90",
+        "price": "$464.00",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -115,7 +115,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.46",
+        "price": "$9.47",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
