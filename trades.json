@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-22T02:23:01.238963+00:00",
+    "last_updated": "2026-04-22T04:04:23.567144+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 3,
+    "total_trades": 4,
     "wins": 0,
-    "losses": 3,
+    "losses": 4,
     "win_rate": 0.0,
-    "avg_rr": 0,
-    "total_pnl": -8.11,
+    "avg_rr": 0.01,
+    "total_pnl": -3.34,
     "max_drawdown": 0.14,
     "balance_start": 10000.0,
-    "balance_current": 9991.89
+    "balance_current": 9996.66
   },
   "trades": [
     {
@@ -77,6 +77,27 @@
       "duration_minutes": 82,
       "opened_at": "2026-04-22T04:00:20.689187",
       "closed_at": "2026-04-22T02:23:01.238963+00:00"
+    },
+    {
+      "id": "T004",
+      "symbol": "JASMYUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MACD_CROSSOVER",
+      "session": "Asia",
+      "entry": 0.00568852,
+      "exit": 0.005721405,
+      "invalidation": 0,
+      "target": 0,
+      "leverage": 1,
+      "size": 175776.9408231917,
+      "rr": 0.01,
+      "outcome": "Invalidated",
+      "pnl": 4.77,
+      "pnl_pct": 0.48,
+      "duration_minutes": 184,
+      "opened_at": "2026-04-22T04:00:19.203178",
+      "closed_at": "2026-04-22T04:04:23.567144+00:00"
     }
   ]
 }
