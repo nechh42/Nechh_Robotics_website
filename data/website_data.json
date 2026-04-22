@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "22.04.2026 16:48 UTC",
-      "uptime": "4:31:59",
+      "last_update": "22.04.2026 17:03 UTC",
+      "uptime": "4:47:00",
       "active_symbols": 28
     },
     "performance": {
       "balance": 10057.03,
-      "equity": 10039.84,
-      "total_pnl": 39.84,
+      "equity": 10060.52,
+      "total_pnl": 60.52,
       "total_trades": 7,
       "wins": 6,
       "losses": 1,
@@ -22,49 +22,49 @@
       {
         "symbol": "XRPUSDT",
         "side": "LONG",
-        "pnl": -6.07
+        "pnl": -4.76
       },
       {
         "symbol": "ARPAUSDT",
         "side": "LONG",
-        "pnl": -9.57
+        "pnl": -6.55
       },
       {
         "symbol": "LDOUSDT",
         "side": "LONG",
-        "pnl": -7.92
+        "pnl": 0.55
       },
       {
         "symbol": "ARBUSDT",
         "side": "LONG",
-        "pnl": 6.37
+        "pnl": 14.25
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,764.33",
+        "price": "$78,857.99",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,388.65",
+        "price": "$2,392.11",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$87.74",
+        "price": "$87.72",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$646.48",
+        "price": "$645.00",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -92,14 +92,14 @@
       },
       {
         "symbol": "LTC",
-        "price": "$56.11",
+        "price": "$56.15",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BCH",
-        "price": "$464.70",
+        "price": "$464.00",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -120,7 +120,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.44",
+        "price": "$9.45",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -162,7 +162,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$94.37",
+        "price": "$94.27",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -211,7 +211,7 @@
       },
       {
         "symbol": "SUI",
-        "price": "$0.97",
+        "price": "$0.96",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
