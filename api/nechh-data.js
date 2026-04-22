@@ -1,13 +1,17 @@
 // /api/nechh-data.js
-// trades.json (bot kapatıldığında güncellenir) + website_data.json (15 dk'da bir güncellenir)
-// İki kaynağı birleştirip sunar.
+// trades.json + website_data.json → GitHub raw content API üzerinden okur.
+// Filesystem kullanmıyoruz — Vercel serverless function'da dosya erişimi güvenilmez.
 
-import { readFileSync, existsSync } from 'fs';
-import { join } from 'path';
+const REPO   = 'nechh42/Nechh_Robotics_website';
+const BRANCH = 'main';
 
-function readJSON(path) {
-    if (!existsSync(path)) return null;
-    try { return JSON.parse(readFileSync(path, 'utf-8')); } catch { return null; }
+async function fetchGithubJSON(path) {
+    try {
+        const url = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${path}?t=${Date.now()}`;
+        const r = await fetch(url, { headers: { 'Cache-Control': 'no-cache' } });
+        if (!r.ok) return null;
+        return r.json();
+    } catch { return null; }
 }
 
 export default async function handler(req, res) {
@@ -15,8 +19,10 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Methods', 'GET');
     res.setHeader('Cache-Control', 'no-store, max-age=0');
 
-    const trades   = readJSON(join(process.cwd(), 'trades.json'));
-    const liveData = readJSON(join(process.cwd(), 'data', 'website_data.json'));
+    const [trades, liveData] = await Promise.all([
+        fetchGithubJSON('trades.json'),
+        fetchGithubJSON('data/website_data.json'),
+    ]);
 
     const s    = trades?.summary   || {};
     const mode = trades?.meta?.mode || liveData?.website_data?.system_status?.mode || 'PAPERTRADE';
