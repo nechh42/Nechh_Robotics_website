@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-21T23:54:32.601534+00:00",
+    "last_updated": "2026-04-22T02:23:01.238963+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 2,
+    "total_trades": 3,
     "wins": 0,
-    "losses": 2,
+    "losses": 3,
     "win_rate": 0.0,
     "avg_rr": 0,
-    "total_pnl": -10.4,
+    "total_pnl": -8.11,
     "max_drawdown": 0.14,
     "balance_start": 10000.0,
-    "balance_current": 9989.6
+    "balance_current": 9991.89
   },
   "trades": [
     {
@@ -56,6 +56,27 @@
       "duration_minutes": 174,
       "opened_at": "2026-04-22T00:00:22.031584",
       "closed_at": "2026-04-21T23:54:32.601534+00:00"
+    },
+    {
+      "id": "T003",
+      "symbol": "DOGEUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MACD_CROSSOVER",
+      "session": "Asia",
+      "entry": 0.095312755,
+      "exit": 0.09562634499999999,
+      "invalidation": 0,
+      "target": 0,
+      "leverage": 1,
+      "size": 10490.837699650403,
+      "rr": 0.0,
+      "outcome": "Invalidated",
+      "pnl": 2.29,
+      "pnl_pct": 0.23,
+      "duration_minutes": 82,
+      "opened_at": "2026-04-22T04:00:20.689187",
+      "closed_at": "2026-04-22T02:23:01.238963+00:00"
     }
   ]
 }
