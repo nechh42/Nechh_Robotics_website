@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-22T05:27:14.037149+00:00",
+    "last_updated": "2026-04-22T05:39:39.983170+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 6,
+    "total_trades": 7,
     "wins": 0,
-    "losses": 6,
+    "losses": 7,
     "win_rate": 0.0,
-    "avg_rr": 0.01,
-    "total_pnl": 7.25,
+    "avg_rr": 0.02,
+    "total_pnl": 58.22,
     "max_drawdown": 0.14,
     "balance_start": 10000.0,
-    "balance_current": 10007.25
+    "balance_current": 10058.22
   },
   "trades": [
     {
@@ -140,6 +140,27 @@
       "duration_minutes": 146,
       "opened_at": "2026-04-22T06:00:21.726248",
       "closed_at": "2026-04-22T05:27:14.037149+00:00"
+    },
+    {
+      "id": "T007",
+      "symbol": "LDOUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MOMENTUM_BREAKOUT",
+      "session": "London",
+      "entry": 0.3815715,
+      "exit": 0.4017964,
+      "invalidation": 0,
+      "target": 0,
+      "leverage": 1,
+      "size": 2571.4124510226766,
+      "rr": 0.05,
+      "outcome": "Invalidated",
+      "pnl": 50.97,
+      "pnl_pct": 5.2,
+      "duration_minutes": 339,
+      "opened_at": "2026-04-22T03:00:22.553422",
+      "closed_at": "2026-04-22T05:39:39.983170+00:00"
     }
   ]
 }
