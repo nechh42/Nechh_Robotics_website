@@ -1,5 +1,10 @@
 {
     "version": 2,
+    "functions": {
+        "api/nechh-data.js": {
+            "includeFiles": "trades.json|data/website_data.json"
+        }
+    },
     "crons": [
         {
             "path": "/api/cron/daily-check",

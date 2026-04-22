@@ -159,9 +159,15 @@ async function loadData() {
     const r = await fetch('/api/nechh-data?' + Date.now());
     if (r.ok) {
       const apiData = await r.json();
-      // API yanıtı trades dizisi içeriyorsa kullan
-      if (apiData.trades !== undefined) {
+      // API trades içeriyorsa ve boş değilse kullan; boşsa /trades.json static'e fallback
+      if (apiData.trades?.length > 0) {
         data = { meta: { last_updated: apiData.timestamp, mode: apiData.mode }, summary: apiData.summary, trades: apiData.trades };
+      } else {
+        // API boş döndü — static trades.json'u dene
+        try {
+          const r2 = await fetch('/trades.json?' + Date.now());
+          if (r2.ok) data = await r2.json();
+        } catch(e3) {}
       }
     }
   } catch(e) {
