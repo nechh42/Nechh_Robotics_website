@@ -3,8 +3,8 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "22.04.2026 06:09 UTC",
-      "uptime": "13:48:12",
+      "last_update": "22.04.2026 06:24 UTC",
+      "uptime": "14:03:13",
       "active_symbols": 28
     },
     "performance": {
@@ -22,28 +22,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,916.19",
+        "price": "$77,921.50",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,391.75",
+        "price": "$2,389.59",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$88.01",
+        "price": "$87.94",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$642.02",
+        "price": "$642.51",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -71,14 +71,14 @@
       },
       {
         "symbol": "LTC",
-        "price": "$56.25",
+        "price": "$56.13",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BCH",
-        "price": "$465.40",
+        "price": "$465.90",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -99,7 +99,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.54",
+        "price": "$9.52",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -134,14 +134,14 @@
       },
       {
         "symbol": "LDO",
-        "price": "$0.40",
+        "price": "$0.39",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "AAVE",
-        "price": "$93.48",
+        "price": "$93.24",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
