@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-23T15:45:08.395744+00:00",
+    "last_updated": "2026-04-23T16:46:55.575203+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 13,
-    "wins": 9,
+    "total_trades": 15,
+    "wins": 11,
     "losses": 2,
-    "win_rate": 69.2,
-    "avg_rr": 0.45,
-    "total_pnl": 46.77,
+    "win_rate": 73.3,
+    "avg_rr": 0.61,
+    "total_pnl": 109.33,
     "max_drawdown": 0.32,
     "balance_start": 10000.0,
-    "balance_current": 10046.77
+    "balance_current": 10109.33
   },
   "trades": [
     {
@@ -287,6 +287,48 @@
       "duration_minutes": 44,
       "opened_at": "2026-04-23T15:00:16.311216+00:00",
       "closed_at": "2026-04-23T15:45:08.395744+00:00"
+    },
+    {
+      "id": "T014",
+      "symbol": "ARBUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MOMENTUM_BREAKOUT",
+      "session": "NY",
+      "entry": 0.124186,
+      "exit": 0.1282074,
+      "invalidation": 0.12845357142857142,
+      "target": 0.1315714285714286,
+      "leverage": 1,
+      "size": 8035.013843423965,
+      "rr": 0.94,
+      "outcome": "Invalidated",
+      "pnl": 31.28,
+      "pnl_pct": 3.13,
+      "duration_minutes": 346,
+      "opened_at": "2026-04-23T11:00:01.086716+00:00",
+      "closed_at": "2026-04-23T16:46:55.546478+00:00"
+    },
+    {
+      "id": "T015",
+      "symbol": "ARBUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MOMENTUM_BREAKOUT",
+      "session": "NY",
+      "entry": 0.124186,
+      "exit": 0.1282074,
+      "invalidation": 0.12845357142857142,
+      "target": 0.1315714285714286,
+      "leverage": 1,
+      "size": 8035.013843423965,
+      "rr": 0.94,
+      "outcome": "Invalidated",
+      "pnl": 31.28,
+      "pnl_pct": 3.13,
+      "duration_minutes": 346,
+      "opened_at": "2026-04-23T11:00:01.086716+00:00",
+      "closed_at": "2026-04-23T16:46:55.575203+00:00"
     }
   ]
 }
