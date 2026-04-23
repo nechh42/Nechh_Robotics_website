@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-23T17:39:47.777211+00:00",
+    "last_updated": "2026-04-23T21:56:43.915396+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 18,
-    "wins": 13,
+    "total_trades": 19,
+    "wins": 14,
     "losses": 3,
-    "win_rate": 72.2,
-    "avg_rr": 0.61,
-    "total_pnl": 95.62,
+    "win_rate": 73.7,
+    "avg_rr": 0.58,
+    "total_pnl": 95.92,
     "max_drawdown": 0.32,
     "balance_start": 10000.0,
-    "balance_current": 10095.62
+    "balance_current": 10095.92
   },
   "trades": [
     {
@@ -392,6 +392,27 @@
       "duration_minutes": 39,
       "opened_at": "2026-04-23T17:00:15.618641+00:00",
       "closed_at": "2026-04-23T17:39:47.777211+00:00"
+    },
+    {
+      "id": "T019",
+      "symbol": "NEARUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "BOLLINGER_SQUEEZE",
+      "session": "NY",
+      "entry": 1.3950895,
+      "exit": 1.3969015,
+      "invalidation": 1.3998571428571427,
+      "target": 1.442142857142857,
+      "leverage": 1,
+      "size": 720.7265709051973,
+      "rr": 0.38,
+      "outcome": "Invalidated",
+      "pnl": 0.3,
+      "pnl_pct": 0.03,
+      "duration_minutes": 116,
+      "opened_at": "2026-04-23T20:00:21.844234+00:00",
+      "closed_at": "2026-04-23T21:56:43.915396+00:00"
     }
   ]
 }
