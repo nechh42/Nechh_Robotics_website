@@ -4,36 +4,41 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "23.04.2026 17:33 UTC",
-      "uptime": "4:17:16",
+      "uptime": "4:02:10",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10072.4,
-      "equity": 10057.19,
-      "total_pnl": 57.19,
+      "balance": 10071.39,
+      "equity": 10046.29,
+      "total_pnl": 46.29,
       "total_trades": 13,
       "wins": 11,
       "losses": 2,
       "win_rate": 84.6,
-      "max_drawdown_pct": 0.48,
+      "max_drawdown_pct": 0.6,
       "sharpe": 0.3
     },
     "open_positions": [
       {
         "symbol": "LTCUSDT",
         "side": "LONG",
-        "pnl": 1.38
+        "pnl": 1.2
       },
       {
         "symbol": "SOLUSDT",
         "side": "LONG",
-        "pnl": -16.59
+        "pnl": -16.71
+      },
+      {
+        "symbol": "ADAUSDT",
+        "side": "LONG",
+        "pnl": -9.59
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,640.99",
+        "price": "$77,636.86",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -54,7 +59,7 @@
       },
       {
         "symbol": "BNB",
-        "price": "$636.13",
+        "price": "$636.14",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -82,7 +87,7 @@
       },
       {
         "symbol": "LTC",
-        "price": "$55.62",
+        "price": "$55.61",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -194,7 +199,7 @@
       },
       {
         "symbol": "SUI",
-        "price": "$0.94",
+        "price": "$0.93",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
