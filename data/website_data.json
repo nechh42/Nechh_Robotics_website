@@ -4,25 +4,25 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "23.04.2026 18:03 UTC",
-      "uptime": "4:47:20",
+      "uptime": "4:32:13",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10072.4,
-      "equity": 10059.95,
-      "total_pnl": 59.95,
-      "total_trades": 13,
+      "balance": 10054.46,
+      "equity": 10041.83,
+      "total_pnl": 41.83,
+      "total_trades": 14,
       "wins": 11,
-      "losses": 2,
-      "win_rate": 84.6,
-      "max_drawdown_pct": 0.58,
-      "sharpe": 0.3
+      "losses": 3,
+      "win_rate": 78.6,
+      "max_drawdown_pct": 0.76,
+      "sharpe": 0.22
     },
     "open_positions": [
       {
         "symbol": "LTCUSDT",
         "side": "LONG",
-        "pnl": -0.42
+        "pnl": -0.6
       },
       {
         "symbol": "SOLUSDT",
@@ -33,28 +33,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,965.58",
+        "price": "$77,938.56",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,313.62",
+        "price": "$2,312.76",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$85.46",
+        "price": "$85.43",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$634.49",
+        "price": "$634.40",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -82,7 +82,7 @@
       },
       {
         "symbol": "LTC",
-        "price": "$55.52",
+        "price": "$55.51",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -145,7 +145,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$92.30",
+        "price": "$92.29",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
