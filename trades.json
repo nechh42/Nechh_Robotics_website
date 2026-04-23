@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-22T17:08:49.195037+00:00",
+    "last_updated": "2026-04-23T09:46:59.054351+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 8,
+    "total_trades": 9,
     "wins": 7,
-    "losses": 1,
-    "win_rate": 87.5,
+    "losses": 2,
+    "win_rate": 77.8,
     "avg_rr": 0.02,
-    "total_pnl": 68.35,
-    "max_drawdown": 0.14,
+    "total_pnl": 36.48,
+    "max_drawdown": 0.32,
     "balance_start": 10000.0,
-    "balance_current": 10068.35
+    "balance_current": 10036.48
   },
   "trades": [
     {
@@ -182,6 +182,27 @@
       "duration_minutes": 248,
       "opened_at": "2026-04-22T16:00:12.878614",
       "closed_at": "2026-04-22T17:08:49.195037+00:00"
+    },
+    {
+      "id": "T009",
+      "symbol": "XRPUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "BOLLINGER_SQUEEZE",
+      "session": "London",
+      "entry": 1.4564814499999998,
+      "exit": 1.4117791499999999,
+      "invalidation": 1.413957142857143,
+      "target": 1.5349857142857142,
+      "leverage": 1,
+      "size": 691.1398757539191,
+      "rr": -1.05,
+      "outcome": "Invalidated",
+      "pnl": -31.87,
+      "pnl_pct": -3.17,
+      "duration_minutes": 1366,
+      "opened_at": "2026-04-22T11:00:12.121324+00:00",
+      "closed_at": "2026-04-23T09:46:59.054351+00:00"
     }
   ]
 }
