@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-23T16:46:55.575203+00:00",
+    "last_updated": "2026-04-23T16:54:11.409424+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 15,
-    "wins": 11,
+    "total_trades": 17,
+    "wins": 13,
     "losses": 2,
-    "win_rate": 73.3,
+    "win_rate": 76.5,
     "avg_rr": 0.61,
-    "total_pnl": 109.33,
+    "total_pnl": 112.55,
     "max_drawdown": 0.32,
     "balance_start": 10000.0,
-    "balance_current": 10109.33
+    "balance_current": 10112.55
   },
   "trades": [
     {
@@ -329,6 +329,48 @@
       "duration_minutes": 346,
       "opened_at": "2026-04-23T11:00:01.086716+00:00",
       "closed_at": "2026-04-23T16:46:55.575203+00:00"
+    },
+    {
+      "id": "T016",
+      "symbol": "BTCUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "EMA Pullback \u2014 Trend Continuation",
+      "session": "NY",
+      "entry": 77821.17693,
+      "exit": 78024.118005,
+      "invalidation": 78158.01250000001,
+      "target": 80731.485,
+      "leverage": 1,
+      "size": 0.012850093290763398,
+      "rr": 0.6,
+      "outcome": "Invalidated",
+      "pnl": 1.61,
+      "pnl_pct": 0.16,
+      "duration_minutes": 294,
+      "opened_at": "2026-04-23T12:00:02.160127+00:00",
+      "closed_at": "2026-04-23T16:54:11.374194+00:00"
+    },
+    {
+      "id": "T017",
+      "symbol": "BTCUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "EMA Pullback \u2014 Trend Continuation",
+      "session": "NY",
+      "entry": 77821.17693,
+      "exit": 78024.118005,
+      "invalidation": 78158.01250000001,
+      "target": 80731.485,
+      "leverage": 1,
+      "size": 0.012850093290763398,
+      "rr": 0.6,
+      "outcome": "Invalidated",
+      "pnl": 1.61,
+      "pnl_pct": 0.16,
+      "duration_minutes": 294,
+      "opened_at": "2026-04-23T12:00:02.160127+00:00",
+      "closed_at": "2026-04-23T16:54:11.408895+00:00"
     }
   ]
 }
