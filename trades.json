@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-04-23T12:44:39.014496+00:00",
+    "last_updated": "2026-04-23T12:45:58.408276+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
@@ -32,9 +32,9 @@
       "outcome": "Invalidated",
       "pnl": -13.62,
       "pnl_pct": -1.36,
-      "duration_minutes": 0,
+      "duration_minutes": 161,
       "opened_at": "2026-04-21T22:41:53.678779+00:00",
-      "closed_at": "2026-04-21T22:41:53.678779+00:00"
+      "closed_at": "2026-04-22T01:23:29.947758+00:00"
     },
     {
       "id": "T002",
@@ -53,9 +53,9 @@
       "outcome": "Invalidated",
       "pnl": 3.22,
       "pnl_pct": 0.32,
-      "duration_minutes": 0,
+      "duration_minutes": 174,
       "opened_at": "2026-04-22T02:54:32.571719+00:00",
-      "closed_at": "2026-04-22T02:54:32.571719+00:00"
+      "closed_at": "2026-04-22T05:48:43.111854+00:00"
     },
     {
       "id": "T003",
@@ -74,9 +74,9 @@
       "outcome": "Invalidated",
       "pnl": 2.29,
       "pnl_pct": 0.23,
-      "duration_minutes": 0,
+      "duration_minutes": 82,
       "opened_at": "2026-04-22T05:23:01.170378+00:00",
-      "closed_at": "2026-04-22T05:23:01.170378+00:00"
+      "closed_at": "2026-04-22T06:45:41.651569+00:00"
     },
     {
       "id": "T004",
@@ -95,9 +95,9 @@
       "outcome": "Invalidated",
       "pnl": 4.77,
       "pnl_pct": 0.48,
-      "duration_minutes": 0,
+      "duration_minutes": 184,
       "opened_at": "2026-04-22T07:04:23.551189+00:00",
-      "closed_at": "2026-04-22T07:04:23.551189+00:00"
+      "closed_at": "2026-04-22T10:08:27.899200+00:00"
     },
     {
       "id": "T005",
@@ -116,9 +116,9 @@
       "outcome": "Invalidated",
       "pnl": 9.68,
       "pnl_pct": 0.97,
-      "duration_minutes": 0,
+      "duration_minutes": 260,
       "opened_at": "2026-04-22T07:20:49.797932+00:00",
-      "closed_at": "2026-04-22T07:20:49.797932+00:00"
+      "closed_at": "2026-04-22T11:41:23.795682+00:00"
     },
     {
       "id": "T006",
@@ -137,9 +137,9 @@
       "outcome": "Invalidated",
       "pnl": 0.91,
       "pnl_pct": 0.09,
-      "duration_minutes": 0,
+      "duration_minutes": 146,
       "opened_at": "2026-04-22T08:27:13.984851+00:00",
-      "closed_at": "2026-04-22T08:27:13.984851+00:00"
+      "closed_at": "2026-04-22T10:54:06.243454+00:00"
     },
     {
       "id": "T007",
@@ -158,9 +158,9 @@
       "outcome": "Invalidated",
       "pnl": 50.97,
       "pnl_pct": 5.2,
-      "duration_minutes": 0,
+      "duration_minutes": 339,
       "opened_at": "2026-04-22T08:39:39.967234+00:00",
-      "closed_at": "2026-04-22T08:39:39.967234+00:00"
+      "closed_at": "2026-04-22T14:18:57.381046+00:00"
     },
     {
       "id": "T008",
@@ -179,9 +179,9 @@
       "outcome": "Invalidated",
       "pnl": 10.13,
       "pnl_pct": 1.01,
-      "duration_minutes": 0,
+      "duration_minutes": 248,
       "opened_at": "2026-04-22T20:08:49.128392+00:00",
-      "closed_at": "2026-04-22T20:08:49.128392+00:00"
+      "closed_at": "2026-04-23T00:17:25.378170+00:00"
     },
     {
       "id": "T009",
@@ -200,9 +200,9 @@
       "outcome": "Invalidated",
       "pnl": -31.87,
       "pnl_pct": -3.17,
-      "duration_minutes": 0,
+      "duration_minutes": 1366,
       "opened_at": "2026-04-23T09:46:59.027077+00:00",
-      "closed_at": "2026-04-23T09:46:59.027077+00:00"
+      "closed_at": "2026-04-24T08:33:45.932830+00:00"
     }
   ]
 }
