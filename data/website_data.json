@@ -4,13 +4,13 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "23.04.2026 16:03 UTC",
-      "uptime": "2:47:06",
+      "uptime": "2:31:59",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10039.51,
-      "equity": 10087.44,
-      "total_pnl": 87.44,
+      "equity": 10087.38,
+      "total_pnl": 87.38,
       "total_trades": 11,
       "wins": 9,
       "losses": 2,
@@ -32,7 +32,7 @@
       {
         "symbol": "BTCUSDT",
         "side": "LONG",
-        "pnl": 7.44
+        "pnl": 7.37
       },
       {
         "symbol": "SOLUSDT",
@@ -43,14 +43,14 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,400.01",
+        "price": "$78,395.00",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,332.03",
+        "price": "$2,332.02",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -64,7 +64,7 @@
       },
       {
         "symbol": "BNB",
-        "price": "$640.12",
+        "price": "$640.11",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -78,7 +78,7 @@
       },
       {
         "symbol": "AVAX",
-        "price": "$9.40",
+        "price": "$9.39",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -155,7 +155,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$93.77",
+        "price": "$93.76",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
