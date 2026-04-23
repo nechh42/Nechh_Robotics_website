@@ -4,7 +4,7 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "23.04.2026 16:33 UTC",
-      "uptime": "3:17:09",
+      "uptime": "3:02:03",
       "active_symbols": 27
     },
     "performance": {
@@ -43,28 +43,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,364.31",
+        "price": "$78,373.36",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,330.90",
+        "price": "$2,331.23",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$86.10",
+        "price": "$86.15",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$639.50",
+        "price": "$639.49",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
