@@ -4,19 +4,19 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "23.04.2026 18:33 UTC",
-      "uptime": "5:17:27",
+      "uptime": "5:02:19",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10072.4,
-      "equity": 10058.68,
-      "total_pnl": 58.68,
-      "total_trades": 13,
+      "balance": 10054.46,
+      "equity": 10040.51,
+      "total_pnl": 40.51,
+      "total_trades": 14,
       "wins": 11,
-      "losses": 2,
-      "win_rate": 84.6,
-      "max_drawdown_pct": 0.58,
-      "sharpe": 0.3
+      "losses": 3,
+      "win_rate": 78.6,
+      "max_drawdown_pct": 0.76,
+      "sharpe": 0.22
     },
     "open_positions": [
       {
@@ -27,13 +27,13 @@
       {
         "symbol": "SOLUSDT",
         "side": "LONG",
-        "pnl": -11.68
+        "pnl": -11.91
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,014.20",
+        "price": "$78,016.38",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -47,14 +47,14 @@
       },
       {
         "symbol": "SOL",
-        "price": "$85.44",
+        "price": "$85.46",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$635.47",
+        "price": "$635.48",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
