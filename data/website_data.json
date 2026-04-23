@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "23.04.2026 07:30 UTC",
-      "uptime": "13:47:53",
+      "last_update": "23.04.2026 07:45 UTC",
+      "uptime": "14:02:55",
       "active_symbols": 28
     },
     "performance": {
       "balance": 10000.5,
-      "equity": 9978.73,
-      "total_pnl": -21.27,
+      "equity": 9977.7,
+      "total_pnl": -22.3,
       "total_trades": 10,
       "wins": 7,
       "losses": 3,
@@ -22,34 +22,34 @@
       {
         "symbol": "LDOUSDT",
         "side": "LONG",
-        "pnl": -21.78
+        "pnl": -22.8
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,153.98",
+        "price": "$78,104.72",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,351.45",
+        "price": "$2,351.65",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$86.10",
+        "price": "$86.09",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$636.86",
+        "price": "$636.77",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -77,14 +77,14 @@
       },
       {
         "symbol": "LTC",
-        "price": "$55.18",
+        "price": "$55.22",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BCH",
-        "price": "$456.10",
+        "price": "$455.90",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -105,7 +105,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.24",
+        "price": "$9.25",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -147,7 +147,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$91.62",
+        "price": "$91.69",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
