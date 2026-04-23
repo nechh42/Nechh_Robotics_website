@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-23T16:54:11.409424+00:00",
+    "last_updated": "2026-04-23T17:39:47.777211+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 17,
+    "total_trades": 18,
     "wins": 13,
-    "losses": 2,
-    "win_rate": 76.5,
+    "losses": 3,
+    "win_rate": 72.2,
     "avg_rr": 0.61,
-    "total_pnl": 112.55,
+    "total_pnl": 95.62,
     "max_drawdown": 0.32,
     "balance_start": 10000.0,
-    "balance_current": 10112.55
+    "balance_current": 10095.62
   },
   "trades": [
     {
@@ -371,6 +371,27 @@
       "duration_minutes": 294,
       "opened_at": "2026-04-23T12:00:02.160127+00:00",
       "closed_at": "2026-04-23T16:54:11.408895+00:00"
+    },
+    {
+      "id": "T018",
+      "symbol": "ADAUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "BOLLINGER_SQUEEZE",
+      "session": "NY",
+      "entry": 0.2493735,
+      "exit": 0.2454313,
+      "invalidation": 0.2458,
+      "target": 0.2554,
+      "leverage": 1,
+      "size": 4042.4810678521476,
+      "rr": -1.1,
+      "outcome": "Invalidated",
+      "pnl": -16.93,
+      "pnl_pct": -1.68,
+      "duration_minutes": 39,
+      "opened_at": "2026-04-23T17:00:15.618641+00:00",
+      "closed_at": "2026-04-23T17:39:47.777211+00:00"
     }
   ]
 }
