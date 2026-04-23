@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-23T14:01:44.858023+00:00",
+    "last_updated": "2026-04-23T15:45:08.395744+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 11,
-    "wins": 7,
+    "total_trades": 13,
+    "wins": 9,
     "losses": 2,
-    "win_rate": 63.6,
-    "avg_rr": 0.11,
-    "total_pnl": 36.49,
+    "win_rate": 69.2,
+    "avg_rr": 0.45,
+    "total_pnl": 46.77,
     "max_drawdown": 0.32,
     "balance_start": 10000.0,
-    "balance_current": 10036.49
+    "balance_current": 10046.77
   },
   "trades": [
     {
@@ -245,6 +245,48 @@
       "duration_minutes": 1612,
       "opened_at": "2026-04-22T11:09:31.075327+00:00",
       "closed_at": "2026-04-23T14:01:44.858023+00:00"
+    },
+    {
+      "id": "T012",
+      "symbol": "AAVEUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MACD_CROSSOVER",
+      "session": "NY",
+      "entry": 93.31977,
+      "exit": 93.888955,
+      "invalidation": 94.03928571428571,
+      "target": 96.86571428571429,
+      "leverage": 1,
+      "size": 10.804478970530056,
+      "rr": 0.79,
+      "outcome": "Invalidated",
+      "pnl": 5.14,
+      "pnl_pct": 0.51,
+      "duration_minutes": 44,
+      "opened_at": "2026-04-23T15:00:20.320276+00:00",
+      "closed_at": "2026-04-23T15:45:08.367004+00:00"
+    },
+    {
+      "id": "T013",
+      "symbol": "AAVEUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MACD_CROSSOVER",
+      "session": "NY",
+      "entry": 93.31977,
+      "exit": 93.888955,
+      "invalidation": 94.03928571428571,
+      "target": 96.86571428571429,
+      "leverage": 1,
+      "size": 10.804478970530056,
+      "rr": 0.79,
+      "outcome": "Invalidated",
+      "pnl": 5.14,
+      "pnl_pct": 0.51,
+      "duration_minutes": 44,
+      "opened_at": "2026-04-23T15:00:16.311216+00:00",
+      "closed_at": "2026-04-23T15:45:08.395744+00:00"
     }
   ]
 }
