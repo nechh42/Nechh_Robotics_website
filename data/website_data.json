@@ -4,13 +4,13 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "23.04.2026 16:48 UTC",
-      "uptime": "3:32:11",
+      "uptime": "3:17:04",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10070.79,
-      "equity": 10075.83,
-      "total_pnl": 75.83,
+      "equity": 10075.5,
+      "total_pnl": 75.5,
       "total_trades": 12,
       "wins": 10,
       "losses": 2,
@@ -22,30 +22,30 @@
       {
         "symbol": "LTCUSDT",
         "side": "LONG",
-        "pnl": 3.0
+        "pnl": 2.82
       },
       {
         "symbol": "BTCUSDT",
         "side": "LONG",
-        "pnl": 6.7
+        "pnl": 6.67
       },
       {
         "symbol": "SOLUSDT",
         "side": "LONG",
-        "pnl": -4.67
+        "pnl": -4.79
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,339.01",
+        "price": "$78,340.00",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,330.10",
+        "price": "$2,330.08",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -59,7 +59,7 @@
       },
       {
         "symbol": "BNB",
-        "price": "$639.53",
+        "price": "$639.54",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -87,7 +87,7 @@
       },
       {
         "symbol": "LTC",
-        "price": "$55.71",
+        "price": "$55.70",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
