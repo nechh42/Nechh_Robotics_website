@@ -4,19 +4,19 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "23.04.2026 23:34 UTC",
-      "uptime": "10:02:51",
+      "uptime": "10:18:06",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10051.64,
-      "equity": 10064.88,
-      "total_pnl": 64.88,
-      "total_trades": 15,
-      "wins": 12,
-      "losses": 3,
-      "win_rate": 80.0,
-      "max_drawdown_pct": 0.76,
-      "sharpe": 0.21
+      "balance": 10070.28,
+      "equity": 10083.53,
+      "total_pnl": 83.53,
+      "total_trades": 13,
+      "wins": 11,
+      "losses": 2,
+      "win_rate": 84.6,
+      "max_drawdown_pct": 0.58,
+      "sharpe": 0.3
     },
     "open_positions": [
       {
@@ -32,7 +32,7 @@
       {
         "symbol": "BCHUSDT",
         "side": "LONG",
-        "pnl": 4.2
+        "pnl": 4.21
       },
       {
         "symbol": "NEARUSDT",
@@ -50,7 +50,7 @@
       },
       {
         "symbol": "ETH",
-        "price": "$2,327.58",
+        "price": "$2,327.57",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -155,7 +155,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$93.98",
+        "price": "$93.97",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
