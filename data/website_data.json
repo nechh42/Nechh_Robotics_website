@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "23.04.2026 04:30 UTC",
-      "uptime": "10:47:39",
+      "last_update": "23.04.2026 04:45 UTC",
+      "uptime": "11:02:40",
       "active_symbols": 28
     },
     "performance": {
       "balance": 10000.5,
-      "equity": 9959.74,
-      "total_pnl": -40.26,
+      "equity": 9962.56,
+      "total_pnl": -37.44,
       "total_trades": 10,
       "wins": 7,
       "losses": 3,
@@ -22,34 +22,34 @@
       {
         "symbol": "LDOUSDT",
         "side": "LONG",
-        "pnl": -40.77
+        "pnl": -37.94
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,828.70",
+        "price": "$77,905.58",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,344.40",
+        "price": "$2,347.05",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$85.84",
+        "price": "$85.96",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$635.87",
+        "price": "$636.33",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -77,14 +77,14 @@
       },
       {
         "symbol": "LTC",
-        "price": "$55.17",
+        "price": "$55.11",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BCH",
-        "price": "$455.50",
+        "price": "$456.50",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -105,7 +105,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.19",
+        "price": "$9.20",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -140,14 +140,14 @@
       },
       {
         "symbol": "LDO",
-        "price": "$0.37",
+        "price": "$0.38",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "AAVE",
-        "price": "$92.15",
+        "price": "$92.00",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
