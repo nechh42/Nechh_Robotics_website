@@ -4,13 +4,13 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "23.04.2026 15:48 UTC",
-      "uptime": "2:32:04",
+      "uptime": "2:16:58",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10040.52,
-      "equity": 10087.41,
-      "total_pnl": 87.41,
+      "equity": 10087.11,
+      "total_pnl": 87.11,
       "total_trades": 11,
       "wins": 9,
       "losses": 2,
@@ -32,20 +32,20 @@
       {
         "symbol": "BTCUSDT",
         "side": "LONG",
-        "pnl": 6.8
+        "pnl": 6.5
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,339.26",
+        "price": "$78,327.19",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,333.42",
+        "price": "$2,333.21",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -94,7 +94,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$457.10",
+        "price": "$457.20",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -150,7 +150,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$94.13",
+        "price": "$94.11",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
