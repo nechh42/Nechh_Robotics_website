@@ -4,13 +4,13 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "23.04.2026 15:03 UTC",
-      "uptime": "1:46:59",
+      "uptime": "1:31:53",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10035.39,
-      "equity": 10063.36,
-      "total_pnl": 63.36,
+      "equity": 10062.46,
+      "total_pnl": 62.46,
       "total_trades": 10,
       "wins": 8,
       "losses": 2,
@@ -27,44 +27,44 @@
       {
         "symbol": "LTCUSDT",
         "side": "LONG",
-        "pnl": 3.36
+        "pnl": 3.18
       },
       {
         "symbol": "BTCUSDT",
         "side": "LONG",
-        "pnl": 3.74
+        "pnl": 3.56
       },
       {
         "symbol": "AAVEUSDT",
         "side": "LONG",
-        "pnl": -3.35
+        "pnl": -3.89
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,119.83",
+        "price": "$78,098.37",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,329.74",
+        "price": "$2,329.00",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$85.98",
+        "price": "$85.96",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$636.51",
+        "price": "$636.42",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -92,7 +92,7 @@
       },
       {
         "symbol": "LTC",
-        "price": "$55.73",
+        "price": "$55.72",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -113,7 +113,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.31",
+        "price": "$9.32",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -155,7 +155,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$92.99",
+        "price": "$92.96",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
