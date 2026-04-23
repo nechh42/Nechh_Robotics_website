@@ -4,19 +4,19 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "23.04.2026 22:49 UTC",
-      "uptime": "9:17:46",
+      "uptime": "9:33:01",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10051.64,
-      "equity": 10068.88,
-      "total_pnl": 68.88,
-      "total_trades": 15,
-      "wins": 12,
-      "losses": 3,
-      "win_rate": 80.0,
-      "max_drawdown_pct": 0.76,
-      "sharpe": 0.21
+      "balance": 10070.28,
+      "equity": 10087.54,
+      "total_pnl": 87.54,
+      "total_trades": 13,
+      "wins": 11,
+      "losses": 2,
+      "win_rate": 84.6,
+      "max_drawdown_pct": 0.58,
+      "sharpe": 0.3
     },
     "open_positions": [
       {
@@ -32,32 +32,32 @@
       {
         "symbol": "BCHUSDT",
         "side": "LONG",
-        "pnl": 4.42
+        "pnl": 4.43
       },
       {
         "symbol": "NEARUSDT",
         "side": "LONG",
-        "pnl": 6.41
+        "pnl": 6.42
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,316.73",
+        "price": "$78,316.72",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,334.68",
+        "price": "$2,334.99",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$86.17",
+        "price": "$86.16",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
