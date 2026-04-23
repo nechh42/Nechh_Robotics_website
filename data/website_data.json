@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "23.04.2026 13:30 UTC",
-      "uptime": "0:01:44",
+      "last_update": "23.04.2026 13:33 UTC",
+      "uptime": "0:16:50",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10036.39,
-      "equity": 10028.66,
-      "total_pnl": 28.66,
+      "equity": 10031.82,
+      "total_pnl": 31.82,
       "total_trades": 9,
       "wins": 7,
       "losses": 2,
@@ -27,44 +27,44 @@
       {
         "symbol": "ARBUSDT",
         "side": "LONG",
-        "pnl": 10.56
+        "pnl": 12.17
       },
       {
         "symbol": "LTCUSDT",
         "side": "LONG",
-        "pnl": 0.12
+        "pnl": 0.84
       },
       {
         "symbol": "BTCUSDT",
         "side": "LONG",
-        "pnl": -2.8
+        "pnl": -1.96
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,612.34",
+        "price": "$77,634.96",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,324.23",
+        "price": "$2,324.77",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$85.76",
+        "price": "$85.82",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$634.84",
+        "price": "$635.16",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -92,14 +92,14 @@
       },
       {
         "symbol": "LTC",
-        "price": "$55.54",
+        "price": "$55.58",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BCH",
-        "price": "$455.80",
+        "price": "$455.70",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -155,7 +155,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$92.73",
+        "price": "$92.84",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
