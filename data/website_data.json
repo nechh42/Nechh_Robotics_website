@@ -4,19 +4,19 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "24.04.2026 00:34 UTC",
-      "uptime": "11:02:57",
+      "uptime": "11:18:12",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10051.54,
-      "equity": 10075.09,
-      "total_pnl": 75.09,
-      "total_trades": 15,
-      "wins": 12,
-      "losses": 3,
-      "win_rate": 80.0,
-      "max_drawdown_pct": 0.76,
-      "sharpe": 0.21
+      "balance": 10070.18,
+      "equity": 10093.75,
+      "total_pnl": 93.75,
+      "total_trades": 13,
+      "wins": 11,
+      "losses": 2,
+      "win_rate": 84.6,
+      "max_drawdown_pct": 0.58,
+      "sharpe": 0.3
     },
     "open_positions": [
       {
@@ -32,12 +32,12 @@
       {
         "symbol": "BCHUSDT",
         "side": "LONG",
-        "pnl": 7.5
+        "pnl": 7.51
       },
       {
         "symbol": "NEARUSDT",
         "side": "LONG",
-        "pnl": 7.13
+        "pnl": 7.14
       }
     ],
     "quick_cards": [
@@ -57,7 +57,7 @@
       },
       {
         "symbol": "SOL",
-        "price": "$86.20",
+        "price": "$86.21",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -155,7 +155,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$95.58",
+        "price": "$95.59",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
