@@ -4,19 +4,19 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "24.04.2026 05:04 UTC",
-      "uptime": "15:33:25",
+      "uptime": "15:48:40",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10043.56,
-      "equity": 10005.02,
-      "total_pnl": 5.02,
-      "total_trades": 19,
-      "wins": 15,
-      "losses": 4,
-      "win_rate": 78.9,
-      "max_drawdown_pct": 0.97,
-      "sharpe": 0.16
+      "balance": 10063.18,
+      "equity": 10031.17,
+      "total_pnl": 31.17,
+      "total_trades": 17,
+      "wins": 14,
+      "losses": 3,
+      "win_rate": 82.4,
+      "max_drawdown_pct": 0.7,
+      "sharpe": 0.24
     },
     "open_positions": [
       {
@@ -27,12 +27,7 @@
       {
         "symbol": "BONKUSDT",
         "side": "LONG",
-        "pnl": -17.26
-      },
-      {
-        "symbol": "ARPAUSDT",
-        "side": "LONG",
-        "pnl": -6.56
+        "pnl": -17.29
       }
     ],
     "quick_cards": [
