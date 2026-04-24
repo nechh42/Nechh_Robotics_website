@@ -4,48 +4,48 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "24.04.2026 03:34 UTC",
-      "uptime": "14:03:15",
+      "uptime": "14:18:30",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10059.05,
-      "equity": 10021.62,
-      "total_pnl": 21.62,
-      "total_trades": 18,
-      "wins": 15,
-      "losses": 3,
-      "win_rate": 83.3,
-      "max_drawdown_pct": 0.8,
-      "sharpe": 0.22
+      "balance": 10077.7,
+      "equity": 10040.1,
+      "total_pnl": 40.1,
+      "total_trades": 16,
+      "wins": 14,
+      "losses": 2,
+      "win_rate": 87.5,
+      "max_drawdown_pct": 0.62,
+      "sharpe": 0.31
     },
     "open_positions": [
       {
         "symbol": "SOLUSDT",
         "side": "LONG",
-        "pnl": -12.15
+        "pnl": -12.26
       },
       {
         "symbol": "BONKUSDT",
         "side": "LONG",
-        "pnl": -15.69
+        "pnl": -15.72
       },
       {
         "symbol": "BCHUSDT",
         "side": "LONG",
-        "pnl": -9.6
+        "pnl": -9.61
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,617.38",
+        "price": "$77,617.37",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,303.86",
+        "price": "$2,303.85",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
