@@ -4,19 +4,19 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "24.04.2026 02:49 UTC",
-      "uptime": "13:18:11",
+      "uptime": "13:33:26",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10059.05,
-      "equity": 10049.5,
-      "total_pnl": 49.5,
-      "total_trades": 18,
-      "wins": 15,
-      "losses": 3,
-      "win_rate": 83.3,
-      "max_drawdown_pct": 0.76,
-      "sharpe": 0.22
+      "balance": 10077.7,
+      "equity": 10068.13,
+      "total_pnl": 68.13,
+      "total_trades": 16,
+      "wins": 14,
+      "losses": 2,
+      "win_rate": 87.5,
+      "max_drawdown_pct": 0.58,
+      "sharpe": 0.31
     },
     "open_positions": [
       {
