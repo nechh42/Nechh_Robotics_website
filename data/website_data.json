@@ -3,68 +3,68 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "24.04.2026 21:06 UTC",
-      "uptime": "0:31:42",
+      "last_update": "24.04.2026 21:21 UTC",
+      "uptime": "0:46:44",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10083.74,
-      "equity": 10088.24,
-      "total_pnl": 88.24,
+      "equity": 10079.2,
+      "total_pnl": 79.2,
       "total_trades": 32,
       "wins": 25,
       "losses": 7,
       "win_rate": 78.1,
-      "max_drawdown_pct": 0.04,
+      "max_drawdown_pct": 0.12,
       "sharpe": 0.18
     },
     "open_positions": [
       {
         "symbol": "SOLUSDT",
         "side": "LONG",
-        "pnl": 4.68
+        "pnl": 0.94
       },
       {
         "symbol": "LTCUSDT",
         "side": "LONG",
-        "pnl": 9.23
+        "pnl": 7.62
       },
       {
         "symbol": "BTCUSDT",
         "side": "LONG",
-        "pnl": -8.13
+        "pnl": -10.0
       },
       {
         "symbol": "BNBUSDT",
         "side": "LONG",
-        "pnl": -1.29
+        "pnl": -3.1
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,729.13",
+        "price": "$77,580.01",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,325.96",
+        "price": "$2,317.29",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$86.88",
+        "price": "$86.56",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$638.25",
+        "price": "$637.09",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -78,7 +78,7 @@
       },
       {
         "symbol": "AVAX",
-        "price": "$9.47",
+        "price": "$9.44",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -92,14 +92,14 @@
       },
       {
         "symbol": "LTC",
-        "price": "$56.71",
+        "price": "$56.62",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BCH",
-        "price": "$457.30",
+        "price": "$456.90",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -113,7 +113,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.43",
+        "price": "$9.40",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -141,7 +141,7 @@
       },
       {
         "symbol": "NEAR",
-        "price": "$1.42",
+        "price": "$1.41",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -155,7 +155,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$95.73",
+        "price": "$94.62",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
