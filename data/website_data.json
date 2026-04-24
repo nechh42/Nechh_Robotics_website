@@ -4,19 +4,19 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "24.04.2026 07:20 UTC",
-      "uptime": "17:48:39",
+      "uptime": "18:03:54",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10042.56,
-      "equity": 10013.72,
-      "total_pnl": 13.72,
-      "total_trades": 19,
-      "wins": 15,
-      "losses": 4,
-      "win_rate": 78.9,
-      "max_drawdown_pct": 0.97,
-      "sharpe": 0.16
+      "balance": 10062.18,
+      "equity": 10040.88,
+      "total_pnl": 40.88,
+      "total_trades": 17,
+      "wins": 14,
+      "losses": 3,
+      "win_rate": 82.4,
+      "max_drawdown_pct": 0.7,
+      "sharpe": 0.24
     },
     "open_positions": [
       {
@@ -27,17 +27,12 @@
       {
         "symbol": "BONKUSDT",
         "side": "LONG",
-        "pnl": -4.66
-      },
-      {
-        "symbol": "ARPAUSDT",
-        "side": "LONG",
-        "pnl": -7.57
+        "pnl": -4.67
       },
       {
         "symbol": "NEARUSDT",
         "side": "LONG",
-        "pnl": -5.05
+        "pnl": -5.06
       }
     ],
     "quick_cards": [
@@ -64,7 +59,7 @@
       },
       {
         "symbol": "BNB",
-        "price": "$636.27",
+        "price": "$636.26",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -155,7 +150,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$93.54",
+        "price": "$93.55",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
