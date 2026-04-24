@@ -4,19 +4,19 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "24.04.2026 10:35 UTC",
-      "uptime": "21:04:05",
+      "uptime": "21:19:18",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10039.94,
-      "equity": 10018.53,
-      "total_pnl": 18.53,
-      "total_trades": 20,
-      "wins": 15,
-      "losses": 5,
-      "win_rate": 75.0,
-      "max_drawdown_pct": 0.97,
-      "sharpe": 0.15
+      "balance": 10058.55,
+      "equity": 10044.68,
+      "total_pnl": 44.68,
+      "total_trades": 18,
+      "wins": 14,
+      "losses": 4,
+      "win_rate": 77.8,
+      "max_drawdown_pct": 0.75,
+      "sharpe": 0.22
     },
     "open_positions": [
       {
@@ -25,14 +25,14 @@
         "pnl": -10.51
       },
       {
-        "symbol": "ARPAUSDT",
-        "side": "LONG",
-        "pnl": -6.56
-      },
-      {
         "symbol": "NEARUSDT",
         "side": "LONG",
-        "pnl": -4.34
+        "pnl": -4.35
+      },
+      {
+        "symbol": "LTCUSDT",
+        "side": "LONG",
+        "pnl": 1.0
       }
     ],
     "quick_cards": [
