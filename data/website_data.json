@@ -4,19 +4,19 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "24.04.2026 09:05 UTC",
-      "uptime": "19:33:50",
+      "uptime": "19:49:08",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10042.46,
-      "equity": 10021.44,
-      "total_pnl": 21.44,
-      "total_trades": 19,
-      "wins": 15,
-      "losses": 4,
-      "win_rate": 78.9,
-      "max_drawdown_pct": 0.97,
-      "sharpe": 0.16
+      "balance": 10061.07,
+      "equity": 10039.73,
+      "total_pnl": 39.73,
+      "total_trades": 17,
+      "wins": 14,
+      "losses": 3,
+      "win_rate": 82.4,
+      "max_drawdown_pct": 0.7,
+      "sharpe": 0.24
     },
     "open_positions": [
       {
@@ -30,14 +30,14 @@
         "pnl": -1.51
       },
       {
-        "symbol": "ARPAUSDT",
-        "side": "LONG",
-        "pnl": -3.53
-      },
-      {
         "symbol": "NEARUSDT",
         "side": "LONG",
-        "pnl": -1.5
+        "pnl": -0.8
+      },
+      {
+        "symbol": "LTCUSDT",
+        "side": "LONG",
+        "pnl": -4.55
       }
     ],
     "quick_cards": [
@@ -50,21 +50,21 @@
       },
       {
         "symbol": "ETH",
-        "price": "$2,311.20",
+        "price": "$2,311.44",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$85.23",
+        "price": "$85.25",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$635.74",
+        "price": "$635.75",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -155,7 +155,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$92.59",
+        "price": "$92.61",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
