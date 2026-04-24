@@ -4,19 +4,19 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "24.04.2026 03:49 UTC",
-      "uptime": "14:18:17",
+      "uptime": "14:33:32",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10059.05,
-      "equity": 10024.43,
-      "total_pnl": 24.43,
-      "total_trades": 18,
-      "wins": 15,
-      "losses": 3,
-      "win_rate": 83.3,
-      "max_drawdown_pct": 0.8,
-      "sharpe": 0.22
+      "balance": 10077.7,
+      "equity": 10043.03,
+      "total_pnl": 43.03,
+      "total_trades": 16,
+      "wins": 14,
+      "losses": 2,
+      "win_rate": 87.5,
+      "max_drawdown_pct": 0.62,
+      "sharpe": 0.31
     },
     "open_positions": [
       {
@@ -27,12 +27,12 @@
       {
         "symbol": "BONKUSDT",
         "side": "LONG",
-        "pnl": -14.11
+        "pnl": -14.14
       },
       {
         "symbol": "BCHUSDT",
         "side": "LONG",
-        "pnl": -10.47
+        "pnl": -10.49
       }
     ],
     "quick_cards": [
