@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-24T01:09:28.341615+00:00",
+    "last_updated": "2026-04-24T01:09:28.534138+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 20,
-    "wins": 15,
+    "total_trades": 21,
+    "wins": 16,
     "losses": 3,
-    "win_rate": 75.0,
-    "avg_rr": 0.6,
-    "total_pnl": 100.73,
+    "win_rate": 76.2,
+    "avg_rr": 0.62,
+    "total_pnl": 105.54,
     "max_drawdown": 0.32,
     "balance_start": 10000.0,
-    "balance_current": 10100.73
+    "balance_current": 10105.54
   },
   "trades": [
     {
@@ -434,6 +434,27 @@
       "duration_minutes": 789,
       "opened_at": "2026-04-23T12:00:01.080758+00:00",
       "closed_at": "2026-04-24T01:09:28.341615+00:00"
+    },
+    {
+      "id": "T021",
+      "symbol": "LTCUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "EMA Pullback \u2014 Trend Continuation",
+      "session": "Asia",
+      "entry": 55.54319,
+      "exit": 55.866075,
+      "invalidation": 55.95714285714286,
+      "target": 57.962857142857146,
+      "leverage": 1,
+      "size": 18.004176273410014,
+      "rr": 0.78,
+      "outcome": "Invalidated",
+      "pnl": 4.81,
+      "pnl_pct": 0.48,
+      "duration_minutes": 789,
+      "opened_at": "2026-04-23T12:00:01.080758+00:00",
+      "closed_at": "2026-04-24T01:09:28.534138+00:00"
     }
   ]
 }
