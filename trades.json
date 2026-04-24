@@ -1,17 +1,17 @@
 {
   "meta": {
-    "last_updated": "2026-04-24T11:54:17.175054+00:00"
+    "last_updated": "2026-04-24T11:55:45.145664+00:00"
   },
   "summary": {
-    "total_trades": 3,
-    "wins": 2,
+    "total_trades": 4,
+    "wins": 3,
     "losses": 1,
-    "win_rate": 66.7,
-    "avg_rr": 0.51,
-    "total_pnl": 0.46,
+    "win_rate": 75.0,
+    "avg_rr": 0.47,
+    "total_pnl": 0.7,
     "max_drawdown": 0.03,
     "balance_start": 10000.0,
-    "balance_current": 10000.46
+    "balance_current": 10000.7
   },
   "trades": [
     {
@@ -76,6 +76,27 @@
       "duration_minutes": 54,
       "opened_at": "2026-04-24T11:00:14.221243+00:00",
       "closed_at": "2026-04-24T11:54:17.175054+00:00"
+    },
+    {
+      "id": "T004",
+      "symbol": "NEARUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "BOLLINGER_SQUEEZE",
+      "session": "London",
+      "entry": 1.4151195,
+      "exit": 1.4168715,
+      "invalidation": 1.4196785714285716,
+      "target": 1.4555714285714285,
+      "leverage": 1,
+      "size": 710.7720191033759,
+      "rr": 0.38,
+      "outcome": "Invalidated",
+      "pnl": 0.24,
+      "pnl_pct": 0.02,
+      "duration_minutes": 295,
+      "opened_at": "2026-04-24T07:00:22.919931+00:00",
+      "closed_at": "2026-04-24T11:55:45.145664+00:00"
     }
   ]
 }
