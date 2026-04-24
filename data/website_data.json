@@ -4,19 +4,19 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "24.04.2026 05:19 UTC",
-      "uptime": "15:48:26",
+      "uptime": "16:03:42",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10043.56,
-      "equity": 10009.25,
-      "total_pnl": 9.25,
-      "total_trades": 19,
-      "wins": 15,
-      "losses": 4,
-      "win_rate": 78.9,
-      "max_drawdown_pct": 0.97,
-      "sharpe": 0.16
+      "balance": 10063.18,
+      "equity": 10034.38,
+      "total_pnl": 34.38,
+      "total_trades": 17,
+      "wins": 14,
+      "losses": 3,
+      "win_rate": 82.4,
+      "max_drawdown_pct": 0.7,
+      "sharpe": 0.24
     },
     "open_positions": [
       {
@@ -27,12 +27,7 @@
       {
         "symbol": "BONKUSDT",
         "side": "LONG",
-        "pnl": -15.69
-      },
-      {
-        "symbol": "ARPAUSDT",
-        "side": "LONG",
-        "pnl": -5.55
+        "pnl": -15.72
       }
     ],
     "quick_cards": [
@@ -45,7 +40,7 @@
       },
       {
         "symbol": "ETH",
-        "price": "$2,302.77",
+        "price": "$2,302.84",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -73,7 +68,7 @@
       },
       {
         "symbol": "AVAX",
-        "price": "$9.32",
+        "price": "$9.33",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
