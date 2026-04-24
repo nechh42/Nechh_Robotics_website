@@ -4,19 +4,19 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "24.04.2026 05:49 UTC",
-      "uptime": "16:18:29",
+      "uptime": "16:33:45",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10043.56,
-      "equity": 10016.85,
-      "total_pnl": 16.85,
-      "total_trades": 19,
-      "wins": 15,
-      "losses": 4,
-      "win_rate": 78.9,
-      "max_drawdown_pct": 0.97,
-      "sharpe": 0.16
+      "balance": 10063.18,
+      "equity": 10044.03,
+      "total_pnl": 44.03,
+      "total_trades": 17,
+      "wins": 14,
+      "losses": 3,
+      "win_rate": 82.4,
+      "max_drawdown_pct": 0.7,
+      "sharpe": 0.24
     },
     "open_positions": [
       {
@@ -27,12 +27,7 @@
       {
         "symbol": "BONKUSDT",
         "side": "LONG",
-        "pnl": -7.81
-      },
-      {
-        "symbol": "ARPAUSDT",
-        "side": "LONG",
-        "pnl": -7.57
+        "pnl": -7.83
       }
     ],
     "quick_cards": [
@@ -45,7 +40,7 @@
       },
       {
         "symbol": "ETH",
-        "price": "$2,312.63",
+        "price": "$2,312.29",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -150,7 +145,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$93.47",
+        "price": "$93.43",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
