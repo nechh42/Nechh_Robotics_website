@@ -4,60 +4,60 @@
       "status": "OPERATIONAL",
       "mode": "PAPER",
       "last_update": "24.04.2026 08:05 UTC",
-      "uptime": "18:33:43",
+      "uptime": "18:48:58",
       "active_symbols": 27
     },
     "performance": {
-      "balance": 10042.46,
-      "equity": 10011.83,
-      "total_pnl": 11.83,
-      "total_trades": 19,
-      "wins": 15,
-      "losses": 4,
-      "win_rate": 78.9,
-      "max_drawdown_pct": 0.97,
-      "sharpe": 0.16
+      "balance": 10061.07,
+      "equity": 10036.42,
+      "total_pnl": 36.42,
+      "total_trades": 17,
+      "wins": 14,
+      "losses": 3,
+      "win_rate": 82.4,
+      "max_drawdown_pct": 0.7,
+      "sharpe": 0.24
     },
     "open_positions": [
       {
         "symbol": "SOLUSDT",
         "side": "LONG",
-        "pnl": -13.2
+        "pnl": -13.08
       },
       {
         "symbol": "BONKUSDT",
         "side": "LONG",
-        "pnl": -6.24
-      },
-      {
-        "symbol": "ARPAUSDT",
-        "side": "LONG",
-        "pnl": -7.57
+        "pnl": -6.25
       },
       {
         "symbol": "NEARUSDT",
         "side": "LONG",
-        "pnl": -3.63
+        "pnl": -3.64
+      },
+      {
+        "symbol": "LTCUSDT",
+        "side": "LONG",
+        "pnl": -1.69
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,577.22",
+        "price": "$77,577.23",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,308.73",
+        "price": "$2,308.74",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$85.36",
+        "price": "$85.35",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -92,7 +92,7 @@
       },
       {
         "symbol": "LTC",
-        "price": "$56.10",
+        "price": "$56.09",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
