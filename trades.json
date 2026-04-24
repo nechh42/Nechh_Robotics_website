@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-24T01:09:34.818880+00:00",
+    "last_updated": "2026-04-24T02:09:04.312420+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 23,
-    "wins": 18,
+    "total_trades": 25,
+    "wins": 20,
     "losses": 3,
-    "win_rate": 78.3,
+    "win_rate": 80.0,
     "avg_rr": 0.63,
-    "total_pnl": 111.54,
+    "total_pnl": 114.99,
     "max_drawdown": 0.32,
     "balance_start": 10000.0,
-    "balance_current": 10111.54
+    "balance_current": 10114.99
   },
   "trades": [
     {
@@ -497,6 +497,48 @@
       "duration_minutes": 309,
       "opened_at": "2026-04-23T20:00:16.763250+00:00",
       "closed_at": "2026-04-24T01:09:34.818880+00:00"
+    },
+    {
+      "id": "T024",
+      "symbol": "NEARUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "BOLLINGER_SQUEEZE",
+      "session": "Asia",
+      "entry": 1.3990955,
+      "exit": 1.4028925,
+      "invalidation": 1.4055714285714285,
+      "target": 1.4484285714285714,
+      "leverage": 1,
+      "size": 719.4492449436464,
+      "rr": 0.59,
+      "outcome": "Invalidated",
+      "pnl": 1.72,
+      "pnl_pct": 0.17,
+      "duration_minutes": 248,
+      "opened_at": "2026-04-23T22:00:17.031347+00:00",
+      "closed_at": "2026-04-24T02:09:04.288116+00:00"
+    },
+    {
+      "id": "T025",
+      "symbol": "NEARUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "BOLLINGER_SQUEEZE",
+      "session": "Asia",
+      "entry": 1.3990955,
+      "exit": 1.4028925,
+      "invalidation": 1.405642857142857,
+      "target": 1.4478571428571427,
+      "leverage": 1,
+      "size": 720.5501361220603,
+      "rr": 0.58,
+      "outcome": "Invalidated",
+      "pnl": 1.73,
+      "pnl_pct": 0.17,
+      "duration_minutes": 308,
+      "opened_at": "2026-04-23T21:00:15.746228+00:00",
+      "closed_at": "2026-04-24T02:09:04.312420+00:00"
     }
   ]
 }
