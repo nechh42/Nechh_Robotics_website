@@ -1,18 +1,18 @@
 {
   "meta": {
-    "last_updated": "2026-04-24T01:09:28.534138+00:00",
+    "last_updated": "2026-04-24T01:09:34.818880+00:00",
     "mode": "PAPERTRADE"
   },
   "summary": {
-    "total_trades": 21,
-    "wins": 16,
+    "total_trades": 23,
+    "wins": 18,
     "losses": 3,
-    "win_rate": 76.2,
-    "avg_rr": 0.62,
-    "total_pnl": 105.54,
+    "win_rate": 78.3,
+    "avg_rr": 0.63,
+    "total_pnl": 111.54,
     "max_drawdown": 0.32,
     "balance_start": 10000.0,
-    "balance_current": 10105.54
+    "balance_current": 10111.54
   },
   "trades": [
     {
@@ -455,6 +455,48 @@
       "duration_minutes": 789,
       "opened_at": "2026-04-23T12:00:01.080758+00:00",
       "closed_at": "2026-04-24T01:09:28.534138+00:00"
+    },
+    {
+      "id": "T022",
+      "symbol": "BCHUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "BOLLINGER_SQUEEZE",
+      "session": "Asia",
+      "entry": 457.88579999999996,
+      "exit": 459.70939999999996,
+      "invalidation": 460.45714285714286,
+      "target": 467.1428571428571,
+      "leverage": 1,
+      "size": 2.196016745736752,
+      "rr": 0.71,
+      "outcome": "Invalidated",
+      "pnl": 3.0,
+      "pnl_pct": 0.3,
+      "duration_minutes": 309,
+      "opened_at": "2026-04-23T20:00:15.748006+00:00",
+      "closed_at": "2026-04-24T01:09:34.774808+00:00"
+    },
+    {
+      "id": "T023",
+      "symbol": "BCHUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "BOLLINGER_SQUEEZE",
+      "session": "Asia",
+      "entry": 457.88579999999996,
+      "exit": 459.70939999999996,
+      "invalidation": 460.45714285714286,
+      "target": 467.1428571428571,
+      "leverage": 1,
+      "size": 2.1999398664502183,
+      "rr": 0.71,
+      "outcome": "Invalidated",
+      "pnl": 3.0,
+      "pnl_pct": 0.3,
+      "duration_minutes": 309,
+      "opened_at": "2026-04-23T20:00:16.763250+00:00",
+      "closed_at": "2026-04-24T01:09:34.818880+00:00"
     }
   ]
 }
