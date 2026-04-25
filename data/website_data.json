@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "25.04.2026 15:23 UTC",
-      "uptime": "18:48:21",
+      "last_update": "25.04.2026 15:38 UTC",
+      "uptime": "19:03:22",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10105.99,
-      "equity": 10089.69,
-      "total_pnl": 89.69,
+      "equity": 10092.23,
+      "total_pnl": 92.23,
       "total_trades": 38,
       "wins": 29,
       "losses": 9,
@@ -32,34 +32,34 @@
       {
         "symbol": "FLOWUSDT",
         "side": "LONG",
-        "pnl": -3.54
+        "pnl": -1.01
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,700.08",
+        "price": "$77,700.01",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,317.56",
+        "price": "$2,317.84",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$86.59",
+        "price": "$86.58",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$630.85",
+        "price": "$631.44",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -87,14 +87,14 @@
       },
       {
         "symbol": "LTC",
-        "price": "$56.52",
+        "price": "$56.54",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BCH",
-        "price": "$455.00",
+        "price": "$454.80",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -150,7 +150,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$95.24",
+        "price": "$95.33",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -199,7 +199,7 @@
       },
       {
         "symbol": "SUI",
-        "price": "$0.95",
+        "price": "$0.94",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
