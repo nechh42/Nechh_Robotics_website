@@ -1,17 +1,17 @@
 {
   "meta": {
-    "last_updated": "2026-04-25T11:00:01.907927+00:00"
+    "last_updated": "2026-04-25T11:05:18.656287+00:00"
   },
   "summary": {
-    "total_trades": 9,
-    "wins": 6,
+    "total_trades": 10,
+    "wins": 7,
     "losses": 3,
-    "win_rate": 66.7,
-    "avg_rr": 0.62,
-    "total_pnl": 27.46,
+    "win_rate": 70.0,
+    "avg_rr": 0.61,
+    "total_pnl": 28.49,
     "max_drawdown": 0.05,
     "balance_start": 10000.0,
-    "balance_current": 10027.46
+    "balance_current": 10028.49
   },
   "trades": [
     {
@@ -202,6 +202,27 @@
       "duration_minutes": 1379,
       "opened_at": "2026-04-24T12:00:22.159246+00:00",
       "closed_at": "2026-04-25T11:00:01.907927+00:00"
+    },
+    {
+      "id": "T010",
+      "symbol": "AAVEUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MACD_CROSSOVER",
+      "session": "London",
+      "entry": 95.54310000000001,
+      "exit": 95.73617999999999,
+      "invalidation": 95.88607142857144,
+      "target": 98.39142857142856,
+      "leverage": 1,
+      "size": 10.591362229906569,
+      "rr": 0.56,
+      "outcome": "Invalidated",
+      "pnl": 1.03,
+      "pnl_pct": 0.1,
+      "duration_minutes": 125,
+      "opened_at": "2026-04-25T09:00:16.054494+00:00",
+      "closed_at": "2026-04-25T11:05:18.656287+00:00"
     }
   ]
 }
