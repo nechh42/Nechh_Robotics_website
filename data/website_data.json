@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "25.04.2026 11:37 UTC",
-      "uptime": "15:03:03",
+      "last_update": "25.04.2026 11:52 UTC",
+      "uptime": "15:18:04",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10107.1,
-      "equity": 10094.99,
-      "total_pnl": 94.99,
+      "equity": 10096.83,
+      "total_pnl": 96.83,
       "total_trades": 38,
       "wins": 29,
       "losses": 9,
@@ -22,39 +22,39 @@
       {
         "symbol": "SOLUSDT",
         "side": "LONG",
-        "pnl": -1.28
+        "pnl": -1.51
       },
       {
         "symbol": "APTUSDT",
         "side": "LONG",
-        "pnl": -10.82
+        "pnl": -8.76
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,638.12",
+        "price": "$77,676.56",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,313.76",
+        "price": "$2,313.73",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$86.37",
+        "price": "$86.35",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$635.78",
+        "price": "$634.41",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -68,7 +68,7 @@
       },
       {
         "symbol": "AVAX",
-        "price": "$9.42",
+        "price": "$9.41",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -82,7 +82,7 @@
       },
       {
         "symbol": "LTC",
-        "price": "$56.28",
+        "price": "$56.26",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -145,7 +145,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$95.43",
+        "price": "$95.72",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
