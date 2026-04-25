@@ -1,17 +1,17 @@
 {
   "meta": {
-    "last_updated": "2026-04-25T11:00:00.583349+00:00"
+    "last_updated": "2026-04-25T11:00:01.907927+00:00"
   },
   "summary": {
-    "total_trades": 8,
+    "total_trades": 9,
     "wins": 6,
-    "losses": 2,
-    "win_rate": 75.0,
+    "losses": 3,
+    "win_rate": 66.7,
     "avg_rr": 0.62,
-    "total_pnl": 29.98,
-    "max_drawdown": 0.03,
+    "total_pnl": 27.46,
+    "max_drawdown": 0.05,
     "balance_start": 10000.0,
-    "balance_current": 10029.98
+    "balance_current": 10027.46
   },
   "trades": [
     {
@@ -181,6 +181,27 @@
       "duration_minutes": 1379,
       "opened_at": "2026-04-24T12:00:21.155852+00:00",
       "closed_at": "2026-04-25T11:00:00.583349+00:00"
+    },
+    {
+      "id": "T009",
+      "symbol": "BNBUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MACD_CROSSOVER",
+      "session": "London",
+      "entry": 639.05715,
+      "exit": 638.098564275,
+      "invalidation": 632.86,
+      "target": 648.5799999999999,
+      "leverage": 1,
+      "size": 1.5765909403658136,
+      "rr": -0.15,
+      "outcome": "Time Exit",
+      "pnl": -2.52,
+      "pnl_pct": -0.25,
+      "duration_minutes": 1379,
+      "opened_at": "2026-04-24T12:00:22.159246+00:00",
+      "closed_at": "2026-04-25T11:00:01.907927+00:00"
     }
   ]
 }
