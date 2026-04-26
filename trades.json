@@ -1,17 +1,17 @@
 {
   "meta": {
-    "last_updated": "2026-04-25T11:05:18.656287+00:00"
+    "last_updated": "2026-04-26T00:17:17.150116+00:00"
   },
   "summary": {
-    "total_trades": 10,
-    "wins": 7,
+    "total_trades": 11,
+    "wins": 8,
     "losses": 3,
-    "win_rate": 70.0,
-    "avg_rr": 0.61,
-    "total_pnl": 28.49,
+    "win_rate": 72.7,
+    "avg_rr": 0.64,
+    "total_pnl": 43.69,
     "max_drawdown": 0.05,
     "balance_start": 10000.0,
-    "balance_current": 10028.49
+    "balance_current": 10043.69
   },
   "trades": [
     {
@@ -223,6 +223,27 @@
       "duration_minutes": 125,
       "opened_at": "2026-04-25T09:00:16.054494+00:00",
       "closed_at": "2026-04-25T11:05:18.656287+00:00"
+    },
+    {
+      "id": "T011",
+      "symbol": "FLOWUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "EMA Pullback \u2014 Trend Continuation",
+      "session": "Asia",
+      "entry": 0.039849684999999996,
+      "exit": 0.040489175,
+      "invalidation": 0.04059678571428571,
+      "target": 0.04197571428571428,
+      "leverage": 1,
+      "size": 25368.1675857318,
+      "rr": 0.86,
+      "outcome": "Invalidated",
+      "pnl": 15.2,
+      "pnl_pct": 1.5,
+      "duration_minutes": 557,
+      "opened_at": "2026-04-25T15:00:13.112260+00:00",
+      "closed_at": "2026-04-26T00:17:17.150116+00:00"
     }
   ]
 }
