@@ -1,17 +1,17 @@
 {
   "meta": {
-    "last_updated": "2026-04-26T00:17:17.150116+00:00"
+    "last_updated": "2026-04-26T01:00:00.772096+00:00"
   },
   "summary": {
-    "total_trades": 11,
+    "total_trades": 12,
     "wins": 8,
-    "losses": 3,
-    "win_rate": 72.7,
+    "losses": 4,
+    "win_rate": 66.7,
     "avg_rr": 0.64,
-    "total_pnl": 43.69,
+    "total_pnl": 41.16,
     "max_drawdown": 0.05,
     "balance_start": 10000.0,
-    "balance_current": 10043.69
+    "balance_current": 10041.16
   },
   "trades": [
     {
@@ -244,6 +244,27 @@
       "duration_minutes": 557,
       "opened_at": "2026-04-25T15:00:13.112260+00:00",
       "closed_at": "2026-04-26T00:17:17.150116+00:00"
+    },
+    {
+      "id": "T012",
+      "symbol": "APTUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "EMA Pullback \u2014 Trend Continuation",
+      "session": "Asia",
+      "entry": 0.9784655,
+      "exit": 0.97699780175,
+      "invalidation": 0.9548571428571428,
+      "target": 1.0212857142857144,
+      "leverage": 1,
+      "size": 1034.2026169222997,
+      "rr": -0.06,
+      "outcome": "Time Exit",
+      "pnl": -2.53,
+      "pnl_pct": -0.25,
+      "duration_minutes": 959,
+      "opened_at": "2026-04-25T09:00:18.850383+00:00",
+      "closed_at": "2026-04-26T01:00:00.772096+00:00"
     }
   ]
 }
