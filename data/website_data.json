@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "26.04.2026 22:55 UTC",
-      "uptime": "2 days, 2:20:58",
+      "last_update": "26.04.2026 23:10 UTC",
+      "uptime": "2 days, 2:35:59",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10079.92,
-      "equity": 10077.81,
-      "total_pnl": 77.81,
+      "equity": 10076.62,
+      "total_pnl": 76.62,
       "total_trades": 43,
       "wins": 31,
       "losses": 12,
@@ -22,44 +22,44 @@
       {
         "symbol": "SOLUSDT",
         "side": "LONG",
-        "pnl": 2.69
+        "pnl": 2.34
       },
       {
         "symbol": "LTCUSDT",
         "side": "LONG",
-        "pnl": -6.33
+        "pnl": -6.15
       },
       {
         "symbol": "ARPAUSDT",
         "side": "LONG",
-        "pnl": 1.53
+        "pnl": 0.51
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,305.88",
+        "price": "$78,332.48",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,361.27",
+        "price": "$2,358.53",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$86.71",
+        "price": "$86.68",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$634.82",
+        "price": "$635.00",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -87,7 +87,7 @@
       },
       {
         "symbol": "LTC",
-        "price": "$56.18",
+        "price": "$56.19",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -150,7 +150,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$96.34",
+        "price": "$96.43",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
