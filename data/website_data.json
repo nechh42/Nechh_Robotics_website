@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "26.04.2026 09:24 UTC",
-      "uptime": "1 day, 12:49:51",
+      "last_update": "26.04.2026 09:39 UTC",
+      "uptime": "1 day, 13:04:52",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10117.0,
-      "equity": 10096.42,
-      "total_pnl": 96.42,
+      "equity": 10093.89,
+      "total_pnl": 93.89,
       "total_trades": 41,
       "wins": 31,
       "losses": 10,
@@ -22,49 +22,49 @@
       {
         "symbol": "SOLUSDT",
         "side": "LONG",
-        "pnl": 0.82
+        "pnl": -0.11
       },
       {
         "symbol": "LTCUSDT",
         "side": "LONG",
-        "pnl": -6.15
+        "pnl": -5.98
       },
       {
         "symbol": "FLOWUSDT",
         "side": "LONG",
-        "pnl": -18.81
+        "pnl": -19.57
       },
       {
         "symbol": "ARPAUSDT",
         "side": "LONG",
-        "pnl": 3.56
+        "pnl": 2.54
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,015.59",
+        "price": "$77,944.08",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,332.60",
+        "price": "$2,331.88",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$86.55",
+        "price": "$86.47",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$630.24",
+        "price": "$630.44",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -99,7 +99,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$453.20",
+        "price": "$452.60",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -113,7 +113,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.44",
+        "price": "$9.43",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -148,14 +148,14 @@
       },
       {
         "symbol": "LDO",
-        "price": "$0.38",
+        "price": "$0.39",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "AAVE",
-        "price": "$95.18",
+        "price": "$95.36",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
