@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "27.04.2026 09:41 UTC",
-      "uptime": "2 days, 13:06:53",
+      "last_update": "27.04.2026 09:56 UTC",
+      "uptime": "2 days, 13:21:54",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10033.47,
-      "equity": 10020.32,
-      "total_pnl": 20.32,
+      "equity": 10018.62,
+      "total_pnl": 18.62,
       "total_trades": 47,
       "wins": 32,
       "losses": 15,
@@ -27,34 +27,34 @@
       {
         "symbol": "JASMYUSDT",
         "side": "LONG",
-        "pnl": 3.58
+        "pnl": 1.88
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,937.79",
+        "price": "$77,962.52",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,323.50",
+        "price": "$2,324.43",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$85.40",
+        "price": "$85.58",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$628.51",
+        "price": "$628.82",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -82,14 +82,14 @@
       },
       {
         "symbol": "LTC",
-        "price": "$55.48",
+        "price": "$55.45",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BCH",
-        "price": "$448.30",
+        "price": "$448.70",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -145,7 +145,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$96.65",
+        "price": "$96.18",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
