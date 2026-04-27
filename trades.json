@@ -1,17 +1,17 @@
 {
   "meta": {
-    "last_updated": "2026-04-26T18:18:39.169700+00:00"
+    "last_updated": "2026-04-27T00:00:00.402361+00:00"
   },
   "summary": {
-    "total_trades": 15,
+    "total_trades": 16,
     "wins": 9,
-    "losses": 6,
-    "win_rate": 60.0,
+    "losses": 7,
+    "win_rate": 56.2,
     "avg_rr": 0.65,
-    "total_pnl": 8.68,
-    "max_drawdown": 0.35,
+    "total_pnl": 6.16,
+    "max_drawdown": 0.38,
     "balance_start": 10000.0,
-    "balance_current": 10008.68
+    "balance_current": 10006.16
   },
   "trades": [
     {
@@ -328,6 +328,27 @@
       "duration_minutes": 18,
       "opened_at": "2026-04-26T18:00:16.629820+00:00",
       "closed_at": "2026-04-26T18:18:39.169700+00:00"
+    },
+    {
+      "id": "T016",
+      "symbol": "SOLUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "EMA Pullback \u2014 Trend Continuation",
+      "session": "Asia",
+      "entry": 86.479525,
+      "exit": 86.3498057125,
+      "invalidation": 84.35071428571429,
+      "target": 90.34857142857142,
+      "leverage": 1,
+      "size": 11.68571997583008,
+      "rr": -0.06,
+      "outcome": "Time Exit",
+      "pnl": -2.52,
+      "pnl_pct": -0.25,
+      "duration_minutes": 4799,
+      "opened_at": "2026-04-23T16:00:21.378662+00:00",
+      "closed_at": "2026-04-27T00:00:00.402361+00:00"
     }
   ]
 }
