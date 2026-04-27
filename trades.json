@@ -1,17 +1,17 @@
 {
   "meta": {
-    "last_updated": "2026-04-27T00:00:00.402361+00:00"
+    "last_updated": "2026-04-27T01:02:33.011888+00:00"
   },
   "summary": {
-    "total_trades": 16,
-    "wins": 9,
+    "total_trades": 17,
+    "wins": 10,
     "losses": 7,
-    "win_rate": 56.2,
-    "avg_rr": 0.65,
-    "total_pnl": 6.16,
+    "win_rate": 58.8,
+    "avg_rr": 0.67,
+    "total_pnl": 13.69,
     "max_drawdown": 0.38,
     "balance_start": 10000.0,
-    "balance_current": 10006.16
+    "balance_current": 10013.69
   },
   "trades": [
     {
@@ -349,6 +349,27 @@
       "duration_minutes": 4799,
       "opened_at": "2026-04-23T16:00:21.378662+00:00",
       "closed_at": "2026-04-27T00:00:00.402361+00:00"
+    },
+    {
+      "id": "T017",
+      "symbol": "ADAUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "BOLLINGER_SQUEEZE",
+      "session": "Asia",
+      "entry": 0.2525783,
+      "exit": 0.25471735,
+      "invalidation": 0.25518928571428573,
+      "target": 0.2586857142857143,
+      "leverage": 1,
+      "size": 3994.1951093069933,
+      "rr": 0.82,
+      "outcome": "Invalidated",
+      "pnl": 7.53,
+      "pnl_pct": 0.75,
+      "duration_minutes": 62,
+      "opened_at": "2026-04-27T00:00:20.183347+00:00",
+      "closed_at": "2026-04-27T01:02:33.011888+00:00"
     }
   ]
 }
