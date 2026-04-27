@@ -1,17 +1,17 @@
 {
   "meta": {
-    "last_updated": "2026-04-27T06:05:35.328107+00:00"
+    "last_updated": "2026-04-27T16:00:01.817744+00:00"
   },
   "summary": {
-    "total_trades": 19,
+    "total_trades": 20,
     "wins": 10,
-    "losses": 9,
-    "win_rate": 52.6,
+    "losses": 10,
+    "win_rate": 50.0,
     "avg_rr": 0.67,
-    "total_pnl": -34.44,
-    "max_drawdown": 0.78,
+    "total_pnl": -36.96,
+    "max_drawdown": 0.81,
     "balance_start": 10000.0,
-    "balance_current": 9965.56
+    "balance_current": 9963.04
   },
   "trades": [
     {
@@ -412,6 +412,27 @@
       "duration_minutes": 2285,
       "opened_at": "2026-04-25T16:00:15.175892+00:00",
       "closed_at": "2026-04-27T06:05:35.328107+00:00"
+    },
+    {
+      "id": "T020",
+      "symbol": "JASMYUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MACD_CROSSOVER",
+      "session": "NY",
+      "entry": 0.00594891,
+      "exit": 0.005939986635,
+      "invalidation": 0.005781428571428571,
+      "target": 0.006257142857142859,
+      "leverage": 1,
+      "size": 169585.1862907784,
+      "rr": -0.05,
+      "outcome": "Time Exit",
+      "pnl": -2.52,
+      "pnl_pct": -0.25,
+      "duration_minutes": 959,
+      "opened_at": "2026-04-27T00:00:25.190994+00:00",
+      "closed_at": "2026-04-27T16:00:01.817744+00:00"
     }
   ]
 }
