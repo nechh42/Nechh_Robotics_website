@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "27.04.2026 07:41 UTC",
-      "uptime": "2 days, 11:06:42",
+      "last_update": "27.04.2026 07:56 UTC",
+      "uptime": "2 days, 11:21:43",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10033.57,
-      "equity": 9994.31,
-      "total_pnl": -5.69,
+      "equity": 10006.17,
+      "total_pnl": 6.17,
       "total_trades": 47,
       "wins": 32,
       "losses": 15,
@@ -22,39 +22,39 @@
       {
         "symbol": "ARPAUSDT",
         "side": "LONG",
-        "pnl": -20.79
+        "pnl": -15.71
       },
       {
         "symbol": "JASMYUSDT",
         "side": "LONG",
-        "pnl": -18.47
+        "pnl": -11.69
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,670.53",
+        "price": "$77,710.67",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,320.00",
+        "price": "$2,319.33",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$85.45",
+        "price": "$85.51",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$626.32",
+        "price": "$626.82",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -68,7 +68,7 @@
       },
       {
         "symbol": "AVAX",
-        "price": "$9.24",
+        "price": "$9.26",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -89,7 +89,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$447.00",
+        "price": "$447.50",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -145,7 +145,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$95.81",
+        "price": "$96.08",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
