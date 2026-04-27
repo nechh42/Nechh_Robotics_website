@@ -3,8 +3,8 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "27.04.2026 22:12 UTC",
-      "uptime": "3 days, 1:37:55",
+      "last_update": "27.04.2026 22:27 UTC",
+      "uptime": "3 days, 1:52:56",
       "active_symbols": 27
     },
     "performance": {
@@ -22,28 +22,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$76,858.61",
+        "price": "$76,911.36",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,288.80",
+        "price": "$2,289.80",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$84.34",
+        "price": "$84.41",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$623.66",
+        "price": "$624.25",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -78,7 +78,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$448.10",
+        "price": "$448.20",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -92,7 +92,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.23",
+        "price": "$9.24",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -120,7 +120,7 @@
       },
       {
         "symbol": "NEAR",
-        "price": "$1.36",
+        "price": "$1.35",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -134,7 +134,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$96.44",
+        "price": "$96.90",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -176,7 +176,7 @@
       },
       {
         "symbol": "WIF",
-        "price": "$0.18",
+        "price": "$0.17",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
