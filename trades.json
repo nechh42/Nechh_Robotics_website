@@ -1,17 +1,17 @@
 {
   "meta": {
-    "last_updated": "2026-04-27T16:00:01.817744+00:00"
+    "last_updated": "2026-04-27T20:05:23.986011+00:00"
   },
   "summary": {
-    "total_trades": 20,
-    "wins": 10,
+    "total_trades": 21,
+    "wins": 11,
     "losses": 10,
-    "win_rate": 50.0,
-    "avg_rr": 0.67,
-    "total_pnl": -36.96,
+    "win_rate": 52.4,
+    "avg_rr": 0.66,
+    "total_pnl": -32.9,
     "max_drawdown": 0.81,
     "balance_start": 10000.0,
-    "balance_current": 9963.04
+    "balance_current": 9967.1
   },
   "trades": [
     {
@@ -433,6 +433,27 @@
       "duration_minutes": 959,
       "opened_at": "2026-04-27T00:00:25.190994+00:00",
       "closed_at": "2026-04-27T16:00:01.817744+00:00"
+    },
+    {
+      "id": "T021",
+      "symbol": "ARPAUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "EMA Pullback \u2014 Trend Continuation",
+      "session": "NY",
+      "entry": 0.009964925000000001,
+      "exit": 0.010014955,
+      "invalidation": 0.010043571428571428,
+      "target": 0.010481428571428572,
+      "leverage": 1,
+      "size": 101435.71430436995,
+      "rr": 0.64,
+      "outcome": "Invalidated",
+      "pnl": 4.06,
+      "pnl_pct": 0.4,
+      "duration_minutes": 2405,
+      "opened_at": "2026-04-26T04:00:20.964071+00:00",
+      "closed_at": "2026-04-27T20:05:23.986011+00:00"
     }
   ]
 }
