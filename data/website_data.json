@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "28.04.2026 03:28 UTC",
-      "uptime": "3 days, 6:53:20",
+      "last_update": "28.04.2026 03:43 UTC",
+      "uptime": "3 days, 7:08:22",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10033.45,
-      "equity": 10027.26,
-      "total_pnl": 27.26,
+      "equity": 10027.93,
+      "total_pnl": 27.93,
       "total_trades": 50,
       "wins": 34,
       "losses": 16,
@@ -22,20 +22,20 @@
       {
         "symbol": "BCHUSDT",
         "side": "LONG",
-        "pnl": -6.19
+        "pnl": -5.52
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$76,763.72",
+        "price": "$76,802.60",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,284.95",
+        "price": "$2,287.53",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -49,7 +49,7 @@
       },
       {
         "symbol": "BNB",
-        "price": "$623.68",
+        "price": "$623.85",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -77,14 +77,14 @@
       },
       {
         "symbol": "LTC",
-        "price": "$55.36",
+        "price": "$55.39",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BCH",
-        "price": "$447.70",
+        "price": "$448.00",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -112,7 +112,7 @@
       },
       {
         "symbol": "ARB",
-        "price": "$0.12",
+        "price": "$0.13",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -140,7 +140,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$96.92",
+        "price": "$97.04",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
