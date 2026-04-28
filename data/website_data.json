@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "28.04.2026 20:10 UTC",
-      "uptime": "4:31:54",
+      "last_update": "28.04.2026 20:25 UTC",
+      "uptime": "4:46:55",
       "active_symbols": 25
     },
     "performance": {
       "balance": 10034.85,
-      "equity": 10030.56,
-      "total_pnl": 30.56,
+      "equity": 10028.89,
+      "total_pnl": 28.89,
       "total_trades": 53,
       "wins": 35,
       "losses": 18,
@@ -22,17 +22,17 @@
       {
         "symbol": "DOGEUSDT",
         "side": "LONG",
-        "pnl": -1.0
+        "pnl": -0.9
       },
       {
         "symbol": "RUNEUSDT",
         "side": "LONG",
-        "pnl": -1.05
+        "pnl": -2.44
       },
       {
         "symbol": "SUIUSDT",
         "side": "LONG",
-        "pnl": -0.1
+        "pnl": -0.48
       },
       {
         "symbol": "WIFUSDT",
@@ -43,28 +43,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$76,360.08",
+        "price": "$76,367.80",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,301.04",
+        "price": "$2,298.41",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$83.89",
+        "price": "$83.87",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$624.00",
+        "price": "$623.77",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -148,14 +148,14 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$96.64",
+        "price": "$96.60",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "RUNE",
-        "price": "$0.51",
+        "price": "$0.50",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
