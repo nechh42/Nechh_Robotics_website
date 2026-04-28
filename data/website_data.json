@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "28.04.2026 23:25 UTC",
-      "uptime": "7:47:09",
+      "last_update": "28.04.2026 23:40 UTC",
+      "uptime": "8:02:11",
       "active_symbols": 25
     },
     "performance": {
       "balance": 10034.24,
-      "equity": 10027.17,
-      "total_pnl": 27.17,
+      "equity": 10026.87,
+      "total_pnl": 26.87,
       "total_trades": 55,
       "wins": 36,
       "losses": 19,
@@ -22,7 +22,7 @@
       {
         "symbol": "SUIUSDT",
         "side": "LONG",
-        "pnl": -1.62
+        "pnl": -1.35
       },
       {
         "symbol": "WIFUSDT",
@@ -32,34 +32,34 @@
       {
         "symbol": "ADAUSDT",
         "side": "LONG",
-        "pnl": -3.32
+        "pnl": -3.89
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$76,320.26",
+        "price": "$76,294.88",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,287.82",
+        "price": "$2,287.33",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$83.84",
+        "price": "$83.96",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$623.94",
+        "price": "$623.97",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -87,7 +87,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$451.50",
+        "price": "$452.30",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -101,7 +101,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.24",
+        "price": "$9.22",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -143,7 +143,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$96.58",
+        "price": "$96.34",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
