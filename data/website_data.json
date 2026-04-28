@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "28.04.2026 01:12 UTC",
-      "uptime": "3 days, 4:38:09",
+      "last_update": "28.04.2026 01:27 UTC",
+      "uptime": "3 days, 4:53:11",
       "active_symbols": 27
     },
     "performance": {
       "balance": 10032.8,
-      "equity": 10036.47,
-      "total_pnl": 36.47,
+      "equity": 10036.23,
+      "total_pnl": 36.23,
       "total_trades": 49,
       "wins": 33,
       "losses": 16,
@@ -22,32 +22,32 @@
       {
         "symbol": "DOGEUSDT",
         "side": "LONG",
-        "pnl": 3.17
+        "pnl": 4.49
       },
       {
         "symbol": "BCHUSDT",
         "side": "LONG",
-        "pnl": 0.5
+        "pnl": -1.06
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,357.53",
+        "price": "$77,253.20",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,308.11",
+        "price": "$2,306.51",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$84.79",
+        "price": "$84.66",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -75,21 +75,21 @@
       },
       {
         "symbol": "TRX",
-        "price": "$0.33",
+        "price": "$0.32",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
       },
       {
         "symbol": "LTC",
-        "price": "$55.45",
+        "price": "$55.46",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BCH",
-        "price": "$450.70",
+        "price": "$450.00",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -145,7 +145,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$97.27",
+        "price": "$97.45",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
