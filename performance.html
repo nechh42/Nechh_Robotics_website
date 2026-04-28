@@ -3,51 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NECHH ROBOTICS | Performance</title>
+<title>Nechh Robotics | Performance</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a0f;--bg2:#12121a;--bg3:#1a1a26;--border:#2a2a3a;--text:#e0e0f0;--muted:#6b6b8a;--green:#00d4aa;--red:#ff4d6d;--blue:#4d9fff;--gold:#ffd166;--font:'Courier New',monospace}
+:root{--bg:#fff;--bg2:#f9fafb;--bg3:#eff6ff;--border:#e5e7eb;--text:#111827;--muted:#6b7280;--green:#16a34a;--red:#dc2626;--blue:#2563eb;--gold:#d97706;--font:'Inter',system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13px}
-nav{border-bottom:1px solid var(--border);padding:0 24px;height:52px;display:flex;align-items:center;justify-content:space-between;background:var(--bg2);position:sticky;top:0;z-index:100}
-.nav-logo{font-size:13px;font-weight:bold;letter-spacing:2px;color:var(--blue);text-decoration:none}
-.nav-links{display:flex;gap:20px;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:12px;letter-spacing:1px;transition:color .2s}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;line-height:1.6}
+nav{border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;background:#fff;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.nav-logo{font-size:15px;font-weight:700;color:var(--blue);text-decoration:none}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .15s}
 .nav-links a:hover,.nav-links a.active{color:var(--text)}
-.nav-cta{background:var(--blue)!important;color:#fff!important;padding:6px 14px;border-radius:6px;font-size:11px!important;font-weight:bold}
-.status-bar{padding:8px 24px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:11px;color:var(--muted)}
-.mode-badge{padding:3px 12px;border-radius:20px;font-size:10px;font-weight:bold;border:1px solid;color:var(--gold);border-color:var(--gold);background:rgba(255,209,102,0.08)}
-.container{max-width:1100px;margin:0 auto;padding:20px 16px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:24px}
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
-.card-label{color:var(--muted);font-size:10px;letter-spacing:1px;margin-bottom:6px}
-.card-value{font-size:22px;font-weight:bold}
+.nav-cta{background:var(--blue)!important;color:#fff!important;padding:7px 16px;border-radius:7px;font-size:12px!important;font-weight:600!important}
+.status-bar{padding:8px 40px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--muted)}
+.mode-badge{padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.container{max-width:1100px;margin:0 auto;padding:28px 24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:28px}
+.card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 20px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.card-label{color:var(--muted);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;font-weight:600}
+.card-value{font-size:26px;font-weight:700;color:var(--text)}
 .green{color:var(--green)}.red{color:var(--red)}.blue{color:var(--blue)}.gold{color:var(--gold)}
-.charts{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:24px}
+.charts{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-bottom:28px}
 @media(max-width:700px){.charts{grid-template-columns:1fr}}
-.chart-box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px}
-.chart-title{color:var(--muted);font-size:11px;letter-spacing:1px;margin-bottom:12px}
+.chart-box{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.chart-title{color:var(--muted);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;font-weight:600}
 .chart-box canvas{max-height:200px}
-.table-box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.table-header{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border)}
-.table-title{color:var(--muted);font-size:11px;letter-spacing:1px}
+.table-box{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.05)}
+.table-header{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);background:var(--bg2)}
+.table-title{color:var(--muted);font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:600}
 table{width:100%;border-collapse:collapse}
-th{padding:9px 12px;text-align:left;color:var(--muted);font-size:10px;letter-spacing:1px;border-bottom:1px solid var(--border)}
-td{padding:9px 12px;font-size:12px;border-bottom:1px solid rgba(42,42,58,0.5)}
+th{padding:10px 14px;text-align:left;color:var(--muted);font-size:10px;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid var(--border);background:var(--bg2);font-weight:600}
+td{padding:10px 14px;font-size:12px;border-bottom:1px solid #f3f4f6;color:var(--text)}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:rgba(77,159,255,0.04)}
-.outcome-win{color:var(--green);font-weight:bold}
-.outcome-loss{color:var(--red);font-weight:bold}
-.side-long{color:var(--green)}.side-short{color:var(--red)}
-.no-data{padding:40px;text-align:center;color:var(--muted)}
-footer{border-top:1px solid var(--border);padding:16px 24px;color:var(--muted);font-size:10px;line-height:1.8;text-align:center}
+tr:hover td{background:#f9fafb}
+.outcome-win{color:var(--green);font-weight:600}
+.outcome-loss{color:var(--red);font-weight:600}
+.side-long{color:var(--green);font-weight:600}.side-short{color:var(--red);font-weight:600}
+.no-data{padding:48px;text-align:center;color:var(--muted);font-size:13px}
+footer{border-top:1px solid var(--border);padding:24px 40px;background:var(--bg2);font-size:11px;line-height:1.9;text-align:center;color:var(--muted)}
 footer a{color:var(--blue);text-decoration:none}
+footer a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="index.html">NECHH <span style="color:var(--text)">ROBOTICS</span></a>
+  <a class="nav-logo" href="index.html">Nechh <span style="color:#111827">Robotics</span></a>
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -88,7 +90,7 @@ footer a{color:var(--blue);text-decoration:none}
       <span class="table-title">EXECUTION LOG</span>
       <div style="display:flex;gap:12px;align-items:center">
         <span style="color:var(--muted);font-size:11px" id="tradeCount">—</span>
-        <button onclick="exportCSV()" style="background:transparent;border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:5px;cursor:pointer;font-size:10px;letter-spacing:1px;font-family:var(--font)">⬇ CSV</button>
+        <button onclick="exportCSV()" style="background:#fff;border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--font);font-weight:500">⬇ CSV</button>
       </div>
     </div>
     <div style="overflow-x:auto">
@@ -105,24 +107,24 @@ footer a{color:var(--blue);text-decoration:none}
   </div>
 
   <!-- ŞEFFAFLİK BEYANI -->
-  <div style="margin-top:24px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:20px 24px">
-    <div style="color:var(--muted);font-size:10px;letter-spacing:1px;margin-bottom:12px">TRANSPARENCY STATEMENT</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
-      <div style="border-left:2px solid var(--green);padding-left:14px">
-        <div style="color:var(--green);font-size:11px;font-weight:bold;margin-bottom:4px">✓ WINS AND LOSSES REPORTED EQUALLY</div>
-        <div style="color:var(--muted);font-size:11px;line-height:1.6">Every setup is logged with timestamp, entry, stop-loss and target. No cherry-picking.</div>
+  <div style="margin-top:28px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:24px 28px">
+    <div style="color:var(--muted);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;font-weight:600">Transparency Statement</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px">
+      <div style="border-left:3px solid var(--green);padding-left:16px">
+        <div style="color:var(--green);font-size:12px;font-weight:600;margin-bottom:5px">✓ WINS AND LOSSES REPORTED EQUALLY</div>
+        <div style="color:#374151;font-size:12px;line-height:1.6">Every setup is logged with timestamp, entry, stop-loss and target. No cherry-picking.</div>
       </div>
-      <div style="border-left:2px solid var(--blue);padding-left:14px">
-        <div style="color:var(--blue);font-size:11px;font-weight:bold;margin-bottom:4px">✓ AUTOMATED, NOT MANUAL</div>
-        <div style="color:var(--muted);font-size:11px;line-height:1.6">All signals are generated by algorithm. No human override on entries or exits.</div>
+      <div style="border-left:3px solid var(--blue);padding-left:16px">
+        <div style="color:var(--blue);font-size:12px;font-weight:600;margin-bottom:5px">✓ AUTOMATED, NOT MANUAL</div>
+        <div style="color:#374151;font-size:12px;line-height:1.6">All signals are generated by algorithm. No human override on entries or exits.</div>
       </div>
-      <div style="border-left:2px solid var(--gold);padding-left:14px">
-        <div style="color:var(--gold);font-size:11px;font-weight:bold;margin-bottom:4px">✓ PAPER TRADE MODE</div>
-        <div style="color:var(--muted);font-size:11px;line-height:1.6">Currently running on $10,000 simulated capital. Live trading begins after statistical validation.</div>
+      <div style="border-left:3px solid var(--gold);padding-left:16px">
+        <div style="color:var(--gold);font-size:12px;font-weight:600;margin-bottom:5px">✓ PAPER TRADE MODE</div>
+        <div style="color:#374151;font-size:12px;line-height:1.6">Currently running on $10,000 simulated capital. Live trading begins after statistical validation.</div>
       </div>
-      <div style="border-left:2px solid var(--red);padding-left:14px">
-        <div style="color:var(--red);font-size:11px;font-weight:bold;margin-bottom:4px">⚠ RISK NOTICE</div>
-        <div style="color:var(--muted);font-size:11px;line-height:1.6">Past performance does not guarantee future results. All trading involves risk of capital loss.</div>
+      <div style="border-left:3px solid var(--red);padding-left:16px">
+        <div style="color:var(--red);font-size:12px;font-weight:600;margin-bottom:5px">⚠ RISK NOTICE</div>
+        <div style="color:#374151;font-size:12px;line-height:1.6">Past performance does not guarantee future results. All trading involves risk of capital loss.</div>
       </div>
     </div>
   </div>
@@ -239,13 +241,13 @@ function render(data) {
         const date = t.closed_at ? new Date(t.closed_at).toLocaleDateString('en-GB') : '—';
         const ps = t.pnl >= 0 ? '+' : '';
         return `<tr>
-          <td style="color:var(--muted)">${trades.length-i}</td>
-          <td><b>${t.symbol}</b></td>
+          <td style="color:var(--muted);font-size:11px">${trades.length-i}</td>
+          <td><b style="font-size:12px">${t.symbol}</b></td>
           <td class="${t.side==='LONG'?'side-long':'side-short'}">${t.side}</td>
-          <td>${t.structure}</td>
-          <td>${t.session}</td>
-          <td style="color:var(--muted)">${t.entry ? fmt(t.entry,2) : '—'}</td>
-          <td style="color:var(--muted)">${t.exit  ? fmt(t.exit,2)  : '—'}</td>
+          <td style="color:#374151">${t.structure}</td>
+          <td style="color:var(--muted)">${t.session}</td>
+          <td style="color:#374151">${t.entry ? fmt(t.entry,2) : '—'}</td>
+          <td style="color:#374151">${t.exit  ? fmt(t.exit,2)  : '—'}</td>
           <td style="color:var(--red)">${t.invalidation ? fmt(t.invalidation,2) : '—'}</td>
           <td style="color:var(--green)">${t.target ? fmt(t.target,2) : '—'}</td>
           <td class="${t.rr>=0?'green':'red'}">${fmt(t.rr,1)}</td>
@@ -267,20 +269,20 @@ function render(data) {
 
   charts.push(new Chart(document.getElementById('equityChart'),{
     type:'line',
-    data:{labels,datasets:[{data:eqData,borderColor:'#4d9fff',backgroundColor:'rgba(77,159,255,0.08)',
+    data:{labels,datasets:[{data:eqData,borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,0.07)',
       borderWidth:2,pointRadius:3,fill:true,tension:0.3,
-      pointBackgroundColor:eqData.map((v,i)=>i===0?'#4d9fff':eqData[i]>=eqData[i-1]?'#00d4aa':'#ff4d6d')}]},
+      pointBackgroundColor:eqData.map((v,i)=>i===0?'#2563eb':eqData[i]>=eqData[i-1]?'#16a34a':'#dc2626')}]},
     options:{responsive:true,plugins:{legend:{display:false}},
-      scales:{x:{display:false},y:{grid:{color:'rgba(255,255,255,0.05)'},
-        ticks:{color:'#6b6b8a',font:{family:'Courier New',size:10},callback:v=>'$'+v.toLocaleString()}}}}
+      scales:{x:{display:false},y:{grid:{color:'rgba(0,0,0,0.06)'},
+        ticks:{color:'#6b7280',font:{family:'Inter',size:10},callback:v=>'$'+v.toLocaleString()}}}}
   }));
 
   charts.push(new Chart(document.getElementById('winLossChart'),{
     type:'doughnut',
     data:{labels:['Wins','Losses'],datasets:[{data:[s.wins||0,s.losses||0],
-      backgroundColor:['#00d4aa','#ff4d6d'],borderColor:'#12121a',borderWidth:3}]},
+      backgroundColor:['#16a34a','#dc2626'],borderColor:'#fff',borderWidth:3}]},
     options:{responsive:true,cutout:'70%',
-      plugins:{legend:{labels:{color:'#6b6b8a',font:{family:'Courier New',size:11}}}}}
+      plugins:{legend:{labels:{color:'#6b7280',font:{family:'Inter',size:11}}}}}
   }));
 }
 
