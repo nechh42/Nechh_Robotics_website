@@ -3,58 +3,68 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "28.04.2026 18:55 UTC",
-      "uptime": "3:16:48",
+      "last_update": "28.04.2026 19:10 UTC",
+      "uptime": "3:31:49",
       "active_symbols": 25
     },
     "performance": {
-      "balance": 10035.65,
-      "equity": 10032.34,
-      "total_pnl": 32.34,
+      "balance": 10034.85,
+      "equity": 10030.07,
+      "total_pnl": 30.07,
       "total_trades": 53,
       "wins": 35,
       "losses": 18,
       "win_rate": 66.0,
-      "max_drawdown_pct": 0.08,
+      "max_drawdown_pct": 0.11,
       "sharpe": 0.05
     },
     "open_positions": [
       {
         "symbol": "DOGEUSDT",
         "side": "LONG",
-        "pnl": -2.26
+        "pnl": -2.46
       },
       {
         "symbol": "RUNEUSDT",
         "side": "LONG",
         "pnl": -1.05
+      },
+      {
+        "symbol": "SUIUSDT",
+        "side": "LONG",
+        "pnl": -0.81
+      },
+      {
+        "symbol": "WIFUSDT",
+        "side": "LONG",
+        "pnl": -0.45
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$76,208.36",
+        "price": "$76,148.07",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,292.48",
+        "price": "$2,293.23",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$83.72",
+        "price": "$83.80",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$623.49",
+        "price": "$623.36",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -82,7 +92,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$449.10",
+        "price": "$449.20",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
