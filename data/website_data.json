@@ -3,8 +3,8 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "29.04.2026 07:11 UTC",
-      "uptime": "15:32:49",
+      "last_update": "29.04.2026 07:26 UTC",
+      "uptime": "15:47:50",
       "active_symbols": 25
     },
     "performance": {
@@ -22,14 +22,14 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,046.96",
+        "price": "$77,050.30",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,323.13",
+        "price": "$2,323.36",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -43,7 +43,7 @@
       },
       {
         "symbol": "BNB",
-        "price": "$626.30",
+        "price": "$625.51",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -57,7 +57,7 @@
       },
       {
         "symbol": "AVAX",
-        "price": "$9.28",
+        "price": "$9.29",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -71,7 +71,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$452.90",
+        "price": "$453.10",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -106,7 +106,7 @@
       },
       {
         "symbol": "APT",
-        "price": "$1.00",
+        "price": "$1.01",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -127,7 +127,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$96.75",
+        "price": "$97.02",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
