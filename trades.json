@@ -1,17 +1,17 @@
 {
   "meta": {
-    "last_updated": "2026-04-29T00:00:00.238225+00:00"
+    "last_updated": "2026-04-29T00:00:02.496587+00:00"
   },
   "summary": {
-    "total_trades": 28,
+    "total_trades": 29,
     "wins": 14,
-    "losses": 14,
-    "win_rate": 50.0,
+    "losses": 15,
+    "win_rate": 48.3,
     "avg_rr": 0.65,
-    "total_pnl": -47.26,
+    "total_pnl": -48.52,
     "max_drawdown": 0.93,
     "balance_start": 10000.0,
-    "balance_current": 9952.74
+    "balance_current": 9951.48
   },
   "trades": [
     {
@@ -601,6 +601,27 @@
       "duration_minutes": 299,
       "opened_at": "2026-04-28T19:00:21.423080+00:00",
       "closed_at": "2026-04-29T00:00:00.238225+00:00"
+    },
+    {
+      "id": "T029",
+      "symbol": "SUIUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MACD_CROSSOVER",
+      "session": "Asia",
+      "entry": 0.9267881,
+      "exit": 0.92539791785,
+      "invalidation": 0.9047428571428572,
+      "target": 0.9667142857142856,
+      "leverage": 1,
+      "size": 542.1591746681257,
+      "rr": -0.06,
+      "outcome": "Time Exit",
+      "pnl": -1.26,
+      "pnl_pct": -0.25,
+      "duration_minutes": 299,
+      "opened_at": "2026-04-28T19:00:11.049713+00:00",
+      "closed_at": "2026-04-29T00:00:02.496587+00:00"
     }
   ]
 }
