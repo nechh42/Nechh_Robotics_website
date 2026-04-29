@@ -3,8 +3,8 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "29.04.2026 06:26 UTC",
-      "uptime": "14:47:45",
+      "last_update": "29.04.2026 06:41 UTC",
+      "uptime": "15:02:46",
       "active_symbols": 25
     },
     "performance": {
@@ -22,28 +22,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,125.35",
+        "price": "$77,074.84",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,328.97",
+        "price": "$2,327.54",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$84.80",
+        "price": "$84.82",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$626.52",
+        "price": "$626.16",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -71,7 +71,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$453.60",
+        "price": "$453.30",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -85,7 +85,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.36",
+        "price": "$9.34",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -106,14 +106,14 @@
       },
       {
         "symbol": "APT",
-        "price": "$1.00",
+        "price": "$1.01",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "NEAR",
-        "price": "$1.37",
+        "price": "$1.36",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
@@ -127,7 +127,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$97.24",
+        "price": "$97.25",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
