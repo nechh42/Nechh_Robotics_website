@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "30.04.2026 08:13 UTC",
-      "uptime": "1 day, 16:34:49",
+      "last_update": "30.04.2026 08:28 UTC",
+      "uptime": "1 day, 16:49:50",
       "active_symbols": 25
     },
     "performance": {
       "balance": 10008.04,
-      "equity": 10004.89,
-      "total_pnl": 4.89,
+      "equity": 10004.32,
+      "total_pnl": 4.32,
       "total_trades": 61,
       "wins": 38,
       "losses": 23,
@@ -27,41 +27,41 @@
       {
         "symbol": "ADAUSDT",
         "side": "LONG",
-        "pnl": -1.33
+        "pnl": -1.9
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$76,089.69",
+        "price": "$76,089.11",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,259.96",
+        "price": "$2,258.07",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$83.28",
+        "price": "$83.29",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$617.58",
+        "price": "$617.17",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
       },
       {
         "symbol": "XRP",
-        "price": "$1.38",
+        "price": "$1.37",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -82,7 +82,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$445.50",
+        "price": "$445.40",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -138,7 +138,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$92.84",
+        "price": "$92.57",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
