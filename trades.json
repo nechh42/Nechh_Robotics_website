@@ -1,17 +1,17 @@
 {
   "meta": {
-    "last_updated": "2026-04-30T07:00:00.775727+00:00"
+    "last_updated": "2026-04-30T15:33:57.131847+00:00"
   },
   "summary": {
-    "total_trades": 33,
-    "wins": 16,
+    "total_trades": 34,
+    "wins": 17,
     "losses": 17,
-    "win_rate": 48.5,
-    "avg_rr": 0.63,
-    "total_pnl": -69.45,
+    "win_rate": 50.0,
+    "avg_rr": 0.65,
+    "total_pnl": -64.07,
     "max_drawdown": 1.13,
     "balance_start": 10000.0,
-    "balance_current": 9930.55
+    "balance_current": 9935.93
   },
   "trades": [
     {
@@ -706,6 +706,27 @@
       "duration_minutes": 299,
       "opened_at": "2026-04-30T02:00:14.910899+00:00",
       "closed_at": "2026-04-30T07:00:00.775727+00:00"
+    },
+    {
+      "id": "T034",
+      "symbol": "WIFUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MOMENTUM_BREAKOUT",
+      "session": "NY",
+      "entry": 0.182273,
+      "exit": 0.185721,
+      "invalidation": 0.18621428571428572,
+      "target": 0.20342857142857146,
+      "leverage": 1,
+      "size": 1649.4595794864154,
+      "rr": 0.87,
+      "outcome": "Invalidated",
+      "pnl": 5.38,
+      "pnl_pct": 1.79,
+      "duration_minutes": 153,
+      "opened_at": "2026-04-30T13:00:11.602398+00:00",
+      "closed_at": "2026-04-30T15:33:57.131847+00:00"
     }
   ]
 }
