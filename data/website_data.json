@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "30.04.2026 04:12 UTC",
-      "uptime": "1 day, 12:34:28",
+      "last_update": "30.04.2026 04:27 UTC",
+      "uptime": "1 day, 12:49:29",
       "active_symbols": 25
     },
     "performance": {
       "balance": 10009.9,
-      "equity": 10002.81,
-      "total_pnl": 2.81,
+      "equity": 10001.63,
+      "total_pnl": 1.63,
       "total_trades": 60,
       "wins": 38,
       "losses": 22,
@@ -22,7 +22,7 @@
       {
         "symbol": "DOGEUSDT",
         "side": "LONG",
-        "pnl": -3.75
+        "pnl": -4.93
       },
       {
         "symbol": "AVAXUSDT",
@@ -33,28 +33,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$75,778.87",
+        "price": "$75,696.10",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,248.10",
+        "price": "$2,246.14",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$82.81",
+        "price": "$82.75",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$616.73",
+        "price": "$616.19",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -82,7 +82,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$446.50",
+        "price": "$445.90",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -117,7 +117,7 @@
       },
       {
         "symbol": "APT",
-        "price": "$1.02",
+        "price": "$1.03",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "VOLATILE"
@@ -138,7 +138,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$92.43",
+        "price": "$92.46",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
