@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "30.04.2026 16:54 UTC",
-      "uptime": "6:32:05",
+      "last_update": "30.04.2026 17:09 UTC",
+      "uptime": "6:47:06",
       "active_symbols": 25
     },
     "performance": {
       "balance": 10018.97,
-      "equity": 10011.71,
-      "total_pnl": 11.71,
+      "equity": 10011.62,
+      "total_pnl": 11.62,
       "total_trades": 62,
       "wins": 39,
       "losses": 23,
@@ -22,39 +22,39 @@
       {
         "symbol": "AVAXUSDT",
         "side": "LONG",
-        "pnl": -5.64
+        "pnl": -4.88
       },
       {
         "symbol": "ADAUSDT",
         "side": "LONG",
-        "pnl": -1.62
+        "pnl": -2.47
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$76,300.05",
+        "price": "$76,319.63",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,258.68",
+        "price": "$2,257.72",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$83.12",
+        "price": "$83.11",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
       },
       {
         "symbol": "BNB",
-        "price": "$616.36",
+        "price": "$616.67",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
@@ -68,7 +68,7 @@
       },
       {
         "symbol": "AVAX",
-        "price": "$9.10",
+        "price": "$9.11",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -82,7 +82,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$441.80",
+        "price": "$441.70",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -138,7 +138,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$93.04",
+        "price": "$93.09",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
