@@ -3,26 +3,26 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "30.04.2026 04:42 UTC",
-      "uptime": "1 day, 13:04:32",
+      "last_update": "30.04.2026 04:58 UTC",
+      "uptime": "1 day, 13:19:33",
       "active_symbols": 25
     },
     "performance": {
       "balance": 10009.9,
-      "equity": 9994.06,
-      "total_pnl": -5.94,
+      "equity": 9993.62,
+      "total_pnl": -6.38,
       "total_trades": 60,
       "wins": 38,
       "losses": 22,
       "win_rate": 63.3,
-      "max_drawdown_pct": 0.45,
+      "max_drawdown_pct": 0.46,
       "sharpe": 0.02
     },
     "open_positions": [
       {
         "symbol": "DOGEUSDT",
         "side": "LONG",
-        "pnl": -8.68
+        "pnl": -9.11
       },
       {
         "symbol": "AVAXUSDT",
@@ -33,28 +33,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$75,428.86",
+        "price": "$75,507.80",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,237.18",
+        "price": "$2,239.90",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$82.39",
+        "price": "$82.42",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$614.58",
+        "price": "$614.75",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -82,7 +82,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$444.00",
+        "price": "$443.80",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -138,7 +138,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$92.09",
+        "price": "$92.17",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
@@ -166,7 +166,7 @@
       },
       {
         "symbol": "DOGE",
-        "price": "$0.11",
+        "price": "$0.10",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "VOLATILE"
