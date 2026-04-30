@@ -3,18 +3,18 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "30.04.2026 15:23 UTC",
-      "uptime": "5:01:58",
+      "last_update": "30.04.2026 15:39 UTC",
+      "uptime": "5:16:59",
       "active_symbols": 25
     },
     "performance": {
-      "balance": 10013.66,
-      "equity": 10014.07,
-      "total_pnl": 14.07,
-      "total_trades": 61,
-      "wins": 38,
+      "balance": 10019.04,
+      "equity": 10014.73,
+      "total_pnl": 14.73,
+      "total_trades": 62,
+      "wins": 39,
       "losses": 23,
-      "win_rate": 62.3,
+      "win_rate": 62.9,
       "max_drawdown_pct": 0.16,
       "sharpe": 0.02
     },
@@ -27,39 +27,34 @@
       {
         "symbol": "ADAUSDT",
         "side": "LONG",
-        "pnl": -1.62
-      },
-      {
-        "symbol": "WIFUSDT",
-        "side": "LONG",
-        "pnl": 6.15
+        "pnl": -0.2
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$76,418.55",
+        "price": "$76,482.62",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,264.66",
+        "price": "$2,266.97",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$83.24",
+        "price": "$83.40",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
       },
       {
         "symbol": "BNB",
-        "price": "$616.81",
+        "price": "$616.91",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
@@ -87,7 +82,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$443.40",
+        "price": "$444.10",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -143,7 +138,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$93.08",
+        "price": "$93.26",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
