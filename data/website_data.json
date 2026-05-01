@@ -3,8 +3,8 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "01.05.2026 20:41 UTC",
-      "uptime": "1 day, 10:19:29",
+      "last_update": "01.05.2026 20:56 UTC",
+      "uptime": "1 day, 10:34:30",
       "active_symbols": 25
     },
     "performance": {
@@ -22,42 +22,42 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,957.50",
+        "price": "$77,864.92",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,292.50",
+        "price": "$2,285.43",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$83.58",
+        "price": "$83.46",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$617.45",
+        "price": "$616.86",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
       },
       {
         "symbol": "XRP",
-        "price": "$1.39",
+        "price": "$1.38",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "AVAX",
-        "price": "$9.11",
+        "price": "$9.09",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -71,7 +71,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$453.30",
+        "price": "$451.80",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -85,7 +85,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.12",
+        "price": "$9.10",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -127,7 +127,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$92.21",
+        "price": "$91.94",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
