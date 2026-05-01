@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "01.05.2026 13:25 UTC",
-      "uptime": "1 day, 3:03:50",
+      "last_update": "01.05.2026 13:40 UTC",
+      "uptime": "1 day, 3:18:52",
       "active_symbols": 25
     },
     "performance": {
       "balance": 10014.34,
-      "equity": 10006.88,
-      "total_pnl": 6.88,
+      "equity": 10008.94,
+      "total_pnl": 8.94,
       "total_trades": 67,
       "wins": 42,
       "losses": 25,
@@ -22,7 +22,7 @@
       {
         "symbol": "APTUSDT",
         "side": "LONG",
-        "pnl": -5.88
+        "pnl": -3.81
       },
       {
         "symbol": "NEARUSDT",
@@ -33,28 +33,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,314.20",
+        "price": "$78,159.71",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,309.07",
+        "price": "$2,306.79",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$84.41",
+        "price": "$84.31",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$621.04",
+        "price": "$620.42",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
@@ -82,7 +82,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$447.80",
+        "price": "$450.40",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -138,7 +138,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$93.38",
+        "price": "$93.64",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
