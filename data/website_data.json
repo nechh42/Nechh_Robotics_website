@@ -3,8 +3,8 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "01.05.2026 01:09 UTC",
-      "uptime": "14:47:51",
+      "last_update": "01.05.2026 01:24 UTC",
+      "uptime": "15:02:52",
       "active_symbols": 25
     },
     "performance": {
@@ -28,28 +28,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$76,558.73",
+        "price": "$76,572.10",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,264.05",
+        "price": "$2,263.59",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$83.38",
+        "price": "$83.40",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
       },
       {
         "symbol": "BNB",
-        "price": "$616.43",
+        "price": "$616.41",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
@@ -63,7 +63,7 @@
       },
       {
         "symbol": "AVAX",
-        "price": "$9.12",
+        "price": "$9.13",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -77,7 +77,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$441.80",
+        "price": "$441.60",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -91,7 +91,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.12",
+        "price": "$9.13",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -112,7 +112,7 @@
       },
       {
         "symbol": "APT",
-        "price": "$1.01",
+        "price": "$1.02",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -133,7 +133,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$93.10",
+        "price": "$92.90",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
@@ -175,7 +175,7 @@
       },
       {
         "symbol": "WIF",
-        "price": "$0.19",
+        "price": "$0.18",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
