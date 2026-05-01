@@ -3,8 +3,8 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "01.05.2026 06:25 UTC",
-      "uptime": "20:03:16",
+      "last_update": "01.05.2026 06:40 UTC",
+      "uptime": "20:18:17",
       "active_symbols": 25
     },
     "performance": {
@@ -22,28 +22,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$77,164.98",
+        "price": "$77,047.96",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,285.20",
+        "price": "$2,280.22",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$84.12",
+        "price": "$83.94",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$618.00",
+        "price": "$617.36",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
@@ -57,7 +57,7 @@
       },
       {
         "symbol": "AVAX",
-        "price": "$9.12",
+        "price": "$9.09",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -71,7 +71,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$443.60",
+        "price": "$443.00",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -85,7 +85,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.17",
+        "price": "$9.16",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -99,7 +99,7 @@
       },
       {
         "symbol": "ARB",
-        "price": "$0.13",
+        "price": "$0.12",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -127,7 +127,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$92.97",
+        "price": "$92.72",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
