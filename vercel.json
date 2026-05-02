@@ -20,6 +20,10 @@
             "dest": "/api/register.js"
         },
         {
+            "src": "/api/email/send",
+            "dest": "/api/email/send.js"
+        },
+        {
             "src": "/api/cron/daily-check",
             "dest": "/api/cron/daily-check.js"
         },

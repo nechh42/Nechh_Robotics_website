@@ -588,23 +588,32 @@ function handleLeadMagnet(e) {
   e.preventDefault();
   var form = e.target;
   var btn = form.querySelector('button[type="submit"]');
+  var email = form.querySelector('input[type="email"]').value;
   btn.textContent = 'Sending...';
   btn.disabled = true;
-  fetch(form.action, {
+
+  // Formspree (backup kayıt) + Resend (welcome email) paralel çalışır
+  var formspreeReq = fetch(form.action, {
     method: 'POST',
     body: new FormData(form),
     headers: { 'Accept': 'application/json' }
-  }).then(function(r) {
-    if (r.ok) {
+  });
+
+  var resendReq = fetch('/api/email/send', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ to: email, type: 'welcome' })
+  });
+
+  Promise.allSettled([formspreeReq, resendReq]).then(function(results) {
+    var formspreeOk = results[0].status === 'fulfilled' && results[0].value.ok;
+    if (formspreeOk) {
       document.getElementById('lead-success').style.display = 'block';
       form.style.display = 'none';
     } else {
       btn.textContent = 'Try again';
       btn.disabled = false;
     }
-  }).catch(function() {
-    btn.textContent = 'Try again';
-    btn.disabled = false;
   });
 }
 </script>
