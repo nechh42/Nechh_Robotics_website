@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "02.05.2026 08:42 UTC",
-      "uptime": "1 day, 22:20:47",
+      "last_update": "02.05.2026 08:57 UTC",
+      "uptime": "1 day, 22:35:49",
       "active_symbols": 25
     },
     "performance": {
       "balance": 9996.77,
-      "equity": 9988.92,
-      "total_pnl": -11.08,
+      "equity": 9987.25,
+      "total_pnl": -12.75,
       "total_trades": 70,
       "wins": 42,
       "losses": 28,
@@ -22,44 +22,44 @@
       {
         "symbol": "AAVEUSDT",
         "side": "LONG",
-        "pnl": -4.38
+        "pnl": -4.91
       },
       {
         "symbol": "BTCUSDT",
         "side": "LONG",
-        "pnl": -1.36
+        "pnl": -1.98
       },
       {
         "symbol": "ETHUSDT",
         "side": "LONG",
-        "pnl": -2.11
+        "pnl": -2.64
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,338.87",
+        "price": "$78,290.02",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,304.16",
+        "price": "$2,302.97",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$83.84",
+        "price": "$83.83",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$615.83",
+        "price": "$615.69",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
@@ -87,7 +87,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$449.60",
+        "price": "$449.50",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -143,7 +143,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$92.13",
+        "price": "$92.06",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
