@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Survive a Drawdown Without Blowing Your Account — Nechh Robotics</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-439H3JBHZR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-439H3JBHZR');</script>
+  <meta name="description" content="Drawdowns are inevitable. The question is whether your risk model is designed to survive them. We share the rules we follow internally.">
+  <meta property="og:title" content="How to Survive a Drawdown Without Blowing Your Account">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://nechhrobotics.com/blog/surviving-drawdowns.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:#111827;font-size:15px;line-height:1.7}
+    .risk-banner{background:#7c2d12;color:#fef3c7;font-size:11px;text-align:center;padding:7px 16px}
+    .risk-banner a{color:#fcd34d;text-decoration:underline}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:60px;border-bottom:1px solid #e5e7eb;background:#fff;position:sticky;top:0;z-index:100}
+    .nav-logo{font-weight:700;font-size:15px;color:#2563eb;text-decoration:none}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a{color:#6b7280;text-decoration:none;font-size:13px;font-weight:500}
+    .nav-links a:hover{color:#111827}
+    .nav-cta{background:#2563eb;color:#fff!important;padding:7px 16px;border-radius:7px;font-size:12px!important;font-weight:600!important}
+    .article-wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+    .breadcrumb{font-size:12px;color:#9ca3af;margin-bottom:24px}
+    .breadcrumb a{color:#2563eb;text-decoration:none}
+    .post-tag{display:inline-block;background:#fafaf9;color:#57534e;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:12px;border:1px solid #e7e5e4}
+    h1{font-size:30px;font-weight:700;color:#111827;line-height:1.3;margin-bottom:12px}
+    .post-meta{font-size:12px;color:#9ca3af;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid #f3f4f6}
+    h2{font-size:20px;font-weight:700;color:#111827;margin:32px 0 12px}
+    h3{font-size:16px;font-weight:600;color:#111827;margin:24px 0 8px}
+    p{margin-bottom:16px;color:#374151}
+    ul,ol{margin:0 0 16px 24px;color:#374151}
+    li{margin-bottom:6px}
+    .callout{background:#eff6ff;border-left:4px solid #2563eb;border-radius:0 8px 8px 0;padding:16px 20px;margin:24px 0;font-size:14px;color:#1e40af}
+    .callout strong{display:block;margin-bottom:4px}
+    .danger{background:#fee2e2;border-left:4px solid #dc2626;border-radius:0 8px 8px 0;padding:16px 20px;margin:24px 0;font-size:14px;color:#991b1b}
+    .danger strong{display:block;margin-bottom:4px}
+    .metric-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:13px}
+    .metric-table th{background:#f8faff;color:#374151;font-weight:600;text-align:left;padding:10px 14px;border:1px solid #e5e7eb}
+    .metric-table td{padding:10px 14px;border:1px solid #e5e7eb;color:#374151}
+    .metric-table tr:nth-child(even) td{background:#fafafa}
+    .cta-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:32px 24px;text-align:center;margin-top:48px}
+    .cta-box h3{font-size:18px;font-weight:700;color:#1e40af;margin-bottom:8px}
+    .cta-box p{font-size:13px;color:#3b82f6;margin-bottom:20px}
+    .cta-btn{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:11px 28px;border-radius:8px;font-size:13px;font-weight:600}
+    footer{background:#f9fafb;border-top:1px solid #e5e7eb;padding:40px 40px 24px}
+    .fg{max-width:960px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+    @media(max-width:720px){.fg{grid-template-columns:1fr 1fr}.nav-links{gap:14px}}
+    @media(max-width:480px){.fg{grid-template-columns:1fr}.nav-links{display:none}}
+    .flogo{font-weight:700;color:#2563eb;font-size:15px;margin-bottom:6px}
+    .fwarn{font-size:11px;color:#9ca3af;line-height:1.6}
+    .fc h4{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#374151;margin-bottom:12px}
+    .fc ul{list-style:none}
+    .fc ul li{margin-bottom:7px}
+    .fc ul li a{font-size:12px;color:#6b7280;text-decoration:none}
+    .fc ul li a:hover{color:#2563eb}
+    .fbot{max-width:960px;margin:24px auto 0;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  </style>
+</head>
+<body>
+
+<div class="risk-banner">
+  <strong>⚠️ Risk Warning:</strong> Nechh Robotics provides independent algorithmic market analysis for informational purposes only.
+  <strong>This is not financial advice.</strong> Trading involves substantial risk of loss.
+  <a href="../legal/risk-disclosure.html">Learn more →</a>
+</div>
+
+<nav>
+  <a class="nav-logo" href="../index.html">Nechh Robotics</a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../performance.html">Performance</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../pricing.html" class="nav-cta">Get Access →</a>
+  </div>
+</nav>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="../blog.html">← Blog</a> / Drawdown</div>
+
+  <span class="post-tag">Drawdown</span>
+  <h1>How to Survive a Drawdown Without Blowing Your Account</h1>
+  <div class="post-meta">February 2026 · 5 min read · By Nechh Robotics Research Team</div>
+
+  <p>Every trading strategy — even the best — will experience losing streaks. Drawdowns are not a sign that your strategy is broken. They are a mathematical certainty. The question is not whether you'll face a drawdown, but whether your risk model is designed to survive it.</p>
+
+  <h2>Understanding Drawdown Math</h2>
+  <p>The recovery math is asymmetric and brutal. A 20% drawdown requires a 25% gain to recover. A 50% drawdown requires a 100% gain. This asymmetry is why preventing deep drawdowns is more valuable than maximizing peak returns.</p>
+
+  <table class="metric-table">
+    <thead>
+      <tr><th>Drawdown</th><th>Required Recovery</th><th>Time to Recover (est.)*</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>-10%</td><td>+11.1%</td><td>1–3 months</td></tr>
+      <tr><td>-20%</td><td>+25.0%</td><td>3–6 months</td></tr>
+      <tr><td>-30%</td><td>+42.9%</td><td>6–12 months</td></tr>
+      <tr><td>-50%</td><td>+100.0%</td><td>1–3 years</td></tr>
+      <tr><td>-70%</td><td>+233.0%</td><td>May never recover</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:12px;color:#9ca3af">*Estimates based on PF=1.5 strategy with 40–50% win rate and 1% risk per trade.</p>
+
+  <h2>The 5 Survival Rules</h2>
+
+  <h3>Rule 1: Size Down Before You Think You Need To</h3>
+  <p>Most traders reduce size after a catastrophic drawdown. By then, the damage is done. Our rule: reduce position size by 25% after 3 consecutive losses, by 50% after 5 consecutive losses. This is pre-emptive protection, not reactive damage control.</p>
+
+  <h3>Rule 2: Never Risk More Than 1–2% Per Trade</h3>
+  <p>At 1% risk per trade, you need 100 consecutive losing trades to lose everything (impossible). At 10% risk per trade, 10 straight losses wipes you out (very possible during a bad period). The math favors staying small.</p>
+
+  <h3>Rule 3: Define Your Maximum Drawdown Before You Start</h3>
+  <p>Decide in advance: "If my account drops X%, I stop trading and reassess." Don't decide this during a drawdown — you'll rationalize continuing. Typical limits: 15% for crypto, 10% for equities. If you hit it, take 2 weeks off, review the strategy objectively, then return.</p>
+
+  <div class="danger">
+    <strong>The Revenge Trade Trap</strong>
+    After a losing streak, the urge to "make it back" with a larger position is overwhelming. This is how manageable drawdowns become account-destroying drawdowns. Never increase position size during a losing streak. Never.
+  </div>
+
+  <h3>Rule 4: Distinguish Strategy Failure from Normal Variance</h3>
+  <p>How do you know if a drawdown is normal variance or a sign the strategy is broken? Statistical tests:</p>
+  <ul>
+    <li>If your backtest shows a max drawdown of 12%, a 13% drawdown in live trading is likely normal variance</li>
+    <li>If your backtest shows max 12% and you're at 25%, something may have changed in the market</li>
+    <li>Rule of thumb: if drawdown exceeds 2× the backtest max DD, halt and reassess</li>
+  </ul>
+
+  <h3>Rule 5: Maintain Psychological Capital</h3>
+  <p>Drawdowns are financially damaging. They are also psychologically damaging. A trader in a 20% drawdown who is anxious, checking positions every 5 minutes, and losing sleep, will make worse decisions — which deepens the drawdown. Protecting your mental state is a legitimate risk management activity.</p>
+  <ul>
+    <li>Trade smaller until your psychology stabilizes</li>
+    <li>Take forced breaks after significant losses</li>
+    <li>Separate strategy performance from self-worth</li>
+  </ul>
+
+  <h2>Our Internal Drawdown Rules at Nechh Robotics</h2>
+  <ul>
+    <li><strong>Signal frequency halved</strong> after 3 consecutive loss signals</li>
+    <li><strong>Asset temporarily blacklisted</strong> after 2 consecutive losses on same pair (7-day cooldown)</li>
+    <li><strong>Emergency halt</strong> if monthly drawdown on signal portfolio exceeds 15%</li>
+    <li><strong>Public disclosure</strong> of all losing periods on our performance page — no cherry-picking</li>
+  </ul>
+
+  <div class="callout">
+    <strong>The Right Mindset</strong>
+    A drawdown is not a crisis to be fixed. It is information to be analyzed. Ask: "Is this within the expected variance of my strategy, or has something structurally changed?" Answer that question calmly, with data, before taking any action.
+  </div>
+
+  <h2>Conclusion</h2>
+  <p>Surviving drawdowns is not about avoiding losses — it's about ensuring that losses never become catastrophic. Position sizing, pre-defined halt levels, and psychological discipline are the three levers. All three are within your control, regardless of what the market does.</p>
+  <p>The traders who last decades are not the ones who avoid drawdowns. They are the ones who survive them without blowing up, stay in the game, and let edge compound over time.</p>
+
+  <div class="cta-box">
+    <h3>Risk-First Signal Design</h3>
+    <p>Every signal includes stop-loss levels and our internal drawdown management rules ensure capital preservation comes before returns.</p>
+    <a href="../pricing.html" class="cta-btn">View Pricing →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="fg">
+    <div class="fc">
+      <div class="flogo">Nechh Robotics</div>
+      <div class="fwarn">Independent algorithmic market analysis across crypto, equities, forex, and emerging markets.</div>
+      <div class="fwarn" style="margin-top:8px">⚠️ Not financial advice. High risk. 18+ only.</div>
+      <div style="margin-top:10px;font-size:11px;color:#9ca3af">hello@nechhrobotics.com</div>
+    </div>
+    <div class="fc">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about.html">About Us</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="../legal/privacy.html">Privacy Policy</a></li>
+        <li><a href="../legal/terms.html">Terms of Service</a></li>
+        <li><a href="../legal/risk-disclosure.html">Risk Disclosure</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>More Articles</h4>
+      <ul>
+        <li><a href="profit-factor-vs-win-rate.html">Profit Factor vs Win Rate</a></li>
+        <li><a href="position-sizing-guide.html">Position Sizing Guide</a></li>
+        <li><a href="ema-pullback-strategy.html">EMA Pullback Strategy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© 2026 Nechh Robotics. All rights reserved.</span>
+    <span>Not financial advice. Trading involves substantial risk of loss.</span>
+  </div>
+</footer>
+<script src="../assets/cookie-banner.js"></script>
+<script src="../assets/analytics-events.js"></script>
+</body>
+</html>

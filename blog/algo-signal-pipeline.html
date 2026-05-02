@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inside Our Signal Pipeline: From Raw Data to Telegram — Nechh Robotics</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-439H3JBHZR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-439H3JBHZR');</script>
+  <meta name="description" content="A behind-the-scenes look at how we go from raw price data to a structured signal in your Telegram in under 2 seconds.">
+  <meta property="og:title" content="Inside Our Signal Pipeline: From Raw Data to Telegram">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://nechhrobotics.com/blog/algo-signal-pipeline.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:#111827;font-size:15px;line-height:1.7}
+    .risk-banner{background:#7c2d12;color:#fef3c7;font-size:11px;text-align:center;padding:7px 16px}
+    .risk-banner a{color:#fcd34d;text-decoration:underline}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:60px;border-bottom:1px solid #e5e7eb;background:#fff;position:sticky;top:0;z-index:100}
+    .nav-logo{font-weight:700;font-size:15px;color:#2563eb;text-decoration:none}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a{color:#6b7280;text-decoration:none;font-size:13px;font-weight:500}
+    .nav-links a:hover{color:#111827}
+    .nav-cta{background:#2563eb;color:#fff!important;padding:7px 16px;border-radius:7px;font-size:12px!important;font-weight:600!important}
+    .article-wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+    .breadcrumb{font-size:12px;color:#9ca3af;margin-bottom:24px}
+    .breadcrumb a{color:#2563eb;text-decoration:none}
+    .post-tag{display:inline-block;background:#f0f9ff;color:#0369a1;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:12px}
+    h1{font-size:30px;font-weight:700;color:#111827;line-height:1.3;margin-bottom:12px}
+    .post-meta{font-size:12px;color:#9ca3af;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid #f3f4f6}
+    h2{font-size:20px;font-weight:700;color:#111827;margin:32px 0 12px}
+    h3{font-size:16px;font-weight:600;color:#111827;margin:24px 0 8px}
+    p{margin-bottom:16px;color:#374151}
+    ul,ol{margin:0 0 16px 24px;color:#374151}
+    li{margin-bottom:6px}
+    .callout{background:#eff6ff;border-left:4px solid #2563eb;border-radius:0 8px 8px 0;padding:16px 20px;margin:24px 0;font-size:14px;color:#1e40af}
+    .callout strong{display:block;margin-bottom:4px}
+    .pipeline{background:#1e293b;border-radius:12px;padding:24px;margin:24px 0}
+    .pipeline-step{display:flex;align-items:flex-start;gap:16px;margin-bottom:20px}
+    .pipeline-step:last-child{margin-bottom:0}
+    .step-num{background:#2563eb;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px}
+    .step-content{color:#e2e8f0}
+    .step-content strong{display:block;font-size:13px;color:#fff;margin-bottom:2px}
+    .step-content span{font-size:12px;color:#94a3b8}
+    .signal-card{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:20px;margin:24px 0;font-family:'Courier New',monospace;font-size:13px;color:#e2e8f0;line-height:1.8}
+    .signal-card .header{color:#22d3ee;font-weight:700;margin-bottom:8px}
+    .signal-card .green{color:#86efac}
+    .signal-card .yellow{color:#fde68a}
+    .signal-card .red{color:#fca5a5}
+    .cta-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:32px 24px;text-align:center;margin-top:48px}
+    .cta-box h3{font-size:18px;font-weight:700;color:#1e40af;margin-bottom:8px}
+    .cta-box p{font-size:13px;color:#3b82f6;margin-bottom:20px}
+    .cta-btn{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:11px 28px;border-radius:8px;font-size:13px;font-weight:600}
+    footer{background:#f9fafb;border-top:1px solid #e5e7eb;padding:40px 40px 24px}
+    .fg{max-width:960px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+    @media(max-width:720px){.fg{grid-template-columns:1fr 1fr}.nav-links{gap:14px}}
+    @media(max-width:480px){.fg{grid-template-columns:1fr}.nav-links{display:none}}
+    .flogo{font-weight:700;color:#2563eb;font-size:15px;margin-bottom:6px}
+    .fwarn{font-size:11px;color:#9ca3af;line-height:1.6}
+    .fc h4{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#374151;margin-bottom:12px}
+    .fc ul{list-style:none}
+    .fc ul li{margin-bottom:7px}
+    .fc ul li a{font-size:12px;color:#6b7280;text-decoration:none}
+    .fc ul li a:hover{color:#2563eb}
+    .fbot{max-width:960px;margin:24px auto 0;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  </style>
+</head>
+<body>
+
+<div class="risk-banner">
+  <strong>⚠️ Risk Warning:</strong> Nechh Robotics provides independent algorithmic market analysis for informational purposes only.
+  <strong>This is not financial advice.</strong> Trading involves substantial risk of loss.
+  <a href="../legal/risk-disclosure.html">Learn more →</a>
+</div>
+
+<nav>
+  <a class="nav-logo" href="../index.html">Nechh Robotics</a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../performance.html">Performance</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../pricing.html" class="nav-cta">Get Access →</a>
+  </div>
+</nav>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="../blog.html">← Blog</a> / Technology</div>
+
+  <span class="post-tag">Technology</span>
+  <h1>Inside Our Signal Pipeline: From Raw Data to Telegram</h1>
+  <div class="post-meta">February 2026 · 12 min read · By Nechh Robotics Research Team</div>
+
+  <p>Every signal you receive in your Telegram channel is the end product of a multi-step automated pipeline that runs continuously, 24 hours a day. In this article, we pull back the curtain and explain exactly how we go from raw price data to a structured, actionable signal — in under 2 seconds.</p>
+
+  <h2>The Pipeline Overview</h2>
+
+  <div class="pipeline">
+    <div class="pipeline-step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <strong>Data Ingestion</strong>
+        <span>OHLCV data fetched from exchange via WebSocket + REST fallback</span>
+      </div>
+    </div>
+    <div class="pipeline-step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <strong>Indicator Calculation</strong>
+        <span>EMA, ATR, ADX, volume ratios — computed on confirmed closed candles only</span>
+      </div>
+    </div>
+    <div class="pipeline-step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <strong>Regime Detection</strong>
+        <span>Market classified as TRENDING, RANGING, or VOLATILE</span>
+      </div>
+    </div>
+    <div class="pipeline-step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <strong>Strategy Engine</strong>
+        <span>EMA Pullback rules evaluated — entry conditions checked</span>
+      </div>
+    </div>
+    <div class="pipeline-step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <strong>Pre-Trade Filter</strong>
+        <span>Final validation: max open positions, drawdown limit, blacklist check</span>
+      </div>
+    </div>
+    <div class="pipeline-step">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <strong>Signal Formatting</strong>
+        <span>Entry, SL, TP, position size calculated and structured</span>
+      </div>
+    </div>
+    <div class="pipeline-step">
+      <div class="step-num">7</div>
+      <div class="step-content">
+        <strong>Telegram Delivery</strong>
+        <span>Signal dispatched to subscriber channel via Telegram Bot API</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>Step 1: Data Ingestion</h2>
+  <p>We connect to exchange APIs via WebSocket for real-time tick data and maintain a REST fallback for candle history. Data is ingested for 3 assets simultaneously (BTCUSDT, ETHUSDT, SOLUSDT) on the 1H timeframe.</p>
+  <p>Critical rule: we only process data from <strong>confirmed, closed candles</strong>. A candle is only closed when its timestamp + duration has elapsed. This is how we prevent look-ahead bias in real-time operation.</p>
+
+  <h2>Step 2: Indicator Calculation</h2>
+  <p>On each closed candle, we recalculate:</p>
+  <ul>
+    <li><strong>EMA 21 and EMA 55</strong> — trend direction</li>
+    <li><strong>ATR 14</strong> — volatility measurement for stop/target sizing</li>
+    <li><strong>ADX 14</strong> — trend strength (filter for TRENDING regime)</li>
+    <li><strong>Volume ratio</strong> — current candle volume vs 20-period average</li>
+  </ul>
+
+  <h2>Step 3: Regime Detection</h2>
+  <p>Before any strategy logic runs, we classify the current market regime:</p>
+  <ul>
+    <li><strong>TRENDING:</strong> EMA21 > EMA55 AND ADX > 20</li>
+    <li><strong>VOLATILE:</strong> ATR > 2× its 20-period average</li>
+    <li><strong>RANGING:</strong> Everything else</li>
+  </ul>
+  <p>EMA Pullback signals are <strong>only generated in TRENDING regime</strong>. This single filter removes the majority of false signals.</p>
+
+  <h2>Step 4: Strategy Engine</h2>
+  <p>With regime confirmed as TRENDING, the strategy engine checks all entry conditions simultaneously. This is not a sequential scan — all conditions must be true at the same moment on the same closed candle.</p>
+
+  <h2>Step 5: Pre-Trade Filter</h2>
+  <p>Even if a signal passes the strategy engine, it can be blocked by the pre-trade filter:</p>
+  <ul>
+    <li>Already 3 open positions → signal blocked</li>
+    <li>Same asset already has open position → blocked</li>
+    <li>3 consecutive losses in last 24 hours → signal frequency reduced</li>
+    <li>Asset on temporary blacklist → blocked</li>
+  </ul>
+
+  <h2>Step 6: The Signal You Receive</h2>
+  <p>After passing all filters, a signal is formatted and dispatched. Here's what a real signal looks like in your Telegram:</p>
+
+  <div class="signal-card">
+    <div class="header">🤖 NECHH ROBOTICS — NEW SIGNAL</div>
+    📊 <span class="green">ETHUSDT — LONG</span><br>
+    ⏰ 14:00 UTC | 1H Candle<br><br>
+    <span class="green">▶ Entry:  $3,142.50</span><br>
+    <span class="red">⛔ Stop:   $3,096.80  (-1.45%)</span><br>
+    <span class="yellow">🎯 Target: $3,198.20  (+1.77%)</span><br><br>
+    📐 R:R Ratio: 1.22<br>
+    📈 Strategy: EMA Pullback<br>
+    🔥 Regime: TRENDING<br><br>
+    ⚠️ Not financial advice. Manage your own risk.
+  </div>
+
+  <h2>Latency: From Candle Close to Your Phone</h2>
+  <ul>
+    <li>Candle close detection: &lt;100ms</li>
+    <li>Indicator recalculation: ~50ms</li>
+    <li>Strategy + filter evaluation: ~20ms</li>
+    <li>Signal formatting + Telegram API: ~300ms</li>
+    <li><strong>Total: typically under 500ms</strong></li>
+  </ul>
+
+  <h2>Reliability and Monitoring</h2>
+  <p>The pipeline runs on a dedicated VPS with 99.9% uptime SLA. A separate watchdog process monitors the main engine every 5 minutes and automatically restarts it if it stops responding. We receive alerts for any downtime exceeding 10 minutes.</p>
+
+  <div class="callout">
+    <strong>Transparency Commitment</strong>
+    Every signal we generate is logged with timestamp, conditions at the time, and outcome tracking. We publish aggregated performance data monthly so subscribers can verify our reported results independently.
+  </div>
+
+  <h2>Conclusion</h2>
+  <p>The signal pipeline represents years of iteration — from manual indicator checks to a fully automated, multi-layer system. The key design principles: no look-ahead bias at any stage, regime-aware execution, and pre-trade risk filters that protect capital even when the strategy itself generates a valid signal.</p>
+  <p>Speed without accuracy is dangerous. We've prioritized reliability and correctness over raw latency — a 500ms delay on a 1H strategy signal has zero practical impact.</p>
+
+  <div class="cta-box">
+    <h3>Receive These Signals Live</h3>
+    <p>Subscribe to get real-time algorithmic signals delivered directly to your Telegram.</p>
+    <a href="../pricing.html" class="cta-btn">View Pricing →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="fg">
+    <div class="fc">
+      <div class="flogo">Nechh Robotics</div>
+      <div class="fwarn">Independent algorithmic market analysis across crypto, equities, forex, and emerging markets.</div>
+      <div class="fwarn" style="margin-top:8px">⚠️ Not financial advice. High risk. 18+ only.</div>
+      <div style="margin-top:10px;font-size:11px;color:#9ca3af">hello@nechhrobotics.com</div>
+    </div>
+    <div class="fc">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about.html">About Us</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="../legal/privacy.html">Privacy Policy</a></li>
+        <li><a href="../legal/terms.html">Terms of Service</a></li>
+        <li><a href="../legal/risk-disclosure.html">Risk Disclosure</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>More Articles</h4>
+      <ul>
+        <li><a href="profit-factor-vs-win-rate.html">Profit Factor vs Win Rate</a></li>
+        <li><a href="ema-pullback-strategy.html">EMA Pullback Strategy</a></li>
+        <li><a href="avoiding-lookahead-bias.html">Avoiding Look-Ahead Bias</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© 2026 Nechh Robotics. All rights reserved.</span>
+    <span>Not financial advice. Trading involves substantial risk of loss.</span>
+  </div>
+</footer>
+<script src="../assets/cookie-banner.js"></script>
+<script src="../assets/analytics-events.js"></script>
+</body>
+</html>

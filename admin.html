@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,9 +45,9 @@ tr:hover td{background:rgba(77,159,255,0.03)}
 <!-- LOGIN -->
 <div id="loginWrap">
   <div id="loginBox">
-    <h2>⚡ ADMIN</h2>
-    <input id="adminPass" type="password" placeholder="Admin şifresi" autocomplete="off">
-    <button id="loginBtn" onclick="doLogin()">GİRİŞ YAP</button>
+    <h2>âš¡ ADMIN</h2>
+    <input id="adminPass" type="password" placeholder="Admin ÅŸifresi" autocomplete="off">
+    <button id="loginBtn" onclick="doLogin()">GÄ°RÄ°Å YAP</button>
     <p id="loginErr" style="color:var(--red);margin-top:10px;font-size:11px"></p>
   </div>
 </div>
@@ -55,30 +55,30 @@ tr:hover td{background:rgba(77,159,255,0.03)}
 <!-- PANEL -->
 <div id="app">
   <nav>
-    <span class="nav-logo">NECHH ROBOTICS — ADMIN</span>
+    <span class="nav-logo">NECHH ROBOTICS â€” ADMIN</span>
     <div style="display:flex;gap:8px">
-      <button class="btn" onclick="loadData()">↻ Yenile</button>
-      <button class="btn" onclick="exportCSV()">⬇ CSV</button>
-      <button class="btn btn-red" onclick="logout()">Çıkış</button>
+      <button class="btn" onclick="loadData()">â†» Yenile</button>
+      <button class="btn" onclick="exportCSV()">â¬‡ CSV</button>
+      <button class="btn btn-red" onclick="logout()">Ã‡Ä±kÄ±ÅŸ</button>
     </div>
   </nav>
 
   <div class="stats">
-    <div class="stat-card"><h3 id="s-total" class="blue">—</h3><p>TOPLAM ÜYE</p></div>
-    <div class="stat-card"><h3 id="s-active" style="color:var(--green)">—</h3><p>AKTİF</p></div>
-    <div class="stat-card"><h3 id="s-pending" style="color:var(--gold)">—</h3><p>ÖDEME BEKLEYEN</p></div>
-    <div class="stat-card"><h3 id="s-expired" style="color:var(--red)">—</h3><p>SÜRESİ DOLMUŞ</p></div>
-    <div class="stat-card"><h3 id="s-mrr" style="color:var(--green)">—</h3><p>AYLIK GELİR</p></div>
+    <div class="stat-card"><h3 id="s-total" class="blue">â€”</h3><p>TOPLAM ÃœYE</p></div>
+    <div class="stat-card"><h3 id="s-active" style="color:var(--green)">â€”</h3><p>AKTÄ°F</p></div>
+    <div class="stat-card"><h3 id="s-pending" style="color:var(--gold)">â€”</h3><p>Ã–DEME BEKLEYEN</p></div>
+    <div class="stat-card"><h3 id="s-expired" style="color:var(--red)">â€”</h3><p>SÃœRESÄ° DOLMUÅ</p></div>
+    <div class="stat-card"><h3 id="s-mrr" style="color:var(--green)">â€”</h3><p>AYLIK GELÄ°R</p></div>
   </div>
 
   <div class="controls">
     <input id="searchInput" type="text" placeholder="Email veya Telegram ara..." oninput="filterTable()">
     <select id="filterStatus" onchange="filterTable()" style="padding:8px;background:var(--bg2);border:1px solid var(--border);color:var(--text);border-radius:6px;font-family:var(--font)">
-      <option value="">Tüm durumlar</option>
+      <option value="">TÃ¼m durumlar</option>
       <option value="active">Aktif</option>
-      <option value="pending">Ödeme Bekleyen</option>
-      <option value="expired">Süresi Dolmuş</option>
-      <option value="banned">Banlı</option>
+      <option value="pending">Ã–deme Bekleyen</option>
+      <option value="expired">SÃ¼resi DolmuÅŸ</option>
+      <option value="banned">BanlÄ±</option>
     </select>
   </div>
 
@@ -87,7 +87,7 @@ tr:hover td{background:rgba(77,159,255,0.03)}
       <thead>
         <tr>
           <th>EMAIL</th><th>TELEGRAM</th><th>PLAN</th><th>DURUM</th>
-          <th>BİTİŞ TARİHİ</th><th>UYARI</th><th>KAYIT</th><th>AKSİYON</th>
+          <th>BÄ°TÄ°Å TARÄ°HÄ°</th><th>UYARI</th><th>KAYIT</th><th>AKSÄ°YON</th>
         </tr>
       </thead>
       <tbody id="usersTbody"></tbody>
@@ -119,7 +119,7 @@ async function loadData() {
       headers: { 'X-Admin-Secret': ADMIN_SECRET }
     });
     if (r.status === 401) {
-      document.getElementById('loginErr').textContent = 'Yanlış şifre.';
+      document.getElementById('loginErr').textContent = 'YanlÄ±ÅŸ ÅŸifre.';
       return;
     }
     const data = await r.json();
@@ -137,46 +137,46 @@ async function loadData() {
     ALL_USERS = data.subscribers || [];
     renderTable(ALL_USERS);
   } catch(e) {
-    document.getElementById('loginErr').textContent = 'Bağlantı hatası: ' + e.message;
+    document.getElementById('loginErr').textContent = 'BaÄŸlantÄ± hatasÄ±: ' + e.message;
   }
 }
 
 function renderTable(users) {
   const tbody = document.getElementById('usersTbody');
   if (!users.length) {
-    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:30px">Kayıt yok</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--muted);padding:30px">KayÄ±t yok</td></tr>';
     return;
   }
   tbody.innerHTML = users.map(u => {
-    const end  = u.subscription_end ? new Date(u.subscription_end).toLocaleDateString('tr-TR') : '—';
+    const end  = u.subscription_end ? new Date(u.subscription_end).toLocaleDateString('tr-TR') : 'â€”';
     const reg  = new Date(u.created_at).toLocaleDateString('tr-TR');
     const daysLeft = u.subscription_end
       ? Math.ceil((new Date(u.subscription_end) - Date.now()) / 86400_000)
       : null;
     const endDisplay = daysLeft !== null
-      ? `${end} <span style="color:${daysLeft<0?'var(--red)':daysLeft<5?'var(--gold)':'var(--muted)'};">(${daysLeft<0?'süresi doldu':daysLeft+'g'})</span>`
-      : '—';
+      ? `${end} <span style="color:${daysLeft<0?'var(--red)':daysLeft<5?'var(--gold)':'var(--muted)'};">(${daysLeft<0?'sÃ¼resi doldu':daysLeft+'g'})</span>`
+      : 'â€”';
 
     return `<tr data-email="${u.email}" data-tg="${u.telegram_username||''}" data-status="${u.subscription_status}">
       <td>${u.email}</td>
-      <td>${u.telegram_username ? '@'+u.telegram_username : '—'}</td>
-      <td style="color:var(--muted)">${u.plan||'—'}</td>
+      <td>${u.telegram_username ? '@'+u.telegram_username : 'â€”'}</td>
+      <td style="color:var(--muted)">${u.plan||'â€”'}</td>
       <td><span class="badge badge-${u.subscription_status}">${u.subscription_status.toUpperCase()}</span></td>
       <td>${endDisplay}</td>
       <td style="color:${(u.warning_count||0)>0?'var(--gold)':'var(--muted)'}">${u.warning_count||0}/3</td>
       <td style="color:var(--muted)">${reg}</td>
       <td><div class="action-btns">
-        <button onclick="action('${u.id}','activate')" style="color:var(--green);border-color:var(--green)">✓ Aktif</button>
+        <button onclick="action('${u.id}','activate')" style="color:var(--green);border-color:var(--green)">âœ“ Aktif</button>
         <button onclick="action('${u.id}','extend_30')" style="color:var(--blue);border-color:var(--blue)">+30g</button>
-        <button onclick="action('${u.id}','warn')" style="color:var(--gold);border-color:var(--gold)">⚠ Uyar</button>
-        <button onclick="action('${u.id}','ban')" style="color:var(--red);border-color:var(--red)">🔴 Ban</button>
+        <button onclick="action('${u.id}','warn')" style="color:var(--gold);border-color:var(--gold)">âš  Uyar</button>
+        <button onclick="action('${u.id}','ban')" style="color:var(--red);border-color:var(--red)">ğŸ”´ Ban</button>
       </div></td>
     </tr>`;
   }).join('');
 }
 
 async function action(id, act) {
-  const labels = { activate:'Aktif et', extend_30:'+30 gün ekle', warn:'Uyarı gönder', ban:'BANLA', cancel:'İptal et' };
+  const labels = { activate:'Aktif et', extend_30:'+30 gÃ¼n ekle', warn:'UyarÄ± gÃ¶nder', ban:'BANLA', cancel:'Ä°ptal et' };
   if (!confirm(`${labels[act] || act}?`)) return;
   const note = (act === 'warn' || act === 'ban') ? prompt('Sebep (opsiyonel):') : null;
   const r = await fetch('/api/admin/subscribers', {
@@ -213,6 +213,9 @@ document.getElementById('adminPass').addEventListener('keydown', e => { if(e.key
 // 60 sn'de bir otomatik yenile
 setInterval(() => { if (ADMIN_SECRET) loadData(); }, 60000);
 </script>
+<script src="assets/cookie-banner.js" defer></script>
+<script src="assets/analytics-events.js" defer></script>
+<script src="assets/chatbot.js" defer></script>
 </body>
 </html>
     <style>
@@ -374,6 +377,10 @@ setInterval(() => { if (ADMIN_SECRET) loadData(); }, 60000);
         // Auto-refresh every 30 seconds
         setInterval(loadUsers, 30000)
     </script>
+<script src="assets/cookie-banner.js" defer></script>
+<script src="assets/analytics-events.js" defer></script>
+<script src="assets/chatbot.js" defer></script>
 </body>
 </html>
+
 

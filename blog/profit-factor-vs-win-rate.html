@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Profit Factor Matters More Than Win Rate — Nechh Robotics</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-439H3JBHZR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-439H3JBHZR');</script>
+  <meta name="description" content="Most retail traders obsess over win rate. Learn why Profit Factor (PF) is the metric that actually predicts long-term edge in algorithmic trading.">
+  <meta property="og:title" content="Why Profit Factor Matters More Than Win Rate">
+  <meta property="og:description" content="Profit Factor explained — the metric that separates real edge from lucky streaks.">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://nechhrobotics.com/blog/profit-factor-vs-win-rate.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:#111827;font-size:15px;line-height:1.7}
+    .risk-banner{background:#7c2d12;color:#fef3c7;font-size:11px;text-align:center;padding:7px 16px}
+    .risk-banner a{color:#fcd34d;text-decoration:underline}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:60px;border-bottom:1px solid #e5e7eb;background:#fff;position:sticky;top:0;z-index:100}
+    .nav-logo{font-weight:700;font-size:15px;color:#2563eb;text-decoration:none}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a{color:#6b7280;text-decoration:none;font-size:13px;font-weight:500}
+    .nav-links a:hover{color:#111827}
+    .nav-cta{background:#2563eb;color:#fff!important;padding:7px 16px;border-radius:7px;font-size:12px!important;font-weight:600!important}
+    .article-wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+    .breadcrumb{font-size:12px;color:#9ca3af;margin-bottom:24px}
+    .breadcrumb a{color:#2563eb;text-decoration:none}
+    .post-tag{display:inline-block;background:#eff6ff;color:#2563eb;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:12px}
+    h1{font-size:30px;font-weight:700;color:#111827;line-height:1.3;margin-bottom:12px}
+    .post-meta{font-size:12px;color:#9ca3af;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid #f3f4f6}
+    h2{font-size:20px;font-weight:700;color:#111827;margin:32px 0 12px}
+    h3{font-size:16px;font-weight:600;color:#111827;margin:24px 0 8px}
+    p{margin-bottom:16px;color:#374151}
+    ul,ol{margin:0 0 16px 24px;color:#374151}
+    li{margin-bottom:6px}
+    .callout{background:#eff6ff;border-left:4px solid #2563eb;border-radius:0 8px 8px 0;padding:16px 20px;margin:24px 0;font-size:14px;color:#1e40af}
+    .callout strong{display:block;margin-bottom:4px}
+    .metric-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:13px}
+    .metric-table th{background:#f8faff;color:#374151;font-weight:600;text-align:left;padding:10px 14px;border:1px solid #e5e7eb}
+    .metric-table td{padding:10px 14px;border:1px solid #e5e7eb;color:#374151}
+    .metric-table tr:nth-child(even) td{background:#fafafa}
+    .badge-good{background:#dcfce7;color:#16a34a;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
+    .badge-bad{background:#fee2e2;color:#dc2626;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
+    .badge-ok{background:#fef3c7;color:#d97706;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
+    .cta-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:32px 24px;text-align:center;margin-top:48px}
+    .cta-box h3{font-size:18px;font-weight:700;color:#1e40af;margin-bottom:8px}
+    .cta-box p{font-size:13px;color:#3b82f6;margin-bottom:20px}
+    .cta-btn{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:11px 28px;border-radius:8px;font-size:13px;font-weight:600}
+    footer{background:#f9fafb;border-top:1px solid #e5e7eb;padding:40px 40px 24px}
+    .fg{max-width:960px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+    @media(max-width:720px){.fg{grid-template-columns:1fr 1fr}.nav-links{gap:14px}}
+    @media(max-width:480px){.fg{grid-template-columns:1fr}.nav-links{display:none}}
+    .flogo{font-weight:700;color:#2563eb;font-size:15px;margin-bottom:6px}
+    .fwarn{font-size:11px;color:#9ca3af;line-height:1.6}
+    .fc h4{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#374151;margin-bottom:12px}
+    .fc ul{list-style:none}
+    .fc ul li{margin-bottom:7px}
+    .fc ul li a{font-size:12px;color:#6b7280;text-decoration:none}
+    .fc ul li a:hover{color:#2563eb}
+    .fbot{max-width:960px;margin:24px auto 0;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+    .fbot a{color:#9ca3af}
+  </style>
+</head>
+<body>
+
+<div class="risk-banner">
+  <strong>⚠️ Risk Warning:</strong> Nechh Robotics provides independent algorithmic market analysis for informational purposes only.
+  <strong>This is not financial advice.</strong> Trading involves substantial risk of loss.
+  <a href="../legal/risk-disclosure.html">Learn more →</a>
+</div>
+
+<nav>
+  <a class="nav-logo" href="../index.html">Nechh Robotics</a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../performance.html">Performance</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../pricing.html" class="nav-cta">Get Access →</a>
+  </div>
+</nav>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="../blog.html">← Blog</a> / Strategy Research</div>
+
+  <span class="post-tag">Strategy Research</span>
+  <h1>Why Profit Factor Matters More Than Win Rate</h1>
+  <div class="post-meta">May 2026 · 8 min read · By Nechh Robotics Research Team</div>
+
+  <p>Most retail traders live and die by win rate. "My system wins 70% of the time!" — it sounds impressive, but win rate alone tells you almost nothing about whether a strategy is profitable. The metric that actually predicts long-term edge is <strong>Profit Factor (PF)</strong>.</p>
+
+  <h2>What Is Profit Factor?</h2>
+  <p>Profit Factor is calculated as:</p>
+  <div class="callout">
+    <strong>Profit Factor = Total Gross Profit ÷ Total Gross Loss</strong>
+    A PF above 1.0 means the strategy is profitable overall. A PF of 2.0 means you make $2 for every $1 you lose.
+  </div>
+
+  <p>It's elegant precisely because it captures both how often you win AND how much you win when you do. Win rate can be gamed — PF cannot.</p>
+
+  <h2>The Win Rate Illusion</h2>
+  <p>Consider two strategies:</p>
+
+  <table class="metric-table">
+    <thead>
+      <tr><th>Strategy</th><th>Win Rate</th><th>Avg Win</th><th>Avg Loss</th><th>Profit Factor</th><th>Verdict</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Strategy A</td><td>80%</td><td>$50</td><td>$500</td><td>0.4</td><td><span class="badge-bad">LOSING</span></td></tr>
+      <tr><td>Strategy B</td><td>40%</td><td>$300</td><td>$100</td><td>2.0</td><td><span class="badge-good">STRONG</span></td></tr>
+      <tr><td>Strategy C</td><td>55%</td><td>$130</td><td>$100</td><td>1.43</td><td><span class="badge-ok">ACCEPTABLE</span></td></tr>
+    </tbody>
+  </table>
+
+  <p>Strategy A wins 80% of the time but is a money-losing machine. Strategy B wins less than half the time but is a strong edge. This is why we never filter strategies on win rate alone at Nechh Robotics.</p>
+
+  <h2>Our Internal PF Thresholds</h2>
+  <ul>
+    <li><strong>PF &lt; 1.0:</strong> Strategy rejected — it's a net loser</li>
+    <li><strong>PF 1.0–1.2:</strong> Marginal — too close to break-even after commissions and slippage</li>
+    <li><strong>PF 1.2–1.5:</strong> Acceptable — passes initial filter, requires robustness testing</li>
+    <li><strong>PF &gt; 1.5:</strong> Strong edge — moves to walk-forward validation</li>
+    <li><strong>PF &gt; 2.0:</strong> Excellent — rare, but these are the strategies we actually trade</li>
+  </ul>
+
+  <h2>Why Commissions and Slippage Destroy Marginal PFs</h2>
+  <p>A backtest PF of 1.15 looks profitable on paper, but once you add real-world costs:</p>
+  <ul>
+    <li>Exchange fees: 0.04%–0.10% per trade (taker fee)</li>
+    <li>Spread: 0.02%–0.05% for liquid pairs</li>
+    <li>Slippage on larger orders: 0.05%–0.2%</li>
+  </ul>
+  <p>A strategy with 200 trades/year at a 0.1% all-in cost loses 20% of its capital to friction before a single dollar of profit. PF 1.15 becomes PF 0.95 in live trading — a loser.</p>
+
+  <h2>Profit Factor Across Our Validated Strategies</h2>
+  <table class="metric-table">
+    <thead>
+      <tr><th>Strategy</th><th>Asset</th><th>Backtest PF</th><th>Trades (2yr)</th><th>Max DD</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>EMA Pullback</td><td>BTCUSDT</td><td>1.93</td><td>148</td><td>8.2%</td><td><span class="badge-good">ACTIVE</span></td></tr>
+      <tr><td>EMA Pullback</td><td>ETHUSDT</td><td>2.59</td><td>162</td><td>6.4%</td><td><span class="badge-good">ACTIVE</span></td></tr>
+      <tr><td>EMA Pullback</td><td>SOLUSDT</td><td>1.28</td><td>134</td><td>11.1%</td><td><span class="badge-good">ACTIVE</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>How to Improve Your Strategy's PF</h2>
+  <ol>
+    <li><strong>Increase average win size</strong> — widen your take-profit target or use partial exits to let winners run</li>
+    <li><strong>Reduce average loss size</strong> — tighten stop-losses (but test robustness — too tight = whipsaw)</li>
+    <li><strong>Filter bad conditions</strong> — remove trades taken in choppy/ranging markets (regime filtering)</li>
+    <li><strong>Blacklist underperforming assets</strong> — not every coin suits every strategy</li>
+    <li><strong>Reduce trade frequency</strong> — more trades ≠ more profit; quality over quantity</li>
+  </ol>
+
+  <div class="callout">
+    <strong>Key Takeaway</strong>
+    If a backtest shows PF &lt; 1.2 with over 100 trades and realistic commission modeling, discard the strategy. No amount of optimization will save a fundamentally weak edge — you'll just be overfitting noise.
+  </div>
+
+  <h2>Conclusion</h2>
+  <p>Win rate is a vanity metric. Profit Factor is the truth. Before you trade any system live, calculate its PF with real commission assumptions across at least 100 out-of-sample trades. If it clears 1.5, you have something worth exploring. If it doesn't, move on.</p>
+  <p>At Nechh Robotics, every strategy we deploy goes through a 9-step validation chain — PF filtering is just the first gate. But it's the one that eliminates 90% of strategies that would otherwise waste real capital.</p>
+
+  <div class="cta-box">
+    <h3>Get Real Signals, Not Just Theory</h3>
+    <p>Our validated strategies generate real-time signals delivered to your Telegram. PF-filtered, walk-forward tested.</p>
+    <a href="../pricing.html" class="cta-btn">View Pricing →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="fg">
+    <div class="fc">
+      <div class="flogo">Nechh Robotics</div>
+      <div class="fwarn">Independent algorithmic market analysis across crypto, equities, forex, and emerging markets.</div>
+      <div class="fwarn" style="margin-top:8px">⚠️ Not financial advice. High risk. 18+ only.</div>
+      <div style="margin-top:10px;font-size:11px;color:#9ca3af">hello@nechhrobotics.com</div>
+    </div>
+    <div class="fc">
+      <h4>Markets</h4>
+      <ul>
+        <li><a href="../pricing.html">Crypto <span style="background:#dcfce7;color:#16a34a;font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:4px">LIVE</span></a></li>
+        <li><span style="font-size:12px;color:#d1d5db">NYSE &amp; NASDAQ (Q3 2026)</span></li>
+        <li><span style="font-size:12px;color:#d1d5db">Forex (Q4 2026)</span></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about.html">About Us</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="../legal/privacy.html">Privacy Policy</a></li>
+        <li><a href="../legal/terms.html">Terms of Service</a></li>
+        <li><a href="../legal/risk-disclosure.html">Risk Disclosure</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© 2026 Nechh Robotics. All rights reserved.</span>
+    <span>Not financial advice. Trading involves substantial risk of loss.</span>
+  </div>
+</footer>
+<script src="../assets/cookie-banner.js"></script>
+<script src="../assets/analytics-events.js"></script>
+</body>
+</html>

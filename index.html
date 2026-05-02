@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google Analytics 4 (replace G-XXXXXXXXXX with your Measurement ID) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<!-- Google Analytics 4 (replace G-439H3JBHZR with your Measurement ID) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-439H3JBHZR"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+  gtag('config', 'G-439H3JBHZR');
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +24,9 @@
   <meta name="twitter:description" content="Nechh Robotics delivers algorithmic market signals across crypto, equities, forex and emerging markets. Independent analysis for informed traders.">
   <meta name="twitter:image" content="https://nechhrobotics.com/assets/og-image.jpg">
   <link rel="canonical" href="https://nechhrobotics.com/index.html">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -606,6 +609,15 @@ function handleLeadMagnet(e) {
 }
 </script>
 <script src="assets/cookie-banner.js" defer></script>
+<script src="assets/analytics-events.js" defer></script>
+<script src="assets/chatbot.js" defer></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js').catch(function(){});
+    });
+  }
+</script>
 </body>
 </html>
 

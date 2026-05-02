@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Crypto to Equities: What Changes and What Doesn't — Nechh Robotics</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-439H3JBHZR"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-439H3JBHZR');</script>
+  <meta name="description" content="Lessons from adapting algorithmic strategies developed on crypto to US equities — key structural differences, PDT rules, and session timing.">
+  <meta property="og:title" content="From Crypto to Equities: What Changes and What Doesn't">
+  <meta property="og:type" content="article">
+  <link rel="canonical" href="https://nechhrobotics.com/blog/crypto-to-equities.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',system-ui,sans-serif;background:#fff;color:#111827;font-size:15px;line-height:1.7}
+    .risk-banner{background:#7c2d12;color:#fef3c7;font-size:11px;text-align:center;padding:7px 16px}
+    .risk-banner a{color:#fcd34d;text-decoration:underline}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:60px;border-bottom:1px solid #e5e7eb;background:#fff;position:sticky;top:0;z-index:100}
+    .nav-logo{font-weight:700;font-size:15px;color:#2563eb;text-decoration:none}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a{color:#6b7280;text-decoration:none;font-size:13px;font-weight:500}
+    .nav-links a:hover{color:#111827}
+    .nav-cta{background:#2563eb;color:#fff!important;padding:7px 16px;border-radius:7px;font-size:12px!important;font-weight:600!important}
+    .article-wrap{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+    .breadcrumb{font-size:12px;color:#9ca3af;margin-bottom:24px}
+    .breadcrumb a{color:#2563eb;text-decoration:none}
+    .post-tag{display:inline-block;background:#fff1f2;color:#e11d48;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:12px}
+    h1{font-size:30px;font-weight:700;color:#111827;line-height:1.3;margin-bottom:12px}
+    .post-meta{font-size:12px;color:#9ca3af;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid #f3f4f6}
+    h2{font-size:20px;font-weight:700;color:#111827;margin:32px 0 12px}
+    h3{font-size:16px;font-weight:600;color:#111827;margin:24px 0 8px}
+    p{margin-bottom:16px;color:#374151}
+    ul,ol{margin:0 0 16px 24px;color:#374151}
+    li{margin-bottom:6px}
+    .callout{background:#eff6ff;border-left:4px solid #2563eb;border-radius:0 8px 8px 0;padding:16px 20px;margin:24px 0;font-size:14px;color:#1e40af}
+    .callout strong{display:block;margin-bottom:4px}
+    .warn{background:#fef3c7;border-left:4px solid #d97706;border-radius:0 8px 8px 0;padding:16px 20px;margin:24px 0;font-size:14px;color:#92400e}
+    .metric-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:13px}
+    .metric-table th{background:#f8faff;color:#374151;font-weight:600;text-align:left;padding:10px 14px;border:1px solid #e5e7eb}
+    .metric-table td{padding:10px 14px;border:1px solid #e5e7eb;color:#374151}
+    .metric-table tr:nth-child(even) td{background:#fafafa}
+    .cta-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:32px 24px;text-align:center;margin-top:48px}
+    .cta-box h3{font-size:18px;font-weight:700;color:#1e40af;margin-bottom:8px}
+    .cta-box p{font-size:13px;color:#3b82f6;margin-bottom:20px}
+    .cta-btn{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:11px 28px;border-radius:8px;font-size:13px;font-weight:600}
+    footer{background:#f9fafb;border-top:1px solid #e5e7eb;padding:40px 40px 24px}
+    .fg{max-width:960px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+    @media(max-width:720px){.fg{grid-template-columns:1fr 1fr}.nav-links{gap:14px}}
+    @media(max-width:480px){.fg{grid-template-columns:1fr}.nav-links{display:none}}
+    .flogo{font-weight:700;color:#2563eb;font-size:15px;margin-bottom:6px}
+    .fwarn{font-size:11px;color:#9ca3af;line-height:1.6}
+    .fc h4{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#374151;margin-bottom:12px}
+    .fc ul{list-style:none}
+    .fc ul li{margin-bottom:7px}
+    .fc ul li a{font-size:12px;color:#6b7280;text-decoration:none}
+    .fc ul li a:hover{color:#2563eb}
+    .fbot{max-width:960px;margin:24px auto 0;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  </style>
+</head>
+<body>
+
+<div class="risk-banner">
+  <strong>⚠️ Risk Warning:</strong> Nechh Robotics provides independent algorithmic market analysis for informational purposes only.
+  <strong>This is not financial advice.</strong> Trading involves substantial risk of loss.
+  <a href="../legal/risk-disclosure.html">Learn more →</a>
+</div>
+
+<nav>
+  <a class="nav-logo" href="../index.html">Nechh Robotics</a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../performance.html">Performance</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../pricing.html" class="nav-cta">Get Access →</a>
+  </div>
+</nav>
+
+<div class="article-wrap">
+  <div class="breadcrumb"><a href="../blog.html">← Blog</a> / Multi-Market</div>
+
+  <span class="post-tag">Multi-Market</span>
+  <h1>From Crypto to Equities: What Changes and What Doesn't</h1>
+  <div class="post-meta">March 2026 · 9 min read · By Nechh Robotics Research Team</div>
+
+  <p>We built our core strategies on crypto. The 24/7 market, deep liquidity on top pairs, and clean historical data made it the ideal testing ground. Now as we expand to US equities (NYSE/NASDAQ, planned Q3 2026), we've gone through the exercise of systematically cataloging what transfers and what breaks. This is what we found.</p>
+
+  <h2>What Works the Same</h2>
+  <ul>
+    <li><strong>Trend-following logic:</strong> EMA Pullback works in any trending asset class. Trending stocks (momentum plays) respond to the same setup as trending crypto.</li>
+    <li><strong>Profit Factor as primary metric:</strong> PF is universal. A PF of 1.5+ in equities means the same thing as in crypto.</li>
+    <li><strong>Risk % per trade:</strong> 1% risk per trade is appropriate regardless of market.</li>
+    <li><strong>Stop-loss discipline:</strong> Cutting losers fast matters everywhere.</li>
+    <li><strong>Walk-forward validation:</strong> The same 9-step validation chain applies.</li>
+  </ul>
+
+  <h2>What Changes Significantly</h2>
+
+  <h3>1. Market Hours — Session Behavior</h3>
+  <p>Crypto never sleeps. US equities trade 9:30 AM–4:00 PM ET, with pre-market (4–9:30 AM) and after-hours (4–8 PM) having different liquidity profiles.</p>
+  <ul>
+    <li>Most volume (and best execution) is 9:30–11:30 AM and 2:30–4:00 PM</li>
+    <li>12:00–2:30 PM (lunch hours) is low volume — false signals increase</li>
+    <li>Never hold positions through earnings reports without explicit intent</li>
+  </ul>
+
+  <h3>2. PDT Rule (Pattern Day Trader)</h3>
+  <p>US-regulated accounts with less than $25,000 are limited to 3 round-trip day trades per rolling 5-session period. This is critical for our signal frequency planning.</p>
+
+  <div class="warn">
+    <strong>⚠️ PDT Impact</strong>
+    Any subscriber using our equity signals with &lt;$25k capital must swing trade (hold overnight) rather than day trade. We will design equity signal packages accordingly.
+  </div>
+
+  <h3>3. Overnight Gaps</h3>
+  <p>Crypto doesn't gap (it trades continuously). US equities can open 5–20% away from yesterday's close after earnings, economic releases, or after-hours news. Your stop-loss cannot protect you from gap risk — it executes at the open price, not your stop level.</p>
+  <ul>
+    <li>Solution: Reduce position size for overnight holds</li>
+    <li>Avoid holding through scheduled events (FOMC, CPI, earnings)</li>
+    <li>Consider using options as protective hedges for larger positions</li>
+  </ul>
+
+  <h3>4. Commission Structure</h3>
+  <table class="metric-table">
+    <thead>
+      <tr><th>Market</th><th>Commission</th><th>Spread</th><th>Total Round-Trip</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Crypto (Binance)</td><td>0.04–0.10%</td><td>0.02%</td><td>0.12–0.24%</td></tr>
+      <tr><td>US Equities (Retail)</td><td>$0 (most brokers)</td><td>0.01–0.05%</td><td>0.02–0.10%</td></tr>
+      <tr><td>US Equities (Institutional)</td><td>$0.003/share</td><td>0.01%</td><td>&lt;0.02%</td></tr>
+    </tbody>
+  </table>
+  <p>Commission-free retail equity trading is actually an advantage vs crypto — but the spread on illiquid stocks can be wider.</p>
+
+  <h3>5. Correlation and Macro Events</h3>
+  <p>Individual stocks in the same sector are highly correlated. During broad market sell-offs, 80%+ of stocks fall together regardless of signal quality. Crypto has intra-market correlation too, but equities are more tied to macro data releases.</p>
+
+  <h3>6. Liquidity and Slippage</h3>
+  <p>Large-cap stocks (AAPL, MSFT, SPY) have enormous liquidity — better than most crypto pairs. But small/mid-cap stocks can have wider spreads and higher slippage than major crypto pairs. We'll focus on top-500 market cap stocks only.</p>
+
+  <h2>Our Adaptation Plan (Q3 2026)</h2>
+  <ol>
+    <li>Restrict signals to NYSE/NASDAQ stocks with &gt;$1B market cap and &gt;$50M average daily volume</li>
+    <li>Session filter: Only generate signals during 9:30–11:30 AM and 2:30–3:45 PM ET</li>
+    <li>Separate signal packages: "Day Trade" (requires $25k+) vs "Swing" (PDT-safe)</li>
+    <li>Earnings calendar integration: No new entries within 48 hours of earnings</li>
+    <li>Sector diversification limit: Max 2 signals from the same GICS sector simultaneously</li>
+  </ol>
+
+  <div class="callout">
+    <strong>What We're NOT Changing</strong>
+    Core strategy logic, PF thresholds, risk % per trade, stop-loss discipline, and validation methodology remain identical. The edge we've found in crypto trends transfers to equity trends — only the implementation details change.
+  </div>
+
+  <h2>Conclusion</h2>
+  <p>Adapting from crypto to equities is not a fundamental rebuild — it's an operational adaptation. The same trend-following logic, the same risk management principles, and the same validation rigor apply. The differences are structural (PDT, gaps, session hours) and require specific implementation guardrails, not a new strategy.</p>
+  <p>We're currently in the backtest validation phase for our top-20 equity candidates. Full equity signal launch is planned for Q3 2026.</p>
+
+  <div class="cta-box">
+    <h3>Multi-Market Signals Coming Q3 2026</h3>
+    <p>Subscribe now for crypto signals and get early access to our equity signal launch.</p>
+    <a href="../pricing.html" class="cta-btn">View Pricing →</a>
+  </div>
+</div>
+
+<footer>
+  <div class="fg">
+    <div class="fc">
+      <div class="flogo">Nechh Robotics</div>
+      <div class="fwarn">Independent algorithmic market analysis across crypto, equities, forex, and emerging markets.</div>
+      <div class="fwarn" style="margin-top:8px">⚠️ Not financial advice. High risk. 18+ only.</div>
+      <div style="margin-top:10px;font-size:11px;color:#9ca3af">hello@nechhrobotics.com</div>
+    </div>
+    <div class="fc">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="../about.html">About Us</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="../faq.html">FAQ</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="../legal/privacy.html">Privacy Policy</a></li>
+        <li><a href="../legal/terms.html">Terms of Service</a></li>
+        <li><a href="../legal/risk-disclosure.html">Risk Disclosure</a></li>
+      </ul>
+    </div>
+    <div class="fc">
+      <h4>More Articles</h4>
+      <ul>
+        <li><a href="ema-pullback-strategy.html">EMA Pullback Strategy</a></li>
+        <li><a href="position-sizing-guide.html">Position Sizing Guide</a></li>
+        <li><a href="algo-signal-pipeline.html">Signal Pipeline</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>© 2026 Nechh Robotics. All rights reserved.</span>
+    <span>Not financial advice. Trading involves substantial risk of loss.</span>
+  </div>
+</footer>
+<script src="../assets/cookie-banner.js"></script>
+<script src="../assets/analytics-events.js"></script>
+</body>
+</html>
