@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "02.05.2026 19:13 UTC",
-      "uptime": "5:32:01",
+      "last_update": "02.05.2026 19:43 UTC",
+      "uptime": "6:02:02",
       "active_symbols": 25
     },
     "performance": {
       "balance": 9992.35,
-      "equity": 9990.97,
-      "total_pnl": -9.03,
+      "equity": 9992.13,
+      "total_pnl": -7.87,
       "total_trades": 72,
       "wins": 42,
       "losses": 30,
@@ -22,40 +22,40 @@
       {
         "symbol": "AAVEUSDT",
         "side": "LONG",
-        "pnl": 2.2
+        "pnl": 1.98
       },
       {
         "symbol": "BTCUSDT",
         "side": "LONG",
-        "pnl": 0.47
+        "pnl": 0.67
       },
       {
         "symbol": "ETHUSDT",
         "side": "LONG",
-        "pnl": 0.42
+        "pnl": 1.31
       },
       {
         "symbol": "SUIUSDT",
         "side": "LONG",
-        "pnl": -0.97
+        "pnl": -0.8
       },
       {
         "symbol": "DOGEUSDT",
         "side": "LONG",
-        "pnl": -3.5
+        "pnl": -3.37
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,482.33",
+        "price": "$78,497.46",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,310.00",
+        "price": "$2,312.07",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -69,7 +69,7 @@
       },
       {
         "symbol": "BNB",
-        "price": "$618.70",
+        "price": "$618.62",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
@@ -97,7 +97,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$446.60",
+        "price": "$446.80",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -153,7 +153,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$93.00",
+        "price": "$92.97",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
