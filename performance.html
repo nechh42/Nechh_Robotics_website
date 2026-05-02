@@ -115,17 +115,22 @@ footer a:hover{text-decoration:underline}
   <div class="table-box">
     <div class="table-header">
       <span class="table-title">EXECUTION LOG</span>
-      <div style="display:flex;gap:12px;align-items:center">
-        <span style="color:var(--muted);font-size:11px" id="tradeCount">â€”</span>
-        <button onclick="exportCSV()" style="background:#fff;border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--font);font-weight:500">â¬‡ CSV</button>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+        <div style="display:flex;gap:6px">
+          <button onclick="filterTrades('ALL')" id="filter-ALL" style="background:#2563eb;color:#fff;border:1px solid #2563eb;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:600">All</button>
+          <button onclick="filterTrades('FUTURES')" id="filter-FUTURES" style="background:#fff;color:var(--muted);border:1px solid var(--border);padding:4px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:500">Futures</button>
+          <button onclick="filterTrades('PAPERTRADE')" id="filter-PAPERTRADE" style="background:#fff;color:var(--muted);border:1px solid var(--border);padding:4px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:500">Spot Paper</button>
+        </div>
+        <span style="color:var(--muted);font-size:11px" id="tradeCount">—</span>
+        <button onclick="exportCSV()" style="background:#fff;border:1px solid var(--border);color:var(--muted);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:11px;font-family:var(--font);font-weight:500">⬇ CSV</button>
       </div>
     </div>
     <div style="overflow-x:auto">
       <table>
         <thead>
           <tr>
-            <th>#</th><th>SYMBOL</th><th>SIDE</th><th>STRUCTURE</th>
-            <th>SESSION</th><th>ENTRY</th><th>EXIT</th><th>SL</th><th>TP</th><th>RR</th><th>OUTCOME</th><th>PnL</th><th>DATE</th>
+            <th>#</th><th>MARKET</th><th>SYMBOL</th><th>SIDE</th><th>STRUCTURE</th>
+            <th>ENTRY</th><th>EXIT</th><th>SL</th><th>TP</th><th>RR</th><th>OUTCOME</th><th>PnL</th><th>DATE</th>
           </tr>
         </thead>
         <tbody id="tradeTable"></tbody>
@@ -260,31 +265,64 @@ function render(data) {
   document.getElementById('tradeCount').textContent =
     (s.wins||0) + ' wins / ' + (s.losses||0) + ' losses';
 
-  const tbody = document.getElementById('tradeTable');
-  tbody.innerHTML = trades.length === 0
-    ? '<tr><td colspan="13" class="no-data">Executions will appear here as the system runs.</td></tr>'
-    : trades.map((t,i) => {
-        const win = t.outcome === 'Target Reached';
-        const date = t.closed_at ? new Date(t.closed_at).toLocaleDateString('en-GB') : 'â€”';
-        const ps = t.pnl >= 0 ? '+' : '';
-        return `<tr>
-          <td style="color:var(--muted);font-size:11px">${trades.length-i}</td>
-          <td><b style="font-size:12px">${t.symbol}</b></td>
-          <td class="${t.side==='LONG'?'side-long':'side-short'}">${t.side}</td>
-          <td style="color:#374151">${t.structure}</td>
-          <td style="color:var(--muted)">${t.session}</td>
-          <td style="color:#374151">${t.entry ? fmt(t.entry,2) : 'â€”'}</td>
-          <td style="color:#374151">${t.exit  ? fmt(t.exit,2)  : 'â€”'}</td>
-          <td style="color:var(--red)">${t.invalidation ? fmt(t.invalidation,2) : 'â€”'}</td>
-          <td style="color:var(--green)">${t.target ? fmt(t.target,2) : 'â€”'}</td>
-          <td class="${t.rr>=0?'green':'red'}">${fmt(t.rr,1)}</td>
-          <td class="${win?'outcome-win':'outcome-loss'}">${t.outcome}</td>
-          <td class="${t.pnl>=0?'green':'red'}">${ps}$${fmt(t.pnl)}</td>
-          <td style="color:var(--muted)">${date}</td>
-        </tr>`;
-      }).join('');
+  window._allTrades = trades;
+  window._activeFilter = 'ALL';
+  renderTradeTable(trades);
 
-  // Destroy old charts
+    // Spot/Futures filter
+function filterTrades(type) {
+  window._activeFilter = type;
+  ['ALL','FUTURES','PAPERTRADE'].forEach(function(f) {
+    var btn = document.getElementById('filter-' + f);
+    if (!btn) return;
+    if (f === type) {
+      btn.style.background = '#2563eb'; btn.style.color = '#fff'; btn.style.borderColor = '#2563eb'; btn.style.fontWeight = '600';
+    } else {
+      btn.style.background = '#fff'; btn.style.color = 'var(--muted)'; btn.style.borderColor = 'var(--border)'; btn.style.fontWeight = '500';
+    }
+  });
+  var filtered = type === 'ALL' ? window._allTrades : window._allTrades.filter(function(t){ return t.market === type; });
+  renderTradeTable(filtered);
+}
+
+function renderTradeTable(tradeList) {
+  var tbody = document.getElementById('tradeTable');
+  var wins   = tradeList.filter(function(t){ return t.outcome === 'WIN' || t.outcome === 'Target Reached'; }).length;
+  var losses = tradeList.filter(function(t){ return t.outcome === 'LOSS'; }).length;
+  document.getElementById('tradeCount').textContent = wins + ' wins / ' + losses + ' losses';
+
+  if (!tradeList.length) {
+    tbody.innerHTML = '<tr><td colspan="14" class="no-data">No trades for this filter.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = tradeList.map(function(t, i) {
+    var win  = t.outcome === 'WIN' || t.outcome === 'Target Reached';
+    var dt   = t.exit_time || t.closed_at;
+    var date = dt ? new Date(dt).toLocaleDateString('en-GB') : '—';
+    var pnl  = t.pnl_usd != null ? t.pnl_usd : (t.pnl != null ? t.pnl : 0);
+    var ps   = pnl >= 0 ? '+' : '';
+    var mkt  = t.market === 'FUTURES'
+      ? '<span style="background:#eff6ff;color:#2563eb;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px">FUTURES</span>'
+      : '<span style="background:#f3f4f6;color:#6b7280;font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px">SPOT PAPER</span>';
+    return '<tr>'
+      + '<td style="color:var(--muted);font-size:11px">' + (tradeList.length-i) + '</td>'
+      + '<td>' + mkt + '</td>'
+      + '<td><b style="font-size:12px">' + t.symbol + '</b></td>'
+      + '<td class="' + (t.side==='LONG'?'side-long':'side-short') + '">' + t.side + '</td>'
+      + '<td style="color:#374151;font-size:11px">' + (t.structure||'—') + '</td>'
+      + '<td style="color:#374151">' + (t.entry ? fmt(t.entry,2) : '—') + '</td>'
+      + '<td style="color:#374151">' + (t.exit  ? fmt(t.exit,2)  : '—') + '</td>'
+      + '<td style="color:var(--red)">'   + (t.invalidation ? fmt(t.invalidation,2) : '—') + '</td>'
+      + '<td style="color:var(--green)">' + (t.target ? fmt(t.target,2) : '—') + '</td>'
+      + '<td class="' + (t.rr>=0?'green':'red') + '">' + fmt(t.rr,1) + '</td>'
+      + '<td class="' + (win?'outcome-win':'outcome-loss') + '">' + t.outcome + '</td>'
+      + '<td class="' + (pnl>=0?'green':'red') + '">' + ps + '$' + fmt(pnl) + '</td>'
+      + '<td style="color:var(--muted)">' + date + '</td>'
+      + '</tr>';
+  }).join('');
+}
+
+  
   charts.forEach(c => c.destroy());
   charts = [];
 
@@ -321,4 +359,5 @@ setInterval(loadData, 60000);
 <script src="assets/chatbot.js" defer></script>
 </body>
 </html>
+
 
