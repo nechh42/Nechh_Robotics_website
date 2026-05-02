@@ -1,19 +1,19 @@
 {
   "meta": {
-    "last_updated": "2026-05-02T21:00:03.607008+00:00",
+    "last_updated": "2026-05-02T21:00:05.709838+00:00",
     "mode": "PAPERTRADE",
     "version": "2.0"
   },
   "summary": {
-    "total_trades": 114,
+    "total_trades": 115,
     "wins": 0,
-    "losses": 2,
+    "losses": 3,
     "win_rate": 0.0,
     "avg_rr": 0.36,
-    "total_pnl": -3.0,
-    "max_drawdown": 0.03,
+    "total_pnl": -4.25,
+    "max_drawdown": 0.04,
     "balance_start": 10000.0,
-    "balance_current": 9997.0
+    "balance_current": 9995.75
   },
   "trades": [
     {
@@ -2409,6 +2409,27 @@
       "duration_minutes": 1019,
       "opened_at": "2026-05-02T04:00:14.871301+00:00",
       "closed_at": "2026-05-02T21:00:03.607008+00:00"
+    },
+    {
+      "id": "T115",
+      "symbol": "SUIUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MACD_CROSSOVER",
+      "session": "NY",
+      "entry": 0.9282903499999999,
+      "exit": 0.9268979144749999,
+      "invalidation": 0.9143428571428571,
+      "target": 0.9520142857142857,
+      "leverage": 1,
+      "size": 539.6516084848286,
+      "rr": -0.1,
+      "outcome": "Time Exit",
+      "pnl": -1.25,
+      "pnl_pct": -0.25,
+      "duration_minutes": 300,
+      "opened_at": "2026-05-02T16:00:01.573709+00:00",
+      "closed_at": "2026-05-02T21:00:05.709838+00:00"
     }
   ]
 }
