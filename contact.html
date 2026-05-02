@@ -1,110 +1,229 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Nechh Robotics</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Nechh Robotics</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Inter",system-ui,sans-serif;background:#fff;color:#111827;font-size:14px;line-height:1.6}
+.risk-banner{background:#7c2d12;color:#fef3c7;font-size:11px;text-align:center;padding:7px 16px;line-height:1.5}
+.risk-banner a{color:#fcd34d;text-decoration:underline}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:60px;border-bottom:1px solid #e5e7eb;background:#fff;position:sticky;top:0;z-index:100}
+.nav-logo{font-weight:700;font-size:15px;color:#2563eb;text-decoration:none}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:#6b7280;text-decoration:none;font-size:13px;font-weight:500;transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:#111827}
+.nav-cta{background:#2563eb;color:#fff!important;padding:7px 16px;border-radius:7px;font-size:12px!important;font-weight:600!important}
+.nav-cta:hover{background:#1d4ed8!important}
+.page{max-width:760px;margin:0 auto;padding:56px 24px 80px}
+h1{font-size:26px;font-weight:700;margin-bottom:6px}
+.sub{color:#6b7280;font-size:14px;margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid #e5e7eb}
+.sec-label{font-size:11px;font-weight:600;color:#2563eb;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px}
+@media(max-width:560px){.contact-grid{grid-template-columns:1fr}}
+.contact-card{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:22px}
+.contact-card .icon{font-size:22px;margin-bottom:10px}
+.contact-card h3{font-size:14px;font-weight:700;margin-bottom:4px}
+.contact-card p{font-size:12px;color:#6b7280;line-height:1.7;margin-bottom:8px}
+.contact-card a{font-size:13px;color:#2563eb;text-decoration:none;font-weight:600}
+.contact-card a:hover{text-decoration:underline}
+.contact-form{background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:28px}
+.contact-form h2{font-size:16px;font-weight:700;margin-bottom:4px}
+.contact-form .form-note{font-size:12px;color:#6b7280;margin-bottom:20px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:#374151;margin-bottom:5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 14px;font-size:13px;border:1px solid #e5e7eb;border-radius:8px;font-family:inherit;background:#fff;color:#111827;outline:none;transition:border .15s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#2563eb}
+.form-group textarea{resize:vertical;min-height:110px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.btn-submit{background:#2563eb;color:#fff;border:none;padding:11px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s;font-family:inherit}
+.btn-submit:hover{background:#1d4ed8}
+.success-msg{display:none;background:#dcfce7;color:#14532d;border:1px solid #86efac;border-radius:8px;padding:14px;font-size:13px;margin-top:12px}
+.disclaimer-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:20px 24px;margin-top:40px}
+.disclaimer-box p{font-size:12px;color:#9a3412;line-height:1.7}
+footer{background:#f9fafb;border-top:1px solid #e5e7eb;padding:40px 40px 24px}
+.footer-grid{max-width:960px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+@media(max-width:720px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.flogo{font-weight:700;color:#2563eb;font-size:15px;margin-bottom:6px}
+.fwarn{font-size:11px;color:#9ca3af;margin-top:2px;line-height:1.6}
+.footer-col h4{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#374151;margin-bottom:12px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:7px}
+.footer-col ul li a{font-size:12px;color:#6b7280;text-decoration:none;transition:color .15s}
+.footer-col ul li a:hover{color:#2563eb}
+.footer-col ul li span{font-size:12px;color:#d1d5db}
+.footer-social{display:flex;gap:14px;margin-bottom:10px}
+.footer-social a{font-size:18px;color:#6b7280;text-decoration:none;transition:color .15s}
+.footer-social a:hover{color:#2563eb}
+.fbot{max-width:960px;margin:24px auto 0;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+</style>
 </head>
-<body class="bg-white text-gray-800">
-    <nav class="navbar"> <a href="index.html">Home</a> <a href="about.html">About</a> <a href="register.html">Beta Access</a> </nav>
-    <nav class="sticky top-0 bg-white/95 backdrop-blur-sm border-b z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4">
-        <div class="flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <a href="https://nechh-robotics-website.vercel.app/" class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold">NR</span>
-                    </div>
-                    <div class="hidden md:block">
-                        <div class="text-xl font-bold gradient-text">Nechh Robotics<span class="trademark"></span></div>
-                        <div class="text-xs text-gray-500">AI Research & Development</div>
-                    </div>
-                </a>
-            </div>
-            
-            <div class="hidden md:flex space-x-8">
-                <a href="https://nechh-robotics-website.vercel.app/" class="font-medium hover:text-blue-600">Home</a>
-                <a href="https://nechh-robotics-website.vercel.app/projects/" class="font-medium hover:text-blue-600">Projects</a>
-                <a href="https://nechh-robotics-website.vercel.app/projects/telegram-ai.html" class="font-medium hover:text-blue-600">Telegram AI</a>
-                <a href="https://nechh-robotics-website.vercel.app/subscription.html" class="font-medium hover:text-blue-600">Subscription</a>
-                <a href="https://nechh-robotics-website.vercel.app/about.html" class="font-medium hover:text-blue-600">About</a>
-                <a href="https://nechh-robotics-website.vercel.app/contact.html" class="font-medium hover:text-blue-600">Contact</a>
-            </div>
-            
-            <div class="md:hidden">
-                <button id="mobileMenuBtn" class="text-gray-600">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden mt-4 pt-4 border-t">
-            <div class="space-y-3">
-                <a href="https://nechh-robotics-website.vercel.app/" class="block py-2 hover:text-blue-600">Home</a>
-                <a href="https://nechh-robotics-website.vercel.app/projects/" class="block py-2 hover:text-blue-600">Projects</a>
-                <a href="https://nechh-robotics-website.vercel.app/projects/telegram-ai.html" class="block py-2 hover:text-blue-600">Telegram AI</a>
-                <a href="https://nechh-robotics-website.vercel.app/subscription.html" class="block py-2 hover:text-blue-600">Subscription</a>
-                <a href="https://nechh-robotics-website.vercel.app/about.html" class="block py-2 hover:text-blue-600">About</a>
-                <a href="https://nechh-robotics-website.vercel.app/contact.html" class="block py-2 hover:text-blue-600">Contact</a>
-            </div>
-        </div>
-    </div>
+<body>
+
+<div class="risk-banner">
+  <strong>&#9888;&#65039; Risk Warning:</strong> Nechh Robotics provides independent algorithmic market analysis for informational purposes only.
+  <strong>This is not financial advice.</strong> Trading involves substantial risk of loss.
+  <a href="legal/risk-disclosure.html">Learn more &rarr;</a>
+</div>
+
+<nav>
+  <a class="nav-logo" href="index.html">Nechh Robotics</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="performance.html">Performance</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="pricing.html" class="nav-cta">Get Access &rarr;</a>
+  </div>
 </nav>
 
-<script>
-    // Mobile menu toggle
-    document.getElementById('mobileMenuBtn')?.addEventListener('click', () => {
-        document.getElementById('mobileMenu').classList.toggle('hidden');
-    });
-</script>
+<div class="page">
 
-    <section class="py-16 px-4">
-        <div class="max-w-2xl mx-auto">
-            <h1 class="text-4xl font-bold mb-8 text-center">Contact Us</h1>
-            
-            <div class="space-y-8">
-                <div class="bg-gray-50 p-8 rounded-2xl">
-                    <h2 class="text-xl font-bold mb-4">Official Email</h2>
-                    <a href="mailto:nechhlab.global@gmail.com" 
-                       class="text-blue-600 hover:text-blue-800 text-lg font-medium">
-                        <i class="fas fa-envelope mr-3"></i>
-                        nechhlab.global@gmail.com
-                    </a>
-                    <p class="text-gray-600 mt-3">
-                        For research collaborations, partnership inquiries, 
-                        and technical discussions.
-                    </p>
-                </div>
-                
-                <div class="bg-gray-50 p-8 rounded-2xl">
-                    <h2 class="text-xl font-bold mb-4">Response Time</h2>
-                    <p class="text-gray-600">
-                        We typically respond within 24-48 hours for business inquiries.
-                        Research collaboration requests may take 3-5 business days.
-                    </p>
-                </div>
-            </div>
+  <div class="sec-label">Support</div>
+  <h1>Contact Us</h1>
+  <p class="sub">We respond within 24&ndash;48 hours. We do not provide investment advice or trade recommendations.</p>
+
+  <div class="contact-grid">
+
+    <div class="contact-card">
+      <div class="icon">&#9993;&#65039;</div>
+      <h3>General Inquiries</h3>
+      <p>Questions about our platform, subscriptions, or how the system works.</p>
+      <a href="mailto:hello@nechhrobotics.com">hello@nechhrobotics.com</a>
+    </div>
+
+    <div class="contact-card">
+      <div class="icon">&#9992;&#65039;</div>
+      <h3>Telegram Community</h3>
+      <p>Subscribers receive access to the private Telegram channel with real-time analysis.</p>
+      <a href="https://t.me/nechhrobotics" target="_blank" rel="noopener noreferrer">@nechhrobotics</a>
+    </div>
+
+    <div class="contact-card">
+      <div class="icon">&#128038;</div>
+      <h3>X (Twitter)</h3>
+      <p>Follow for public market updates, system status, and announcements.</p>
+      <a href="https://twitter.com/nechhrobotics" target="_blank" rel="noopener noreferrer">@nechhrobotics</a>
+    </div>
+
+    <div class="contact-card">
+      <div class="icon">&#128188;</div>
+      <h3>LinkedIn</h3>
+      <p>Company updates, roadmap milestones, and professional announcements.</p>
+      <a href="https://linkedin.com/company/nechh-robotics" target="_blank" rel="noopener noreferrer">Nechh Robotics</a>
+    </div>
+
+  </div>
+
+  <div class="contact-form">
+    <h2>Send a Message</h2>
+    <p class="form-note">For subscription support, account issues, or general questions.</p>
+    <form id="contactForm" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
         </div>
-    </section>
-
-    <footer style="background:#f9fafb;border-top:1px solid #e5e7eb;padding:28px 40px;text-align:center;">
-      <div style="font-weight:bold;font-size:15px;margin-bottom:6px;">Nechh Robotics</div>
-      <div style="font-size:11px;color:#9ca3af;margin-bottom:4px;">Independent algorithmic market research. For educational and informational purposes only.</div>
-      <div style="font-size:11px;color:#ef4444;font-weight:600;margin-bottom:10px;">⚠️ NOT INVESTMENT ADVICE — High risk involved. 18+ only.</div>
-      <div style="font-size:11px;color:#9ca3af;">
-        <a href="legal/terms.html" style="color:#6b7280;margin:0 8px;">Terms of Service</a> |
-        <a href="legal/privacy.html" style="color:#6b7280;margin:0 8px;">Privacy Policy</a> |
-        <a href="legal/risk-disclosure.html" style="color:#6b7280;margin:0 8px;">Risk Disclosure</a> |
-        <a href="legal/refund-policy.html" style="color:#6b7280;margin:0 8px;">Refund Policy</a>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
       </div>
-      <div style="font-size:10px;color:#d1d5db;margin-top:8px;">© Nechh Robotics. All rights reserved. | nechhlab.global@gmail.com | Türkiye</div>
-    </footer>
+      <div class="form-group">
+        <label for="topic">Topic</label>
+        <select id="topic" name="topic">
+          <option value="subscription">Subscription &amp; Access</option>
+          <option value="technical">Technical Issue</option>
+          <option value="billing">Billing</option>
+          <option value="general">General Inquiry</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Describe your question or issue..." required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Message &rarr;</button>
+      <div class="success-msg" id="successMsg">
+        &#9989; Your mail client will open. If not, email us at hello@nechhrobotics.com
+      </div>
+    </form>
+  </div>
 
+  <div class="disclaimer-box">
+    <p>
+      <strong>Important:</strong> We cannot provide personalized investment advice, trading signals, or portfolio recommendations.
+      All content from Nechh Robotics is for informational and educational purposes only.
+      Please read our <a href="legal/risk-disclosure.html" style="color:#9a3412;font-weight:600">Risk Disclosure</a> before subscribing.
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="flogo">Nechh Robotics</div>
+      <div class="fwarn">Independent algorithmic market analysis across crypto, equities, forex, and emerging markets.</div>
+      <div class="fwarn" style="margin-top:8px">&#9888;&#65039; Not financial advice. High risk involved. 18+ only.</div>
+      <div style="margin-top:10px;font-size:11px;color:#9ca3af">hello@nechhrobotics.com</div>
+    </div>
+    <div class="footer-col">
+      <h4>Markets</h4>
+      <ul>
+        <li><a href="pricing.html">Crypto <span style="background:#dcfce7;color:#16a34a;font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:4px">LIVE</span></a></li>
+        <li><span>NYSE &amp; NASDAQ (Q3 2026)</span></li>
+        <li><span>Forex (Q4 2026)</span></li>
+        <li><span>BIST (2027)</span></li>
+        <li><span>Asian Markets (2027)</span></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="legal/privacy.html">Privacy Policy</a></li>
+        <li><a href="legal/terms.html">Terms of Service</a></li>
+        <li><a href="legal/risk-disclosure.html">Risk Disclosure</a></li>
+        <li><a href="legal/refund-policy.html">Refund Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <div class="footer-social">
+        <a href="https://twitter.com/nechhrobotics" target="_blank" rel="noopener noreferrer" title="X">&#120143;</a>
+        <a href="https://linkedin.com/company/nechh-robotics" target="_blank" rel="noopener noreferrer" title="LinkedIn">in</a>
+        <a href="https://t.me/nechhrobotics" target="_blank" rel="noopener noreferrer" title="Telegram">&#9992;&#65039;</a>
+      </div>
+      <div style="font-size:12px;color:#6b7280">hello@nechhrobotics.com</div>
+    </div>
+  </div>
+  <div class="fbot">
+    <span>&copy; 2026 Nechh Robotics. All rights reserved.</span>
+    <span>Independent algorithmic market analysis. Not financial advice.
+      <a href="legal/risk-disclosure.html" style="color:#9ca3af;margin-left:4px">Risk Disclosure</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  var name    = document.getElementById("name").value;
+  var email   = document.getElementById("email").value;
+  var topic   = document.getElementById("topic").value;
+  var message = document.getElementById("message").value;
+  var subject = encodeURIComponent("Nechh Robotics Contact: " + topic);
+  var body    = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\n" + message);
+  window.location.href = "mailto:hello@nechhrobotics.com?subject=" + subject + "&body=" + body;
+  document.getElementById("successMsg").style.display = "block";
+}
+</script>
 </body>
 </html>
-
-

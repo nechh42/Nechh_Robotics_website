@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /telegram/
+Disallow: /data/
+Disallow: /assets/
+
+Sitemap: https://nechh-robotics-website.vercel.app/sitemap.xml

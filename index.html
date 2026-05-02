@@ -100,17 +100,37 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px
 .btn-white{background:#fff;color:#2563eb;padding:13px 30px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:all .15s;display:inline-block}
 .btn-white:hover{background:#eff6ff}
 
+/* RISK BANNER */
+.risk-banner{background:#7c2d12;color:#fef3c7;font-size:11px;text-align:center;padding:7px 16px;line-height:1.5}
+.risk-banner a{color:#fcd34d;text-decoration:underline}
+
 /* FOOTER */
-footer{background:#f9fafb;border-top:1px solid #e5e7eb;padding:32px 40px}
-.fi{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center}
-.flogo{font-weight:700;color:#2563eb;font-size:14px}
-.fwarn{font-size:11px;color:#9ca3af;margin-top:2px}
-.flinks{display:flex;gap:18px;flex-wrap:wrap}
-.flinks a{font-size:12px;color:#6b7280;text-decoration:none}.flinks a:hover{color:#111827}
-.fbot{max-width:960px;margin:14px auto 0;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;padding-top:14px}
+footer{background:#f9fafb;border-top:1px solid #e5e7eb;padding:40px 40px 24px}
+.footer-grid{max-width:960px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px}
+@media(max-width:720px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.flogo{font-weight:700;color:#2563eb;font-size:15px;margin-bottom:6px}
+.fwarn{font-size:11px;color:#9ca3af;margin-top:2px;line-height:1.6}
+.footer-col h4{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#374151;margin-bottom:12px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:7px}
+.footer-col ul li a{font-size:12px;color:#6b7280;text-decoration:none;transition:color .15s}
+.footer-col ul li a:hover{color:#2563eb}
+.footer-col ul li span{font-size:12px;color:#d1d5db}
+.footer-social{display:flex;gap:14px;margin-bottom:10px}
+.footer-social a{font-size:18px;color:#6b7280;text-decoration:none;transition:color .15s}
+.footer-social a:hover{color:#2563eb}
+.fbot{max-width:960px;margin:24px auto 0;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;padding-top:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 </style>
 </head>
 <body>
+
+<!-- RISK BANNER -->
+<div class="risk-banner">
+  <strong>⚠️ Risk Warning:</strong> Nechh Robotics provides independent algorithmic market analysis for informational purposes only.
+  <strong>This is not financial advice.</strong> Trading involves substantial risk of loss. Past performance does not guarantee future results.
+  <a href="legal/risk-disclosure.html">Learn more →</a>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -120,6 +140,7 @@ footer{background:#f9fafb;border-top:1px solid #e5e7eb;padding:32px 40px}
     <a href="about.html">About</a>
     <a href="performance.html">Performance</a>
     <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
     <a href="pricing.html" class="nav-cta">Get Access →</a>
   </div>
 </nav>
@@ -335,22 +356,54 @@ Session: NY
 
 <!-- FOOTER -->
 <footer>
-  <div class="fi">
-    <div>
+  <div class="footer-grid">
+
+    <div class="footer-col">
       <div class="flogo">Nechh Robotics</div>
-      <div class="fwarn">Independent algorithmic market research. For educational and informational purposes only.</div>
-      <div class="fwarn">⚠️ NOT INVESTMENT ADVICE — High risk involved. 18+ only.</div>
+      <div class="fwarn">Independent algorithmic market analysis across crypto, equities, forex, and emerging markets.</div>
+      <div class="fwarn" style="margin-top:8px">⚠️ Not financial advice. High risk involved. 18+ only.</div>
+      <div style="margin-top:10px;font-size:11px;color:#9ca3af">hello@nechhrobotics.com</div>
     </div>
-    <div class="flinks">
-      <a href="legal/terms.html">Terms of Service</a>
-      <a href="legal/privacy.html">Privacy Policy</a>
-      <a href="legal/risk-disclosure.html">Risk Disclosure</a>
-      <a href="legal/refund-policy.html">Refund Policy</a>
+
+    <div class="footer-col">
+      <h4>Markets</h4>
+      <ul>
+        <li><a href="pricing.html">Crypto <span style="background:#dcfce7;color:#16a34a;font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:4px">LIVE</span></a></li>
+        <li><span>NYSE & NASDAQ (Q3 2026)</span></li>
+        <li><span>Forex (Q4 2026)</span></li>
+        <li><span>BIST (2027)</span></li>
+        <li><span>Asian Markets (2027)</span></li>
+      </ul>
     </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="legal/privacy.html">Privacy Policy</a></li>
+        <li><a href="legal/terms.html">Terms of Service</a></li>
+        <li><a href="legal/risk-disclosure.html">Risk Disclosure</a></li>
+        <li><a href="legal/refund-policy.html">Refund Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <div class="footer-social">
+        <a href="https://twitter.com/nechhrobotics" target="_blank" rel="noopener noreferrer" title="X / Twitter">𝕏</a>
+        <a href="https://linkedin.com/company/nechh-robotics" target="_blank" rel="noopener noreferrer" title="LinkedIn">in</a>
+        <a href="https://t.me/nechhrobotics" target="_blank" rel="noopener noreferrer" title="Telegram">✈️</a>
+      </div>
+      <div style="font-size:12px;color:#6b7280">hello@nechhrobotics.com</div>
+    </div>
+
   </div>
   <div class="fbot">
-    © Nechh Robotics. All rights reserved. "Nechh Robotics" is a trademark. &nbsp;|&nbsp;
-    nechhlab.global@gmail.com &nbsp;|&nbsp; Türkiye
+    <span>© 2026 Nechh Robotics. All rights reserved.</span>
+    <span>Independent algorithmic market analysis. Not financial advice.
+      <a href="legal/risk-disclosure.html" style="color:#9ca3af;margin-left:4px">Risk Disclosure</a>
+    </span>
   </div>
 </footer>
 
