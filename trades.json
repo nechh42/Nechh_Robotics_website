@@ -1,19 +1,19 @@
 {
   "meta": {
-    "last_updated": "2026-05-02T21:00:01.118930+00:00",
+    "last_updated": "2026-05-02T21:00:03.607008+00:00",
     "mode": "PAPERTRADE",
     "version": "2.0"
   },
   "summary": {
-    "total_trades": 113,
+    "total_trades": 114,
     "wins": 0,
-    "losses": 1,
+    "losses": 2,
     "win_rate": 0.0,
     "avg_rr": 0.36,
-    "total_pnl": -1.25,
-    "max_drawdown": 0.01,
+    "total_pnl": -3.0,
+    "max_drawdown": 0.03,
     "balance_start": 10000.0,
-    "balance_current": 9998.75
+    "balance_current": 9997.0
   },
   "trades": [
     {
@@ -2388,6 +2388,27 @@
       "duration_minutes": 299,
       "opened_at": "2026-05-02T16:00:02.353775+00:00",
       "closed_at": "2026-05-02T21:00:01.118930+00:00"
+    },
+    {
+      "id": "T114",
+      "symbol": "AAVEUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MACD_CROSSOVER",
+      "session": "NY",
+      "entry": 92.708855,
+      "exit": 92.5697917175,
+      "invalidation": 91.17142857142856,
+      "target": 95.36714285714285,
+      "leverage": 1,
+      "size": 7.564696743696138,
+      "rr": -0.09,
+      "outcome": "Time Exit",
+      "pnl": -1.75,
+      "pnl_pct": -0.25,
+      "duration_minutes": 1019,
+      "opened_at": "2026-05-02T04:00:14.871301+00:00",
+      "closed_at": "2026-05-02T21:00:03.607008+00:00"
     }
   ]
 }
