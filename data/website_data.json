@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "02.05.2026 06:12 UTC",
-      "uptime": "1 day, 19:50:31",
+      "last_update": "02.05.2026 06:27 UTC",
+      "uptime": "1 day, 20:05:32",
       "active_symbols": 25
     },
     "performance": {
       "balance": 9998.77,
-      "equity": 9993.49,
-      "total_pnl": -6.51,
+      "equity": 9992.5,
+      "total_pnl": -7.5,
       "total_trades": 70,
       "wins": 42,
       "losses": 28,
@@ -22,48 +22,48 @@
       {
         "symbol": "AAVEUSDT",
         "side": "LONG",
-        "pnl": -5.29
+        "pnl": -6.27
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,248.39",
+        "price": "$78,155.85",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "ETH",
-        "price": "$2,301.44",
+        "price": "$2,298.46",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$83.75",
+        "price": "$83.63",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$615.64",
+        "price": "$614.95",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
       },
       {
         "symbol": "XRP",
-        "price": "$1.39",
+        "price": "$1.38",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "AVAX",
-        "price": "$9.10",
+        "price": "$9.07",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -77,7 +77,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$450.40",
+        "price": "$449.70",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -91,7 +91,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.10",
+        "price": "$9.07",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -133,7 +133,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$92.01",
+        "price": "$91.88",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
