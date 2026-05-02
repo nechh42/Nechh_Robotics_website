@@ -1,19 +1,19 @@
 {
   "meta": {
-    "last_updated": "2026-05-02T21:37:55.609283+00:00",
+    "last_updated": "2026-05-02T21:37:57.668384+00:00",
     "mode": "PAPERTRADE",
     "version": "2.0"
   },
   "summary": {
-    "total_trades": 116,
-    "wins": 1,
+    "total_trades": 117,
+    "wins": 2,
     "losses": 0,
-    "win_rate": 0.9,
-    "avg_rr": 0.39,
-    "total_pnl": 7.1,
+    "win_rate": 1.7,
+    "avg_rr": 0.43,
+    "total_pnl": 16.41,
     "max_drawdown": 0.0,
     "balance_start": 10000.0,
-    "balance_current": 10007.1
+    "balance_current": 10016.41
   },
   "trades": [
     {
@@ -2451,6 +2451,27 @@
       "duration_minutes": 877,
       "opened_at": "2026-05-02T07:00:16.031728+00:00",
       "closed_at": "2026-05-02T21:37:55.609283+00:00"
+    },
+    {
+      "id": "T117",
+      "symbol": "ETHUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "EMA Pullback \u2014 Trend Continuation",
+      "session": "NY",
+      "entry": 2309.0383699999998,
+      "exit": 2332.83549,
+      "invalidation": 2331.632857142857,
+      "target": 2333.822857142857,
+      "leverage": 1,
+      "size": 0.4335266204614583,
+      "rr": 1.05,
+      "outcome": "Target Reached",
+      "pnl": 9.31,
+      "pnl_pct": 0.93,
+      "duration_minutes": 877,
+      "opened_at": "2026-05-02T07:00:17.261069+00:00",
+      "closed_at": "2026-05-02T21:37:57.668384+00:00"
     }
   ]
 }
