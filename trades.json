@@ -1,19 +1,19 @@
 {
   "meta": {
-    "last_updated": "2026-05-03T20:37:57.223361+00:00",
+    "last_updated": "2026-05-03T20:40:15.312227+00:00",
     "mode": "PAPERTRADE",
     "version": "2.0"
   },
   "summary": {
-    "total_trades": 123,
+    "total_trades": 124,
     "wins": 2,
-    "losses": 0,
+    "losses": 1,
     "win_rate": 1.6,
     "avg_rr": 0.38,
-    "total_pnl": 1.92,
-    "max_drawdown": 0.0,
+    "total_pnl": 0.78,
+    "max_drawdown": 0.01,
     "balance_start": 10000.0,
-    "balance_current": 10001.92
+    "balance_current": 10000.78
   },
   "trades": [
     {
@@ -2598,6 +2598,27 @@
       "duration_minutes": 337,
       "opened_at": "2026-05-03T15:00:20.847820+00:00",
       "closed_at": "2026-05-03T20:37:57.223361+00:00"
+    },
+    {
+      "id": "T124",
+      "symbol": "BNBUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MACD_CROSSOVER",
+      "session": "NY",
+      "entry": 619.56796,
+      "exit": 619.179835,
+      "invalidation": 620.1142857142856,
+      "target": 625.1657142857142,
+      "leverage": 1,
+      "size": 1.1288282875237945,
+      "rr": -0.71,
+      "outcome": "Invalidated",
+      "pnl": -1.14,
+      "pnl_pct": -0.16,
+      "duration_minutes": 640,
+      "opened_at": "2026-05-03T10:00:01.437037+00:00",
+      "closed_at": "2026-05-03T20:40:15.312227+00:00"
     }
   ]
 }
