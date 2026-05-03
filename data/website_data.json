@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "03.05.2026 12:59 UTC",
-      "uptime": "23:18:15",
+      "last_update": "03.05.2026 13:14 UTC",
+      "uptime": "23:33:16",
       "active_symbols": 25
     },
     "performance": {
       "balance": 9974.11,
-      "equity": 9973.87,
-      "total_pnl": -26.13,
+      "equity": 9975.39,
+      "total_pnl": -24.61,
       "total_trades": 80,
       "wins": 44,
       "losses": 36,
@@ -22,39 +22,39 @@
       {
         "symbol": "BNBUSDT",
         "side": "LONG",
-        "pnl": -0.58
+        "pnl": -0.47
       },
       {
         "symbol": "ARPAUSDT",
         "side": "LONG",
-        "pnl": 0.35
+        "pnl": 1.75
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,747.09",
+        "price": "$78,750.70",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,325.60",
+        "price": "$2,327.39",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$84.11",
+        "price": "$84.20",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$619.05",
+        "price": "$619.15",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -82,7 +82,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$446.60",
+        "price": "$446.70",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -138,14 +138,14 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$93.07",
+        "price": "$92.88",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "RUNE",
-        "price": "$0.51",
+        "price": "$0.52",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
