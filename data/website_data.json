@@ -3,47 +3,53 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "03.05.2026 09:59 UTC",
-      "uptime": "20:18:02",
+      "last_update": "03.05.2026 10:14 UTC",
+      "uptime": "20:33:03",
       "active_symbols": 25
     },
     "performance": {
-      "balance": 9976.26,
-      "equity": 9976.26,
-      "total_pnl": -23.74,
+      "balance": 9975.56,
+      "equity": 9974.24,
+      "total_pnl": -25.76,
       "total_trades": 79,
       "wins": 44,
       "losses": 35,
       "win_rate": 55.7,
-      "max_drawdown_pct": 0.32,
+      "max_drawdown_pct": 0.34,
       "sharpe": -0.02
     },
-    "open_positions": [],
+    "open_positions": [
+      {
+        "symbol": "BNBUSDT",
+        "side": "LONG",
+        "pnl": -1.32
+      }
+    ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,529.57",
+        "price": "$78,485.84",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,316.73",
+        "price": "$2,313.46",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$84.06",
+        "price": "$83.99",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$618.56",
+        "price": "$618.40",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -57,7 +63,7 @@
       },
       {
         "symbol": "AVAX",
-        "price": "$9.06",
+        "price": "$9.07",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -71,7 +77,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$444.20",
+        "price": "$444.40",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -127,7 +133,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$92.59",
+        "price": "$92.48",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
