@@ -3,8 +3,8 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "03.05.2026 05:14 UTC",
-      "uptime": "15:32:42",
+      "last_update": "03.05.2026 05:44 UTC",
+      "uptime": "16:02:44",
       "active_symbols": 25
     },
     "performance": {
@@ -22,28 +22,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$78,235.18",
+        "price": "$78,221.92",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,303.74",
+        "price": "$2,302.16",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$83.81",
+        "price": "$83.70",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$616.20",
+        "price": "$616.88",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -57,21 +57,21 @@
       },
       {
         "symbol": "AVAX",
-        "price": "$9.04",
+        "price": "$9.03",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "TRX",
-        "price": "$0.33",
+        "price": "$0.34",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "BCH",
-        "price": "$443.70",
+        "price": "$443.90",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -85,7 +85,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.11",
+        "price": "$9.08",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -127,7 +127,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$92.22",
+        "price": "$92.14",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
