@@ -1,19 +1,19 @@
 {
   "meta": {
-    "last_updated": "2026-05-04T17:55:01.181816+00:00",
+    "last_updated": "2026-05-04T18:01:07.218452+00:00",
     "mode": "PAPERTRADE",
     "version": "2.0"
   },
   "summary": {
-    "total_trades": 136,
-    "wins": 1,
+    "total_trades": 137,
+    "wins": 2,
     "losses": 0,
-    "win_rate": 0.7,
+    "win_rate": 1.5,
     "avg_rr": 0.69,
-    "total_pnl": 1.13,
+    "total_pnl": 4.8,
     "max_drawdown": 0.0,
     "balance_start": 10000.0,
-    "balance_current": 10001.13
+    "balance_current": 10004.8
   },
   "trades": [
     {
@@ -2871,6 +2871,27 @@
       "duration_minutes": 115,
       "opened_at": "2026-05-04T16:00:00.052207+00:00",
       "closed_at": "2026-05-04T17:55:01.181816+00:00"
+    },
+    {
+      "id": "T137",
+      "symbol": "ETHUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MOMENTUM_BREAKOUT",
+      "session": "NY",
+      "entry": 2353.6652099999997,
+      "exit": 2364.697625,
+      "invalidation": 2368.359142857143,
+      "target": 2433.8464285714285,
+      "leverage": 1,
+      "size": 0.4228958651236919,
+      "rr": 0.75,
+      "outcome": "Invalidated",
+      "pnl": 3.67,
+      "pnl_pct": 0.37,
+      "duration_minutes": 121,
+      "opened_at": "2026-05-04T16:00:00.086573+00:00",
+      "closed_at": "2026-05-04T18:01:07.218452+00:00"
     }
   ]
 }
