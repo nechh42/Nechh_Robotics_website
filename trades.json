@@ -1,19 +1,19 @@
 {
   "meta": {
-    "last_updated": "2026-05-04T03:50:20.743506+00:00",
+    "last_updated": "2026-05-04T04:20:52.817937+00:00",
     "mode": "PAPERTRADE",
     "version": "2.0"
   },
   "summary": {
-    "total_trades": 125,
-    "wins": 66,
+    "total_trades": 127,
+    "wins": 68,
     "losses": 59,
-    "win_rate": 52.8,
-    "avg_rr": 0.13,
-    "total_pnl": 326.67,
+    "win_rate": 53.5,
+    "avg_rr": 0.26,
+    "total_pnl": 563.2,
     "max_drawdown": 1.39,
     "balance_start": 10000.0,
-    "balance_current": 10326.67
+    "balance_current": 10563.2
   },
   "trades": [
     {
@@ -2640,6 +2640,48 @@
       "exit_time": "2026-05-04T06:50:06.318996",
       "exit_reason": "TAKE-PROFIT: 0.5347 >= 0.5342",
       "notes": "Strateji:Bollinger_Squeeze_SHORT_FULL"
+    },
+    {
+      "id": "F042",
+      "symbol": "ETHUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "Breakout — 15p High + Volume",
+      "session": "—",
+      "entry": 2328.4,
+      "exit": 2385.99,
+      "invalidation": 2300.1400000000003,
+      "target": 2413.1799999999994,
+      "leverage": 1,
+      "size": 1.967217843453291,
+      "rr": 2.04,
+      "outcome": "WIN",
+      "pnl_usd": 108.65,
+      "entry_time": "2026-05-03T23:58:35.505843",
+      "exit_time": "2026-05-04T07:05:22.809127",
+      "exit_reason": "TAKE-PROFIT: 2385.9900 >= 2384.9200",
+      "notes": "Strateji:EMA_PULLBACK"
+    },
+    {
+      "id": "F043",
+      "symbol": "BNBUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "Breakout — 15p High + Volume",
+      "session": "—",
+      "entry": 620.06,
+      "exit": 638.0,
+      "invalidation": 615.5621428571428,
+      "target": 633.5535714285713,
+      "leverage": 1,
+      "size": 7.387139997252916,
+      "rr": 3.99,
+      "outcome": "WIN",
+      "pnl_usd": 127.88,
+      "entry_time": "2026-05-03T23:58:35.505843",
+      "exit_time": "2026-05-04T07:20:37.731445",
+      "exit_reason": "TAKE-PROFIT: 638.0000 >= 629.0557",
+      "notes": "Strateji:Mean_Reversion_SHORT_FULL"
     }
   ]
 }
