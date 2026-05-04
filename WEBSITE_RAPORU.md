@@ -1,5 +1,5 @@
 # Nechh Robotics — Website Geliştirme Raporu
-**Son Güncelleme:** 2 Mayıs 2026  
+**Son Güncelleme:** 4 Mayıs 2026  
 **Site:** https://nechh-robotics-website.vercel.app  
 **GitHub:** github.com/nechh42/Nechh_Robotics_website (branch: main)  
 **Hosting:** Vercel (Hobby Plan — ücretsiz)  
@@ -77,6 +77,53 @@
 - Form submit → Formspree (kayıt) + Resend (email) paralel çalışır
 - **Env var:** `RESEND_API_KEY` — Vercel'e eklendi ✅
 
+### Yasal Uyumluluk (Yeni — ADIM 36)
+- **Multi-step Yasal Onay Sistemi** — `assets/js/legal-modal.js`
+- 4 adımlı zorunlu onay: Yaş (18+) → Yasal Uyarı → Risk Açıklaması → Gizlilik
+- Tüm onaylar `localStorage`'da saklanır, eksikse site tamamen bloklanır
+- Sürekli yasal footer (Risk, Gizlilik, Koşullar linkleri + "Onayları Sıfırla")
+- ESC ve arka plan tıklama engellenir
+- Tüm 30 HTML sayfaya otomatik injekte edildi
+
+### Admin Panel (ADIM 30 — Tamamlandı)
+- `admin.html` — Dark tema, mobil uyumlu admin panel
+- Login: `X-Admin-Secret` header ile API doğrulama
+- İstatistikler: Toplam üye, aktif, ödeme bekleyen, süresi dolmuş, MRR
+- Abone tablosu: email, Telegram, plan, durum, bitiş tarihi, uyarı, kayıt
+- Aksiyonlar: Aktif et, +30 gün ekle, Uyar, Banla
+- CSV export desteği
+- 60 saniyede otomatik yenileme
+
+### Üye Dashboard (ADIM 26 — Ön Yüz)
+- `dashboard.html` — Sinyaller, geçmiş, ayarlar sekmeleri
+- Aktif sinyaller kartı (LONG/SHORT badge)
+- Trade history tablosu
+- Bildirim ayarları (Email, Telegram, Browser)
+- Abonelik durumu paneli
+- Mobil uyumlu grid layout
+
+### Affiliate Sistemi (ADIM 32 — Ön Yüz)
+- `affiliate.html` — 3 kademe komisyon: Starter %20, Pro %25, Elite %30
+- Referans linki oluşturma ve kopyalama
+- Demo istatistikler: Clicks, Signups, Conversion, Earned
+- Program kuralları (self-referral yasak, $100 min payout, 90 gün cookie)
+- `assets/js/affiliate-tracker.js` — URL `?ref=` parametresi takibi, localStorage kaydı
+
+### A/B Test Sistemi (ADIM 34 — Tamamlandı)
+- `assets/js/ab-test.js` — Deterministic bucket assignment (localStorage seed)
+- Deney: Hero CTA metni
+  - Control: "Get Access →" (50%)
+  - Variant A: "Start Free Trial →" (25%)
+  - Variant B: "Join Now →" (25%)
+- GA4 `ab_exposure` eventi ile otomatik raporlama
+
+### Gerçek Zamanlı Bildirimler (ADIM 35 — Ön Yüz)
+- `assets/js/realtime-notifications.js` — 30 saniyede bir `trades.json` poll
+- Yeni sinyal algılandığında slide-in toast bildirim (LONG=yeşil, SHORT=kırmızı)
+- Browser push notification desteği (isteğe bağlı, kullanıcı onaylı)
+- GA4 `signal_notification` event tracking
+- Toast'tan tıklama → dashboard.html yönlendirmesi
+
 ---
 
 ## Aktif Servisler & API'lar
@@ -112,12 +159,8 @@
 | Adım | İçerik | Neden Bekliyor |
 |------|--------|----------------|
 | ADIM 25 | Stripe Checkout | Türkiye'de Stripe çalışmıyor — alternatif: Paddle, LemonSqueezy, kripto ödeme |
-| ADIM 26 | Üye Dashboard | Supabase auth + Stripe sonrası |
 | ADIM 28 | i18n (TR/EN) | Next.js gerektirir — şimdilik statik HTML |
-| ADIM 30 | Admin Panel | Supabase gerektirir |
-| ADIM 32 | Affiliate sistemi | Backend gerektirir |
-| ADIM 34 | A/B Test | Hero CTA: "Get Access" vs "Start Free Trial" |
-| ADIM 35 | Gerçek zamanlı bildirimler | SSE/WebSocket gerektirir |
+| ADIM 35 (Backend) | WebSocket/SSE gerçek zamanlı | Vercel Hobby Plan WebSocket desteklemiyor — polling ile çözüldü |
 
 ---
 
@@ -162,11 +205,14 @@ website_repo/
 │   ├── crypto-to-equities.html
 │   ├── algo-signal-pipeline.html
 │   └── surviving-drawdowns.html
-└── legal/
-    ├── privacy.html
-    ├── terms.html
-    ├── risk-disclosure.html
-    └── refund-policy.html
+├── dashboard.html          ← Üye dashboard (sinyal + geçmiş + ayarlar)
+├── affiliate.html          ← Affiliate programı (3 kademe komisyon)
+├── admin.html              ← Admin panel (abone yönetimi + CSV export)
+└── assets/js/
+    ├── legal-modal.js        ← Multi-step yasal onay (4 adım)
+    ├── ab-test.js            ← A/B test sistemi
+    ├── affiliate-tracker.js  ← Referans kodu takibi
+    └── realtime-notifications.js ← Yeni sinyal toast bildirimleri
 ```
 
 ---

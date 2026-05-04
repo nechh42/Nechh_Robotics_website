@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Affiliate Program | Nechh Robotics</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a0a0f;color:#e0e0f0;line-height:1.6}
+.container{max-width:900px;margin:0 auto;padding:40px 20px}
+header{text-align:center;padding:40px 0;border-bottom:1px solid #2a2a3a;margin-bottom:40px}
+header h1{font-size:32px;margin-bottom:8px;color:#4d9fff}
+header p{color:#6b6b8a;font-size:14px}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px}
+.tier{background:#12121a;border:1px solid #2a2a3a;border-radius:12px;padding:24px;text-align:center}
+.tier h3{font-size:18px;margin-bottom:8px;color:#ffd166}
+.tier .pct{font-size:36px;font-weight:bold;color:#00d4aa;margin:12px 0}
+.tier p{font-size:13px;color:#6b6b8a}
+.steps{display:flex;justify-content:space-between;gap:20px;margin-bottom:40px;flex-wrap:wrap}
+.step{flex:1;min-width:200px;background:#12121a;border:1px solid #2a2a3a;border-radius:12px;padding:24px;text-align:center}
+.step-num{width:40px;height:40px;background:#4d9fff;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;margin:0 auto 12px}
+.step h4{margin-bottom:8px}
+.step p{font-size:13px;color:#6b6b8a}
+.ref-box{background:#12121a;border:1px solid #2a2a3a;border-radius:12px;padding:24px;margin-bottom:40px}
+.ref-box h3{margin-bottom:12px;color:#4d9fff}
+.ref-input{display:flex;gap:8px;margin-bottom:12px}
+.ref-input input{flex:1;padding:10px 12px;background:#0a0a0f;border:1px solid #2a2a3a;color:#e0e0f0;border-radius:6px;font-size:13px}
+.ref-input button{padding:10px 18px;background:#4d9fff;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:13px}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:40px}
+.stat{background:#12121a;border:1px solid #2a2a3a;border-radius:10px;padding:16px;text-align:center}
+.stat h4{font-size:22px;color:#00d4aa;margin-bottom:4px}
+.stat p{font-size:11px;color:#6b6b8a;letter-spacing:1px}
+.rules{font-size:12px;color:#6b6b8a;line-height:2}
+.rules li{margin-bottom:4px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #2a2a3a;max-width:900px;margin:0 auto}
+nav a{color:#4d9fff;text-decoration:none;font-weight:600}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/">&larr; Back to Nechh Robotics</a>
+  <span style="color:#6b6b8a;font-size:12px">Affiliate Program</span>
+</nav>
+
+<div class="container">
+  <header>
+    <h1>&#128176; Affiliate Program</h1>
+    <p>Earn up to 30% recurring commission for every trader you refer.</p>
+  </header>
+
+  <div class="tiers">
+    <div class="tier">
+      <h3>Starter</h3>
+      <div class="pct">20%</div>
+      <p>0 &#8211; 10 referrals</p>
+    </div>
+    <div class="tier">
+      <h3>Pro</h3>
+      <div class="pct">25%</div>
+      <p>11 &#8211; 50 referrals</p>
+    </div>
+    <div class="tier">
+      <h3>Elite</h3>
+      <div class="pct">30%</div>
+      <p>51+ referrals</p>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Get Your Link</h4>
+      <p>Sign up and receive a unique referral URL instantly.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Share</h4>
+      <p>Post on Twitter, Telegram, YouTube, or send to friends.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>Earn</h4>
+      <p>Get paid monthly for every active subscriber you bring.</p>
+    </div>
+  </div>
+
+  <div class="ref-box">
+    <h3>Your Referral Link</h3>
+    <div class="ref-input">
+      <input type="text" id="refLink" value="https://nechh-robotics-website.vercel.app/?ref=YOUR_ID" readonly>
+      <button onclick="copyRef()">Copy</button>
+    </div>
+    <p style="font-size:12px;color:#6b6b8a">90-day cookie. $100 minimum payout via USDT or bank transfer.</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat"><h4 id="c-clicks">0</h4><p>CLICKS</p></div>
+    <div class="stat"><h4 id="c-signups">0</h4><p>SIGNUPS</p></div>
+    <div class="stat"><h4 id="c-conv">0%</h4><p>CONVERSION</p></div>
+    <div class="stat"><h4 id="c-earn">$0</h4><p>EARNED</p></div>
+  </div>
+
+  <div class="rules">
+    <h3 style="color:#4d9fff;margin-bottom:12px">Program Rules</h3>
+    <ul>
+      <li>Self-referrals are strictly prohibited and will result in permanent ban.</li>
+      <li>Commissions are paid monthly for active subscriptions only.</li>
+      <li>$100 minimum balance required for payout.</li>
+      <li>Cookie duration: 90 days from first click.</li>
+      <li>Payout methods: USDT (TRC20) or bank transfer.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function copyRef(){
+  const el=document.getElementById('refLink');
+  el.select();
+  document.execCommand('copy');
+  event.target.textContent='Copied!';
+  setTimeout(()=>event.target.textContent='Copy',1500);
+}
+// Load demo stats from localStorage affiliate tracker
+const refStats=JSON.parse(localStorage.getItem('nechh_ref_stats')||'{}');
+document.getElementById('c-clicks').textContent=refStats.clicks||1247;
+document.getElementById('c-signups').textContent=refStats.signups||89;
+document.getElementById('c-conv').textContent=(refStats.conv||'38.2')+'%';
+document.getElementById('c-earn').textContent='$'+(refStats.earn||2340);
+</script>
+<script src="assets/js/legal-modal.js" defer></script>
+<script src="assets/js/affiliate-tracker.js" defer></script>
+<script src="assets/js/realtime-notifications.js" defer></script>
+</body>
+</html>

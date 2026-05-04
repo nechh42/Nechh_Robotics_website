@@ -15,18 +15,18 @@
         
         <div id="chat-messages" style="height:350px; padding:15px; overflow-y:auto; font-size:14px;">
             <div class="message ai">
-                <div class="bubble">Merhaba! Ben Nechh AI asistanýyým. Size nasýl yardýmcý olabilirim? </div>
+                <div class="bubble">Merhaba! Ben Nechh AI asistanï¿½yï¿½m. Size nasï¿½l yardï¿½mcï¿½ olabilirim? </div>
                 <div class="time">18:08</div>
             </div>
         </div>
         
         <div style="padding:15px; border-top:1px solid #eee;">
             <div style="display:flex; gap:10px;">
-                <input type="text" id="chat-input" placeholder="Mesajýnýzý yazýn..." style="flex:1; padding:10px; border:1px solid #ddd; border-radius:25px; outline:none;">
+                <input type="text" id="chat-input" placeholder="Mesajï¿½nï¿½zï¿½ yazï¿½n..." style="flex:1; padding:10px; border:1px solid #ddd; border-radius:25px; outline:none;">
                 <button id="send-message" style="background:#007bff; color:white; border:none; border-radius:50%; width:40px; height:40px; cursor:pointer;"></button>
             </div>
             <div style="font-size:11px; color:#666; text-align:center; margin-top:10px;">
-                Otomatik yanýt sistemi  7/24 aktif
+                Otomatik yanï¿½t sistemi  7/24 aktif
             </div>
         </div>
     </div>
@@ -85,18 +85,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     async function sendToAI(message) {
-        // Basit AI yanýtlarý (sonra OpenAI API baðlayacaðýz)
+        // Basit AI yanï¿½tlarï¿½ (sonra OpenAI API baï¿½layacaï¿½ï¿½z)
         const responses = {
-            'kayýt': 'Kayýt olmak için lütfen ana sayfadaki "Beta Programýna Katýl" butonuna týklayýn. Size adým adým rehberlik edeceðim!',
-            'ödeme': 'Ödemeler sadece crypto (BTC, ETH) ile kabul ediliyor. 1 ay ücretsiz denemeden sonra /ay.',
-            'telegram': 'Ödeme onaylandýktan sonra otomatik olarak Telegram grubuna eklenirsiniz.',
-            'destek': '24/7 destek için: @nechh_robotics veya nechhlab.global@gmail.com',
-            'proje': 'Þu anda Telegram AI Trading System beta aþamasýnda. Diðer projeler: AEHS, Emotice Codeburn, HealthAI Dietitian.',
-            'ücret': 'Fiyat: 1 ay ücretsiz  sonra /ay. Sadece crypto ödeme kabul ediyoruz.',
-            'nasýl': '1. Kayýt ol 2. Crypto ödeme yap 3. Telegram grubuna otomatik eklen 4. Sinyalleri al ve trade yap!'
+            'kayï¿½t': 'Kayï¿½t olmak iï¿½in lï¿½tfen ana sayfadaki "Beta Programï¿½na Katï¿½l" butonuna tï¿½klayï¿½n. Size adï¿½m adï¿½m rehberlik edeceï¿½im!',
+            'ï¿½deme': 'ï¿½demeler sadece crypto (BTC, ETH) ile kabul ediliyor. 1 ay ï¿½cretsiz denemeden sonra /ay.',
+            'telegram': 'ï¿½deme onaylandï¿½ktan sonra otomatik olarak Telegram grubuna eklenirsiniz.',
+            'destek': '24/7 destek iï¿½in: @nechh_robotics veya nechhlab.global@gmail.com',
+            'proje': 'ï¿½u anda Telegram AI Trading System beta aï¿½amasï¿½nda. Diï¿½er projeler: AEHS, Emotice Codeburn, HealthAI Dietitian.',
+            'ï¿½cret': 'Fiyat: 1 ay ï¿½cretsiz  sonra /ay. Sadece crypto ï¿½deme kabul ediyoruz.',
+            'nasï¿½l': '1. Kayï¿½t ol 2. Crypto ï¿½deme yap 3. Telegram grubuna otomatik eklen 4. Sinyalleri al ve trade yap!'
         };
         
-        let response = "Anladým! Size þu konuda yardýmcý olabilirim: kayýt, ödeme, telegram, destek, proje, ücret, nasýl. Lütfen daha spesifik sorun.";
+        let response = "Anladï¿½m! Size ï¿½u konuda yardï¿½mcï¿½ olabilirim: kayï¿½t, ï¿½deme, telegram, destek, proje, ï¿½cret, nasï¿½l. Lï¿½tfen daha spesifik sorun.";
         
         for (const [key, value] of Object.entries(responses)) {
             if (message.toLowerCase().includes(key)) {
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Yanýtý ekle (gecikmeli)
+        // Yanï¿½tï¿½ ekle (gecikmeli)
         setTimeout(() => {
             addMessage(response);
         }, 500);
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Hýzlý sorular butonlarý
+    // Hï¿½zlï¿½ sorular butonlarï¿½
     const quickQuestions = document.createElement('div');
     quickQuestions.style.padding = '10px 15px';
     quickQuestions.style.borderTop = '1px solid #eee';
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
     quickQuestions.style.flexWrap = 'wrap';
     quickQuestions.style.gap = '5px';
     
-    const questions = ['Kayýt nasýl?', 'Ücret ne kadar?', 'Telegram?', 'Destek?'];
+    const questions = ['Kayï¿½t nasï¿½l?', 'ï¿½cret ne kadar?', 'Telegram?', 'Destek?'];
     
     questions.forEach(q => {
         const btn = document.createElement('button');
@@ -160,3 +160,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
+<script src="assets/js/legal-modal.js" defer></script>
