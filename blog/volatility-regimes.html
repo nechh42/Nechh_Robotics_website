@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="../assets/js/legal-modal.js" defer></script>
+  <meta charset="UTF-8">
+  <title>Volatility Regimes Explained | Nechh Robotics</title>
+  <meta name="description" content="How to identify low, normal, and high volatility regimes for better risk management.">
+  <style>
+    body { background: #0a0a0a; color: #fff; font-family: sans-serif; margin: 0; }
+    .article { max-width: 720px; margin: 0 auto; padding: 60px 20px; }
+    .article h1 { font-size: 36px; }
+    .article h2 { color: #10b981; margin-top: 40px; }
+    .article p { color: #d4d4d4; line-height: 1.7; }
+    .article ul { color: #d4d4d4; margin-bottom: 24px; padding-left: 24px; }
+    .regime-box { background: #111; border: 1px solid #262626; border-radius: 12px; padding: 24px; margin: 20px 0; }
+    .regime-low { border-left: 4px solid #3b82f6; }
+    .regime-normal { border-left: 4px solid #10b981; }
+    .regime-high { border-left: 4px solid #ef4444; }
+    a { color: #10b981; }
+  </style>
+</head>
+<body>
+  <article class="article">
+    <h1>Volatility Regimes Explained</h1>
+    <div class="meta">May 5, 2026 • 5 min read • Strategy</div>
+
+    <p>Not all market conditions are equal. Our algorithms classify volatility into three regimes — each requiring different position sizing and stop placement.</p>
+
+    <div class="regime-box regime-low">
+      <h3>🟢 Low Volatility (Compression)</h3>
+      <p>Bollinger Bands narrow. ATR drops below 20-period average. Price chops in tight range.</p>
+      <p><strong>Strategy:</strong> Reduce position size 50%. Wider stops. Wait for breakout.</p>
+    </div>
+
+    <div class="regime-box regime-normal">
+      <h3>🟡 Normal Volatility (Trend)</h3>
+      <p>Healthy expansion. ATR within 1 standard deviation. Clean structure.</p>
+      <p><strong>Strategy:</strong> Standard position size. Trend-following. Standard stops.</p>
+    </div>
+
+    <div class="regime-box regime-high">
+      <h3>🔴 High Volatility (Expansion)</h3>
+      <p>Bollinger Bands widen. ATR spikes 2x average. Whipsaws common.</p>
+      <p><strong>Strategy:</strong> Reduce size 50% or flat. Tighter stops. Counter-trend forbidden.</p>
+    </div>
+
+    <h2>Current BTC Regime</h2>
+    <p>As of May 4, 2026: <strong>Normal Volatility</strong></p>
+    <ul>
+      <li>14-day ATR: $1,850</li>
+      <li>20-period average ATR: $1,720</li>
+      <li>Ratio: 1.08 (within normal range)</li>
+    </ul>
+
+    <p><a href="../pricing.html">Get real-time regime alerts →</a></p>
+  </article>
+</body>
+</html>

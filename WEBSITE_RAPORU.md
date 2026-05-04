@@ -1,5 +1,5 @@
 # Nechh Robotics — Website Geliştirme Raporu
-**Son Güncelleme:** 4 Mayıs 2026  
+**Son Güncelleme:** 5 Mayıs 2026  
 **Site:** https://nechh-robotics-website.vercel.app  
 **GitHub:** github.com/nechh42/Nechh_Robotics_website (branch: main)  
 **Hosting:** Vercel (Hobby Plan — ücretsiz)  
@@ -49,6 +49,19 @@
 | crypto-to-equities.html | Kripto'dan US stocks'a geçiş (Q3 2026) | Multi-Market |
 | algo-signal-pipeline.html | 7-adımlı sinyal pipeline açıklaması | Technology |
 | surviving-drawdowns.html | Drawdown'dan sağ çıkma — 5 kural | Risk Management |
+| **market-structure.html** | **Market Structure — HH/HL, BOS, CHoCH** | **Education (YENİ)** |
+| **volatility-regimes.html** | **Volatility Regimes — Low/Normal/High** | **Strategy (YENİ)** |
+| **risk-management.html** | **5 Non-Negotiable Risk Rules** | **Education (YENİ)** |
+| **multi-timeframe.html** | **Multi-Timeframe Confluence — 75% threshold** | **Strategy (YENİ)** |
+| **sector-rotation.html** | **Sector Rotation & Risk-On/Risk-Off** | **Macro (YENİ)** |
+| **central-bank-alerts.html** | **Central Bank Policy — Fed/ECB/CBRT response** | **Macro (YENİ)** |
+
+**Toplam:** 13 blog yazısı (7 orijinal + 6 yeni eğitim)
+
+### Hızlı Düzeltmeler (5 Mayıs 2026)
+- `about.html` — Bozuk emoji karakterleri düzeltildi (📊 🤖 🛡️ ⚖️ 🔒 🌍 📈 💱 🇹🇷 🇨🇳 𝕏 ✈️ ©)
+- `blog.html` — 6 yeni makale kartı eklendi
+- `sitemap.xml` — 6 yeni blog URL'si eklendi
 
 ### Analitik & Takip (ADIM 22)
 - **GA4 Measurement ID:** `G-439H3JBHZR` — 10 HTML dosyasına inject edildi
@@ -204,7 +217,13 @@ website_repo/
 │   ├── position-sizing-guide.html
 │   ├── crypto-to-equities.html
 │   ├── algo-signal-pipeline.html
-│   └── surviving-drawdowns.html
+│   ├── surviving-drawdowns.html
+│   ├── market-structure.html       ← YENİ (Education)
+│   ├── volatility-regimes.html     ← YENİ (Strategy)
+│   ├── risk-management.html        ← YENİ (Education)
+│   ├── multi-timeframe.html        ← YENİ (Strategy)
+│   ├── sector-rotation.html        ← YENİ (Macro)
+│   └── central-bank-alerts.html   ← YENİ (Macro)
 ├── dashboard.html          ← Üye dashboard (sinyal + geçmiş + ayarlar)
 ├── affiliate.html          ← Affiliate programı (3 kademe komisyon)
 ├── admin.html              ← Admin panel (abone yönetimi + CSV export)

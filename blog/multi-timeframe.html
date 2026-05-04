@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="../assets/js/legal-modal.js" defer></script>
+  <meta charset="UTF-8">
+  <title>Multi-Timeframe Confluence | Nechh Robotics</title>
+  <meta name="description" content="How to align weekly, daily, 4H and 1H timeframes for high-probability setups.">
+  <style>
+    body { background: #0a0a0a; color: #fff; font-family: sans-serif; margin: 0; }
+    .article { max-width: 720px; margin: 0 auto; padding: 60px 20px; }
+    .article h1 { font-size: 36px; }
+    .article h2 { color: #10b981; margin-top: 40px; }
+    .article p { color: #d4d4d4; line-height: 1.7; }
+    .article ul { color: #d4d4d4; margin-bottom: 24px; padding-left: 24px; }
+    .timeframe-box { background: #111; border: 1px solid #262626; border-radius: 12px; padding: 24px; margin: 20px 0; border-left: 4px solid #10b981; }
+    .confluence-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+    .confluence-table th { text-align: left; padding: 12px; border-bottom: 2px solid #262626; color: #737373; }
+    .confluence-table td { padding: 12px; border-bottom: 1px solid #1a1a1a; color: #d4d4d4; }
+    .signal-yes { color: #10b981; font-weight: 700; }
+    .signal-no { color: #ef4444; }
+    .highlight { background: rgba(16,185,129,0.1); border-left: 3px solid #10b981; padding: 16px 20px; margin: 24px 0; }
+    a { color: #10b981; }
+  </style>
+</head>
+<body>
+  <article class="article">
+    <h1>Multi-Timeframe Confluence</h1>
+    <div class="meta">May 5, 2026 • 6 min read • Strategy</div>
+
+    <p>A single timeframe lies. Four timeframes aligned tell the truth. Our algorithms require minimum 75% confluence before triggering any signal.</p>
+
+    <h2>The Hierarchy</h2>
+
+    <div class="timeframe-box">
+      <h3>🗓️ Weekly — The Macro Judge</h3>
+      <p>Defines the major trend. Bullish structure here = only LONG signals considered.</p>
+    </div>
+
+    <div class="timeframe-box">
+      <h3>📅 Daily — The Key Levels</h3>
+      <p>Identifies critical support/resistance. Weekly trend + daily level break = first confirmation.</p>
+    </div>
+
+    <div class="timeframe-box">
+      <h3>⏰ 4H — The Entry Timer</h3>
+      <p>Pinpoints exact entry zones. Micro-structure (BOS/CHoCH) must form here.</p>
+    </div>
+
+    <div class="timeframe-box">
+      <h3>⏱️ 1H — The Precision Layer</h3>
+      <p>Final confirmation. Entry timing within 4H zone. Not used for direction.</p>
+    </div>
+
+    <h2>Confluence Scoring</h2>
+
+    <table class="confluence-table">
+      <thead>
+        <tr><th>Timeframe</th><th>Current Bias</th><th>Signal Direction</th><th>Weight</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Weekly</td><td>Bullish (HH+HL)</td><td class="signal-yes">LONG ✓</td><td>40%</td></tr>
+        <tr><td>Daily</td><td>Support held $62K</td><td class="signal-yes">LONG ✓</td><td>30%</td></tr>
+        <tr><td>4H</td><td>BOS above $63.5K</td><td class="signal-yes">LONG ✓</td><td>20%</td></tr>
+        <tr><td>1H</td><td>Pullback to $62.8K</td><td class="signal-yes">ENTRY ✓</td><td>10%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="highlight">
+      <p>🎯 <strong>Confluence Score: 100%</strong> → High confidence signal triggered.</p>
+    </div>
+
+    <p><a href="../pricing.html">Get multi-timeframe signals →</a></p>
+  </article>
+</body>
+</html>

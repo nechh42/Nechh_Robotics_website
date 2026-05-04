@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="../assets/js/legal-modal.js" defer></script>
+  <meta charset="UTF-8">
+  <title>Understanding Market Structure | Nechh Robotics</title>
+  <meta name="description" content="Learn market structure basics: Higher Highs, Higher Lows, break of structure, and change of character.">
+  <style>
+    body { background: #0a0a0a; color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; line-height: 1.7; }
+    .article { max-width: 720px; margin: 0 auto; padding: 60px 20px; }
+    .article h1 { font-size: 36px; margin-bottom: 12px; line-height: 1.2; }
+    .article .meta { color: #737373; font-size: 14px; margin-bottom: 40px; }
+    .article h2 { font-size: 24px; margin: 40px 0 16px 0; color: #10b981; }
+    .article p { color: #d4d4d4; margin-bottom: 20px; font-size: 16px; }
+    .article ul { color: #d4d4d4; margin-bottom: 24px; padding-left: 24px; }
+    .article li { margin-bottom: 12px; }
+    .highlight { background: rgba(16,185,129,0.1); border-left: 3px solid #10b981; padding: 16px 20px; margin: 24px 0; border-radius: 0 8px 8px 0; }
+    .highlight p { margin: 0; color: #a7f3d0; }
+    .chart-placeholder { background: #111; border: 1px solid #262626; border-radius: 12px; padding: 40px; text-align: center; margin: 32px 0; color: #525252; }
+    a { color: #10b981; }
+  </style>
+</head>
+<body>
+  <article class="article">
+    <h1>Understanding Market Structure</h1>
+    <div class="meta">May 4, 2026 • 8 min read • Education</div>
+
+    <p>Most traders lose money because they chase price. Smart traders chase <strong>structure</strong>. This guide explains the foundation of our algorithmic analysis.</p>
+
+    <h2>What is Market Structure?</h2>
+    <p>Market structure is the framework of price movement. It tells us whether buyers or sellers control the market. Our algorithms identify three core structures:</p>
+
+    <ul>
+      <li><strong>Uptrend (Bullish):</strong> Higher Highs (HH) + Higher Lows (HL)</li>
+      <li><strong>Downtrend (Bearish):</strong> Lower Highs (LH) + Lower Lows (LL)</li>
+      <li><strong>Range (Neutral):</strong> Equal Highs + Equal Lows</li>
+    </ul>
+
+    <div class="highlight">
+      <p>💡 <strong>Key Insight:</strong> A trend continues until structure breaks. Our systems detect breaks before most human traders.</p>
+    </div>
+
+    <h2>Break of Structure (BOS)</h2>
+    <p>When price breaks the previous high in an uptrend (or low in a downtrend), we call this BOS. It confirms trend continuation.</p>
+
+    <div class="chart-placeholder">
+      [Chart: BTC/USD 4H showing BOS at $64,200]
+      <br><small>Visual placeholder — add TradingView screenshot</small>
+    </div>
+
+    <h2>Change of Character (CHoCH)</h2>
+    <p>When price fails to make a new high and instead breaks the previous low, the trend character changes. This is our early reversal signal.</p>
+
+    <div class="highlight">
+      <p>⚠️ <strong>Risk Management:</strong> We never trade CHoCH alone. Confirmation from volume and volatility regime is required.</p>
+    </div>
+
+    <h2>How Our Algorithms Use Structure</h2>
+    <p>Our systems analyze market structure across multiple timeframes simultaneously:</p>
+
+    <ul>
+      <li><strong>Weekly:</strong> Macro trend direction</li>
+      <li><strong>Daily:</strong> Key support/resistance levels</li>
+      <li><strong>4H:</strong> Entry/exit timing</li>
+      <li><strong>1H:</strong> Precision execution</li>
+    </ul>
+
+    <p>When all four timeframes align, our confidence score exceeds 75%. That's when signals trigger.</p>
+
+    <h2>Practical Example: BTC/USD May 2026</h2>
+    <p>Current structure: <strong>Uptrend intact</strong></p>
+    <ul>
+      <li>Last Higher High: $67,500 (April 28)</li>
+      <li>Last Higher Low: $60,000 (April 15)</li>
+      <li>Current price: $64,200 → <strong>Valid HL forming</strong></li>
+      <li>Invalidation: Close below $60,000</li>
+    </ul>
+
+    <div class="highlight">
+      <p>🎯 <strong>Algorithmic Bias:</strong> LONG above $62,800. Target $67,500. Stop $60,800.</p>
+    </div>
+
+    <h2>Common Mistakes</h2>
+    <ul>
+      <li>❌ Trading against structure "because it feels too high"</li>
+      <li>❌ Ignoring higher timeframe structure</li>
+      <li>❌ Entering before BOS confirmation</li>
+      <li>❌ No invalidation level (stop loss)</li>
+    </ul>
+
+    <h2>Next Steps</h2>
+    <p>Market structure is just one component. Our algorithms also analyze:</p>
+    <ul>
+      <li><a href="volatility-regimes.html">Volatility Regimes</a></li>
+      <li><a href="risk-management.html">Risk-Defined Setups</a></li>
+      <li><a href="multi-timeframe.html">Multi-Timeframe Confluence</a></li>
+    </ul>
+
+    <div class="highlight">
+      <p>📊 <strong>Ready for signals?</strong> Our algorithms scan 24/7. <a href="../pricing.html">Start at $150/mo</a></p>
+    </div>
+  </article>
+</body>
+</html>
