@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "04.05.2026 18:53 UTC",
-      "uptime": "1:01:26",
+      "last_update": "04.05.2026 19:08 UTC",
+      "uptime": "1:16:28",
       "active_symbols": 25
     },
     "performance": {
       "balance": 9949.52,
-      "equity": 9949.81,
-      "total_pnl": -50.19,
+      "equity": 9947.99,
+      "total_pnl": -52.01,
       "total_trades": 89,
       "wins": 49,
       "losses": 40,
@@ -22,39 +22,39 @@
       {
         "symbol": "WIFUSDT",
         "side": "LONG",
-        "pnl": -1.99
+        "pnl": -3.54
       },
       {
         "symbol": "ADAUSDT",
         "side": "LONG",
-        "pnl": 2.29
+        "pnl": 2.01
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$80,091.49",
+        "price": "$80,107.61",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,359.24",
+        "price": "$2,362.69",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "SOL",
-        "price": "$84.66",
+        "price": "$84.65",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$625.76",
+        "price": "$625.45",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -96,7 +96,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.42",
+        "price": "$9.43",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -138,7 +138,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$93.04",
+        "price": "$92.86",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
