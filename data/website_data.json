@@ -3,8 +3,8 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "04.05.2026 02:50 UTC",
-      "uptime": "6:16:49",
+      "last_update": "04.05.2026 03:05 UTC",
+      "uptime": "6:31:50",
       "active_symbols": 25
     },
     "performance": {
@@ -22,28 +22,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$80,132.80",
+        "price": "$80,132.64",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,382.24",
+        "price": "$2,377.31",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$85.45",
+        "price": "$85.34",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$625.21",
+        "price": "$625.26",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -71,7 +71,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$448.30",
+        "price": "$448.80",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -113,7 +113,7 @@
       },
       {
         "symbol": "NEAR",
-        "price": "$1.29",
+        "price": "$1.30",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
@@ -127,7 +127,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$94.33",
+        "price": "$94.26",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
