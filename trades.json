@@ -1,19 +1,19 @@
 {
   "meta": {
-    "last_updated": "2026-05-04T05:52:18.539631+00:00",
+    "last_updated": "2026-05-04T06:22:47.723542+00:00",
     "mode": "PAPERTRADE",
     "version": "2.0"
   },
   "summary": {
-    "total_trades": 127,
+    "total_trades": 128,
     "wins": 68,
-    "losses": 59,
-    "win_rate": 53.5,
-    "avg_rr": 0.26,
-    "total_pnl": 563.2,
+    "losses": 60,
+    "win_rate": 53.1,
+    "avg_rr": 0.23,
+    "total_pnl": 510.0,
     "max_drawdown": 1.39,
     "balance_start": 10000.0,
-    "balance_current": 10563.2
+    "balance_current": 10510.0
   },
   "trades": [
     {
@@ -2681,6 +2681,27 @@
       "entry_time": "2026-05-03T23:58:35.505843",
       "exit_time": "2026-05-04T07:20:37.731445",
       "exit_reason": "TAKE-PROFIT: 638.0000 >= 629.0557",
+      "notes": "Strateji:Mean_Reversion_SHORT_FULL"
+    },
+    {
+      "id": "F044",
+      "symbol": "BNBUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "Breakout — 15p High + Volume",
+      "session": "—",
+      "entry": 638.0,
+      "exit": 631.5,
+      "invalidation": 632.4735714285714,
+      "target": 654.5792857142858,
+      "leverage": 1,
+      "size": 7.456808542411101,
+      "rr": -1.18,
+      "outcome": "LOSS",
+      "pnl_usd": -53.2,
+      "entry_time": "2026-05-04T07:20:37.731445",
+      "exit_time": "2026-05-04T09:22:33.689755",
+      "exit_reason": "STOP-LOSS: 631.5000 <= 632.4736",
       "notes": "Strateji:Mean_Reversion_SHORT_FULL"
     }
   ]
