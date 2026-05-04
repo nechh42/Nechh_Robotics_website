@@ -1,19 +1,19 @@
 {
   "meta": {
-    "last_updated": "2026-05-04T10:03:57.475607+00:00",
+    "last_updated": "2026-05-04T10:04:08.018700+00:00",
     "mode": "PAPERTRADE",
     "version": "2.0"
   },
   "summary": {
-    "total_trades": 131,
+    "total_trades": 132,
     "wins": 0,
-    "losses": 2,
+    "losses": 3,
     "win_rate": 0.0,
     "avg_rr": 0.69,
-    "total_pnl": -33.7,
-    "max_drawdown": 0.34,
+    "total_pnl": -46.37,
+    "max_drawdown": 0.46,
     "balance_start": 10000.0,
-    "balance_current": 9966.3
+    "balance_current": 9953.63
   },
   "trades": [
     {
@@ -2766,6 +2766,27 @@
       "duration_minutes": 363,
       "opened_at": "2026-05-04T04:00:00.920579+00:00",
       "closed_at": "2026-05-04T10:03:57.475607+00:00"
+    },
+    {
+      "id": "T132",
+      "symbol": "DOGEUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "MOMENTUM_BREAKOUT",
+      "session": "London",
+      "entry": 0.11312944000000001,
+      "exit": 0.11037419,
+      "invalidation": 0.11054178571428572,
+      "target": 0.11779642857142858,
+      "leverage": 1,
+      "size": 4422.252819947825,
+      "rr": -1.06,
+      "outcome": "Invalidated",
+      "pnl": -12.67,
+      "pnl_pct": -2.53,
+      "duration_minutes": 364,
+      "opened_at": "2026-05-04T04:00:00.450910+00:00",
+      "closed_at": "2026-05-04T10:04:08.018700+00:00"
     }
   ]
 }
