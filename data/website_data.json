@@ -3,8 +3,8 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "04.05.2026 03:35 UTC",
-      "uptime": "7:01:51",
+      "last_update": "04.05.2026 03:50 UTC",
+      "uptime": "7:16:53",
       "active_symbols": 25
     },
     "performance": {
@@ -22,28 +22,28 @@
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$80,057.71",
+        "price": "$80,218.01",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,381.99",
+        "price": "$2,383.50",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "SOL",
-        "price": "$85.31",
+        "price": "$85.34",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "BNB",
-        "price": "$624.65",
+        "price": "$625.46",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -57,7 +57,7 @@
       },
       {
         "symbol": "AVAX",
-        "price": "$9.27",
+        "price": "$9.28",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -71,7 +71,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$449.10",
+        "price": "$449.70",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -85,7 +85,7 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.31",
+        "price": "$9.34",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -113,7 +113,7 @@
       },
       {
         "symbol": "NEAR",
-        "price": "$1.30",
+        "price": "$1.29",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_DOWN"
@@ -127,14 +127,14 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$94.02",
+        "price": "$94.07",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
       },
       {
         "symbol": "RUNE",
-        "price": "$0.53",
+        "price": "$0.54",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
