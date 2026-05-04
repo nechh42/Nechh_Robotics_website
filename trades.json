@@ -1,19 +1,19 @@
 {
   "meta": {
-    "last_updated": "2026-05-04T03:19:51.174598+00:00",
+    "last_updated": "2026-05-04T03:50:20.743506+00:00",
     "mode": "PAPERTRADE",
     "version": "2.0"
   },
   "summary": {
-    "total_trades": 124,
-    "wins": 65,
+    "total_trades": 125,
+    "wins": 66,
     "losses": 59,
-    "win_rate": 52.4,
-    "avg_rr": 0.08,
-    "total_pnl": 169.93,
+    "win_rate": 52.8,
+    "avg_rr": 0.13,
+    "total_pnl": 326.67,
     "max_drawdown": 1.39,
     "balance_start": 10000.0,
-    "balance_current": 10169.93
+    "balance_current": 10326.67
   },
   "trades": [
     {
@@ -2619,6 +2619,27 @@
       "exit_time": "2026-05-03T20:40:15.300978+00:00",
       "exit_reason": "—",
       "notes": "—"
+    },
+    {
+      "id": "F041",
+      "symbol": "RUNEUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "Breakout — 15p High + Volume",
+      "session": "—",
+      "entry": 0.5165,
+      "exit": 0.5347,
+      "invalidation": 0.5076392857142856,
+      "target": 0.543082142857143,
+      "leverage": 1,
+      "size": 8868.286595734062,
+      "rr": 2.05,
+      "outcome": "WIN",
+      "pnl_usd": 156.74,
+      "entry_time": "2026-05-03T23:58:35.505843",
+      "exit_time": "2026-05-04T06:50:06.318996",
+      "exit_reason": "TAKE-PROFIT: 0.5347 >= 0.5342",
+      "notes": "Strateji:Bollinger_Squeeze_SHORT_FULL"
     }
   ]
 }
