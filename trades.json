@@ -1,19 +1,19 @@
 {
   "meta": {
-    "last_updated": "2026-05-05T20:47:37.268498+00:00",
+    "last_updated": "2026-05-05T21:17:48.333995+00:00",
     "mode": "PAPERTRADE",
     "version": "2.0"
   },
   "summary": {
-    "total_trades": 147,
+    "total_trades": 148,
     "wins": 77,
-    "losses": 70,
-    "win_rate": 52.4,
+    "losses": 71,
+    "win_rate": 52.0,
     "avg_rr": 0.12,
-    "total_pnl": -130.32,
-    "max_drawdown": 6.97,
+    "total_pnl": -210.89,
+    "max_drawdown": 7.78,
     "balance_start": 10000.0,
-    "balance_current": 9869.68
+    "balance_current": 9789.11
   },
   "trades": [
     {
@@ -3060,6 +3060,27 @@
       "exit_time": "2026-05-05T15:34:48",
       "exit_reason": "STOP-LOSS: 0.9685 >= 0.9658",
       "notes": "Strateji:Bollinger_Squeeze_SHORT_FULL"
+    },
+    {
+      "id": "F051",
+      "symbol": "ADAUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "Breakout — 15p High + Volume",
+      "session": "—",
+      "entry": 0.2583,
+      "exit": 0.2627,
+      "invalidation": 0.2613171428571428,
+      "target": 0.24924857142857149,
+      "leverage": 1,
+      "size": 17287.86324553567,
+      "rr": 0.0,
+      "outcome": "LOSS",
+      "pnl_usd": -80.57,
+      "entry_time": "2026-05-05T17:00:07.753528",
+      "exit_time": "2026-05-06T00:17:43.455478",
+      "exit_reason": "STOP-LOSS: 0.2627 >= 0.2613",
+      "notes": "Strateji:Mean_Reversion_SHORT_FULL"
     },
     {
       "id": "S096",
