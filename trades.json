@@ -1,19 +1,19 @@
 {
   "meta": {
-    "last_updated": "2026-05-05T12:04:39.776882+00:00",
+    "last_updated": "2026-05-05T12:34:50.274341+00:00",
     "mode": "PAPERTRADE",
     "version": "2.0"
   },
   "summary": {
-    "total_trades": 92,
+    "total_trades": 93,
     "wins": 51,
-    "losses": 41,
-    "win_rate": 55.4,
+    "losses": 42,
+    "win_rate": 54.8,
     "avg_rr": 0.0,
-    "total_pnl": -36.08,
-    "max_drawdown": 1.83,
+    "total_pnl": -112.85,
+    "max_drawdown": 2.4,
     "balance_start": 10000.0,
-    "balance_current": 9963.92
+    "balance_current": 9887.15
   },
   "trades": [
     {
@@ -1947,6 +1947,27 @@
       "exit_time": "2026-05-05T11:15:10.156632+00:00",
       "exit_reason": "—",
       "notes": "—"
+    },
+    {
+      "id": "F001",
+      "symbol": "SUIUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "Breakout — 15p High + Volume",
+      "session": "—",
+      "entry": 0.9532,
+      "exit": 0.9685,
+      "invalidation": 0.9657771428571429,
+      "target": 0.9154685714285715,
+      "leverage": 1,
+      "size": 4720.939991607218,
+      "rr": 0.0,
+      "outcome": "LOSS",
+      "pnl_usd": -76.77,
+      "entry_time": "2026-05-05T14:49:30.591360",
+      "exit_time": "2026-05-05T15:34:45.605971",
+      "exit_reason": "STOP-LOSS: 0.9685 >= 0.9658",
+      "notes": "Strateji:Bollinger_Squeeze_SHORT_FULL"
     }
   ]
 }
