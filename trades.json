@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-05-06T14:34:59.510938+00:00",
+    "last_updated": "2026-05-06T15:25:34.380513+00:00",
     "mode": "PAPERTRADE",
     "version": "2.0",
     "engines": [
@@ -9,27 +9,27 @@
     ]
   },
   "summary": {
-    "total_trades": 167,
+    "total_trades": 168,
     "wins": 83,
-    "losses": 84,
-    "win_rate": 49.7,
-    "avg_rr": 0.08,
-    "total_pnl": -554.92,
-    "max_drawdown": 11.18,
+    "losses": 85,
+    "win_rate": 49.4,
+    "avg_rr": 0.07,
+    "total_pnl": -566.16,
+    "max_drawdown": 11.29,
     "balance_start": 10000.0,
-    "balance_current": 9445.08
+    "balance_current": 9433.84
   },
   "summary_by_source": {
     "futures_grand": {
-      "total_trades": 59,
+      "total_trades": 60,
       "wins": 22,
-      "losses": 37,
-      "win_rate": 37.3,
-      "avg_rr": 0.08,
-      "total_pnl": -531.01,
+      "losses": 38,
+      "win_rate": 36.7,
+      "avg_rr": 0.07,
+      "total_pnl": -542.25,
       "max_drawdown": 11.68,
       "balance_start": 10000.0,
-      "balance_current": 9468.99
+      "balance_current": 9457.75
     },
     "main_orchestrator": {
       "total_trades": 108,
@@ -3716,6 +3716,28 @@
       "entry_time": "2026-05-06T15:47:59.746309",
       "exit_time": "2026-05-06T16:33:38.250620",
       "exit_reason": "STOP-LOSS: 10.0390 <= 10.0907",
+      "notes": "Strateji:OPPORTUNITY_BREAKOUT"
+    },
+    {
+      "id": "F060",
+      "symbol": "TRXUSDT",
+      "source_engine": "futures_grand",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "OPPORTUNITY_BREAKOUT",
+      "session": "—",
+      "entry": 0.344263248,
+      "exit": 0.343626881,
+      "invalidation": 0.3430668194285715,
+      "target": 0.34785253371428565,
+      "leverage": 1,
+      "size": 12327.396762637714,
+      "rr": -0.53,
+      "outcome": "LOSS",
+      "pnl_usd": -11.24,
+      "entry_time": "2026-05-06T16:49:14.362425",
+      "exit_time": "2026-05-06T18:04:25.365989",
+      "exit_reason": "LEGACY-OPPORTUNITY-PURGE: pnl=$-11.24",
       "notes": "Strateji:OPPORTUNITY_BREAKOUT"
     }
   ]
