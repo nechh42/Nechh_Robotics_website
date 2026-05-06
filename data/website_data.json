@@ -3,61 +3,61 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "06.05.2026 12:02 UTC",
-      "uptime": "0:16:06",
+      "last_update": "06.05.2026 12:17 UTC",
+      "uptime": "0:31:08",
       "active_symbols": 9
     },
     "performance": {
       "balance": 9989.39,
-      "equity": 10004.91,
-      "total_pnl": 4.91,
+      "equity": 9997.06,
+      "total_pnl": -2.94,
       "total_trades": 102,
       "wins": 59,
       "losses": 43,
       "win_rate": 57.8,
-      "max_drawdown_pct": 0.08,
+      "max_drawdown_pct": 0.1,
       "sharpe": -0.01
     },
     "open_positions": [
       {
         "symbol": "BTCUSDT",
         "side": "LONG",
-        "pnl": 9.93
+        "pnl": 7.21
       },
       {
         "symbol": "DOGEUSDT",
         "side": "LONG",
-        "pnl": 2.69
+        "pnl": -0.06
       },
       {
         "symbol": "BNBUSDT",
         "side": "LONG",
-        "pnl": 2.47
+        "pnl": 3.19
       },
       {
         "symbol": "ADAUSDT",
         "side": "LONG",
-        "pnl": 0.42
+        "pnl": -2.67
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$82,472.92",
+        "price": "$82,236.90",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,412.16",
+        "price": "$2,404.54",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "SOL",
-        "price": "$89.92",
+        "price": "$89.51",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -78,14 +78,14 @@
       },
       {
         "symbol": "BNB",
-        "price": "$653.10",
+        "price": "$653.74",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "BNB",
-        "price": "$653.10",
+        "price": "$653.74",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
