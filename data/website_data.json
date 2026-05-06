@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "06.05.2026 11:47 UTC",
-      "uptime": "0:01:05",
-      "active_symbols": 5
+      "last_update": "06.05.2026 12:02 UTC",
+      "uptime": "0:16:06",
+      "active_symbols": 9
     },
     "performance": {
-      "balance": 9990.85,
-      "equity": 10002.88,
-      "total_pnl": 2.88,
+      "balance": 9989.39,
+      "equity": 10004.91,
+      "total_pnl": 4.91,
       "total_trades": 102,
       "wins": 59,
       "losses": 43,
@@ -22,32 +22,42 @@
       {
         "symbol": "BTCUSDT",
         "side": "LONG",
-        "pnl": 10.8
+        "pnl": 9.93
       },
       {
         "symbol": "DOGEUSDT",
         "side": "LONG",
-        "pnl": 1.23
+        "pnl": 2.69
+      },
+      {
+        "symbol": "BNBUSDT",
+        "side": "LONG",
+        "pnl": 2.47
+      },
+      {
+        "symbol": "ADAUSDT",
+        "side": "LONG",
+        "pnl": 0.42
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$82,531.14",
+        "price": "$82,472.92",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,413.04",
+        "price": "$2,412.16",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "SOL",
-        "price": "$89.58",
+        "price": "$89.92",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -62,6 +72,34 @@
       {
         "symbol": "RUNE",
         "price": "$0.56",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "TREND_UP"
+      },
+      {
+        "symbol": "BNB",
+        "price": "$653.10",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "TREND_UP"
+      },
+      {
+        "symbol": "BNB",
+        "price": "$653.10",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "TREND_UP"
+      },
+      {
+        "symbol": "ADA",
+        "price": "$0.27",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "TREND_UP"
+      },
+      {
+        "symbol": "ADA",
+        "price": "$0.27",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
