@@ -1,19 +1,19 @@
 {
   "meta": {
-    "last_updated": "2026-05-06T08:21:31.461080+00:00",
+    "last_updated": "2026-05-06T08:51:44.052211+00:00",
     "mode": "PAPERTRADE",
     "version": "2.0"
   },
   "summary": {
-    "total_trades": 153,
+    "total_trades": 155,
     "wins": 78,
-    "losses": 75,
-    "win_rate": 51.0,
+    "losses": 77,
+    "win_rate": 50.3,
     "avg_rr": 0.12,
-    "total_pnl": -309.66,
-    "max_drawdown": 8.73,
+    "total_pnl": -458.18,
+    "max_drawdown": 10.21,
     "balance_start": 10000.0,
-    "balance_current": 9690.34
+    "balance_current": 9541.82
   },
   "trades": [
     {
@@ -3228,6 +3228,48 @@
       "exit_time": "2026-05-06T04:30:32.404362+00:00",
       "exit_reason": "—",
       "notes": "—"
+    },
+    {
+      "id": "F054",
+      "symbol": "BNBUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "Breakout — 15p High + Volume",
+      "session": "—",
+      "entry": 636.13,
+      "exit": 644.64,
+      "invalidation": 641.4025714285715,
+      "target": 620.3122857142855,
+      "leverage": 1,
+      "size": 6.935484730224595,
+      "rr": 0.0,
+      "outcome": "LOSS",
+      "pnl_usd": -63.46,
+      "entry_time": "2026-05-06T07:50:16.199398",
+      "exit_time": "2026-05-06T11:36:33.626314",
+      "exit_reason": "STOP-LOSS: 644.6400 >= 641.4026",
+      "notes": "Strateji:Mean_Reversion_SHORT_FULL"
+    },
+    {
+      "id": "F055",
+      "symbol": "ADAUSDT",
+      "market": "FUTURES",
+      "side": "LONG",
+      "structure": "Breakout — 15p High + Volume",
+      "session": "—",
+      "entry": 0.2663,
+      "exit": 0.2712,
+      "invalidation": 0.2699628571428571,
+      "target": 0.2553114285714286,
+      "leverage": 1,
+      "size": 16457.18904885431,
+      "rr": 0.0,
+      "outcome": "LOSS",
+      "pnl_usd": -85.06,
+      "entry_time": "2026-05-06T11:21:26.653490",
+      "exit_time": "2026-05-06T11:51:38.425174",
+      "exit_reason": "STOP-LOSS: 0.2712 >= 0.2700",
+      "notes": "Strateji:Mean_Reversion_SHORT_FULL"
     }
   ]
 }
