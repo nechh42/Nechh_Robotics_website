@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "06.05.2026 13:47 UTC",
-      "uptime": "2:01:13",
-      "active_symbols": 15
+      "last_update": "06.05.2026 14:02 UTC",
+      "uptime": "2:16:14",
+      "active_symbols": 17
     },
     "performance": {
       "balance": 9972.65,
-      "equity": 9973.93,
-      "total_pnl": -26.07,
+      "equity": 9973.52,
+      "total_pnl": -26.48,
       "total_trades": 108,
       "wins": 61,
       "losses": 47,
@@ -22,27 +22,27 @@
       {
         "symbol": "TRXUSDT",
         "side": "LONG",
-        "pnl": 1.28
+        "pnl": 0.87
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$81,664.62",
+        "price": "$81,586.60",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,368.32",
+        "price": "$2,366.60",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "SOL",
-        "price": "$88.25",
+        "price": "$88.21",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -63,28 +63,28 @@
       },
       {
         "symbol": "BNB",
-        "price": "$646.23",
+        "price": "$646.97",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "BNB",
-        "price": "$646.23",
+        "price": "$646.97",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ADA",
-        "price": "$0.26",
+        "price": "$0.27",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ADA",
-        "price": "$0.26",
+        "price": "$0.27",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -105,14 +105,14 @@
       },
       {
         "symbol": "LINK",
-        "price": "$9.96",
+        "price": "$9.95",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "LINK",
-        "price": "$9.96",
+        "price": "$9.95",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -130,6 +130,20 @@
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
+      },
+      {
+        "symbol": "NEAR",
+        "price": "$1.45",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "VOLATILE"
+      },
+      {
+        "symbol": "NEAR",
+        "price": "$1.45",
+        "change": "+0.0%",
+        "signal": "🔴",
+        "regime": "VOLATILE"
       }
     ],
     "recent_trades": [
