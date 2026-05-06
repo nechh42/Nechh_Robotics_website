@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "06.05.2026 10:39 UTC",
-      "uptime": "0:01:05",
+      "last_update": "06.05.2026 10:54 UTC",
+      "uptime": "0:16:06",
       "active_symbols": 5
     },
     "performance": {
       "balance": 9982.77,
-      "equity": 10002.7,
-      "total_pnl": 2.7,
+      "equity": 10004.81,
+      "total_pnl": 4.81,
       "total_trades": 101,
       "wins": 58,
       "losses": 43,
@@ -22,37 +22,37 @@
       {
         "symbol": "ETHUSDT",
         "side": "LONG",
-        "pnl": 12.33
+        "pnl": 12.16
       },
       {
         "symbol": "BTCUSDT",
         "side": "LONG",
-        "pnl": 7.4
+        "pnl": 8.61
       },
       {
         "symbol": "DOGEUSDT",
         "side": "LONG",
-        "pnl": 0.2
+        "pnl": 1.27
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$82,252.31",
+        "price": "$82,351.67",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,412.89",
+        "price": "$2,412.49",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "SOL",
-        "price": "$89.59",
+        "price": "$89.47",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
