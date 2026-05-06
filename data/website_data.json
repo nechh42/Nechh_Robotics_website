@@ -3,14 +3,14 @@
     "system_status": {
       "status": "OPERATIONAL",
       "mode": "PAPER",
-      "last_update": "06.05.2026 03:02 UTC",
-      "uptime": "13:02:22",
+      "last_update": "06.05.2026 03:17 UTC",
+      "uptime": "13:17:23",
       "active_symbols": 25
     },
     "performance": {
       "balance": 9976.11,
-      "equity": 9969.29,
-      "total_pnl": -30.71,
+      "equity": 9966.13,
+      "total_pnl": -33.87,
       "total_trades": 98,
       "wins": 57,
       "losses": 41,
@@ -22,49 +22,49 @@
       {
         "symbol": "ETHUSDT",
         "side": "LONG",
-        "pnl": -5.49
+        "pnl": -6.09
       },
       {
         "symbol": "BTCUSDT",
         "side": "LONG",
-        "pnl": -3.1
+        "pnl": -3.21
       },
       {
         "symbol": "ADAUSDT",
         "side": "LONG",
-        "pnl": -0.78
+        "pnl": -1.05
       },
       {
         "symbol": "DOGEUSDT",
         "side": "LONG",
-        "pnl": 2.55
+        "pnl": 0.38
       }
     ],
     "quick_cards": [
       {
         "symbol": "BTC",
-        "price": "$81,393.94",
+        "price": "$81,384.61",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "ETH",
-        "price": "$2,370.36",
+        "price": "$2,369.01",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "SOL",
-        "price": "$86.99",
+        "price": "$87.02",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
       },
       {
         "symbol": "BNB",
-        "price": "$634.49",
+        "price": "$632.31",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
@@ -92,7 +92,7 @@
       },
       {
         "symbol": "BCH",
-        "price": "$461.60",
+        "price": "$460.80",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -148,7 +148,7 @@
       },
       {
         "symbol": "AAVE",
-        "price": "$93.78",
+        "price": "$93.70",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "RANGING"
@@ -190,7 +190,7 @@
       },
       {
         "symbol": "WIF",
-        "price": "$0.22",
+        "price": "$0.21",
         "change": "+0.0%",
         "signal": "🔴",
         "regime": "TREND_UP"
